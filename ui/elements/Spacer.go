@@ -3,6 +3,7 @@ package elements
 import (
 	c "cthu3/common"
 	cp "cthu3/ui/elements/components"
+	"fmt"
 )
 
 type Spacer struct {
@@ -25,5 +26,5 @@ func (s *Spacer) Draw(x int, y int) []c.Cell {
 }
 
 func (s *Spacer) OnMouse(x int, y int, clicked bool) func() string {
-	return func() string { return "spacer, at" + string(x) + "," + string(y) }
+	return func() string { return fmt.Sprintf("spacer at %v,%v", x, y) }
 }

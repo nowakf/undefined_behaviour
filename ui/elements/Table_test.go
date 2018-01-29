@@ -1,6 +1,7 @@
 package elements_test
 
 import "testing"
+import "fmt"
 import e "cthu3/ui/elements"
 
 func TestOnMouse(t *testing.T) {
@@ -23,9 +24,9 @@ func TestOnMouse(t *testing.T) {
 	for x, _ := range contents {
 		for y, _ := range contents[x] {
 			b := tb.OnMouse(x, y, true)
-			if b() != "spacer, at"+string(x)+","+string(y) {
+			if b() != fmt.Sprintf("spacer at %v,%v", x, y) {
 
-				t.Fatalf("mouse returned %s, wanted 'spacer at %v, %v'", b(), x, y)
+				t.Fatalf("mouse returned %s, wanted 'spacer at %v,%v'", b(), x, y)
 			}
 		}
 	}

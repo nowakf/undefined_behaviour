@@ -25,7 +25,6 @@ func (t *TextBox) Draw(x, y int) []c.Cell {
 	return t.Text.Draw(x+1, y) //offset for a border
 }
 
-func (t *TextBox) OnMouse(x int, y int, clicked bool) bool {
-	println(t.Content)
-	return true
+func (t *TextBox) OnMouse(x int, y int, clicked bool) func() string {
+	return t.Content
 }

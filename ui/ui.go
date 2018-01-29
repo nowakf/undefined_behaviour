@@ -38,6 +38,8 @@ func (u *ui) Draw() []c.Cell {
 			u.view = append(u.view, cell)
 		}
 	}
+	pointer := c.Cell{X: u.x, Y: u.y, Content: '8'}
+	u.view = append(u.view, pointer)
 
 	return u.view
 
@@ -52,22 +54,47 @@ func (u *ui) Input() bool {
 	}
 }
 
+//gets the position from the window
+func (u *ui) mousepos(mouseX, mouseY, boundsH, boundsW float64) (float64, float64) {
+
+	y := mouseY / boundsH
+	x := mouseX / boundsW
+
+	return x, y
+}
+
+//converts the mouse position to a cell co-ordinate
+func (u *ui) floatToCellCoord(fx, fy float64, width, height int) (int, int) {
+
+	x := int(math.Floor(float64(width) * fx))
+	y := height - int(math.Floor(float64(height)*fy))
+
+	return x, y
+}
+
+//returns if the mouse is over something
 func (u *ui) mouse() bool {
 
-	px := u.win.MousePosition().X / u.win.Bounds().W()
-	py := u.win.MousePosition().Y / u.win.Bounds().H()
+	mouseX, mouseY := u.win.MousePosition().XY()
 
-	x := int(math.Floor(float64(u.w) * px))
-	y := int(math.Floor(float64(u.h) * py))
+	boundsH, boundsW := u.win.Bounds().H(), u.win.Bounds().W()
+
+	mx, my := u.mousepos(mouseX, mouseY, boundsH, boundsW)
+
+	x, y := u.floatToCellCoord(mx, my, u.w, u.h)
 
 	lMouseReleased := u.win.JustReleased(pixelgl.MouseButton1)
 
 	if u.x == x && u.y == y && !lMouseReleased {
+
 		return false
 	} else {
 		u.x, u.y = x, y
 		function := u.state.OnMouse(x, y, lMouseReleased)
-		println(function())
+		if lMouseReleased {
+			println(function())
+		}
+
 		return true
 	}
 

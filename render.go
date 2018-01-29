@@ -56,7 +56,7 @@ func (r *render) update(cells []c.Cell) {
 		r.drawCell(cell.Content, float64(cell.X)*r.glyphW, float64(cell.Y)*r.glyphH)
 
 	}
-	r.text.Draw(r.window, pixel.IM.Scaled(r.window.Bounds().Center(), 0.95))
+	r.text.Draw(r.window, pixel.IM)
 }
 
 //clears the text

@@ -1,39 +1,27 @@
 package components
 
-import c "cthu3/common"
-
 type Button struct {
-	action func()
+	action func() string
 	*Rect
-	mouseOver bool
+	MouseOver bool
 }
 
-func NewButton(action func(), hitbox *Rect) *Button {
+func NewButton(action func() string, hitbox *Rect) *Button {
 	b := new(Button)
 	b.action = action
 	b.Rect = hitbox
 	return b
 }
 
-func (b Button) OnMouse(x, y int, clicked bool) bool {
-	if x < b.W() && y < b.H() {
+func (b Button) OnMouse(x, y int, clicked bool) func() string {
+	if x <= b.W() && y <= b.H() {
 		if clicked {
-			b.action()
-			return true
+			return b.action
 		} else {
-			b.mouseOver = true
-			return true
+			b.MouseOver = true
+			return func() string { return "mouse over a button!" }
 		}
 	} else {
-		return false
+		return func() string { return "mouse over the buttons cell, but not on the button itself" }
 	}
-}
-
-func (b Button) Draw(input []c.Cell) []c.Cell {
-	if b.mouseOver {
-		for _, cell := range input {
-			cell.Content = 'O'
-		}
-	}
-	return input
 }

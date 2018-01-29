@@ -3,16 +3,35 @@ package components
 import (
 	c "cthu3/common"
 	"strings"
+	"unicode"
 )
 
 type Text struct {
-	content []c.Cell
-	strin   string
+	content  []c.Cell
+	asString string
 	*Rect
 }
 
 func (t *Text) Content() string {
-	return t.strin
+	return t.asString
+}
+
+func (t *Text) WithOutline(x, y int) []c.Cell {
+	transformed := make([]c.Cell, len(t.content))
+
+	for i, cell := range t.content {
+		if x == cell.X && y == cell.Y && x == cell.X+t.W() && y == cell.Y+t.H() {
+
+			highlighted := unicode.ToUpper(cell.Content)
+
+			transformed[i] = c.Cell{X: cell.X + x, Y: cell.Y + y, Content: highlighted}
+
+		} else {
+			transformed[i] = c.Cell{X: cell.X + x, Y: cell.Y + y, Content: cell.Content}
+		}
+
+	}
+	return transformed
 }
 
 func (t *Text) Draw(x, y int) []c.Cell {
@@ -20,16 +39,16 @@ func (t *Text) Draw(x, y int) []c.Cell {
 	transformed := make([]c.Cell, len(t.content))
 
 	for i, cell := range t.content {
-		t := c.Cell{X: cell.X + x, Y: cell.Y + y, Content: cell.Content}
-		transformed[i] = t
+		transformed[i] = c.Cell{X: cell.X + x, Y: cell.Y + y, Content: cell.Content}
 	}
+
 	return transformed
 }
 
 //returns a formatted body text, and a height
 func NewBodyText(width int, content string) (*Text, int) {
 	t := new(Text)
-	t.strin = content
+	t.asString = content
 	paragraphs := strings.Split(content, "\n")
 
 	text := ""
@@ -49,7 +68,7 @@ func NewBodyText(width int, content string) (*Text, int) {
 func NewTitleText(width int, content string) *Text {
 
 	t := new(Text)
-	t.strin = content
+	t.asString = content
 	t.Rect = NewRect(1, width)
 	t.content = t.toCellArray(t.horizTruncate(content, width), true)
 	return t

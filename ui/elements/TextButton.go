@@ -11,7 +11,7 @@ type TextButton struct {
 	text *cp.Text
 }
 
-func NewTextButton(width int, content string, action func()) *TextButton {
+func NewTextButton(width int, content string, action func() string) *TextButton {
 	b := new(TextButton)
 	b.Rect = cp.NewRect(1, width)
 	b.text = cp.NewTitleText(width, content)
@@ -20,9 +20,13 @@ func NewTextButton(width int, content string, action func()) *TextButton {
 }
 
 func (t *TextButton) Draw(x, y int) []c.Cell {
-	return t.butt.Draw(t.text.Draw(x, y))
+	if t.butt.MouseOver {
+		return t.text.WithOutline(x, y)
+	} else {
+		return t.text.Draw(x, y)
+	}
 }
 
-func (t *TextButton) OnMouse(x int, y int, clicked bool) bool {
+func (t *TextButton) OnMouse(x int, y int, clicked bool) func() string {
 	return t.butt.OnMouse(x, y, clicked)
 }

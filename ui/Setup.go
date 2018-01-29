@@ -26,27 +26,26 @@ func (s *Setup) questionaire() []el.UiElement {
 	println(s.w)
 	q[0] = el.NewTextBox(s.w/2, "So many times, they went back and forth, combing the data for irregularities, shifting between one theorem and the next - ")
 
-	somebuttons := make([][]el.UiElement, 3)
 	column1 := []el.UiElement{
-		el.NewTextButton(s.w/2/3, "A button!", func() {
-			//do nothing
+		el.NewTextButton(s.w/2/3, "A button!", func() string {
+			return "a button!"
 		}),
-		el.NewTextButton(s.w/2/3, "A button!", func() {
-			//do nothing
+		el.NewTextButton(s.w/2/3, "A button!", func() string {
+			return "a button!"
 		}),
-		el.NewTextButton(s.w/2/3, "A button!", func() {
-			//do nothing
+		el.NewTextButton(s.w/2/3, "A button!", func() string {
+			return "a button!"
 		}),
 	}
 
-	somebuttons[0] = column1
-	somebuttons[1] = column1
-	somebuttons[2] = column1
+	somebuttons := [][]el.UiElement{column1, column1, column1}
 
 	q[1] = el.NewTable(3, s.w/2, somebuttons)
 
-	q[2] = el.NewTextBox(s.w/2, "Sometimes, there were some problems. \n Sometimes, there were no problems. Both times were, in their own way, equally problematic. Some could say too problematic - certainly, they had outsize effects on our hopes and dreams. \n In any case, that was the end of it. \n In any case, can we stop now? \n It's enough that we can't go to Madam Tussauds anymore.")
-	q[3] = el.NewTextBox(s.w/2, "So many times, they went back and forth, combing the data for irregularities, shifting between one theorem and the next - ")
+	q[2] = el.NewSpacer(3, s.w/2)
+	q[3] = el.NewTextButton(s.w/2, "a new button", func() string {
+		return "a button"
+	})
 	return q
 
 }
