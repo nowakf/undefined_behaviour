@@ -24,6 +24,6 @@ func (s *Spacer) Draw(x int, y int) []c.Cell {
 	return []c.Cell{cell}
 }
 
-func (s *Spacer) OnMouse(x int, y int, clicked bool) bool {
-	return false
+func (s *Spacer) OnMouse(x int, y int, clicked bool) func() string {
+	return func() string { return "spacer, at" + string(x) + "," + string(y) }
 }

@@ -36,16 +36,19 @@ func (t *Table) Draw(xoffset, yoffset int) []c.Cell {
 	return cells
 }
 
-func (t *Table) OnMouse(x, y int, clicked bool) bool {
-	accumulatedWidths := 0
-	for _, column := range t.contents {
+//returns the function associated with the element under the mouse
+func (t *Table) OnMouse(x, y int, clicked bool) func() string {
 
-		if x < column[0].W() && x > accumulatedWidths {
+	accumulatedWidths := 0
+
+	for i, column := range t.contents {
+
+		if x <= column[0].W() && x >= accumulatedWidths {
 			accumulatedHeights := 0
-			for _, box := range column {
+			for j, box := range column {
 				if y < box.H() && y > accumulatedHeights {
 					//send the click event to the element
-					return box.OnMouse(x, y, clicked)
+					return box.OnMouse()
 
 				} else {
 					accumulatedHeights += box.H()
@@ -55,5 +58,5 @@ func (t *Table) OnMouse(x, y int, clicked bool) bool {
 			accumulatedWidths += column[0].W()
 		}
 	}
-	return false
+	return func() string { return "nothing under cursor at" + string(x) + string(y) }
 }
