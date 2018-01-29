@@ -1,0 +1,173 @@
+So:
+
+You have spells.
+These spells have exp,
+Elemental types? (or equivalent)
+Abilities
+Evolutionary progression
+
+There is a network of actors. 
+	White names are those to which you have direct access.
+	Grey names you do not.
+	Red names denote known enemies.
+	Blue names denote known allies.
+	
+You have stats.
+	INT: determines your spell exp gain.
+	WILL: determines your spell distortion.
+	(Subtracted from spell exp)
+	CHA: determines your diplomatic options.
+	SANITY: (essentially HP)
+
+Defeating enemies gives you access to their spells.
+
+(So how do you go about programming this?)
+
+Something like: 
+
+Renderer: 
+	Two panels - left is objects, right is methods + info.
+	In the middle is a spell-bar.
+	At the bottom is a mode switcher. (TAB CHANGES MODE)
+
+	Views:  
+		Mode		Left		Middle		Right
+
+		News ticker 	Titles		Distort		Article content  
+		Spellbook	Spells		SColor		Description
+		Social		Network(?)	Nil		Agent description + List of possible actions
+		Stts + Abs 	Stats		PColor		Abilities
+
+	View Contains: 
+	List of Buttons,
+	List of Text boxes.
+	GameController
+	Cursor?
+
+	So, this will mean:
+	Renderer classes:
+		Button
+		   
+		Network
+
+		Text box
+
+		colorBar
+
+Control schema:
+
+	J + K or UP + DOWN increment or decrement the list. Letters select branches in the network tree. 
+
+Social mode:
+						        		      /`Something else
+		Entry Somethign --(a)	      		(c)-- Somewhat Something--Something else
+				     \	     	      /			      \_Something else
+				      \	             /				 /``Something else
+	     Somebody somebody--(b)--  Alson Beric   --(d)-- Julius Simpleton-- Something else
+					  	     \		  		 \__Something else
+					    	      \			
+					      	       (e)--   Alex Grovenor   -	
+
+So then, how do you write this?
+
+Horizontal split:
+Left: relationship viewer,
+Right, central figure viewer.
+
+Selected Node. 
+Make images* with points that you can attatch text to, then on focus change, translate* to the selected node, then fade.
+Then show the same image, just with different text entries. 
+*Six images, 
+
+So, image translates to new node. Then link images disappear. Then link images reappear in order.
+
+Maybe some way to check path between two figures? Probably too much work to implement.
+
+*Step speed should be one per line. 
+
+
+GaameController:
+	Gets world/player state, returns it to view.
+	Has currentSelection.
+	Has some kind of input method?.
+			
+
+World:
+	Network,
+	Player,
+	Distortion level.
+
+	METHODS:
+		Getnews (which takes the distortion level)
+
+Network:
+	List of actors.
+	Dictionary of relationships. (Or something? maybe a struct?)
+
+	METHODS:
+		ChangeActorState()
+
+News Ticker:
+	News file,
+	News state,
+
+
+Spell book:
+	Dictionary of spells. (With state known/unknown)
+
+	METHODS:
+		ChangeState()
+
+Player:
+	INT: int,
+	WILL: "
+	CHA: "
+	SANITY:
+	HP: 
+	Dictionary of known actors,
+	Spell book.
+
+	METHODS:
+		DoSpell(spell/ability)
+		CreatePlayer()
+		AddWILL(int)
+		AddCHA(int)
+		AddSAN(int)
+		AddHP(int)
+		LoseWill(int)
+		LoseCHA(int)
+		LoseSAN(int)
+		LoseHP(int)
+		AddActor(Actor)
+
+Spell:
+	Exp counter,
+	Abilities,
+	Distortion multiplier.
+	Progression.
+	SpellColors
+
+	METHODS:
+		Render()
+		LearnSpell()
+		Progress()
+
+Actor:
+	INT, WILL, CHA, allegiance, available spells, SANITY.
+
+	METHODS:
+		NewActor()
+		ChangeAllegiance()
+		Update() - this would include what the actor does in a given 'tick'
+
+Ability:
+	Distortion cost.
+	EXP gain.
+	
+	METHODS:
+		Has a method that effects SANITY/HP, variably gated by stats. (So you essentially call spell.do(player, target). Spell then increments exp. Target is updated, player is updated, world is updated. 
+
+		This method would also have some other effect? Allegiance change?
+	
+	
+
