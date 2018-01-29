@@ -22,3 +22,4 @@ TODO:
 - [ ] work out a reasonable, sane way to handle input events.
 - [ ] reduce architecture astronautics.
 - [ ] come to a conclusion - british 'behaviour', or american 'behavior'? 
+- [ ] increase test coverage

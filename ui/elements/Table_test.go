@@ -16,15 +16,16 @@ func TestOnMouse(t *testing.T) {
 
 	tb := e.NewTable(10, 10, contents)
 
+	if len(tb.Draw(0, 0)) != 10*10 {
+		t.Fatalf("table is printing %v cells, should be printing 100", len(tb.Draw(0, 0)))
+	}
+
 	for x, _ := range contents {
 		for y, _ := range contents[x] {
-			b, x1, y1 := tb.OnMouse(x, y, true)
-			if b != true || x1 != x || y1 != y {
-				println(b, x, y, x1, y1)
-				m := string(x1) + "," + string(y1)
-				n := string(x) + "," + string(y)
+			b := tb.OnMouse(x, y, true)
+			if b() != "spacer, at"+string(x)+","+string(y) {
 
-				t.Fatalf("mouseclick returned coordinate (%s) and boolean (%v), wanted (%s) and (%v)", m, b, n, true)
+				t.Fatalf("mouse returned %s, wanted 'spacer at %v, %v'", b(), x, y)
 			}
 		}
 	}

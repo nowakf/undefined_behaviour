@@ -66,7 +66,9 @@ func (u *ui) mouse() bool {
 		return false
 	} else {
 		u.x, u.y = x, y
-		return u.state.OnMouse(x, y, lMouseReleased)
+		function := u.state.OnMouse(x, y, lMouseReleased)
+		println(function())
+		return true
 	}
 
 }
