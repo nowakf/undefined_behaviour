@@ -7,6 +7,7 @@ import "fmt"
 type Table struct {
 	contents [][]UiElement
 	*cp.Rect
+	xorigin, yorigin int
 }
 
 func NewTable(h, w int, contents [][]UiElement) *Table {
@@ -18,6 +19,8 @@ func NewTable(h, w int, contents [][]UiElement) *Table {
 
 //passes offsets onto contained elements.
 func (t *Table) Draw(xoffset, yoffset int) []c.Cell {
+
+	t.xorigin, t.yorigin = xoffset, yoffset
 
 	cells := make([]c.Cell, 0)
 
@@ -40,16 +43,16 @@ func (t *Table) Draw(xoffset, yoffset int) []c.Cell {
 //returns the function associated with the element under the mouse
 func (t *Table) OnMouse(x, y int, clicked bool) func() string {
 
-	accumulatedWidths := 0
+	accumulatedWidths := t.xorigin
 
 	for _, column := range t.contents {
 
-		if x <= accumulatedWidths+column[0].W() && x >= accumulatedWidths {
+		if x < accumulatedWidths+column[0].W() && x >= accumulatedWidths {
 
-			accumulatedHeights := 0
+			accumulatedHeights := t.yorigin
 
 			for _, box := range column {
-				if y <= accumulatedHeights+box.H() && y >= accumulatedHeights {
+				if y < accumulatedHeights+box.H() && y >= accumulatedHeights {
 					//send the click event to the element
 					return box.OnMouse(x, y, clicked)
 

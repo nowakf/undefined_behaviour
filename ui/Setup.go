@@ -28,13 +28,13 @@ func (s *Setup) questionaire() []el.UiElement {
 
 	column1 := []el.UiElement{
 		el.NewTextButton(s.w/2/3, "A button!", func() string {
-			return "a button!"
+			return "a top button!"
 		}),
 		el.NewTextButton(s.w/2/3, "A button!", func() string {
-			return "a button!"
+			return "a middle button!"
 		}),
 		el.NewTextButton(s.w/2/3, "A button!", func() string {
-			return "a button!"
+			return "a bottom button!"
 		}),
 	}
 

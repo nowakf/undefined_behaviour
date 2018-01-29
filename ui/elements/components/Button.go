@@ -14,14 +14,10 @@ func NewButton(action func() string, hitbox *Rect) *Button {
 }
 
 func (b Button) OnMouse(x, y int, clicked bool) func() string {
-	if x <= b.W() && y <= b.H() {
-		if clicked {
-			return b.action
-		} else {
-			b.MouseOver = true
-			return func() string { return "mouse over a button!" }
-		}
+	if clicked {
+		return b.action
 	} else {
-		return func() string { return "mouse over the buttons cell, but not on the button itself" }
+		b.MouseOver = true
+		return func() string { return "mouse over a button!" }
 	}
 }

@@ -38,7 +38,7 @@ func (u *ui) Draw() []c.Cell {
 			u.view = append(u.view, cell)
 		}
 	}
-	pointer := c.Cell{X: u.x, Y: u.y, Content: '8'}
+	pointer := c.Cell{X: u.x, Y: u.y, Content: rune(u.y)}
 	u.view = append(u.view, pointer)
 
 	return u.view
@@ -86,7 +86,6 @@ func (u *ui) mouse() bool {
 	lMouseReleased := u.win.JustReleased(pixelgl.MouseButton1)
 
 	if u.x == x && u.y == y && !lMouseReleased {
-
 		return false
 	} else {
 		u.x, u.y = x, y
