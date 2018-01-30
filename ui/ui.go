@@ -38,8 +38,6 @@ func (u *ui) Draw() []c.Cell {
 			u.view = append(u.view, cell)
 		}
 	}
-	pointer := c.Cell{X: u.x, Y: u.y, Content: rune(u.y)}
-	u.view = append(u.view, pointer)
 
 	return u.view
 
@@ -47,11 +45,7 @@ func (u *ui) Draw() []c.Cell {
 
 func (u *ui) Input() bool {
 
-	if u.mouse() {
-		return true
-	} else {
-		return false
-	}
+	return u.mouse()
 }
 
 //gets the position from the window
@@ -83,17 +77,28 @@ func (u *ui) mouse() bool {
 
 	x, y := u.floatToCellCoord(mx, my, u.w, u.h)
 
-	lMouseReleased := u.win.JustReleased(pixelgl.MouseButton1)
+	mousePressed := u.win.Pressed(pixelgl.MouseButton1)
+	mouseReleased := u.win.JustReleased(pixelgl.MouseButton1)
 
-	if u.x == x && u.y == y && !lMouseReleased {
-		return false
-	} else {
-		u.x, u.y = x, y
-		function := u.state.OnMouse(x, y, lMouseReleased)
-		if lMouseReleased {
+	switch {
+	case u.x == x && u.y == y:
+		if mousePressed || mouseReleased {
+			function := u.state.OnMouse(x, y, mousePressed, mouseReleased)
 			println(function())
+			return true
+		} else {
+			return false
 		}
-
+	case mousePressed || mouseReleased:
+		function := u.state.OnMouse(x, y, mousePressed, mouseReleased)
+		u.state.OnMouse(u.x, u.y, false, false)
+		u.x, u.y = x, y
+		println(function())
+		return true
+	default:
+		u.x, u.y = x, y
+		function := u.state.OnMouse(x, y, mousePressed, mouseReleased)
+		println(function())
 		return true
 	}
 

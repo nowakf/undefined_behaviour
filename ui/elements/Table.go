@@ -20,6 +20,7 @@ func NewTable(h, w int, contents [][]UiElement) *Table {
 //passes offsets onto contained elements.
 func (t *Table) Draw(xoffset, yoffset int) []c.Cell {
 
+	//I kinda prefer initializing this here, because otherwise I think you'd have to manually specify an origin
 	t.xorigin, t.yorigin = xoffset, yoffset
 
 	cells := make([]c.Cell, 0)
@@ -33,6 +34,7 @@ func (t *Table) Draw(xoffset, yoffset int) []c.Cell {
 		for _, element := range t.contents[x] {
 
 			cells = append(cells, element.Draw(xoffset+width, yoffset+height)...)
+
 			height += element.H()
 		}
 		width += array[0].W()
@@ -41,7 +43,7 @@ func (t *Table) Draw(xoffset, yoffset int) []c.Cell {
 }
 
 //returns the function associated with the element under the mouse
-func (t *Table) OnMouse(x, y int, clicked bool) func() string {
+func (t *Table) OnMouse(x, y int, pressed bool, released bool) func() string {
 
 	accumulatedWidths := t.xorigin
 
@@ -54,7 +56,7 @@ func (t *Table) OnMouse(x, y int, clicked bool) func() string {
 			for _, box := range column {
 				if y < accumulatedHeights+box.H() && y >= accumulatedHeights {
 					//send the click event to the element
-					return box.OnMouse(x, y, clicked)
+					return box.OnMouse(x, y, pressed, released)
 
 				} else {
 					accumulatedHeights += box.H()

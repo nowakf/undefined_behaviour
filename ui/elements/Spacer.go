@@ -25,6 +25,6 @@ func (s *Spacer) Draw(x int, y int) []c.Cell {
 	return []c.Cell{cell}
 }
 
-func (s *Spacer) OnMouse(x int, y int, clicked bool) func() string {
+func (s *Spacer) OnMouse(x int, y int, pressed bool, released bool) func() string {
 	return func() string { return fmt.Sprintf("spacer at %v,%v", x, y) }
 }

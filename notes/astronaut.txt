@@ -1,0 +1,10 @@
+In this file, I try to simplify the structure of the project.
+
+The interface for ui.Element and ui.State are identical.
+
+So I can just merge the two.
+
+The 'components' package essentially implements what could be unexported members of the elements package.
+
+So this can be flattened.
+

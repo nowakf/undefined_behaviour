@@ -20,13 +20,16 @@ func NewTextButton(width int, content string, action func() string) *TextButton 
 }
 
 func (t *TextButton) Draw(x, y int) []c.Cell {
-	if t.butt.MouseOver {
-		return t.text.WithOutline(x, y)
-	} else {
-		return t.text.Draw(x, y)
+	cells := t.text.Draw(x, y)
+	switch {
+	case t.butt.MouseOver:
+		cells = append(cells, t.butt.Draw(x, y)...)
+	case t.butt.Clicked:
+		cells = t.butt.Draw(x, y)
 	}
+	return cells
 }
 
-func (t *TextButton) OnMouse(x int, y int, clicked bool) func() string {
-	return t.butt.OnMouse(x, y, clicked)
+func (t *TextButton) OnMouse(x int, y int, pressed bool, released bool) func() string {
+	return t.butt.OnMouse(x, y, pressed, released)
 }

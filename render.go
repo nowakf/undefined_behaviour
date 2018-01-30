@@ -24,7 +24,7 @@ type render struct {
 }
 
 var (
-	backgroundColour pixel.RGBA = pixel.RGB(0.3, 0.3, 0.3)
+	backgroundColour = pixel.RGB(0.3, 0.3, 0.3)
 )
 
 func newRender(w *pixelgl.Window) *render {
@@ -37,7 +37,7 @@ func newRender(w *pixelgl.Window) *render {
 	}
 	r.face = face
 
-	r.atlas = text.NewAtlas(r.face, text.RangeTable(unicode.Latin), text.RangeTable(unicode.Space), text.RangeTable(unicode.Diacritic), text.ASCII)
+	r.atlas = text.NewAtlas(r.face, text.RangeTable(unicode.Latin), text.RangeTable(unicode.Space), text.RangeTable(unicode.Po), text.RangeTable(unicode.S), text.ASCII)
 
 	r.text = text.New(pixel.V(0, 0), r.atlas)
 

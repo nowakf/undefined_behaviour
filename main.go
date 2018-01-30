@@ -30,11 +30,8 @@ func run() {
 
 	for !win.Closed() {
 
-		cells := ui.Draw()
-		ren.update(cells)
-
 		if ui.Input() {
-			cells = ui.Draw()
+			cells := ui.Draw()
 			ren.update(cells)
 		}
 		//refactor to be in slower tick-rate loop:

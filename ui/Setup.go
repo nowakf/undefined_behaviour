@@ -22,28 +22,53 @@ func NewSetup(h, w int) *Setup {
 }
 
 func (s *Setup) questionaire() []el.UiElement {
-	q := make([]el.UiElement, 4)
+	q := make([]el.UiElement, 6)
 	println(s.w)
-	q[0] = el.NewTextBox(s.w/2, "So many times, they went back and forth, combing the data for irregularities, shifting between one theorem and the next - ")
+	q[0] = el.NewSpacer(4, s.w/2)
+	q[1] = el.NewTextBox(s.w/2, "So many times, they went back and forth, combing the data for irregularities, shifting between one theorem and the next - ")
 
 	column1 := []el.UiElement{
-		el.NewTextButton(s.w/2/3, "A button!", func() string {
-			return "a top button!"
+		el.NewTextButton(s.w/2/5, "A button!", func() string {
+			return "a top left button!"
 		}),
-		el.NewTextButton(s.w/2/3, "A button!", func() string {
-			return "a middle button!"
+		el.NewTextButton(s.w/2/5, "A button!", func() string {
+			return "a middle left button!"
 		}),
-		el.NewTextButton(s.w/2/3, "A button!", func() string {
-			return "a bottom button!"
+		el.NewTextButton(s.w/2/5, "A button!", func() string {
+			return "a bottom left button!"
 		}),
 	}
+	column2 := []el.UiElement{el.NewSpacer(3, s.w/2/6)}
+	column3 := []el.UiElement{
+		el.NewTextButton(s.w/2/5, "A button!", func() string {
+			return "a top middle button!"
+		}),
+		el.NewTextButton(s.w/2/5, "A button!", func() string {
+			return "a middle middle button!"
+		}),
+		el.NewTextButton(s.w/2/5, "A button!", func() string {
+			return "a bottom middle button!"
+		}),
+	}
+	column4 := []el.UiElement{el.NewSpacer(3, s.w/2/6)}
+	column5 := []el.UiElement{
+		el.NewTextButton(s.w/2/5, "A button!", func() string {
+			return "a top right button!"
+		}),
+		el.NewTextButton(s.w/2/5, "A button!", func() string {
+			return "a middle right button!"
+		}),
+		el.NewTextButton(s.w/2/5, "A button!", func() string {
+			return "a bottom right button!"
+		}),
+	}
+	somebuttons := [][]el.UiElement{column1, column2, column3, column4, column5}
+	q[2] = el.NewSpacer(2, s.w/2)
 
-	somebuttons := [][]el.UiElement{column1, column1, column1}
+	q[3] = el.NewTable(3, s.w/2, somebuttons)
 
-	q[1] = el.NewTable(3, s.w/2, somebuttons)
-
-	q[2] = el.NewSpacer(3, s.w/2)
-	q[3] = el.NewTextButton(s.w/2, "a new button", func() string {
+	q[4] = el.NewSpacer(3, s.w/2)
+	q[5] = el.NewTextButton(s.w/2, "a new button", func() string {
 		return "a button"
 	})
 	return q
