@@ -2,26 +2,31 @@ package events
 
 import (
 	"bytes"
-	//c "cthu3/common"
-	"cthu3/data"
 	"fmt"
 	"sync"
 	"text/template"
 	"time"
 )
 
+type etype int
+
+const (
+	Email etype = iota
+	News
+)
+
 //EventSystem keeps track of events, and produces accounts of them.
 type EventSystem struct {
 	mu         sync.Mutex
-	data       *data.TextData
 	w          *world
+	complete   *virtual
 	instants   []event
 	historical []event
 }
 
-func NewEventSystem(data *data.TextData, w *world) *EventSystem {
+func NewEventSystem(w *world) *EventSystem {
 	n := new(EventSystem)
-	n.data = data
+	n.complete = newVirtual()
 	n.w = w
 	n.instants = n.startingInstants(n.w)
 	n.historical = make([]event, 0)
@@ -38,6 +43,16 @@ func (e *EventSystem) Tick() {
 
 }
 
+func (e *EventSystem) GetCurrent(t etype) []event {
+	evs := make([]event, 0)
+	for _, instant := range e.instants {
+		if instant.etype == t {
+
+		}
+	}
+	return evs
+}
+
 func (e *EventSystem) GetStats() {
 
 }
@@ -45,9 +60,10 @@ func (e *EventSystem) GetStats() {
 func (e *EventSystem) Test() {
 }
 
+//adds an event to be played in the future
 func (e *EventSystem) addEvent(event_url string, delay int) {
-	time.Sleep(time.Duration(delay) * time.Second) //whew
-	event, ok := e.data.EventsData[event_url]
+	time.Sleep(time.Duration(delay) * time.Second)
+	event, ok := e.complete.Events[event_url]
 	if ok {
 		instance := e.instantiateEvent(&event)
 		e.mu.Lock()
@@ -59,7 +75,7 @@ func (e *EventSystem) addEvent(event_url string, delay int) {
 
 }
 
-func (e *EventSystem) instantiateEvent(input *data.DeadEvent) event {
+func (e *EventSystem) instantiateEvent(input *event) event {
 
 	p, err := template.New("p").Parse(input.Content())
 

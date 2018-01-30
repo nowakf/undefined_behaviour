@@ -6,71 +6,64 @@ import (
 
 type Setup struct {
 	*el.Table
-	h, w int
 }
 
 func NewSetup(h, w int) *Setup {
 	s := new(Setup)
-	cont := make([][]el.UiElement, 3)
-	s.h, s.w = h, w
-	empty := []el.UiElement{el.NewSpacer(h, w/4)}
-	cont[0] = empty
-	cont[1] = s.questionaire()
-	cont[2] = empty
-	s.Table = el.NewTable(s.h, s.w, cont)
+	s.Table = el.NewTable(h, w)
+	s.questionaire()
 	return s
 }
 
-func (s *Setup) questionaire() []el.UiElement {
-	q := make([]el.UiElement, 6)
-	println(s.w)
-	q[0] = el.NewSpacer(4, s.w/2)
-	q[1] = el.NewTextBox(s.w/2, "So many times, they went back and forth, combing the data for irregularities, shifting between one theorem and the next - ")
+func (s *Setup) questionaire() {
+
+	s.WriteToCell(0, 0, el.NewSpacer(1, s.W()/4))
+	s.WriteToCell(5, 0, el.NewSpacer(1, s.W()/4))
 
 	column1 := []el.UiElement{
-		el.NewTextButton(s.w/2/5, "A button!", func() string {
+		el.NewTextButton(s.W()/2/3, "A button!", func() string {
 			return "a top left button!"
 		}),
-		el.NewTextButton(s.w/2/5, "A button!", func() string {
+		el.NewTextButton(s.W()/2/3, "A button!", func() string {
 			return "a middle left button!"
 		}),
-		el.NewTextButton(s.w/2/5, "A button!", func() string {
+		el.NewTextButton(s.W()/2/3, "A button!", func() string {
 			return "a bottom left button!"
 		}),
 	}
-	column2 := []el.UiElement{el.NewSpacer(3, s.w/2/6)}
-	column3 := []el.UiElement{
-		el.NewTextButton(s.w/2/5, "A button!", func() string {
+
+	for y, element := range column1 {
+		s.WriteToCell(1, y+2, element)
+	}
+
+	column2 := []el.UiElement{
+		el.NewTextButton(s.W()/2/3, "A button!", func() string {
 			return "a top middle button!"
 		}),
-		el.NewTextButton(s.w/2/5, "A button!", func() string {
+		el.NewTextButton(s.W()/2/3, "A button!", func() string {
 			return "a middle middle button!"
 		}),
-		el.NewTextButton(s.w/2/5, "A button!", func() string {
+		el.NewTextButton(s.W()/2/3, "Button four", func() string {
 			return "a bottom middle button!"
 		}),
 	}
-	column4 := []el.UiElement{el.NewSpacer(3, s.w/2/6)}
-	column5 := []el.UiElement{
-		el.NewTextButton(s.w/2/5, "A button!", func() string {
+	for y, element := range column2 {
+		s.WriteToCell(2, y+2, element)
+	}
+	column3 := []el.UiElement{
+		el.NewTextButton(s.W()/2/3, "A button!", func() string {
 			return "a top right button!"
 		}),
-		el.NewTextButton(s.w/2/5, "A button!", func() string {
+		el.NewTextButton(s.W()/2/3, "A button!", func() string {
 			return "a middle right button!"
 		}),
-		el.NewTextButton(s.w/2/5, "A button!", func() string {
+		el.NewTextButton(s.W()/2/3, "A button!", func() string {
 			return "a bottom right button!"
 		}),
 	}
-	somebuttons := [][]el.UiElement{column1, column2, column3, column4, column5}
-	q[2] = el.NewSpacer(2, s.w/2)
 
-	q[3] = el.NewTable(3, s.w/2, somebuttons)
-
-	q[4] = el.NewSpacer(3, s.w/2)
-	q[5] = el.NewTextButton(s.w/2, "a new button", func() string {
-		return "a button"
-	})
-	return q
+	for y, element := range column3 {
+		s.WriteToCell(3, y+2, element)
+	}
 
 }

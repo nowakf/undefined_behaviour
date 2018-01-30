@@ -1,5 +1,5 @@
-package components
+package elements
 
 type Scrollarea struct {
-	*Rect
+	*rect
 }

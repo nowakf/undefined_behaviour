@@ -2,20 +2,19 @@ package elements
 
 import (
 	c "cthu3/common"
-	cp "cthu3/ui/elements/components"
 )
 
 type TextButton struct {
-	butt *cp.Button
-	*cp.Rect
-	text *cp.Text
+	butt *button
+	*rect
+	text *text
 }
 
 func NewTextButton(width int, content string, action func() string) *TextButton {
 	b := new(TextButton)
-	b.Rect = cp.NewRect(1, width)
-	b.text = cp.NewTitleText(width, content)
-	b.butt = cp.NewButton(action, b.Rect)
+	b.rect = newrect(1, width)
+	b.text = newtitletext(width, content)
+	b.butt = newButton(action, b.rect)
 	return b
 }
 

@@ -1,20 +1,70 @@
 package elements
 
 import c "cthu3/common"
-import cp "cthu3/ui/elements/components"
 import "fmt"
 
 type Table struct {
 	contents [][]UiElement
-	*cp.Rect
+	*rect
 	xorigin, yorigin int
 }
 
-func NewTable(h, w int, contents [][]UiElement) *Table {
+func NewTable(h, w int) *Table {
 	t := new(Table)
-	t.contents = contents
-	t.Rect = cp.NewRect(h, w)
+	t.contents = make([][]UiElement, 0)
+	t.rect = newrect(h, w)
 	return t
+}
+func (t *Table) WriteToCell(x, y int, e UiElement) {
+
+	//you fuck you
+
+	if x >= t.ColumnCount() || y >= t.RowCount(x) {
+		t.AddCells(x+1-t.ColumnCount(), y+1-t.RowCount(x))
+	}
+
+	t.contents[x][y] = e
+
+	if e.W() > t.contents[x][0].W() {
+		t.contents[x][0].SetW(e.W())
+	}
+
+}
+
+func (t *Table) AddCells(deltax, deltay int) {
+
+	n := make([][]UiElement, t.ColumnCount()+deltax)
+
+	for x := 0; x < len(n); x++ {
+
+		n[x] = make([]UiElement, t.RowCount(x)+deltay)
+
+		for y := 0; y < len(n[x]); y++ {
+
+			//you know what, fuck it
+			if x < len(t.contents) && y < len(t.contents[x]) && t.contents[x][y] != nil {
+				n[x][y] = t.contents[x][y]
+			} else {
+				n[x][y] = NewSpacer(1, 1)
+			}
+		}
+
+	}
+
+	t.contents = n
+}
+
+func (t *Table) ColumnCount() int {
+	return len(t.contents)
+}
+
+func (t *Table) RowCount(row int) int {
+
+	if len(t.contents) > row {
+		return len(t.contents[row])
+	} else {
+		return 0
+	}
 }
 
 //passes offsets onto contained elements.
@@ -27,7 +77,7 @@ func (t *Table) Draw(xoffset, yoffset int) []c.Cell {
 
 	width := 0
 
-	for x, array := range t.contents {
+	for x, column := range t.contents {
 
 		height := 0
 
@@ -37,7 +87,8 @@ func (t *Table) Draw(xoffset, yoffset int) []c.Cell {
 
 			height += element.H()
 		}
-		width += array[0].W()
+
+		width += column[0].W()
 	}
 	return cells
 }
@@ -66,5 +117,5 @@ func (t *Table) OnMouse(x, y int, pressed bool, released bool) func() string {
 			accumulatedWidths += column[0].W()
 		}
 	}
-	return func() string { return fmt.Sprintf("nothing under cursor at (%v,%v)", x, y) }
+	return func() string { return fmt.Sprintf("mouse probably out of bounds at %v,%v", x, y) }
 }

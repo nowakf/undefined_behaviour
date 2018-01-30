@@ -1,4 +1,4 @@
-package components
+package elements
 
 import (
 	c "cthu3/common"
@@ -6,17 +6,17 @@ import (
 	"unicode"
 )
 
-type Text struct {
+type text struct {
 	content  []c.Cell
 	asString string
-	*Rect
+	*rect
 }
 
-func (t *Text) Content() string {
+func (t *text) Content() string {
 	return t.asString
 }
 
-func (t *Text) WithOutline(x, y int) []c.Cell {
+func (t *text) WithOutline(x, y int) []c.Cell {
 	transformed := make([]c.Cell, len(t.content))
 
 	for i, cell := range t.content {
@@ -34,7 +34,7 @@ func (t *Text) WithOutline(x, y int) []c.Cell {
 	return transformed
 }
 
-func (t *Text) Draw(x, y int) []c.Cell {
+func (t *text) Draw(x, y int) []c.Cell {
 
 	transformed := make([]c.Cell, len(t.content))
 
@@ -46,8 +46,8 @@ func (t *Text) Draw(x, y int) []c.Cell {
 }
 
 //returns a formatted body text, and a height
-func NewBodyText(width int, content string) (*Text, int) {
-	t := new(Text)
+func newbodytext(width int, content string) (*text, int) {
+	t := new(text)
 	t.asString = content
 	paragraphs := strings.Split(content, "\n")
 
@@ -60,22 +60,22 @@ func NewBodyText(width int, content string) (*Text, int) {
 	}
 
 	t.content = t.toCellArray(text, false)
-	t.Rect = NewRect(height, width)
+	t.rect = newrect(height, width)
 	return t, height
 }
 
 //returns a formatted title
-func NewTitleText(width int, content string) *Text {
+func newtitletext(width int, content string) *text {
 
-	t := new(Text)
+	t := new(text)
 	t.asString = content
-	t.Rect = NewRect(1, width)
+	t.rect = newrect(1, width)
 	t.content = t.toCellArray(t.horizTruncate(content, width), true)
 	return t
 
 }
 
-func (t *Text) horizTruncate(s string, width int) string {
+func (t *text) horizTruncate(s string, width int) string {
 	if len(s) < width {
 		return s
 	} else {
@@ -83,12 +83,12 @@ func (t *Text) horizTruncate(s string, width int) string {
 	}
 }
 
-func (t *Text) vertTruncate(Text string) string {
+func (t *text) vertTruncate(text string) string {
 
-	lines := strings.Fields(strings.Trim(Text, "\n"))
+	lines := strings.Fields(strings.Trim(text, "\n"))
 
 	if len(lines) <= t.H() {
-		return Text
+		return text
 	} else {
 		trimmed := ""
 
@@ -100,7 +100,7 @@ func (t *Text) vertTruncate(Text string) string {
 
 }
 
-func (t *Text) wrap(width int, content string) (string, int) {
+func (t *text) wrap(width int, content string) (string, int) {
 
 	words := strings.Fields(strings.TrimSpace(content))
 
@@ -125,7 +125,7 @@ func (t *Text) wrap(width int, content string) (string, int) {
 
 }
 
-func (t *Text) toCellArray(s string, isCentered bool) []c.Cell {
+func (t *text) toCellArray(s string, isCentered bool) []c.Cell {
 	lines := strings.Split(s, "\n")
 	output := make([]c.Cell, 0)
 	if isCentered {

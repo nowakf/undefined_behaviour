@@ -8,10 +8,11 @@ import (
 
 func newWindow() *pixelgl.Window {
 	winConfig := pixelgl.WindowConfig{
-		Title:   "X",
-		Bounds:  pixel.R(0, 0, 1024, 768),
-		VSync:   true,
-		Monitor: pixelgl.PrimaryMonitor(),
+		Title:     "X",
+		Bounds:    pixel.R(0, 0, 1024, 768),
+		Resizable: true,
+		VSync:     true,
+		//		Monitor: pixelgl.PrimaryMonitor(),
 	}
 
 	win, err := pixelgl.NewWindow(winConfig)

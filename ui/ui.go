@@ -2,28 +2,39 @@ package ui
 
 import (
 	c "cthu3/common"
+	"cthu3/events"
+	el "cthu3/ui/elements"
 	"github.com/faiface/pixel/pixelgl"
 	"math"
 )
 
-//ui manages the stuff that's in view
+//ui manages the input, content and display of stuff that's in view
 type ui struct {
-	h, w  int
-	win   *pixelgl.Window
-	x, y  int
+	h, w int
+
+	win    *pixelgl.Window
+	events *events.EventSystem
+
+	x, y int
+
 	view  []c.Cell
-	state State
+	state el.UiElement
 }
 
 //creates a new UI, returns a pointer
-func NewUI(h, w int, win *pixelgl.Window) *ui {
+func NewUI(h, w int, win *pixelgl.Window, e *events.EventSystem) *ui {
 
 	u := new(ui)
+	u.events = e
 	u.h, u.w = h, w
 	u.view = make([]c.Cell, h*w)
 	u.state = NewSetup(h, w)
 	u.win = win
 	return u
+
+}
+
+func (u *ui) Update() {
 
 }
 
@@ -69,19 +80,27 @@ func (u *ui) floatToCellCoord(fx, fy float64, width, height int) (int, int) {
 //returns if the mouse is over something
 func (u *ui) mouse() bool {
 
+	//get the raw mouse position
 	mouseX, mouseY := u.win.MousePosition().XY()
 
+	//get the bounds of the screen
 	boundsH, boundsW := u.win.Bounds().H(), u.win.Bounds().W()
 
+	//get the relative mouse position
 	mx, my := u.mousepos(mouseX, mouseY, boundsH, boundsW)
 
+	//get the cell coordinate
 	x, y := u.floatToCellCoord(mx, my, u.w, u.h)
 
+	//get the mousepress events
 	mousePressed := u.win.Pressed(pixelgl.MouseButton1)
 	mouseReleased := u.win.JustReleased(pixelgl.MouseButton1)
 
+	//apply:
 	switch {
+	//if mouse hasn't moved,
 	case u.x == x && u.y == y:
+		//and if it has been clicked, update
 		if mousePressed || mouseReleased {
 			function := u.state.OnMouse(x, y, mousePressed, mouseReleased)
 			println(function())
@@ -89,15 +108,21 @@ func (u *ui) mouse() bool {
 		} else {
 			return false
 		}
+	//if the mouse is pressed and moved,
 	case mousePressed || mouseReleased:
 		function := u.state.OnMouse(x, y, mousePressed, mouseReleased)
+		//unset the previous button
 		u.state.OnMouse(u.x, u.y, false, false)
+		//update the previous position
 		u.x, u.y = x, y
 		println(function())
 		return true
+	//if the mouse is moved
 	default:
 		u.x, u.y = x, y
+		//update the previous position
 		function := u.state.OnMouse(x, y, mousePressed, mouseReleased)
+		//tell the new button the mouse is here
 		println(function())
 		return true
 	}

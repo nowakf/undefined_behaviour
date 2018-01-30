@@ -2,20 +2,16 @@ package elements
 
 import (
 	c "cthu3/common"
-	cp "cthu3/ui/elements/components"
 	"fmt"
 )
 
 type Spacer struct {
-	*cp.Rect
+	*rect
 }
 
-func NewSpacer(height_width ...int) *Spacer {
-	if len(height_width) > 2 {
-		panic("2d only, please.")
-	}
+func NewSpacer(height, width int) *Spacer {
 	s := new(Spacer)
-	s.Rect = cp.NewRect(height_width[0], height_width[1])
+	s.rect = newrect(height, width)
 	return s
 
 }

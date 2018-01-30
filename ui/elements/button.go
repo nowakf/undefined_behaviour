@@ -1,25 +1,25 @@
-package components
+package elements
 
 import (
 	c "cthu3/common"
 	"time"
 )
 
-type Button struct {
+type button struct {
 	action func() string
-	*Rect
+	*rect
 	MouseOver bool
 	Clicked   bool
 }
 
-func NewButton(action func() string, hitbox *Rect) *Button {
-	b := new(Button)
+func newButton(action func() string, hitbox *rect) *button {
+	b := new(button)
 	b.action = action
-	b.Rect = hitbox
+	b.rect = hitbox
 	return b
 }
 
-func (b *Button) outline(x, y int) []c.Cell {
+func (b *button) outline(x, y int) []c.Cell {
 	cells := make([]c.Cell, 0)
 	for i := x; i < x+b.W(); i++ {
 		overline := c.Cell{X: i, Y: y, Content: '‾'}
@@ -35,7 +35,7 @@ func (b *Button) outline(x, y int) []c.Cell {
 	return cells
 }
 
-func (b *Button) Draw(x, y int) []c.Cell {
+func (b *button) Draw(x, y int) []c.Cell {
 	switch {
 	case b.MouseOver:
 		return b.outline(x, y)
@@ -46,7 +46,7 @@ func (b *Button) Draw(x, y int) []c.Cell {
 	}
 }
 
-func (b *Button) OnMouse(x, y int, pressed bool, released bool) func() string {
+func (b *button) OnMouse(x, y int, pressed bool, released bool) func() string {
 	switch {
 	case pressed:
 		b.Clicked = true
@@ -61,7 +61,7 @@ func (b *Button) OnMouse(x, y int, pressed bool, released bool) func() string {
 	}
 }
 
-func (b *Button) fill(xoffset, yoffset int) []c.Cell {
+func (b *button) fill(xoffset, yoffset int) []c.Cell {
 	cells := make([]c.Cell, b.W()*b.H())
 	length := len(cells)
 	for i := 0; i < length; i++ {
@@ -73,7 +73,7 @@ func (b *Button) fill(xoffset, yoffset int) []c.Cell {
 	return cells
 }
 
-func (b *Button) click() {
+func (b *button) click() {
 	b.Clicked = true
 	time.Sleep(time.Millisecond * time.Duration(100))
 	b.Clicked = false

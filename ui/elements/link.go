@@ -1,6 +1,6 @@
-package components
+package elements
 
-type Link struct {
+type link struct {
 	title       string
 	destination string
 }

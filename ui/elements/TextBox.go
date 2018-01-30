@@ -2,29 +2,28 @@ package elements
 
 import (
 	c "cthu3/common"
-	cp "cthu3/ui/elements/components"
 )
 
-type TextBox struct {
-	*cp.Rect
-	*cp.Text
+type textbox struct {
+	*rect
+	*text
 }
 
-func NewTextBox(width int, content string) *TextBox {
-	t := new(TextBox)
-	t.Text, _ = cp.NewBodyText(width-2, content) // to give it some padding
-	t.Rect = cp.NewRect(t.Text.H()+1, width)
+func NewTextbox(width int, content string) *textbox {
+	t := new(textbox)
+	t.text, _ = newbodytext(width-2, content) // to give it some padding
+	t.rect = newrect(t.text.H()+1, width)
 	return t
 }
 
-func (t *TextBox) Content() string {
-	return t.Text.Content()
+func (t *textbox) Content() string {
+	return t.text.Content()
 }
 
-func (t *TextBox) Draw(x, y int) []c.Cell {
-	return t.Text.Draw(x+1, y) //offset for a border
+func (t *textbox) Draw(x, y int) []c.Cell {
+	return t.text.Draw(x+1, y) //offset for a border
 }
 
-func (t *TextBox) OnMouse(x int, y int, pressed bool, released bool) func() string {
+func (t *textbox) OnMouse(x int, y int, pressed bool, released bool) func() string {
 	return t.Content
 }
