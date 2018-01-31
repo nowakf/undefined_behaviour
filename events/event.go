@@ -3,6 +3,7 @@ package events
 type event struct {
 	event_url    string
 	etype        etype
+	title        string
 	content      string
 	consequences []string
 }

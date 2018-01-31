@@ -1,12 +1,15 @@
 package ui
 
 import (
+	"github.com/faiface/pixel/pixelgl"
+	"math"
 	c "ub/common"
 	"ub/events"
 	el "ub/ui/elements"
-	"github.com/faiface/pixel/pixelgl"
-	"math"
 )
+
+//type State is a simple state machine
+type State func() (next State)
 
 //ui manages the input, content and display of stuff that's in view
 type ui struct {
@@ -17,9 +20,17 @@ type ui struct {
 
 	x, y int
 
-	view  []c.Cell
-	state el.UiElement
+	view         []c.Cell
+	states       []el.UiElement
+	currentState state
 }
+
+type state int
+
+const (
+	setup state = iota
+	email
+)
 
 //creates a new UI, returns a pointer
 func NewUI(h, w int, win *pixelgl.Window, e *events.EventSystem) *ui {
@@ -28,10 +39,20 @@ func NewUI(h, w int, win *pixelgl.Window, e *events.EventSystem) *ui {
 	u.events = e
 	u.h, u.w = h, w
 	u.view = make([]c.Cell, h*w)
-	u.state = NewSetup(h, w)
+	u.states = u.initStates(h, w)
 	u.win = win
 	return u
 
+}
+
+func (u *ui) initStates(h, w int) []el.UiElement {
+
+	states := make([]el.UiElement, 2)
+
+	states[setup] = NewSetup(h, w)
+	states[email] = NewEmail(h, w)
+
+	return states
 }
 
 func (u *ui) Update() {
@@ -40,7 +61,7 @@ func (u *ui) Update() {
 
 func (u *ui) Draw() []c.Cell {
 
-	diff := u.state.Draw(0, 0) //you should pass this the scrolling offset
+	diff := u.states[u.currentState].Draw(0, 0) //you should pass this the scrolling offset
 
 	u.view = make([]c.Cell, 0)
 
@@ -57,6 +78,7 @@ func (u *ui) Draw() []c.Cell {
 func (u *ui) Input() bool {
 
 	return u.mouse()
+
 }
 
 //gets the position from the window
@@ -102,7 +124,7 @@ func (u *ui) mouse() bool {
 	case u.x == x && u.y == y:
 		//and if it has been clicked, update
 		if mousePressed || mouseReleased {
-			function := u.state.OnMouse(x, y, mousePressed, mouseReleased)
+			function := u.states[u.currentState].OnMouse(x, y, mousePressed, mouseReleased)
 			println(function())
 			return true
 		} else {
@@ -110,9 +132,9 @@ func (u *ui) mouse() bool {
 		}
 	//if the mouse is pressed and moved,
 	case mousePressed || mouseReleased:
-		function := u.state.OnMouse(x, y, mousePressed, mouseReleased)
+		function := u.states[u.currentState].OnMouse(x, y, mousePressed, mouseReleased)
 		//unset the previous button
-		u.state.OnMouse(u.x, u.y, false, false)
+		u.states[u.currentState].OnMouse(u.x, u.y, false, false)
 		//update the previous position
 		u.x, u.y = x, y
 		println(function())
@@ -121,7 +143,7 @@ func (u *ui) mouse() bool {
 	default:
 		u.x, u.y = x, y
 		//update the previous position
-		function := u.state.OnMouse(x, y, mousePressed, mouseReleased)
+		function := u.states[u.currentState].OnMouse(x, y, mousePressed, mouseReleased)
 		//tell the new button the mouse is here
 		println(function())
 		return true

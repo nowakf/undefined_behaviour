@@ -1,3 +1,15 @@
+I guess you'd use something like JSON...
+
+
+
+
+
 "-a rather literal take on ncurses"
 
 difficulties? Fair | Unfair
+
+
+EventSystem should have a 'load()' method that runs after startup...
+
+something like :
+

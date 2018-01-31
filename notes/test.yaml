@@ -1,0 +1,24 @@
+---
+event:
+        event_url: 'root.branch.leaf'
+        etype: email
+        title: job offer
+        content:
+                Mart should have made a dead drop two weeks ago, which is
+                before his last message. It should be in a green card cylinder,
+                marked 'Sour Cream and Chives'. Hopefully, it's still there.
+
+                The address is
+                        98th Winston Ave,
+                        Chillcot,
+                        94134 San Fransisco
+
+                You'll want to be careful, since it's possible that whoever
+                got to Mart is watching his dead drops, hoping to catch someone.
+
+        consequences:
+                - 'root.branch.knot'
+                # we need to establish a good way of thinking about story
+                # options.  Tree-like models aren't necessarily viable
+                - 'root.branch.leaf'
+                - 'work.dalia.orin.missing_shoes'

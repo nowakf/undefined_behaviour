@@ -2,15 +2,14 @@ package main
 
 import (
 	//c "ub/common"
+	"github.com/faiface/pixel/pixelgl"
 	ev "ub/events"
 	ui "ub/ui"
-	"github.com/faiface/pixel/pixelgl"
 )
 
 func run() {
 
 	win := newWindow()
-
 	ren := newRender(win)
 
 	uh, uw := ren.Stats()
@@ -25,6 +24,7 @@ func run() {
 
 	check := resized()
 	for !win.Closed() {
+
 		if check(win) {
 			ren = newRender(win)
 			uh, uw = ren.Stats()
