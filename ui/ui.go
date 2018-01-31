@@ -1,9 +1,9 @@
 package ui
 
 import (
-	c "cthu3/common"
-	"cthu3/events"
-	el "cthu3/ui/elements"
+	c "ub/common"
+	"ub/events"
+	el "ub/ui/elements"
 	"github.com/faiface/pixel/pixelgl"
 	"math"
 )

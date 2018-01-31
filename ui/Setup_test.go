@@ -1,7 +1,7 @@
 package ui_test
 
 import (
-	ui "cthu3/ui"
+	ui "ub/ui"
 	"testing"
 )
 

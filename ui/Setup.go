@@ -1,7 +1,7 @@
 package ui
 
 import (
-	el "cthu3/ui/elements"
+	el "ub/ui/elements"
 )
 
 type Setup struct {

@@ -1,6 +1,6 @@
 package elements
 
-import c "cthu3/common"
+import c "ub/common"
 import "fmt"
 
 type Table struct {

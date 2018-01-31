@@ -1,6 +1,6 @@
 package ui
 
-import el "cthu3/ui/elements"
+import el "ub/ui/elements"
 
 type Email struct {
 	*el.Table

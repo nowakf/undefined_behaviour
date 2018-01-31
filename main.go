@@ -1,9 +1,9 @@
 package main
 
 import (
-	//c "cthu3/common"
-	ev "cthu3/events"
-	ui "cthu3/ui"
+	//c "ub/common"
+	ev "ub/events"
+	ui "ub/ui"
 	"github.com/faiface/pixel/pixelgl"
 )
 

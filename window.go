@@ -1,7 +1,7 @@
 package main
 
 import (
-	c "cthu3/common"
+	c "ub/common"
 	"github.com/faiface/pixel"
 	"github.com/faiface/pixel/pixelgl"
 )

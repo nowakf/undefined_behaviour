@@ -1,7 +1,7 @@
 package elements
 
 import (
-	c "cthu3/common"
+	c "ub/common"
 )
 
 type UiElement interface {
