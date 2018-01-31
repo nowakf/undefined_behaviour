@@ -1,8 +1,8 @@
 package elements
 
 import (
-	c "ub/common"
 	"fmt"
+	c "ub/common"
 )
 
 type Spacer struct {
@@ -17,7 +17,13 @@ func NewSpacer(height, width int) *Spacer {
 }
 
 func (s *Spacer) Draw(x int, y int) []c.Cell {
-	cell := c.Cell{X: x, Y: y, Content: ' '}
+	cell := c.Cell{
+		X:          x,
+		Y:          y,
+		Letter:     ' ',
+		Foreground: c.Grey,
+		Background: c.White,
+	}
 	return []c.Cell{cell}
 }
 

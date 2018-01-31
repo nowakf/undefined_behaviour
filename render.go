@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"io/ioutil"
 	"math"
 	"os"
@@ -19,13 +20,9 @@ type render struct {
 	atlas          *text.Atlas
 	window         *pixelgl.Window
 	face           font.Face
-	text           *text.Text
+	fonts          map[pixel.RGBA]*text.Text
 	glyphH, glyphW float64
 }
-
-var (
-	backgroundColour = pixel.RGB(0.3, 0.3, 0.3)
-)
 
 func newRender(w *pixelgl.Window) *render {
 	r := new(render)
@@ -39,9 +36,13 @@ func newRender(w *pixelgl.Window) *render {
 
 	r.atlas = text.NewAtlas(r.face, text.RangeTable(unicode.Latin), text.RangeTable(unicode.Space), text.RangeTable(unicode.Po), text.RangeTable(unicode.S), text.ASCII)
 
-	r.text = text.New(pixel.V(0, 0), r.atlas)
+	r.fonts = make(map[pixel.RGBA]*text.Text)
 
-	r.text.Color = pixel.RGB(0.8, 0.8, 0.8)
+	for _, color := range c.Colors {
+		font := text.New(pixel.V(0, 0), r.atlas)
+		font.Color = color
+		r.fonts[color] = font
+	}
 
 	r.glyphW, r.glyphH = r.getIncrement()
 
@@ -52,17 +53,23 @@ func newRender(w *pixelgl.Window) *render {
 func (r *render) update(cells []c.Cell) {
 	r.clear()
 	for _, cell := range cells {
-		//	println(string(cell.Content), cell.Content)
-		r.drawCell(cell.Content, float64(cell.X)*r.glyphW, float64(cell.Y)*r.glyphH)
+
+		r.drawCell(cell.Letter, float64(cell.X)*r.glyphW, float64(cell.Y)*r.glyphH, cell.Background, cell.Foreground)
 
 	}
-	r.text.Draw(r.window, pixel.IM)
+	//TODO: merge this into one draw, if possible
+	for _, font := range r.fonts {
+		font.Draw(r.window, pixel.IM)
+	}
 }
 
 //clears the text
 func (r *render) clear() {
-	r.text.Clear()
-	r.window.Clear(backgroundColour)
+	screenColor := pixel.RGB(0.3, 0.3, 0.3)
+	for _, font := range r.fonts {
+		font.Clear()
+	}
+	r.window.Clear(screenColor)
 }
 
 // gets the height and width of the window
@@ -70,17 +77,33 @@ func (r *render) Stats() (int, int) {
 	return r.getCellCount(r.window)
 }
 
-//draws a letter at a specific position
-func (r *render) drawCell(content rune, xpos, ypos float64) {
-	r.text.Dot = pixel.V(xpos, r.window.Bounds().H()-ypos)
-	r.text.WriteRune(content)
+//draws a cell at a specific position
+func (r *render) drawCell(letter rune, xpos, ypos float64, foreground pixel.RGBA, background pixel.RGBA) {
+	r.drawBack(xpos, ypos, background)
+	r.drawText(letter, xpos, ypos, foreground)
+}
+
+//draws the text
+func (r *render) drawText(letter rune, xpos, ypos float64, color pixel.RGBA) {
+
+	_, ok := r.fonts[color]
+	if !ok {
+		println(fmt.Sprintf("there is no %v in the fonts", color))
+	}
+
+	r.fonts[color].Dot = pixel.V(xpos, r.window.Bounds().H()-ypos)
+	r.fonts[color].WriteRune(letter)
+}
+
+//TODO: draw the background
+func (r *render) drawBack(xpos, ypos float64, color pixel.RGBA) {
 }
 
 //gets the step size
 func (r *render) getIncrement() (float64, float64) {
 
-	wi := r.text.BoundsOf("S").W()
-	hi := r.text.BoundsOf("S").H()
+	wi := r.fonts[c.White].BoundsOf("S").W()
+	hi := r.fonts[c.White].BoundsOf("S").H()
 
 	r.glyphW, r.glyphH = wi, hi
 

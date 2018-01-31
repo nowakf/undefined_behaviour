@@ -1,8 +1,8 @@
 package elements
 
 import (
-	c "ub/common"
 	"time"
+	c "ub/common"
 )
 
 type button struct {
@@ -22,13 +22,33 @@ func newButton(action func() string, hitbox *rect) *button {
 func (b *button) outline(x, y int) []c.Cell {
 	cells := make([]c.Cell, 0)
 	for i := x; i < x+b.W(); i++ {
-		overline := c.Cell{X: i, Y: y, Content: '‾'}
-		underline := c.Cell{X: i, Y: y, Content: '_'}
+		overline := c.Cell{
+			X:          i,
+			Y:          y,
+			Letter:     '‾',
+			Foreground: c.Grey,
+			Background: c.White}
+		underline := c.Cell{
+			X:          i,
+			Y:          y,
+			Letter:     '_',
+			Foreground: c.Grey,
+			Background: c.White}
 		cells = append(cells, underline, overline)
 	}
 	for j := y; j < y+b.H(); j++ {
-		leftline := c.Cell{X: x - 1, Y: j, Content: '|'}
-		rightline := c.Cell{X: x + b.W(), Y: j, Content: '|'}
+		leftline := c.Cell{
+			X:          x - 1,
+			Y:          j,
+			Letter:     '|',
+			Foreground: c.Grey,
+			Background: c.White}
+		rightline := c.Cell{
+			X:          x + b.W(),
+			Y:          j,
+			Letter:     '|',
+			Foreground: c.Grey,
+			Background: c.White}
 		cells = append(cells, leftline, rightline)
 	}
 	b.MouseOver = false
@@ -42,7 +62,13 @@ func (b *button) Draw(x, y int) []c.Cell {
 	case b.Clicked:
 		return b.fill(x, y)
 	default:
-		return []c.Cell{c.Cell{X: 0, Y: 0, Content: ' '}}
+		return []c.Cell{c.Cell{
+			X:          0,
+			Y:          0,
+			Letter:     ' ',
+			Foreground: c.White,
+			Background: c.Grey,
+		}}
 	}
 }
 
@@ -67,7 +93,13 @@ func (b *button) fill(xoffset, yoffset int) []c.Cell {
 	for i := 0; i < length; i++ {
 		x := i % b.W()
 		y := i / b.W()
-		cell := c.Cell{X: x + xoffset, Y: y + yoffset, Content: '█'}
+		cell := c.Cell{
+			X:          x + xoffset,
+			Y:          y + yoffset,
+			Letter:     '█',
+			Foreground: c.Grey,
+			Background: c.White,
+		}
 		cells[i] = cell
 	}
 	return cells

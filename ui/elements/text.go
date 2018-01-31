@@ -1,8 +1,8 @@
 package elements
 
 import (
-	c "ub/common"
 	"strings"
+	c "ub/common"
 	"unicode"
 )
 
@@ -22,12 +22,24 @@ func (t *text) WithOutline(x, y int) []c.Cell {
 	for i, cell := range t.content {
 		if x == cell.X && y == cell.Y && x == cell.X+t.W() && y == cell.Y+t.H() {
 
-			highlighted := unicode.ToUpper(cell.Content)
+			highlighted := unicode.ToUpper(cell.Letter)
 
-			transformed[i] = c.Cell{X: cell.X + x, Y: cell.Y + y, Content: highlighted}
+			transformed[i] = c.Cell{
+				X:          cell.X + x,
+				Y:          cell.Y + y,
+				Letter:     highlighted,
+				Foreground: c.Grey,
+				Background: c.White,
+			}
 
 		} else {
-			transformed[i] = c.Cell{X: cell.X + x, Y: cell.Y + y, Content: cell.Content}
+			transformed[i] = c.Cell{
+				X:          cell.X + x,
+				Y:          cell.Y + y,
+				Letter:     cell.Letter,
+				Foreground: c.Grey,
+				Background: c.White,
+			}
 		}
 
 	}
@@ -39,7 +51,13 @@ func (t *text) Draw(x, y int) []c.Cell {
 	transformed := make([]c.Cell, len(t.content))
 
 	for i, cell := range t.content {
-		transformed[i] = c.Cell{X: cell.X + x, Y: cell.Y + y, Content: cell.Content}
+		transformed[i] = c.Cell{
+			X:          cell.X + x,
+			Y:          cell.Y + y,
+			Letter:     cell.Letter,
+			Foreground: c.White,
+			Background: c.Grey,
+		}
 	}
 
 	return transformed
@@ -132,7 +150,13 @@ func (t *text) toCellArray(s string, isCentered bool) []c.Cell {
 		for y, line := range lines {
 			offset := (t.W() - len(line)) / 2
 			for x, letter := range line {
-				c := c.Cell{X: x + offset, Y: y, Content: letter}
+				c := c.Cell{
+					X:          x + offset,
+					Y:          y,
+					Letter:     letter,
+					Foreground: c.White,
+					Background: c.Grey,
+				}
 				output = append(output, c)
 			}
 
@@ -140,7 +164,13 @@ func (t *text) toCellArray(s string, isCentered bool) []c.Cell {
 	} else {
 		for y, line := range lines {
 			for x, letter := range line {
-				c := c.Cell{X: x, Y: y, Content: letter}
+				c := c.Cell{
+					X:          x,
+					Y:          y,
+					Letter:     letter,
+					Foreground: c.White,
+					Background: c.Grey,
+				}
 				output = append(output, c)
 			}
 
