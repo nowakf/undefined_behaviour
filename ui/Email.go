@@ -2,15 +2,15 @@ package ui
 
 import el "ub/ui/elements"
 
-type Email struct {
+type email struct {
 	*el.Table
 }
 
-func NewEmail(h, w int) *Email {
-	e := new(Email)
+func NewEmail(h, w int) *email {
+	e := new(email)
 	e.Table = el.NewTable(h, w)
 	return e
 }
 
-func (e *Email) AddMail() {
+func (e *email) AddMail() {
 }

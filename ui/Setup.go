@@ -4,22 +4,24 @@ import (
 	el "ub/ui/elements"
 )
 
-type Setup struct {
+type setup struct {
 	*el.Table
 }
 
-func NewSetup(h, w int) *Setup {
-	s := new(Setup)
+func NewSetup(h, w int) *setup {
+	s := new(setup)
 	s.Table = s.questionaire(h, w)
-	s.state = s.initState()
 	return s
 }
 
-func (s *Setup) initState() func() (next State) {
-	return
+//the purpose of this is to weed out input events that don't belong in the top level
+func (s *setup) OnMouse(x, y int, pressed, released bool) func() string {
+
+	return func() string { return "foo" }
 }
 
-func (s *Setup) questionaire(h, w int) *el.Table {
+//makes a starting questionaire
+func (s *setup) questionaire(h, w int) *el.Table {
 	tab := el.NewTable(h, w)
 
 	tab.WriteToCell(0, 0, el.NewSpacer(1, w/4))

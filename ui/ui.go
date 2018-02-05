@@ -1,3 +1,5 @@
+// ui manages user input, the abstract display of objects, and
+// sends messages to the event system, when input changes game state.
 package ui
 
 import (
@@ -8,10 +10,8 @@ import (
 	el "ub/ui/elements"
 )
 
-//type State is a simple state machine
-type State func() (next State)
-
-//ui manages the input, content and display of stuff that's in view
+// a ui displays the stuff that's in view, manages changes between states,
+// and sends game-state-altering input to the event system
 type ui struct {
 	h, w int
 
@@ -21,16 +21,9 @@ type ui struct {
 	x, y int
 
 	view         []c.Cell
-	states       []el.UiElement
 	currentState state
+	states       []el.UiElement
 }
-
-type state int
-
-const (
-	setup state = iota
-	email
-)
 
 //creates a new UI, returns a pointer
 func NewUI(h, w int, win *pixelgl.Window, e *events.EventSystem) *ui {
@@ -42,21 +35,25 @@ func NewUI(h, w int, win *pixelgl.Window, e *events.EventSystem) *ui {
 	u.states = u.initStates(h, w)
 	u.win = win
 	return u
+}
 
+type state int
+
+const (
+	aSetup state = iota
+	aEmail
+)
+
+var states = []state{
+	aSetup,
+	aEmail,
 }
 
 func (u *ui) initStates(h, w int) []el.UiElement {
-
-	states := make([]el.UiElement, 2)
-
-	states[setup] = NewSetup(h, w)
-	states[email] = NewEmail(h, w)
-
-	return states
-}
-
-func (u *ui) Update() {
-
+	m := make([]el.UiElement, len(states))
+	m[aSetup] = NewSetup(h, w)
+	m[aEmail] = NewEmail(h, w)
+	return m
 }
 
 func (u *ui) Draw() []c.Cell {
@@ -75,6 +72,7 @@ func (u *ui) Draw() []c.Cell {
 
 }
 
+//this will check what input there is, then return true if it exists
 func (u *ui) Input() bool {
 
 	return u.mouse()
@@ -125,15 +123,18 @@ func (u *ui) mouse() bool {
 		//and if it has been clicked, update
 		if mousePressed || mouseReleased {
 			function := u.states[u.currentState].OnMouse(x, y, mousePressed, mouseReleased)
+			//return the function
+			println(string(u.currentState))
 			println(function())
 			return true
 		} else {
+			//if it has neither been moved nor pressed, do nothing
 			return false
 		}
 	//if the mouse is pressed and moved,
 	case mousePressed || mouseReleased:
 		function := u.states[u.currentState].OnMouse(x, y, mousePressed, mouseReleased)
-		//unset the previous button
+		//return the function
 		u.states[u.currentState].OnMouse(u.x, u.y, false, false)
 		//update the previous position
 		u.x, u.y = x, y
@@ -144,8 +145,8 @@ func (u *ui) mouse() bool {
 		u.x, u.y = x, y
 		//update the previous position
 		function := u.states[u.currentState].OnMouse(x, y, mousePressed, mouseReleased)
-		//tell the new button the mouse is here
 		println(function())
+		//tell the new button the mouse is here
 		return true
 	}
 

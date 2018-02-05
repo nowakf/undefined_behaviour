@@ -9,29 +9,32 @@ import (
 
 func run() {
 
-	win := newWindow()
-	ren := newRender(win)
+	win := newWindow() //makes a pixelgl window
 
-	uh, uw := ren.Stats()
+	data := newData() //is a collection of various data methods
 
-	config := ev.NewWorldConfig()
+	ren := newRender(win, data) //initializes the ui renderer
 
-	w := ev.NewWorld(config)
+	uh, uw := ren.Stats() //gets the height/width
 
-	ev := ev.NewEventSystem(w)
+	config := ev.NewWorldConfig() //gens a default world config
 
-	u := ui.NewUI(uh, uw, win, ev)
+	w := ev.NewWorld(config) //generates a world using the config
+
+	ev := ev.NewEventSystem(w) //starts an event system
+
+	u := ui.NewUI(uh, uw, win, ev) //makes a new ui
 
 	check := resized()
 	for !win.Closed() {
 
-		if check(win) {
-			ren = newRender(win)
+		if check(win) { //if the window is resized, redraw
+			ren = newRender(win, data)
 			uh, uw = ren.Stats()
 			u = ui.NewUI(uh, uw, win, ev)
 		}
 
-		if u.Input() {
+		if u.Input() { //only run the main loop if there has been valid input
 			cells := u.Draw()
 			ren.update(cells)
 		}
@@ -43,6 +46,8 @@ func run() {
 
 	}
 }
+
+//resized() returns a function that can be called to check if the window has been resized
 func resized() func(win *pixelgl.Window) bool {
 
 	h := 0.0
@@ -62,6 +67,7 @@ func resized() func(win *pixelgl.Window) bool {
 	}
 }
 
+//for graphics related reasons, pixelgl must be in the main block
 func main() {
 	pixelgl.Run(run)
 }

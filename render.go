@@ -2,47 +2,26 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"math"
-	"os"
 
 	c "ub/common"
 
 	"github.com/faiface/pixel"
 	"github.com/faiface/pixel/pixelgl"
 	"github.com/faiface/pixel/text"
-	"github.com/golang/freetype/truetype"
-	"golang.org/x/image/font"
-	"unicode"
 )
 
 type render struct {
-	atlas          *text.Atlas
 	window         *pixelgl.Window
-	face           font.Face
 	fonts          map[pixel.RGBA]*text.Text
 	glyphH, glyphW float64
 }
 
-func newRender(w *pixelgl.Window) *render {
+func newRender(w *pixelgl.Window, d *data) *render {
 	r := new(render)
 	r.window = w
 
-	face, err := r.loadTTF("./assets/fonts/DejaVuSansMono.ttf", 20)
-	if err != nil {
-		panic(err)
-	}
-	r.face = face
-
-	r.atlas = text.NewAtlas(r.face, text.RangeTable(unicode.Latin), text.RangeTable(unicode.Space), text.RangeTable(unicode.Po), text.RangeTable(unicode.S), text.ASCII)
-
-	r.fonts = make(map[pixel.RGBA]*text.Text)
-
-	for _, color := range c.Colors {
-		font := text.New(pixel.V(0, 0), r.atlas)
-		font.Color = color
-		r.fonts[color] = font
-	}
+	r.fonts = d.Fonts(c.Colors...)
 
 	r.glyphW, r.glyphH = r.getIncrement()
 
@@ -102,6 +81,18 @@ func (r *render) drawBack(xpos, ypos float64, color pixel.RGBA) {
 //gets the step size
 func (r *render) getIncrement() (float64, float64) {
 
+	_, ok := r.fonts[c.White]
+	if !ok {
+		for _, color := range c.Colors {
+			_, ok = r.fonts[color]
+			if ok {
+				break
+			} else {
+				fmt.Printf("%v is not defined in colors", color)
+			}
+		}
+	}
+
 	wi := r.fonts[c.White].BoundsOf("S").W()
 	hi := r.fonts[c.White].BoundsOf("S").H()
 
@@ -121,27 +112,4 @@ func (r *render) getCellCount(w *pixelgl.Window) (int, int) {
 	wi := bounds.W() / glyphwidth
 
 	return int(math.Floor(h)), int(math.Floor(wi))
-}
-
-func (r *render) loadTTF(path string, size float64) (font.Face, error) {
-	file, err := os.Open(path)
-	if err != nil {
-		return nil, err
-	}
-	defer file.Close()
-
-	bytes, err := ioutil.ReadAll(file)
-	if err != nil {
-		return nil, err
-	}
-
-	font, err := truetype.Parse(bytes)
-	if err != nil {
-		return nil, err
-	}
-
-	return truetype.NewFace(font, &truetype.Options{
-		Size:              size,
-		GlyphCacheEntries: 1,
-	}), nil
 }

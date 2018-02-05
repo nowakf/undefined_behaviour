@@ -8,45 +8,47 @@ import (
 	"time"
 )
 
-type etype int
+type etype string
 
 const (
-	Email etype = iota
-	News
+	email etype = "email"
+	news        = "news"
 )
 
-//EventSystem keeps track of events, and produces accounts of them.
+//EventSystem keeps track of Events, and produces accounts of them.
 type EventSystem struct {
 	mu         sync.Mutex
 	w          *world
 	complete   *virtual
-	instants   []event
-	historical []event
+	instants   []Event
+	historical []Event
 }
 
 func NewEventSystem(w *world) *EventSystem {
 	n := new(EventSystem)
 	n.complete = newVirtual()
 	n.w = w
+	println(load().Content)
 	n.instants = n.startingInstants(n.w)
-	n.historical = make([]event, 0)
+	n.historical = make([]Event, 0)
+
 	return n
 }
 
-func (e *EventSystem) startingInstants(w *world) []event {
-	return make([]event, 0)
+func (e *EventSystem) startingInstants(w *world) []Event {
+	return make([]Event, 0)
 }
 
 func (e *EventSystem) Tick() {
 	e.historical = append(e.historical, e.instants...)
-	//do events,
+	//do Events,
 
 }
 
-func (e *EventSystem) GetCurrent(t etype) []event {
-	evs := make([]event, 0)
+func (e *EventSystem) GetCurrent(t etype) []Event {
+	evs := make([]Event, 0)
 	for _, instant := range e.instants {
-		if instant.etype == t {
+		if instant.Etype == t {
 
 		}
 	}
@@ -60,24 +62,24 @@ func (e *EventSystem) GetStats() {
 func (e *EventSystem) Test() {
 }
 
-//adds an event to be played in the future
-func (e *EventSystem) addEvent(event_url string, delay int) {
+//adds an Event to be played in the future
+func (e *EventSystem) addEvent(Event_url string, delay int) {
 	time.Sleep(time.Duration(delay) * time.Second)
-	event, ok := e.complete.Events[event_url]
+	Event, ok := e.complete.Events[Event_url]
 	if ok {
-		instance := e.instantiateEvent(&event)
+		instance := e.instantiateEvent(&Event)
 		e.mu.Lock()
 		defer e.mu.Unlock()
 		e.instants = append(e.instants, instance)
 	} else {
-		fmt.Println("no event written for", event_url)
+		fmt.Println("no Event written for", Event_url)
 	}
 
 }
 
-func (e *EventSystem) instantiateEvent(input *event) event {
+func (e *EventSystem) instantiateEvent(input *Event) Event {
 
-	p, err := template.New("p").Parse(input.Content())
+	p, err := template.New("p").Parse(input.Content)
 
 	if err != nil {
 		panic(err)
@@ -91,21 +93,21 @@ func (e *EventSystem) instantiateEvent(input *event) event {
 		panic(err)
 	}
 
-	output := new(event)
-	output.event_url = input.Event_Url()
-	output.etype = input.Etype()
-	output.content = buf.String()
+	output := new(Event)
+	output.Event_url = input.Event_url
+	output.Etype = input.Etype
+	output.Content = buf.String()
 
 	return *output
 }
 
-// event email, article,
-// next []event, delay
+// Event email, article,
+// next []Event, delay
 // effects []action
 
 // simply using 'string.string.string' as the key title,
-// it then returns an event modified by the global variables
+// it then returns an Event modified by the global variables
 
 //Because hash functions convert keys to locations or page identifiers, the size of a hash structure is not related to the size of a key. The only effect of key size on a hash structure is that the hash function takes slightly longer to execute on a long key
 
-// events should be in goroutines....
+// Events should be in goroutines....
