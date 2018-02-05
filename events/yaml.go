@@ -9,7 +9,7 @@ import (
 	"io/ioutil" //this should be moved
 )
 
-func load() Event {
+func load() []Event {
 	pwd, _ := os.Getwd()
 	yamlFile, err := ioutil.ReadFile(pwd + "/assets/text/test.yaml")
 	if err != nil {
@@ -22,9 +22,9 @@ func load() Event {
 	return e
 }
 
-func fromYAML(yamlFile []byte) (Event, error) {
+func fromYAML(yamlFile []byte) ([]Event, error) {
 
-	var e Event
+	var e []Event
 
 	err := yaml.UnmarshalStrict(yamlFile, &e)
 

@@ -28,7 +28,8 @@ func NewEventSystem(w *world) *EventSystem {
 	n := new(EventSystem)
 	n.complete = newVirtual()
 	n.w = w
-	println(load().Content)
+	println(load()[0].Content)
+	println(load()[1].Content)
 	n.instants = n.startingInstants(n.w)
 	n.historical = make([]Event, 0)
 
