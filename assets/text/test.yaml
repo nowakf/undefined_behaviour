@@ -22,7 +22,7 @@ consequences:
 event_url: 'root.branch.leaf'
 etype: email
 title: hopeless!
-content:
+content: |
         There's no way this is going to work. You need to tell Angela - she's not listening to me. She's convinced that the only way we
         stop this is by getting hooks into the local legislature. I keep telling her - there's no way we do that without getting
         noticed. And once we get noticed, we're done.

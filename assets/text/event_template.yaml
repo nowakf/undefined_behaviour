@@ -1,0 +1,8 @@
+---
+event_url: root.branch.leaf     #this is the unique url of the event
+etype:                          #fill in event type here
+title:                          #title of the event
+content: |                      #content text can be formatted however you want.
+                                #don't delete the | though!
+consequences:                   #events it links to
+---
