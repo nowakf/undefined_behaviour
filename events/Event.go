@@ -2,8 +2,7 @@ package events
 
 type Event struct {
 	Event_url    string   `yaml:"event_url"`
-	Etype        etype    `yaml:"etype"`
-	Title        string   `yaml:"title"`
-	Content      string   `yaml:"content"`
+	Email        Email    `yaml:"email"`
+	Article      Article  `yaml:"article"`
 	Consequences []string `yaml:"consequences"`
 }

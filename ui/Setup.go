@@ -14,11 +14,15 @@ func NewSetup(h, w int) *setup {
 	return s
 }
 
-//the purpose of this is to weed out input events that don't belong in the top level
-func (s *setup) OnMouse(x, y int, pressed, released bool) func() string {
-
-	return func() string { return "foo" }
+func (s *setup) HasNew() bool {
+	return false
 }
+
+//the purpose of this is to weed out input events that don't belong in the top level
+//func (s *setup) OnMouse(x, y int, pressed, released bool) func() string {
+
+//return func() string { return "foo" }
+//}
 
 //makes a starting questionaire
 func (s *setup) questionaire(h, w int) *el.Table {

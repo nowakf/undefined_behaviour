@@ -7,7 +7,7 @@ import (
 	"math"
 	c "ub/common"
 	"ub/events"
-	el "ub/ui/elements"
+	//el "ub/ui/elements"
 )
 
 // a ui displays the stuff that's in view, manages changes between states,
@@ -15,50 +15,53 @@ import (
 type ui struct {
 	h, w int
 
-	win    *pixelgl.Window
-	events *events.EventSystem
+	win     *pixelgl.Window
+	eSystem *events.EventSystem
 
 	x, y int
 
 	view         []c.Cell
 	currentState state
-	states       []el.UiElement
+	states       []state
 }
 
 //creates a new UI, returns a pointer
 func NewUI(h, w int, win *pixelgl.Window, e *events.EventSystem) *ui {
 
 	u := new(ui)
-	u.events = e
+	u.eSystem = e
 	u.h, u.w = h, w
 	u.view = make([]c.Cell, h*w)
 	u.states = u.initStates(h, w)
+	u.currentState = u.states[0] //take the first state, setup
 	u.win = win
 	return u
 }
 
-type state int
-
-const (
-	aSetup state = iota
-	aEmail
-)
-
-var states = []state{
-	aSetup,
-	aEmail,
+func (u *ui) initStates(h, w int) []state {
+	states := []state{
+		NewSetup(h, w),
+		NewEmailViewer(h, w, u.eSystem.MailHookup),
+	}
+	return states
 }
 
-func (u *ui) initStates(h, w int) []el.UiElement {
-	m := make([]el.UiElement, len(states))
-	m[aSetup] = NewSetup(h, w)
-	m[aEmail] = NewEmail(h, w)
-	return m
+func (u *ui) HasNew() bool {
+
+	n := false
+	i := 0
+
+	for n == false && i < len(u.states) {
+		n = u.states[i].HasNew()
+		i++
+	}
+
+	return n
 }
 
 func (u *ui) Draw() []c.Cell {
 
-	diff := u.states[u.currentState].Draw(0, 0) //you should pass this the scrolling offset
+	diff := u.currentState.Draw(0, 0) //you should pass this the scrolling offset
 
 	u.view = make([]c.Cell, 0)
 
@@ -73,9 +76,19 @@ func (u *ui) Draw() []c.Cell {
 }
 
 //this will check what input there is, then return true if it exists
-func (u *ui) Input() bool {
+func (u *ui) Event() bool {
 
-	return u.mouse()
+	inputEvent := u.mouse()
+	switch {
+	case inputEvent:
+		//event will probs be some kind of interface
+		return true
+	case u.HasNew():
+		println("new!")
+		return true
+	default:
+		return false
+	}
 
 }
 
@@ -122,9 +135,8 @@ func (u *ui) mouse() bool {
 	case u.x == x && u.y == y:
 		//and if it has been clicked, update
 		if mousePressed || mouseReleased {
-			function := u.states[u.currentState].OnMouse(x, y, mousePressed, mouseReleased)
+			function := u.currentState.OnMouse(x, y, mousePressed, mouseReleased)
 			//return the function
-			println(string(u.currentState))
 			println(function())
 			return true
 		} else {
@@ -133,9 +145,9 @@ func (u *ui) mouse() bool {
 		}
 	//if the mouse is pressed and moved,
 	case mousePressed || mouseReleased:
-		function := u.states[u.currentState].OnMouse(x, y, mousePressed, mouseReleased)
+		function := u.currentState.OnMouse(x, y, mousePressed, mouseReleased)
 		//return the function
-		u.states[u.currentState].OnMouse(u.x, u.y, false, false)
+		u.currentState.OnMouse(u.x, u.y, false, false)
 		//update the previous position
 		u.x, u.y = x, y
 		println(function())
@@ -144,7 +156,7 @@ func (u *ui) mouse() bool {
 	default:
 		u.x, u.y = x, y
 		//update the previous position
-		function := u.states[u.currentState].OnMouse(x, y, mousePressed, mouseReleased)
+		function := u.currentState.OnMouse(x, y, mousePressed, mouseReleased)
 		println(function())
 		//tell the new button the mouse is here
 		return true

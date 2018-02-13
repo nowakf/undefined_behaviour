@@ -3,7 +3,7 @@ package main
 import (
 	//c "ub/common"
 	"github.com/faiface/pixel/pixelgl"
-	ev "ub/events"
+	e "ub/events"
 	ui "ub/ui"
 )
 
@@ -17,11 +17,11 @@ func run() {
 
 	uh, uw := ren.Stats() //gets the height/width
 
-	config := ev.NewWorldConfig() //gens a default world config
+	config := e.NewWorldConfig() //gens a default world config
 
-	w := ev.NewWorld(config) //generates a world using the config
+	w := e.NewWorld(config) //generates a world using the config
 
-	ev := ev.NewEventSystem(w) //starts an event system
+	ev := e.NewEventSystem(w) //starts an event system
 
 	u := ui.NewUI(uh, uw, win, ev) //makes a new ui
 
@@ -34,12 +34,11 @@ func run() {
 			u = ui.NewUI(uh, uw, win, ev)
 		}
 
-		if u.Input() { //only run the main loop if there has been valid input
+		if u.Event() {
 			cells := u.Draw()
 			ren.update(cells)
 		}
 		//refactor to be in slower tick-rate loop:
-		ev.Tick()
 		//so it will be events.Poll here?
 
 		win.Update()

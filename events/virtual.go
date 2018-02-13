@@ -1,5 +1,8 @@
 package events
 
+//virtual is opposed to concrete, in that it encompasses the raw text of events,
+//actors, and actions, prior to their parsing into a 'concrete', specific form.
+
 type virtual struct {
 	Actions map[string]Action
 	Actors  map[string]Actor

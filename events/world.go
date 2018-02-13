@@ -1,6 +1,7 @@
 // Package events manages events in the game-world
 package events
 
+//world contains concrete actors
 type world struct {
 
 	//actors

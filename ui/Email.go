@@ -1,16 +1,40 @@
 package ui
 
-import el "ub/ui/elements"
+import (
+	"ub/events"
+	el "ub/ui/elements"
+)
 
-type email struct {
+type emailViewer struct {
 	*el.Table
+	mailPipe chan (events.Event)
+	mails    []message
 }
 
-func NewEmail(h, w int) *email {
-	e := new(email)
+type message struct {
+	subject string
+	sender  string
+	content string
+	options []string
+}
+
+func NewEmailViewer(h, w int, mailHook func(chan (events.Event))) *emailViewer {
+	e := new(emailViewer)
 	e.Table = el.NewTable(h, w)
+	e.mailPipe = make(chan (events.Event))
+	mailHook(e.mailPipe)
 	return e
 }
 
-func (e *email) AddMail() {
+func (e *emailViewer) HasNew() bool {
+	select {
+	case hasNew := <-e.mailPipe:
+		e.AddMail(hasNew)
+		return true
+	default:
+		return false
+	}
+}
+
+func (e *emailViewer) AddMail(m events.Event) {
 }

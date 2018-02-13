@@ -4,22 +4,24 @@ import "testing"
 
 func TestLoad(t *testing.T) {
 	s := load()
+	for _, e := range s {
 
-	if s.event_url == "" {
-		t.Fatalf("got no event url")
-	}
-	t.Log(s.event_url)
+		if e.Event_url == "" {
+			t.Fatalf("got no event url")
+		}
+		t.Log(e.Event_url)
 
-	if s.title == "" {
-		t.Fatalf("got no title, %v", s)
-	}
-	t.Log(s.title)
+		if e.Title == "" {
+			t.Fatalf("got no title, %v", e)
+		}
+		t.Log(e.Title)
 
-	if s.content == "" {
-		t.Fatalf("got no content, %v", s)
-	}
-	if s.consequences == nil {
-		t.Fatalf("got no consequences")
+		if e.Content == "" {
+			t.Fatalf("got no content, %v", e)
+		}
+		if e.Consequences == nil {
+			t.Fatalf("got no consequences")
+		}
 	}
 
 }
