@@ -15,8 +15,8 @@ import (
 type ui struct {
 	h, w int
 
-	win     *pixelgl.Window
-	eSystem *events.EventSystem
+	win    *pixelgl.Window
+	player *events.Actor
 
 	x, y int
 
@@ -26,10 +26,10 @@ type ui struct {
 }
 
 //creates a new UI, returns a pointer
-func NewUI(h, w int, win *pixelgl.Window, e *events.EventSystem) *ui {
+func NewUI(h, w int, win *pixelgl.Window, e *events.Actor) *ui {
 
 	u := new(ui)
-	u.eSystem = e
+	u.player = e
 	u.h, u.w = h, w
 	u.view = make([]c.Cell, h*w)
 	u.states = u.initStates(h, w)
@@ -40,8 +40,8 @@ func NewUI(h, w int, win *pixelgl.Window, e *events.EventSystem) *ui {
 
 func (u *ui) initStates(h, w int) []state {
 	states := []state{
-		NewSetup(h, w),
-		NewEmailViewer(h, w, u.eSystem.MailHookup),
+		NewSetup(h, w, u.player),
+		NewEmailViewer(h, w, u.player.MailBox),
 	}
 	return states
 }

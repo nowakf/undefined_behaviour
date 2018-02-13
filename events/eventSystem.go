@@ -10,24 +10,20 @@ import (
 
 //EventSystem keeps track of Events, and produces accounts of them.
 type EventSystem struct {
+	mu         sync.Mutex
 	w          *world
 	complete   *virtual
+	Player     *Actor
 	instants   []Event
 	historical []Event
-	mailPipe   chan (Event)
+	mailPipe   chan (interface{})
 }
 
 func NewEventSystem(w *world) *EventSystem {
 	n := new(EventSystem)
 	n.complete = newVirtual()
 	n.w = w
-	//n.mailPipe = make(chan (Event)) //just so it doesn't freak when there's no mailsystem
-	println(load()[0].Email.Content)
-	if load()[0].Article == (Article{}) {
-		println("we have no article")
-	} else {
-		println("we have something here")
-	}
+	n.mailPipe = make(chan (interface{})) //just so it doesn't freak when there's no mailsystem
 	n.instants = n.startingInstants(n.w)
 	n.historical = make([]Event, 0)
 
@@ -45,7 +41,7 @@ func (e *EventSystem) Tick() []Event {
 
 }
 
-func (e *EventSystem) MailHookup(mails chan (Event)) {
+func (e *EventSystem) MailHookup(mails chan (interface{})) {
 	e.mailPipe = mails
 }
 

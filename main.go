@@ -23,7 +23,7 @@ func run() {
 
 	ev := e.NewEventSystem(w) //starts an event system
 
-	u := ui.NewUI(uh, uw, win, ev) //makes a new ui
+	u := ui.NewUI(uh, uw, win, ev.Player) //makes a new ui
 
 	check := resized()
 	for !win.Closed() {
@@ -31,7 +31,7 @@ func run() {
 		if check(win) { //if the window is resized, redraw
 			ren = newRender(win, data)
 			uh, uw = ren.Stats()
-			u = ui.NewUI(uh, uw, win, ev)
+			u = ui.NewUI(uh, uw, win, ev.Player)
 		}
 
 		if u.Event() {

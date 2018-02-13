@@ -1,16 +1,19 @@
 package ui
 
 import (
+	"ub/events"
 	el "ub/ui/elements"
 )
 
 type setup struct {
 	*el.Table
+	player *events.Actor
 }
 
-func NewSetup(h, w int) *setup {
+func NewSetup(h, w int, player *events.Actor) *setup {
 	s := new(setup)
 	s.Table = s.questionaire(h, w)
+	s.player = player
 	return s
 }
 
