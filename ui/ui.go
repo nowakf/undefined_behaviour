@@ -138,7 +138,10 @@ func (u *ui) mouse() bool {
 
 	changed := object != u.last
 
-	//catcher, ok := u.checkIfCatcher(object)
+	if object != nil && changed {
+		println(changed)
+		println(object.Identify())
+	}
 
 	return u.parseClick(object, changed, mousePressed, mouseReleased)
 
@@ -158,7 +161,9 @@ func (u *ui) checkClickable(object el.UiElement) (el.Clickable, bool) {
 func (u *ui) parseClick(input el.UiElement, changed, mousePressed, mouseReleased bool) bool {
 
 	object, isClickable := u.checkClickable(input)
+
 	isNill := object == nil
+
 	prev, prevIsClickable := u.checkClickable(u.last)
 
 	switch {
@@ -173,22 +178,21 @@ func (u *ui) parseClick(input el.UiElement, changed, mousePressed, mouseReleased
 		if prevIsClickable {
 			prev.Flush()
 			prev.Do()
-			return true //to hover over something else
+			return true
 		} else {
 			return false
 		}
 	case changed:
+		if prevIsClickable {
+			prev.Flush()
+		}
 		if isClickable && !isNill {
 			object.OnMouse(false)
 		}
 
-		if prevIsClickable {
-			prev.Flush()
-		}
-		if !isNill {
-			u.last = object.(el.UiElement)
-		}
-		return true //to hover over something new
+		u.last = input
+
+		return true
 	default:
 		return false
 	}
