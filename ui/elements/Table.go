@@ -93,8 +93,11 @@ func (t *Table) Draw(xoffset, yoffset int) []c.Cell {
 	return cells
 }
 
-//returns the function associated with the element under the mouse
-func (t *Table) OnMouse(x, y int, pressed bool, released bool) func() string {
+func (t *Table) Identify() string {
+	return fmt.Sprintf("table, origin (%v, %v,) w of: %v, h of: %v", t.xorigin, t.yorigin, t.w, t.h)
+}
+
+func (t *Table) GetLast(x, y int) UiElement {
 
 	accumulatedWidths := t.xorigin
 
@@ -106,8 +109,7 @@ func (t *Table) OnMouse(x, y int, pressed bool, released bool) func() string {
 
 			for _, box := range column {
 				if y < accumulatedHeights+box.H() && y >= accumulatedHeights {
-					//send the click event to the element
-					return box.OnMouse(x, y, pressed, released)
+					return box.GetLast(x, y)
 
 				} else {
 					accumulatedHeights += box.H()
@@ -117,5 +119,5 @@ func (t *Table) OnMouse(x, y int, pressed bool, released bool) func() string {
 			accumulatedWidths += column[0].W()
 		}
 	}
-	return func() string { return fmt.Sprintf("mouse probably out of bounds at %v,%v", x, y) }
+	return nil
 }

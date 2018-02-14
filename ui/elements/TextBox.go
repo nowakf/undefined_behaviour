@@ -16,7 +16,7 @@ func NewTextbox(width int, content string) *textbox {
 	return t
 }
 
-func (t *textbox) Content() string {
+func (t *textbox) Identify() string {
 	return t.text.Content()
 }
 
@@ -24,6 +24,6 @@ func (t *textbox) Draw(x, y int) []c.Cell {
 	return t.text.Draw(x+1, y) //offset for a border
 }
 
-func (t *textbox) OnMouse(x int, y int, pressed bool, released bool) func() string {
-	return t.Content
+func (t *textbox) GetLast(x, y int) UiElement {
+	return t
 }

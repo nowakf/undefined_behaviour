@@ -10,5 +10,6 @@ type UiElement interface {
 	SetW(width int)
 	SetH(height int)
 	Draw(x, y int) []c.Cell
-	OnMouse(x, y int, pressed bool, released bool) func() string
+	GetLast(x, y int) UiElement
+	Identify() string
 }

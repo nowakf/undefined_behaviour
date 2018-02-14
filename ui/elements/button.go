@@ -1,16 +1,22 @@
 package elements
 
 import (
-	"time"
 	c "ub/common"
 )
 
 type button struct {
 	action func() string
 	*rect
-	MouseOver bool
-	Clicked   bool
+	mode buttonMode
 }
+
+type buttonMode int
+
+const (
+	none buttonMode = iota
+	hover
+	clicked
+)
 
 func newButton(action func() string, hitbox *rect) *button {
 	b := new(button)
@@ -51,15 +57,14 @@ func (b *button) outline(x, y int) []c.Cell {
 			Background: c.White}
 		cells = append(cells, leftline, rightline)
 	}
-	b.MouseOver = false
 	return cells
 }
 
-func (b *button) Draw(x, y int) []c.Cell {
-	switch {
-	case b.MouseOver:
+func (b *button) Light(x, y int) []c.Cell {
+	switch b.mode {
+	case hover:
 		return b.outline(x, y)
-	case b.Clicked:
+	case clicked:
 		return b.fill(x, y)
 	default:
 		return []c.Cell{c.Cell{
@@ -72,19 +77,20 @@ func (b *button) Draw(x, y int) []c.Cell {
 	}
 }
 
-func (b *button) OnMouse(x, y int, pressed bool, released bool) func() string {
-	switch {
-	case pressed:
-		b.Clicked = true
-		return func() string { return "mouse was on this button, but it released elsewhere" }
-	case released:
-		b.Clicked = false
-		return b.action
-	default:
-		b.Clicked = false
-		b.MouseOver = true
-		return func() string { return "mouse over a button!" }
+func (b *button) Flush() {
+	b.mode = none
+}
+
+func (b *button) OnMouse(click bool) {
+	if click {
+		b.mode = clicked
+	} else {
+		b.mode = hover
 	}
+}
+
+func (b *button) Do() {
+	b.action()
 }
 
 func (b *button) fill(xoffset, yoffset int) []c.Cell {
@@ -103,11 +109,4 @@ func (b *button) fill(xoffset, yoffset int) []c.Cell {
 		cells[i] = cell
 	}
 	return cells
-}
-
-func (b *button) click() {
-	b.Clicked = true
-	time.Sleep(time.Millisecond * time.Duration(100))
-	b.Clicked = false
-
 }

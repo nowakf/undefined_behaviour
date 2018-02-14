@@ -7,7 +7,7 @@ import (
 	"math"
 	c "ub/common"
 	"ub/events"
-	//el "ub/ui/elements"
+	el "ub/ui/elements"
 )
 
 // a ui displays the stuff that's in view, manages changes between states,
@@ -15,14 +15,18 @@ import (
 type ui struct {
 	h, w int
 
+	global el.KeyCatcher
+
 	win    *pixelgl.Window
 	player *events.Actor
 
-	x, y int
+	last el.UiElement
 
 	view         []c.Cell
 	currentState state
 	states       []state
+
+	focused el.KeyCatcher
 }
 
 //creates a new UI, returns a pointer
@@ -32,6 +36,7 @@ func NewUI(h, w int, win *pixelgl.Window, e *events.Actor) *ui {
 	u.player = e
 	u.h, u.w = h, w
 	u.view = make([]c.Cell, h*w)
+	u.focused = &globalKeyHandler{win}
 	u.states = u.initStates(h, w)
 	u.currentState = u.states[0] //take the first state, setup
 	u.win = win
@@ -84,7 +89,7 @@ func (u *ui) Event() bool {
 		//event will probs be some kind of interface
 		return true
 	case u.HasNew():
-		println("new!")
+		println("new something!")
 		return true
 	default:
 		return false
@@ -129,37 +134,62 @@ func (u *ui) mouse() bool {
 	mousePressed := u.win.Pressed(pixelgl.MouseButton1)
 	mouseReleased := u.win.JustReleased(pixelgl.MouseButton1)
 
-	//apply:
+	object := u.currentState.GetLast(x, y)
+
+	changed := object != u.last
+
+	//catcher, ok := u.checkIfCatcher(object)
+
+	return u.parseClick(object, changed, mousePressed, mouseReleased)
+
+}
+func (u *ui) checkIfCatcher(object el.UiElement) (el.KeyCatcher, bool) {
+	var checked el.KeyCatcher
+	checked, ok := object.(el.KeyCatcher)
+	return checked, ok
+}
+
+func (u *ui) checkClickable(object el.UiElement) (el.Clickable, bool) {
+	var checked el.Clickable
+	checked, ok := object.(el.Clickable)
+	return checked, ok
+}
+
+func (u *ui) parseClick(input el.UiElement, changed, mousePressed, mouseReleased bool) bool {
+
+	object, isClickable := u.checkClickable(input)
+	isNill := object == nil
+	prev, prevIsClickable := u.checkClickable(u.last)
+
 	switch {
-	//if mouse hasn't moved,
-	case u.x == x && u.y == y:
-		//and if it has been clicked, update
-		if mousePressed || mouseReleased {
-			function := u.currentState.OnMouse(x, y, mousePressed, mouseReleased)
-			//return the function
-			println(function())
-			return true
+	case changed && mousePressed:
+		return false
+	case mousePressed:
+		if isClickable && !isNill {
+			object.OnMouse(true)
+		}
+		return true
+	case mouseReleased:
+		if prevIsClickable {
+			prev.Flush()
+			prev.Do()
+			return true //to hover over something else
 		} else {
-			//if it has neither been moved nor pressed, do nothing
 			return false
 		}
-	//if the mouse is pressed and moved,
-	case mousePressed || mouseReleased:
-		function := u.currentState.OnMouse(x, y, mousePressed, mouseReleased)
-		//return the function
-		u.currentState.OnMouse(u.x, u.y, false, false)
-		//update the previous position
-		u.x, u.y = x, y
-		println(function())
-		return true
-	//if the mouse is moved
-	default:
-		u.x, u.y = x, y
-		//update the previous position
-		function := u.currentState.OnMouse(x, y, mousePressed, mouseReleased)
-		println(function())
-		//tell the new button the mouse is here
-		return true
-	}
+	case changed:
+		if isClickable && !isNill {
+			object.OnMouse(false)
+		}
 
+		if prevIsClickable {
+			prev.Flush()
+		}
+		if !isNill {
+			u.last = object.(el.UiElement)
+		}
+		return true //to hover over something new
+	default:
+		return false
+	}
 }

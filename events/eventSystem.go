@@ -16,14 +16,26 @@ type EventSystem struct {
 	Player     *Actor
 	instants   []Event
 	historical []Event
-	mailPipe   chan (interface{})
 }
 
 func NewEventSystem(w *world) *EventSystem {
 	n := new(EventSystem)
 	n.complete = newVirtual()
 	n.w = w
-	n.mailPipe = make(chan (interface{})) //just so it doesn't freak when there's no mailsystem
+
+	player, exists := n.complete.Actors["player"]
+	if !exists {
+		player = GenerateActor(w)
+		println("no default player in virtual set")
+	}
+
+	p, err := n.instantiateActor(&player)
+
+	if err != nil {
+		panic(err)
+	}
+	n.Player = &p
+
 	n.instants = n.startingInstants(n.w)
 	n.historical = make([]Event, 0)
 
@@ -39,21 +51,6 @@ func (e *EventSystem) Tick() []Event {
 	//do Events,
 	return e.instants
 
-}
-
-func (e *EventSystem) MailHookup(mails chan (interface{})) {
-	e.mailPipe = mails
-}
-
-func (e *EventSystem) GetCurrent() []Event {
-	return *new([]Event)
-}
-
-func (e *EventSystem) GetStats() {
-
-}
-
-func (e *EventSystem) Test() {
 }
 
 //adds an Event to be played in the future
@@ -73,6 +70,19 @@ func (e *EventSystem) addEvent(Event_url string, delay int) {
 
 }
 
+type ActorCreationError struct {
+	cause string
+}
+
+func (a *ActorCreationError) Error() string {
+	return a.cause
+}
+
+func (e *EventSystem) instantiateActor(input *Actor) (Actor, error) {
+	return *new(Actor), nil
+}
+
+//this should check an event against the world, and fill in the particulars.
 func (e *EventSystem) instantiateEvent(input *Event) Event {
 
 	output := new(Event)
