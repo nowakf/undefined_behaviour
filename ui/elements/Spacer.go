@@ -6,12 +6,12 @@ import (
 )
 
 type Spacer struct {
-	*rect
+	*container
 }
 
-func NewSpacer(height, width int) *Spacer {
+func NewSpacer(parent *Node, h, w int) *Spacer {
 	s := new(Spacer)
-	s.rect = newrect(height, width)
+	s.container = NewContainer(s, parent, h, w)
 	return s
 
 }
@@ -24,8 +24,8 @@ func (s *Spacer) Draw(x int, y int) []c.Cell {
 		X:          x,
 		Y:          y,
 		Letter:     ' ',
-		Foreground: c.Grey,
-		Background: c.White,
+		Foreground: c.Blank,
+		Background: c.Blank,
 	}
 	return []c.Cell{cell}
 }

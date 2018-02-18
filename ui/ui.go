@@ -3,6 +3,8 @@
 package ui
 
 import (
+	"fmt"
+	"github.com/faiface/pixel"
 	"github.com/faiface/pixel/pixelgl"
 	"math"
 	c "ub/common"
@@ -29,6 +31,8 @@ type ui struct {
 	focused el.KeyCatcher
 }
 
+//is a wrapper for the Node class
+
 //creates a new UI, returns a pointer
 func NewUI(h, w int, win *pixelgl.Window, e *events.Actor) *ui {
 
@@ -46,9 +50,18 @@ func NewUI(h, w int, win *pixelgl.Window, e *events.Actor) *ui {
 func (u *ui) initStates(h, w int) []state {
 	states := []state{
 		NewSetup(h, w, u.player),
-		NewEmailViewer(h, w, u.player.MailBox),
+		NewEmailViewer(h, w, u.player),
 	}
 	return states
+}
+
+func (u *ui) Resize(h, w int) {
+	u.h = h
+	u.w = w
+	for _, state := range u.states {
+		state.Resize(h, w)
+		state.Resize(h, w)
+	}
 }
 
 func (u *ui) HasNew() bool {
@@ -64,7 +77,67 @@ func (u *ui) HasNew() bool {
 	return n
 }
 
-func (u *ui) Draw() []c.Cell {
+type Layer struct {
+	color   pixel.RGBA
+	content []c.Cell
+}
+
+func (l *Layer) Color() pixel.RGBA {
+	return l.color
+}
+func (l *Layer) Content() []c.Cell {
+	return l.content
+}
+
+func (u *ui) checkColor() func(color pixel.RGBA) int {
+
+	colorMap := make(map[pixel.RGBA]int)
+	index := 0
+
+	return func(color pixel.RGBA) int {
+
+		_, ok := colorMap[color]
+		if !ok {
+			colorMap[color] = index
+			index++
+		}
+		return colorMap[color]
+	}
+
+}
+
+func (u *ui) Draw() []Layer {
+
+	//make two stacks:
+	fstack := make([]Layer, 0)
+	bstack := make([]Layer, 0)
+
+	//index functions:
+	checkBackground := u.checkColor()
+	//index = 0
+	checkForeground := u.checkColor()
+
+	// index starts at length of colors
+
+	for _, cell := range u.crop() {
+
+		index := checkForeground(cell.Foreground)
+		if len(fstack) == index {
+			fstack = append(fstack, Layer{cell.Foreground, make([]c.Cell, 0)})
+		}
+		fstack[index].content = append(fstack[index].content, cell)
+
+		index = checkBackground(cell.Background)
+		if len(bstack) == index {
+			bstack = append(bstack, Layer{cell.Background, make([]c.Cell, 0)})
+		}
+		cell.Letter = '█'
+		bstack[index].content = append(bstack[index].content, cell)
+	}
+	return append(bstack, fstack...)
+}
+
+func (u *ui) crop() []c.Cell {
 
 	diff := u.currentState.Draw(0, 0) //you should pass this the scrolling offset
 
@@ -139,15 +212,17 @@ func (u *ui) mouse() bool {
 	changed := object != u.last
 
 	if object != nil && changed {
-		println(changed)
-		println(object.Identify())
+		rA, rB := object.GetRatio()
+		fmt.Printf("object under mouse is %s, its height is %v, and width is %v \n, it's ratio is (%v, %v)", object.Identify(), object.H(), object.W(), rA, rB)
 	}
 
 	return u.parseClick(object, changed, mousePressed, mouseReleased)
 
 }
+
+var checked el.KeyCatcher
+
 func (u *ui) checkIfCatcher(object el.UiElement) (el.KeyCatcher, bool) {
-	var checked el.KeyCatcher
 	checked, ok := object.(el.KeyCatcher)
 	return checked, ok
 }

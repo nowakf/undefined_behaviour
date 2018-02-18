@@ -5,23 +5,27 @@ import (
 )
 
 type textbox struct {
-	*rect
-	*text
+	*container
+	i *text
 }
 
-func NewTextbox(width int, content string) *textbox {
+//NewTextbox returns a textbox, with the width as fraction, with the int
+//refering to the number under the line
+func NewTextbox(parent *Node, h, w int, content string) *textbox {
 	t := new(textbox)
-	t.text, _ = newbodytext(width-2, content) // to give it some padding
-	t.rect = newrect(t.text.H()+1, width)
+	t.container = NewContainer(t, parent, h, w)
+	t.i = newbodytext(content, t.container)
+	t.foreground = c.LightGrey
+	t.background = c.Blank
 	return t
 }
 
 func (t *textbox) Identify() string {
-	return t.text.Content()
+	return t.i.Content()
 }
 
 func (t *textbox) Draw(x, y int) []c.Cell {
-	return t.text.Draw(x+1, y) //offset for a border
+	return t.i.Draw(x+1, y) //offset for a border
 }
 
 func (t *textbox) GetLast(x, y int) UiElement {

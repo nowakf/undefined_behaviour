@@ -3,50 +3,39 @@ package elements
 import (
 	"strings"
 	c "ub/common"
-	"unicode"
 )
 
 type text struct {
 	content  []c.Cell
 	asString string
-	*rect
+	width    int
+	wrapping wrapType
+	align    alignment
+	*container
 }
+
+type wrapType int
+type alignment int
+
+const (
+	horizontal wrapType = iota
+	h_wrap_v_cut
+	h_cut
+)
+
+const (
+	center alignment = iota
+	left
+	right
+)
 
 func (t *text) Content() string {
 	return t.asString
 }
 
-func (t *text) WithOutline(x, y int) []c.Cell {
-	transformed := make([]c.Cell, len(t.content))
-
-	for i, cell := range t.content {
-		if x == cell.X && y == cell.Y && x == cell.X+t.W() && y == cell.Y+t.H() {
-
-			highlighted := unicode.ToUpper(cell.Letter)
-
-			transformed[i] = c.Cell{
-				X:          cell.X + x,
-				Y:          cell.Y + y,
-				Letter:     highlighted,
-				Foreground: c.Grey,
-				Background: c.White,
-			}
-
-		} else {
-			transformed[i] = c.Cell{
-				X:          cell.X + x,
-				Y:          cell.Y + y,
-				Letter:     cell.Letter,
-				Foreground: c.Grey,
-				Background: c.White,
-			}
-		}
-
-	}
-	return transformed
-}
-
 func (t *text) Draw(x, y int) []c.Cell {
+	if t.W() != t.width {
+	}
 
 	transformed := make([]c.Cell, len(t.content))
 
@@ -55,40 +44,75 @@ func (t *text) Draw(x, y int) []c.Cell {
 			X:          cell.X + x,
 			Y:          cell.Y + y,
 			Letter:     cell.Letter,
-			Foreground: c.White,
-			Background: c.Grey,
+			Foreground: t.foreground,
+			Background: t.background,
 		}
 	}
 
 	return transformed
 }
 
-//returns a formatted body text, and a height
-func newbodytext(width int, content string) (*text, int) {
-	t := new(text)
-	t.asString = content
-	paragraphs := strings.Split(content, "\n")
-
+func (t *text) format(input string, height, width int) []c.Cell {
 	text := ""
-	height := 0
+	switch t.wrapping {
+	case horizontal:
+		paragraphs := strings.Split(input, "\n")
+		text, height = t.wrappedParagraphs(paragraphs)
+	case h_wrap_v_cut:
+		paragraphs := strings.Split(input, "\n")
+		text, _ = t.wrappedParagraphs(paragraphs)
+		text = t.vertTruncate(text, height)
+	case h_cut:
+		text = t.horizTruncate(input, width)
+	default:
+		panic("there's no style defined for this text")
+	}
+
+	t.Resize(height, width)
+
+	switch t.align {
+	case left:
+		text = t.rightPad(width, text)
+	case center:
+		text = t.justifiedPad(width, text)
+	default:
+		panic("no alignment defined for this text!")
+	}
+	return t.toCellArray(text)
+
+}
+
+//returns a formatted body text, and a height
+func newbodytext(content string, box *container) *text {
+	t := new(text)
+	t.container = box
+	t.asString = content
+	t.wrapping = horizontal
+	t.align = left
+	t.content = t.format(content, t.H(), t.W())
+
+	return t
+}
+
+func (t *text) wrappedParagraphs(paragraphs []string) (string, int) {
+	text := ""
+	height := 1
 	for _, paragraph := range paragraphs {
-		t, h := t.wrap(width, paragraph)
+		t, h := t.wrap(t.W(), paragraph)
 		text += "\n" + t
 		height += h + 1
 	}
-
-	t.content = t.toCellArray(text, false)
-	t.rect = newrect(height, width)
-	return t, height
+	return text, height
 }
 
 //returns a formatted title
-func newtitletext(width int, content string) *text {
-
+func newtitletext(content string, box *container) *text {
 	t := new(text)
+	t.wrapping = h_cut
+	t.align = center
 	t.asString = content
-	t.rect = newrect(1, width)
-	t.content = t.toCellArray(t.horizTruncate(content, width), true)
+	t.container = box
+	t.content = t.format(content, t.H(), t.W())
 	return t
 
 }
@@ -101,21 +125,38 @@ func (t *text) horizTruncate(s string, width int) string {
 	}
 }
 
-func (t *text) vertTruncate(text string) string {
+func (t *text) vertTruncate(text string, height int) string {
 
 	lines := strings.Fields(strings.Trim(text, "\n"))
 
-	if len(lines) <= t.H() {
+	if len(lines) <= height {
 		return text
 	} else {
 		trimmed := ""
 
-		for i := 0; i < t.H(); i++ {
+		for i := 0; i < height; i++ {
 			trimmed += lines[i] + "\n"
 		}
 		return trimmed + "\n" + "..."
 	}
 
+}
+func (t *text) rightPad(width int, input string) string {
+	spaces := ""
+	for width-len(input)-len(spaces) > 0 {
+		spaces += " "
+	}
+	return input + spaces
+}
+func (t *text) justifiedPad(width int, input string) string {
+	left := ""
+	right := ""
+	for width-len(input)-(len(left)+len(right)) > 0 {
+		left += " "
+		right += " "
+
+	}
+	return left + input + right
 }
 
 func (t *text) wrap(width int, content string) (string, int) {
@@ -143,38 +184,21 @@ func (t *text) wrap(width int, content string) (string, int) {
 
 }
 
-func (t *text) toCellArray(s string, isCentered bool) []c.Cell {
+func (t *text) toCellArray(s string) []c.Cell {
 	lines := strings.Split(s, "\n")
 	output := make([]c.Cell, 0)
-	if isCentered {
-		for y, line := range lines {
-			offset := (t.W() - len(line)) / 2
-			for x, letter := range line {
-				c := c.Cell{
-					X:          x + offset,
-					Y:          y,
-					Letter:     letter,
-					Foreground: c.White,
-					Background: c.Grey,
-				}
-				output = append(output, c)
+	for y, line := range lines {
+		for x, letter := range line {
+			c := c.Cell{
+				X:          x,
+				Y:          y,
+				Letter:     letter,
+				Foreground: t.foreground,
+				Background: t.background,
 			}
-
+			output = append(output, c)
 		}
-	} else {
-		for y, line := range lines {
-			for x, letter := range line {
-				c := c.Cell{
-					X:          x,
-					Y:          y,
-					Letter:     letter,
-					Foreground: c.White,
-					Background: c.Grey,
-				}
-				output = append(output, c)
-			}
 
-		}
 	}
 	return output
 }

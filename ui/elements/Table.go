@@ -4,67 +4,78 @@ import c "ub/common"
 import "fmt"
 
 type Table struct {
-	contents [][]UiElement
-	*rect
+	*container
+	columns          []block
+	rows             []block
 	xorigin, yorigin int
 }
+type block struct {
+	breadth int
+	cont    []UiElement
+}
 
-func NewTable(h, w int) *Table {
+func NewTable(parent *Node, h, w int) *Table {
 	t := new(Table)
-	t.contents = make([][]UiElement, 0)
-	t.rect = newrect(h, w)
+	t.container = NewContainer(t, parent, h, w)
+	t.rows = make([]block, 0)
+	t.columns = make([]block, 0)
 	return t
 }
+
 func (t *Table) WriteToCell(x, y int, e UiElement) {
 
-	//you fuck you
+	oldXLength := len(t.columns)
+	oldYLength := len(t.rows)
 
-	if x >= t.ColumnCount() || y >= t.RowCount(x) {
-		t.AddCells(x+1-t.ColumnCount(), y+1-t.RowCount(x))
+	if x >= len(t.columns) {
+		t.columns = t.extendBlocks(x+1, t.columns, len(t.rows))
+	}
+	if y >= len(t.rows) {
+		t.rows = t.extendBlocks(y+1, t.rows, len(t.columns))
 	}
 
-	t.contents[x][y] = e
-
-	if e.W() > t.contents[x][0].W() {
-		t.contents[x][0].SetW(e.W())
+	if y >= len(t.columns[x].cont) {
+		t.columns = t.extendContents(y+1, oldYLength, t.columns)
 	}
+	if x >= len(t.rows[y].cont) {
+		t.rows = t.extendContents(x+1, oldXLength, t.rows)
+	}
+
+	if e.W() > t.columns[x].breadth {
+		t.columns[x].breadth = e.W()
+	}
+	if e.H() > t.rows[y].breadth {
+		t.rows[y].breadth = e.H()
+	}
+
+	t.columns[x].cont[y] = e
+	t.rows[y].cont[x] = e
 
 }
 
-func (t *Table) AddCells(deltax, deltay int) {
+//so len(t.collumns) = len(t.row[x])
+//extend block increases the length of its input row or column, and adds cells
+func (t *Table) extendBlocks(newLength int, a []block, otherAxis int) []block {
 
-	n := make([][]UiElement, t.ColumnCount()+deltax)
-
-	for x := 0; x < len(n); x++ {
-
-		n[x] = make([]UiElement, t.RowCount(x)+deltay)
-
-		for y := 0; y < len(n[x]); y++ {
-
-			//you know what, fuck it
-			if x < len(t.contents) && y < len(t.contents[x]) && t.contents[x][y] != nil {
-				n[x][y] = t.contents[x][y]
-			} else {
-				n[x][y] = NewSpacer(1, 1)
-			}
-		}
-
+	l := len(a)
+	//add to the first axis
+	a = append(a, make([]block, newLength+1-len(a))...)
+	//new arrays, of the same length as the other axis
+	for i := l; i < len(a); i++ {
+		a[i] = block{breadth: 0, cont: make([]UiElement, otherAxis)}
 	}
 
-	t.contents = n
+	return a
 }
 
-func (t *Table) ColumnCount() int {
-	return len(t.contents)
-}
-
-func (t *Table) RowCount(row int) int {
-
-	if len(t.contents) > row {
-		return len(t.contents[row])
-	} else {
-		return 0
+func (t *Table) extendContents(newLength int, oldLength int, a []block) []block {
+	//make the extension for the other axis
+	extra := make([]UiElement, newLength+1-oldLength)
+	for i, _ := range a {
+		a[i].cont = append(a[i].cont, extra...)
 	}
+	return a
+
 }
 
 //passes offsets onto contained elements.
@@ -77,18 +88,21 @@ func (t *Table) Draw(xoffset, yoffset int) []c.Cell {
 
 	width := 0
 
-	for x, column := range t.contents {
+	for _, column := range t.columns {
 
 		height := 0
 
-		for _, element := range t.contents[x] {
+		for i, row := range t.rows {
 
-			cells = append(cells, element.Draw(xoffset+width, yoffset+height)...)
+			if column.cont[i] != nil {
+				cells = append(cells, column.cont[i].Draw(xoffset+width, yoffset+height)...)
+			}
 
-			height += element.H()
+			height += row.breadth
+
 		}
 
-		width += column[0].W()
+		width += column.breadth
 	}
 	return cells
 }
@@ -101,22 +115,26 @@ func (t *Table) GetLast(x, y int) UiElement {
 
 	accumulatedWidths := t.xorigin
 
-	for _, column := range t.contents {
+	for i, column := range t.columns {
 
-		if x < accumulatedWidths+column[0].W() && x >= accumulatedWidths {
+		if x < accumulatedWidths+column.breadth && x >= accumulatedWidths {
 
 			accumulatedHeights := t.yorigin
 
-			for _, box := range column {
-				if y < accumulatedHeights+box.H() && y >= accumulatedHeights {
-					return box.GetLast(x, y)
+			for _, row := range t.rows {
+				if y < accumulatedHeights+row.breadth && y >= accumulatedHeights {
+					if row.cont[i] != nil {
+						return row.cont[i].GetLast(x, y)
+					} else {
+						return nil
+					}
 
 				} else {
-					accumulatedHeights += box.H()
+					accumulatedHeights += row.breadth
 				}
 			}
 		} else {
-			accumulatedWidths += column[0].W()
+			accumulatedWidths += column.breadth
 		}
 	}
 	return nil

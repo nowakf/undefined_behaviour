@@ -6,33 +6,27 @@ import (
 )
 
 type TextButton struct {
+	*container
 	*button
-	*rect
-	text *text
+	*text
 }
 
-func NewTextButton(width int, content string, action func() string) *TextButton {
+func NewTextButton(parent *Node, h, w int, content string, action func() string) *TextButton {
+
 	b := new(TextButton)
-	b.rect = newrect(1, width)
-	b.text = newtitletext(width, content)
-	b.button = newButton(action, b.rect)
+	b.container = NewContainer(b, parent, h, w)
+	b.text = newtitletext(content, b.container)
+	b.button = newButton(action, b.container)
 	return b
 }
 
 func (t *TextButton) Draw(x, y int) []c.Cell {
+	t.Light()
 	cells := t.text.Draw(x, y)
-	switch t.mode {
-	case hover:
-		cells = append(cells, t.Light(x, y)...)
-	case clicked:
-		cells = t.Light(x, y)
-	default:
-		//do nothing
-	}
 	return cells
 }
 func (t *TextButton) Identify() string {
-	return fmt.Sprintf("a textbutton, origin unkown, dimensions %v, %v", t.H(), t.W())
+	return fmt.Sprintf("a textbutton, origin unkown, dimensions %v, %v", t.container.H(), t.container.W())
 }
 
 func (t *TextButton) GetLast(x, y int) UiElement {

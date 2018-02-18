@@ -23,23 +23,22 @@ func run() {
 
 	ev := e.NewEventSystem(w) //starts an event system
 
+	println(uh, uw, "uh, uw")
+
 	u := ui.NewUI(uh, uw, win, ev.Player) //makes a new ui
 
 	check := resized()
 	for !win.Closed() {
 
-		if check(win) { //if the window is resized, redraw
-			ren = newRender(win, data)
-			uh, uw = ren.Stats()
-			u = ui.NewUI(uh, uw, win, ev.Player)
-		}
-
 		if u.Event() {
-			cells := u.Draw()
-			ren.update(cells)
+			stack := u.Draw()
+			ren.update(stack)
+			if check(win) {
+				uh, uw = ren.Stats()
+				u.Resize(uh, uw)
+				println(uh, uw, "uh, uw")
+			}
 		}
-		//refactor to be in slower tick-rate loop:
-		//so it will be events.Poll here?
 
 		win.Update()
 

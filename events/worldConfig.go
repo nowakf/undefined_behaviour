@@ -1,21 +1,21 @@
 package events
 
-type worldConfig struct {
+type WorldConfig struct {
 	//some configuration figures
 	madness int
 	year    int
 }
 
-func NewWorldConfig() *worldConfig {
-	w := new(worldConfig)
+func NewWorldConfig() *WorldConfig {
+	w := new(WorldConfig)
 	w.year = 1961
 	w.madness = 0
 	return w
 }
-func (w *worldConfig) SetYear(year int) {
+func (w *WorldConfig) SetYear(year int) {
 	w.year = year
 }
 
-func (w *worldConfig) SetMadness(mad int) {
+func (w *WorldConfig) SetMadness(mad int) {
 	w.madness = mad
 }

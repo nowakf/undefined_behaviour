@@ -1,7 +1,5 @@
 package events
 
-import "strings"
-
 //Event is a catch-all for any interaction between Actors
 type Event struct {
 	Event_url string `yaml:"event_url"`
@@ -18,25 +16,28 @@ type Event struct {
 	//this is the title - for newspapers, Events, etc
 	Content string `yaml:"content"`
 	//this is the event's textual content
-	Consequences []string `yaml:"consequences"`
-	//this is the events consequences, including 'magic events' that effect game state...
+	Options []Action `yaml:"options"`
+	//this is the events options, each of which
+	//holds a pointer to an event
+	Consequences []Action `yaml:"consequences"`
+	//this is the events consequences
 }
 
-func (e Event) Subject() string {
-	subject := ""
-	for i := 0; i <= e.Depth; i++ {
-		subject += "Re:"
-	}
-	return subject + e.Title
+func (e *Event) GetDepth() int {
+	return e.Depth
 }
 
-func (e Event) Headline() string {
-	return strings.ToUpper(e.Title)
+func (e *Event) GetTitle() string {
+	return e.Title
 }
 
-func (e Event) Sender() string {
-	return e.Instigator.Name + "@" + e.Instigator.Org.EmailRoot
+func (e *Event) GetInstigator() *Actor {
+	return e.Instigator
 }
-func (e Event) Body() string {
+func (e *Event) GetBody() string {
 	return e.Content
+}
+
+func (e *Event) GetOptions() []*Action {
+	return make([]*Action, 0)
 }

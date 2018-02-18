@@ -5,11 +5,15 @@ import (
 )
 
 type UiElement interface {
-	W() int
-	H() int
-	SetW(width int)
-	SetH(height int)
+	Rect
 	Draw(x, y int) []c.Cell
 	GetLast(x, y int) UiElement
 	Identify() string
+}
+
+type Rect interface {
+	GetRatio() (float64, float64)
+	Resize(int, int)
+	H() int
+	W() int
 }

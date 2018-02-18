@@ -6,8 +6,9 @@ import (
 
 type button struct {
 	action func() string
-	*rect
-	mode buttonMode
+	*container
+	mode   buttonMode
+	active bool
 }
 
 type buttonMode int
@@ -16,97 +17,62 @@ const (
 	none buttonMode = iota
 	hover
 	clicked
+	wasSelected
 )
 
-func newButton(action func() string, hitbox *rect) *button {
+func newButton(action func() string, hitbox *container) *button {
 	b := new(button)
 	b.action = action
-	b.rect = hitbox
+	b.container = hitbox
+	b.active = true
 	return b
 }
 
-func (b *button) outline(x, y int) []c.Cell {
-	cells := make([]c.Cell, 0)
-	for i := x; i < x+b.W(); i++ {
-		overline := c.Cell{
-			X:          i,
-			Y:          y,
-			Letter:     '‾',
-			Foreground: c.Grey,
-			Background: c.White}
-		underline := c.Cell{
-			X:          i,
-			Y:          y,
-			Letter:     '_',
-			Foreground: c.Grey,
-			Background: c.White}
-		cells = append(cells, underline, overline)
-	}
-	for j := y; j < y+b.H(); j++ {
-		leftline := c.Cell{
-			X:          x - 1,
-			Y:          j,
-			Letter:     '|',
-			Foreground: c.Grey,
-			Background: c.White}
-		rightline := c.Cell{
-			X:          x + b.W(),
-			Y:          j,
-			Letter:     '|',
-			Foreground: c.Grey,
-			Background: c.White}
-		cells = append(cells, leftline, rightline)
-	}
-	return cells
-}
-
-func (b *button) Light(x, y int) []c.Cell {
+func (b *button) Light() {
 	switch b.mode {
 	case hover:
-		return b.outline(x, y)
+		b.foreground = c.White
+		b.background = c.LightGrey
 	case clicked:
-		return b.fill(x, y)
+		b.foreground = c.DarkGrey
+		b.background = c.White
+	case wasSelected:
+		b.foreground = c.DarkGrey
+		b.background = c.LightGrey
+	case none:
+		b.foreground = c.LightGrey
+		b.background = c.Blank
 	default:
-		return []c.Cell{c.Cell{
-			X:          0,
-			Y:          0,
-			Letter:     ' ',
-			Foreground: c.White,
-			Background: c.Grey,
-		}}
+		println("check the button logic")
+	}
+}
+
+func (b *button) Deactivate(wasClicked bool) {
+	b.active = false
+	if wasClicked {
+		b.mode = wasSelected
 	}
 }
 
 func (b *button) Flush() {
-	b.mode = none
+	if b.active {
+		b.mode = none
+	}
+	b.Light()
 }
 
 func (b *button) OnMouse(click bool) {
-	if click {
-		b.mode = clicked
-	} else {
-		b.mode = hover
+	if b.active {
+		if click {
+			b.mode = clicked
+		} else {
+			b.mode = hover
+		}
 	}
 }
 
 func (b *button) Do() {
-	b.action()
-}
-
-func (b *button) fill(xoffset, yoffset int) []c.Cell {
-	cells := make([]c.Cell, b.W()*b.H())
-	length := len(cells)
-	for i := 0; i < length; i++ {
-		x := i % b.W()
-		y := i / b.W()
-		cell := c.Cell{
-			X:          x + xoffset,
-			Y:          y + yoffset,
-			Letter:     '█',
-			Foreground: c.Grey,
-			Background: c.White,
-		}
-		cells[i] = cell
+	if b.active {
+		b.action()
 	}
-	return cells
 }

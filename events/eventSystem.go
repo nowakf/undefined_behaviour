@@ -11,14 +11,14 @@ import (
 //EventSystem keeps track of Events, and produces accounts of them.
 type EventSystem struct {
 	mu         sync.Mutex
-	w          *world
+	w          *World
 	complete   *virtual
 	Player     *Actor
 	instants   []Event
 	historical []Event
 }
 
-func NewEventSystem(w *world) *EventSystem {
+func NewEventSystem(w *World) *EventSystem {
 	n := new(EventSystem)
 	n.complete = newVirtual()
 	n.w = w
@@ -27,14 +27,17 @@ func NewEventSystem(w *world) *EventSystem {
 	if !exists {
 		player = GenerateActor(w)
 		println("no default player in virtual set")
+		println(player.Name)
 	}
 
-	p, err := n.instantiateActor(&player)
+	//p, err := n.instantiateActor(&player)
 
-	if err != nil {
-		panic(err)
-	}
-	n.Player = &p
+	//if err != nil {
+	//	panic(err)
+	//}
+	n.Player = &player
+
+	println(n.Player.Name)
 
 	n.instants = n.startingInstants(n.w)
 	n.historical = make([]Event, 0)
@@ -42,7 +45,7 @@ func NewEventSystem(w *world) *EventSystem {
 	return n
 }
 
-func (e *EventSystem) startingInstants(w *world) []Event {
+func (e *EventSystem) startingInstants(w *World) []Event {
 	return make([]Event, 0)
 }
 
@@ -78,11 +81,11 @@ func (a *ActorCreationError) Error() string {
 	return a.cause
 }
 
-func (e *EventSystem) instantiateActor(input *Actor) (Actor, error) {
-	return *new(Actor), nil
+func (e *EventSystem) instantiateActor(input *Actor) (*Actor, error) {
+	return input, nil
 }
 
-//this should check an event against the world, and fill in the particulars.
+//this should check an event against the World, and fill in the particulars.
 func (e *EventSystem) instantiateEvent(input *Event) Event {
 
 	output := new(Event)

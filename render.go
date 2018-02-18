@@ -5,6 +5,7 @@ import (
 	"math"
 
 	c "ub/common"
+	"ub/ui"
 
 	"github.com/faiface/pixel"
 	"github.com/faiface/pixel/pixelgl"
@@ -29,17 +30,28 @@ func newRender(w *pixelgl.Window, d *data) *render {
 }
 
 //draws cells to the screen
-func (r *render) update(cells []c.Cell) {
+//change: [][][]rune-
+// [] refers to a layer. so you send all the background layers, then the foreground layers
+func (r *render) update(stack []ui.Layer) {
+
 	r.clear()
-	for _, cell := range cells {
 
-		r.drawCell(cell.Letter, float64(cell.X)*r.glyphW, float64(cell.Y)*r.glyphH, cell.Background, cell.Foreground)
+	for _, layer := range stack {
 
+		color := layer.Color()
+		_, ok := r.fonts[color]
+		if !ok {
+			println(fmt.Sprintf("there is no %v in the fonts", layer.Color()))
+			color = c.White
+		}
+
+		for _, cell := range layer.Content() {
+			r.fonts[color].Dot = pixel.V(float64(cell.X)*r.glyphW, r.window.Bounds().H()-float64(cell.Y)*r.glyphH)
+			r.fonts[color].WriteRune(cell.Letter)
+		}
+		r.fonts[color].Draw(r.window, pixel.IM)
 	}
-	//TODO: merge this into one draw, if possible
-	for _, font := range r.fonts {
-		font.Draw(r.window, pixel.IM)
-	}
+
 }
 
 //clears the text
@@ -54,28 +66,6 @@ func (r *render) clear() {
 // gets the height and width of the window
 func (r *render) Stats() (int, int) {
 	return r.getCellCount(r.window)
-}
-
-//draws a cell at a specific position
-func (r *render) drawCell(letter rune, xpos, ypos float64, foreground pixel.RGBA, background pixel.RGBA) {
-	r.drawBack(xpos, ypos, background)
-	r.drawText(letter, xpos, ypos, foreground)
-}
-
-//draws the text
-func (r *render) drawText(letter rune, xpos, ypos float64, color pixel.RGBA) {
-
-	_, ok := r.fonts[color]
-	if !ok {
-		println(fmt.Sprintf("there is no %v in the fonts", color))
-	}
-
-	r.fonts[color].Dot = pixel.V(xpos, r.window.Bounds().H()-ypos)
-	r.fonts[color].WriteRune(letter)
-}
-
-//TODO: draw the background
-func (r *render) drawBack(xpos, ypos float64, color pixel.RGBA) {
 }
 
 //gets the step size

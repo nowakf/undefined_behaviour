@@ -30,9 +30,9 @@ func (d *data) Fonts(colors ...pixel.RGBA) map[pixel.RGBA]*text.Text {
 
 	atlas := text.NewAtlas(face,
 		text.RangeTable(unicode.Space), //for spaces
-		text.RangeTable(unicode.Po),    //for the '‾' mark
-		text.RangeTable(unicode.S),     //for the '█' mark,
-		text.ASCII,                     //for misc stuff
+		//text.RangeTable(unicode.Po),    //for the '‾' mark
+		text.RangeTable(unicode.S), //for the '█' mark,
+		text.ASCII,                 //for misc stuff
 	)
 
 	fonts := make(map[pixel.RGBA]*text.Text)
