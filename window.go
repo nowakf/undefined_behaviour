@@ -1,9 +1,9 @@
 package main
 
 import (
-	c "ub/common"
 	"github.com/faiface/pixel"
 	"github.com/faiface/pixel/pixelgl"
+	c "ub/common"
 )
 
 func newWindow() *pixelgl.Window {
@@ -11,7 +11,6 @@ func newWindow() *pixelgl.Window {
 		Title:     "X",
 		Bounds:    pixel.R(0, 0, 1024, 768),
 		Resizable: true,
-		VSync:     true,
 		//		Monitor: pixelgl.PrimaryMonitor(),
 	}
 

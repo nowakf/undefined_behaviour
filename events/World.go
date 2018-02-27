@@ -1,17 +1,43 @@
-// Package events manages events in the game-World
+// Package events manages events in the game-world
 package events
 
-//World contains concrete actors
-type World struct {
+import "ub/data"
 
-	//actors
-	//player
+//world contains concrete actors, organizations, and their states
+type world struct {
+	madness  int
+	doomsday int
+	ev       *EventSystem
+	model    *virtual
+	actors   []actor
+	groups   []group
 }
 
-func NewWorld(co *WorldConfig) *World {
-	w := new(World)
+func NewWorld(con *WorldConfig) *world {
+	w := new(world)
+	w.model = newVirtual()
 	return w
 }
+func LoadWorld(file *data.Save) *world {
+	return new(world)
+}
 
-func (w *World) Generate(co *WorldConfig) {
+func (w *world) setDoomsday(delta int) {
+	w.doomsday += delta
+}
+func (w *world) setMadness(delta int) {
+	w.doomsday += delta
+}
+
+func (w *world) GetDoomsday() int {
+	return w.doomsday
+}
+func (w *world) GetActiveActors() []*actor {
+	active := make([]*actor, 0)
+	for _, group := range w.groups {
+		active = append(active, group.GetActive()...)
+	}
+	return active
+}
+func (w *world) Generate(conf *WorldConfig) {
 }

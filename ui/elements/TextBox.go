@@ -21,7 +21,7 @@ func NewTextbox(parent *Node, h, w int, content string) *textbox {
 }
 
 func (t *textbox) Identify() string {
-	return t.i.Content()
+	return "textbox," + string(t.H()) + string(t.W())
 }
 
 func (t *textbox) Draw(x, y int) []c.Cell {

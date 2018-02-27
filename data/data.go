@@ -1,4 +1,4 @@
-package main
+package data
 
 //data handles loading files. Will probably want something more sophisticated later.
 import (
@@ -15,15 +15,23 @@ import (
 
 type data struct {
 }
+type Save struct{}
 
-func newData() *data {
+func NewData() *data {
 	return new(data)
 }
 
-//returns as many fonts as you give it colors. Useful, I know.
-func (d *data) Fonts(colors ...pixel.RGBA) map[pixel.RGBA]*text.Text {
+func (d *data) LoadSave() *Save {
+	return nil
+}
 
-	face, err := d.loadTTF("./assets/fonts/DejaVuSansMono.ttf", 20)
+type FontLoader struct {
+}
+
+//returns as many fonts as you give it colors. Useful, I know.
+func (d FontLoader) Fonts(fontSize float64, colors ...pixel.RGBA) map[pixel.RGBA]*text.Text {
+
+	face, err := d.loadTTF("./assets/fonts/DejaVuSansMono.ttf", fontSize)
 	if err != nil {
 		panic(err)
 	}
@@ -46,7 +54,7 @@ func (d *data) Fonts(colors ...pixel.RGBA) map[pixel.RGBA]*text.Text {
 
 }
 
-func (d *data) loadTTF(path string, size float64) (font.Face, error) {
+func (d FontLoader) loadTTF(path string, size float64) (font.Face, error) {
 	file, err := os.Open(path)
 	if err != nil {
 		return nil, err

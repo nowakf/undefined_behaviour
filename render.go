@@ -5,6 +5,7 @@ import (
 	"math"
 
 	c "ub/common"
+	"ub/data"
 	"ub/ui"
 
 	"github.com/faiface/pixel"
@@ -18,11 +19,11 @@ type render struct {
 	glyphH, glyphW float64
 }
 
-func newRender(w *pixelgl.Window, d *data) *render {
+func newRender(w *pixelgl.Window, d *data.FontLoader, fontSize float64) *render {
 	r := new(render)
 	r.window = w
 
-	r.fonts = d.Fonts(c.Colors...)
+	r.fonts = d.Fonts(fontSize, c.Colors...)
 
 	r.glyphW, r.glyphH = r.getIncrement()
 

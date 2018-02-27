@@ -37,7 +37,7 @@ func (b *button) Light() {
 		b.foreground = c.DarkGrey
 		b.background = c.White
 	case wasSelected:
-		b.foreground = c.DarkGrey
+		b.foreground = c.Red
 		b.background = c.LightGrey
 	case none:
 		b.foreground = c.LightGrey
@@ -47,11 +47,11 @@ func (b *button) Light() {
 	}
 }
 
-func (b *button) Deactivate(wasClicked bool) {
-	b.active = false
-	if wasClicked {
-		b.mode = wasSelected
+func (b *button) Deactivate() {
+	if b.mode != wasSelected {
+		b.mode = none
 	}
+	b.active = false
 }
 
 func (b *button) Flush() {
@@ -73,6 +73,8 @@ func (b *button) OnMouse(click bool) {
 
 func (b *button) Do() {
 	if b.active {
+		b.mode = wasSelected
+		b.Light()
 		b.action()
 	}
 }

@@ -4,16 +4,17 @@ package events
 //actors, and actions, prior to their parsing into a 'concrete', specific form.
 
 type virtual struct {
-	Actions map[string]Action
-	Actors  map[string]Actor
-	Events  map[string]Event
+	abiliies map[string]ability
+	actors   map[string]actor
+	Events   map[string]Event
+	groups   map[string]group
 }
 
 func newVirtual() *virtual {
 	v := new(virtual)
-	v.Actions = make(map[string]Action)
-	v.Actors = make(map[string]Actor)
-	v.Events = make(map[string]Event)
-
+	v.abiliies = make(map[string]ability, 0)
+	v.actors = make(map[string]actor, 0)
+	v.Events = make(map[string]Event, 0)
+	v.groups = make(map[string]group, 0)
 	return v
 }

@@ -3,10 +3,9 @@
 package ui
 
 import (
-	"fmt"
+	_ "fmt"
 	"github.com/faiface/pixel"
 	"github.com/faiface/pixel/pixelgl"
-	"math"
 	c "ub/common"
 	"ub/events"
 	el "ub/ui/elements"
@@ -17,76 +16,104 @@ import (
 type ui struct {
 	h, w int
 
-	global el.KeyCatcher
+	win *pixelgl.Window
 
-	win    *pixelgl.Window
-	player *events.Actor
+	player *events.Player
 
-	last el.UiElement
+	evSys *events.EventSystem
 
-	view         []c.Cell
-	currentState state
-	states       []state
+	*linker
+	states          map[stateEnum]state
+	monitoredStates map[stateEnum]monitor
+
+	notifier map[string]int
+
+	*mouse
+	*keyboard
 
 	focused el.KeyCatcher
 }
 
-//is a wrapper for the Node class
+type stateEnum int
+
+const (
+	s_email stateEnum = iota
+	s_news
+	s_net
+	s_book
+	s_setup
+	s_menu
+)
 
 //creates a new UI, returns a pointer
-func NewUI(h, w int, win *pixelgl.Window, e *events.Actor) *ui {
+func NewUI(h, w int, win *pixelgl.Window, e *events.EventSystem) *ui {
 
 	u := new(ui)
-	u.player = e
-	u.h, u.w = h, w
-	u.view = make([]c.Cell, h*w)
-	u.focused = &globalKeyHandler{win}
-	u.states = u.initStates(h, w)
-	u.currentState = u.states[0] //take the first state, setup
+	u.mouse = &mouse{win: win}
+	u.keyboard = &keyboard{win: win}
+	//take the first state, setup
 	u.win = win
+	u.keyboard.context = u.inputRules()
 	return u
 }
 
-func (u *ui) initStates(h, w int) []state {
-	states := []state{
-		NewSetup(h, w, u.player),
-		NewEmailViewer(h, w, u.player),
-	}
-	return states
+func (u *ui) inputRules() el.KeyCatcher {
+	k := el.GlobalKeyChecker()
+	k.Add(pixelgl.KeyEscape, func() {
+		u.linker.Next(s_menu)
+	})
+	return k
 }
 
+func (u *ui) Start(h, w int) {
+	//generate the states
+	//start on the menu
+
+	v := NewViewer(h, w)
+
+	defaultConfig := events.PlayerConfig{}
+	u.player = events.NewPlayer(&defaultConfig)
+
+	l := linker{links: &u.states, current: u.states[s_menu]}
+
+	u.linker = &l
+
+	u.states = map[stateEnum]state{
+		s_menu:  NewMenu(v, u.linker, u.evSys),
+		s_setup: NewSetup(v, u.linker, u.player),
+		s_email: NewEmailViewer(v, u.linker, u.player),
+		s_news:  NewNewsViewer(v, u.linker, u.player),
+	}
+
+	u.monitoredStates = map[stateEnum]monitor{
+		s_email: u.states[s_email].(monitor),
+		s_news:  u.states[s_news].(monitor),
+	}
+
+	for _, state := range u.monitoredStates {
+		go state.Listener()
+	}
+
+	u.linker.Next(s_menu)
+
+}
+
+//resize calls resize on all of the states...
 func (u *ui) Resize(h, w int) {
-	u.h = h
-	u.w = w
-	for _, state := range u.states {
-		state.Resize(h, w)
-		state.Resize(h, w)
+	u.current.Resize(h, w)
+}
+
+func (u *ui) HasNew(display map[string]int, states map[stateEnum]monitor) map[string]int {
+	for _, s := range states {
+		select {
+		case count := <-s.Monitor():
+			display[s.(state).Name()] += count
+		default:
+		}
+
 	}
-}
+	return display
 
-func (u *ui) HasNew() bool {
-
-	n := false
-	i := 0
-
-	for n == false && i < len(u.states) {
-		n = u.states[i].HasNew()
-		i++
-	}
-
-	return n
-}
-
-type Layer struct {
-	color   pixel.RGBA
-	content []c.Cell
-}
-
-func (l *Layer) Color() pixel.RGBA {
-	return l.color
-}
-func (l *Layer) Content() []c.Cell {
-	return l.content
 }
 
 func (u *ui) checkColor() func(color pixel.RGBA) int {
@@ -106,8 +133,29 @@ func (u *ui) checkColor() func(color pixel.RGBA) int {
 
 }
 
-func (u *ui) Draw() []Layer {
+func (u *ui) Update() {
+	u.current.Update()
+}
 
+//Draw produces the ui state as a bunch of layers
+func (u *ui) Draw() []Layer {
+	diff := u.current.Draw(0, 0)
+	//at the moment, this just has a fresh draw, offset by the X, Y coords.
+	//in the future, it should only return changed cells, and it should offset
+	//those by the degree of scroll.
+
+	onscreen := u.crop(u.current.H(), u.current.W(), diff)
+	//this returns everything that fits in the view.
+	cells := make([]c.Cell, len(onscreen))
+	i := 0
+	for _, cell := range onscreen {
+		cells[i] = cell
+		i++
+	}
+
+	return u.toLayers(cells)
+}
+func (u *ui) toLayers(cells []c.Cell) []Layer {
 	//make two stacks:
 	fstack := make([]Layer, 0)
 	bstack := make([]Layer, 0)
@@ -119,7 +167,7 @@ func (u *ui) Draw() []Layer {
 
 	// index starts at length of colors
 
-	for _, cell := range u.crop() {
+	for _, cell := range cells {
 
 		index := checkForeground(cell.Foreground)
 		if len(fstack) == index {
@@ -137,138 +185,51 @@ func (u *ui) Draw() []Layer {
 	return append(bstack, fstack...)
 }
 
-func (u *ui) crop() []c.Cell {
+type coord struct {
+	X, Y int
+}
 
-	diff := u.currentState.Draw(0, 0) //you should pass this the scrolling offset
+func (u *ui) crop(h, w int, diff []c.Cell) map[coord]c.Cell {
 
-	u.view = make([]c.Cell, 0)
+	view := make(map[coord]c.Cell, 0)
 
 	for _, cell := range diff {
-		if cell.X < u.w && cell.Y < u.h {
-			u.view = append(u.view, cell)
+		if cell.X < w && cell.Y < h {
+			view[coord{cell.X, cell.Y}] = cell
 		}
 	}
 
-	return u.view
+	return view
 
 }
 
 //this will check what input there is, then return true if it exists
 func (u *ui) Event() bool {
 
-	inputEvent := u.mouse()
-	switch {
-	case inputEvent:
-		//event will probs be some kind of interface
-		return true
-	case u.HasNew():
-		println("new something!")
-		return true
-	default:
-		return false
-	}
-
-}
-
-//gets the position from the window
-func (u *ui) mousepos(mouseX, mouseY, boundsH, boundsW float64) (float64, float64) {
-
-	y := mouseY / boundsH
-	x := mouseX / boundsW
-
-	return x, y
-}
-
-//converts the mouse position to a cell co-ordinate
-func (u *ui) floatToCellCoord(fx, fy float64, width, height int) (int, int) {
-
-	x := int(math.Floor(float64(width) * fx))
-	y := height - int(math.Floor(float64(height)*fy))
-
-	return x, y
-}
-
-//returns if the mouse is over something
-func (u *ui) mouse() bool {
-
-	//get the raw mouse position
-	mouseX, mouseY := u.win.MousePosition().XY()
-
-	//get the bounds of the screen
-	boundsH, boundsW := u.win.Bounds().H(), u.win.Bounds().W()
-
-	//get the relative mouse position
-	mx, my := u.mousepos(mouseX, mouseY, boundsH, boundsW)
-
-	//get the cell coordinate
-	x, y := u.floatToCellCoord(mx, my, u.w, u.h)
-
-	//get the mousepress events
-	mousePressed := u.win.Pressed(pixelgl.MouseButton1)
-	mouseReleased := u.win.JustReleased(pixelgl.MouseButton1)
-
-	object := u.currentState.GetLast(x, y)
-
-	changed := object != u.last
-
-	if object != nil && changed {
-		rA, rB := object.GetRatio()
-		fmt.Printf("object under mouse is %s, its height is %v, and width is %v \n, it's ratio is (%v, %v)", object.Identify(), object.H(), object.W(), rA, rB)
-	}
-
-	return u.parseClick(object, changed, mousePressed, mouseReleased)
-
-}
-
-var checked el.KeyCatcher
-
-func (u *ui) checkIfCatcher(object el.UiElement) (el.KeyCatcher, bool) {
-	checked, ok := object.(el.KeyCatcher)
-	return checked, ok
-}
-
-func (u *ui) checkClickable(object el.UiElement) (el.Clickable, bool) {
-	var checked el.Clickable
-	checked, ok := object.(el.Clickable)
-	return checked, ok
-}
-
-func (u *ui) parseClick(input el.UiElement, changed, mousePressed, mouseReleased bool) bool {
-
-	object, isClickable := u.checkClickable(input)
-
-	isNill := object == nil
-
-	prev, prevIsClickable := u.checkClickable(u.last)
+	mouseEvent := u.mouse.Event(u.current.H(), u.current.W(), u.current)
 
 	switch {
-	case changed && mousePressed:
-		return false
-	case mousePressed:
-		if isClickable && !isNill {
-			object.OnMouse(true)
-		}
+	case u.keyboard.Event():
 		return true
-	case mouseReleased:
-		if prevIsClickable {
-			prev.Flush()
-			prev.Do()
-			return true
-		} else {
-			return false
-		}
-	case changed:
-		if prevIsClickable {
-			prev.Flush()
-		}
-		if isClickable && !isNill {
-			object.OnMouse(false)
-		}
-
-		u.last = input
-
+	case mouseEvent:
+		return true
+	case len(u.HasNew(u.notifier, u.monitoredStates)) > 0:
 		return true
 	default:
-		return false
 	}
+	return false
+
+}
+
+type Layer struct {
+	color   pixel.RGBA
+	content []c.Cell
+}
+
+func (l *Layer) Color() pixel.RGBA {
+	return l.color
+}
+
+func (l *Layer) Content() []c.Cell {
+	return l.content
 }

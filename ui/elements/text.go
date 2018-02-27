@@ -35,6 +35,7 @@ func (t *text) Content() string {
 
 func (t *text) Draw(x, y int) []c.Cell {
 	if t.W() != t.width {
+		t.content = t.format(t.Content(), t.H(), t.W())
 	}
 
 	transformed := make([]c.Cell, len(t.content))
@@ -68,17 +69,18 @@ func (t *text) format(input string, height, width int) []c.Cell {
 		panic("there's no style defined for this text")
 	}
 
-	t.Resize(height, width)
+	t.rect.Resize(height, width)
+	leftpad, rightpad := "", ""
 
 	switch t.align {
 	case left:
-		text = t.rightPad(width, text)
+		rightpad = t.rightPad(width, text)
 	case center:
-		text = t.justifiedPad(width, text)
+		leftpad, rightpad = t.justifiedPad(width, text)
 	default:
 		panic("no alignment defined for this text!")
 	}
-	return t.toCellArray(text)
+	return t.toCellArray(leftpad + text + rightpad)
 
 }
 
@@ -106,13 +108,13 @@ func (t *text) wrappedParagraphs(paragraphs []string) (string, int) {
 }
 
 //returns a formatted title
-func newtitletext(content string, box *container) *text {
+func newTitleText(content string, box *container) *text {
 	t := new(text)
 	t.wrapping = h_cut
 	t.align = center
 	t.asString = content
 	t.container = box
-	t.content = t.format(content, t.H(), t.W())
+	t.content = t.format(content, box.H(), box.W())
 	return t
 
 }
@@ -146,17 +148,22 @@ func (t *text) rightPad(width int, input string) string {
 	for width-len(input)-len(spaces) > 0 {
 		spaces += " "
 	}
-	return input + spaces
+	return spaces
 }
-func (t *text) justifiedPad(width int, input string) string {
+func (t *text) justifiedPad(space int, input string) (string, string) {
 	left := ""
 	right := ""
-	for width-len(input)-(len(left)+len(right)) > 0 {
-		left += " "
-		right += " "
+	space -= len(input)
 
+	for space > 0 {
+		left += " "
+		space--
+		if space > 0 {
+			right += " "
+		}
+		space--
 	}
-	return left + input + right
+	return left, right
 }
 
 func (t *text) wrap(width int, content string) (string, int) {

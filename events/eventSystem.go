@@ -2,86 +2,57 @@ package events
 
 import (
 	//"bytes"
-	"fmt"
+	//	"fmt"
+	"math"
 	"sync"
 	//"text/template"
 	"time"
 )
 
-//EventSystem keeps track of Events, and produces accounts of them.
+//eventSystem keeps track of Events, and produces accounts of them.
 type EventSystem struct {
-	mu         sync.Mutex
-	w          *World
-	complete   *virtual
-	Player     *Actor
-	instants   []Event
-	historical []Event
+	tickRate chan float64
+	mu       sync.Mutex
+	w        *world
 }
 
-func NewEventSystem(w *World) *EventSystem {
-	n := new(EventSystem)
-	n.complete = newVirtual()
-	n.w = w
-
-	player, exists := n.complete.Actors["player"]
-	if !exists {
-		player = GenerateActor(w)
-		println("no default player in virtual set")
-		println(player.Name)
-	}
-
-	//p, err := n.instantiateActor(&player)
-
-	//if err != nil {
-	//	panic(err)
-	//}
-	n.Player = &player
-
-	println(n.Player.Name)
-
-	n.instants = n.startingInstants(n.w)
-	n.historical = make([]Event, 0)
-
-	return n
+func NewEventSystem(w *world) *EventSystem {
+	e := new(EventSystem)
+	e.w = w
+	e.tickRate = make(chan float64)
+	return e
 }
 
-func (e *EventSystem) startingInstants(w *World) []Event {
-	return make([]Event, 0)
-}
-
-func (e *EventSystem) Tick() []Event {
-	e.historical = append(e.historical, e.instants...)
-	//do Events,
-	return e.instants
-
-}
-
-//adds an Event to be played in the future
-func (e *EventSystem) addEvent(Event_url string, delay int) {
-
-	time.Sleep(time.Duration(delay) * time.Second)
-
-	Event, ok := e.complete.Events[Event_url]
-	if ok {
-		instance := e.instantiateEvent(&Event)
-		e.mu.Lock()
-		defer e.mu.Unlock()
-		e.instants = append(e.instants, instance)
+//tickrate sets the time taken before each loop of the event system
+func (e *EventSystem) TickRate(newTickRate float64) {
+	if newTickRate == 0 {
+		e.tickRate <- math.MaxFloat64
 	} else {
-		fmt.Println("no Event written for", Event_url)
+		e.tickRate <- 100 / newTickRate
 	}
-
 }
 
-type ActorCreationError struct {
-	cause string
+func (e *EventSystem) Loop(stop chan struct{}) {
+	tick := time.NewTicker(time.Duration(<-e.tickRate) * time.Millisecond)
+	for {
+		select {
+		case <-tick.C:
+			e.update()
+		case newTickRate := <-e.tickRate:
+			tick.Stop()
+			tick = time.NewTicker(time.Duration(newTickRate) * time.Millisecond)
+		case <-stop:
+			tick.Stop()
+			break
+		}
+	}
+	//clean up...
+	//do finishing stuff here
+}
+func (e *EventSystem) update() {
 }
 
-func (a *ActorCreationError) Error() string {
-	return a.cause
-}
-
-func (e *EventSystem) instantiateActor(input *Actor) (*Actor, error) {
+func (e *EventSystem) instantiateActor(input *actor) (*actor, error) {
 	return input, nil
 }
 

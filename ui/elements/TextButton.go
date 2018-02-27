@@ -15,7 +15,7 @@ func NewTextButton(parent *Node, h, w int, content string, action func() string)
 
 	b := new(TextButton)
 	b.container = NewContainer(b, parent, h, w)
-	b.text = newtitletext(content, b.container)
+	b.text = newTitleText(content, b.container)
 	b.button = newButton(action, b.container)
 	return b
 }
@@ -26,9 +26,10 @@ func (t *TextButton) Draw(x, y int) []c.Cell {
 	return cells
 }
 func (t *TextButton) Identify() string {
-	return fmt.Sprintf("a textbutton, origin unkown, dimensions %v, %v", t.container.H(), t.container.W())
+	return fmt.Sprintf("a textbutton, dimensions %v, %v", t.container.H(), t.container.W())
 }
 
 func (t *TextButton) GetLast(x, y int) UiElement {
+	println(t.Identify())
 	return t
 }

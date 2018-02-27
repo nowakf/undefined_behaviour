@@ -3,6 +3,8 @@ package main
 import (
 	//c "ub/common"
 	"github.com/faiface/pixel/pixelgl"
+	"time"
+	"ub/data"
 	e "ub/events"
 	ui "ub/ui"
 )
@@ -11,35 +13,53 @@ func run() {
 
 	win := newWindow() //makes a pixelgl window
 
-	data := newData() //is a collection of various data methods
+	// load settings from a text file?
+	// cool, but very unfriendly
 
-	ren := newRender(win, data) //initializes the ui renderer
+	f := &data.FontLoader{} //is a collection of various data methods
+
+	ren := newRender(win, f, 18) //initializes the ui renderer
 
 	uh, uw := ren.Stats() //gets the height/width
 
+	save := data.NewData().LoadSave()
+
 	config := e.NewWorldConfig() //gens a default world config
 
+	//pconfig := e.PlayerConfig{} //and a default pconfig TODO
+
 	w := e.NewWorld(config) //generates a world using the config
+	if save != nil {
+		w = e.LoadWorld(save)
+	}
 
 	ev := e.NewEventSystem(w) //starts an event system
 
-	println(uh, uw, "uh, uw")
+	u := ui.NewUI(uh, uw, win, ev)
 
-	u := ui.NewUI(uh, uw, win, ev.Player) //makes a new ui
+	u.Start(uh, uw)
+	//loading screen will go here:
+	stack := u.Draw()
+	ren.update(stack)
 
 	check := resized()
+
+	fps := time.Tick(time.Second / 60)
+
 	for !win.Closed() {
 
-		if u.Event() {
-			stack := u.Draw()
-			ren.update(stack)
-			if check(win) {
-				uh, uw = ren.Stats()
-				u.Resize(uh, uw)
-				println(uh, uw, "uh, uw")
-			}
+		<-fps
+
+		if check(win) {
+			uh, uw = ren.Stats()
+			u.Resize(uh, uw)
 		}
 
+		if u.Event() {
+			stack = u.Draw()
+			ren.update(stack)
+			u.Update()
+		}
 		win.Update()
 
 	}

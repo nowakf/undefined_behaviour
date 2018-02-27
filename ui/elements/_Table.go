@@ -9,10 +9,6 @@ type Table struct {
 	rows             []block
 	xorigin, yorigin int
 }
-type block struct {
-	breadth int
-	cont    []UiElement
-}
 
 func NewTable(parent *Node, h, w int) *Table {
 	t := new(Table)
@@ -78,6 +74,19 @@ func (t *Table) extendContents(newLength int, oldLength int, a []block) []block 
 
 }
 
+func (t *Table) Resize(h, w int) {
+	//this can absolutely be improved if necessary
+	for _, column := range t.columns {
+		maxW, _ := column.maxHW()
+		column.breadth = maxW
+	}
+	for _, row := range t.rows {
+		_, maxH := row.maxHW()
+		row.breadth = maxH
+	}
+	t.container.Resize(h, w)
+}
+
 //passes offsets onto contained elements.
 func (t *Table) Draw(xoffset, yoffset int) []c.Cell {
 
@@ -138,4 +147,25 @@ func (t *Table) GetLast(x, y int) UiElement {
 		}
 	}
 	return nil
+}
+
+type block struct {
+	breadth int
+	cont    []UiElement
+}
+
+func (b *block) maxHW() (int, int) {
+	maxH := 0
+	maxW := 0
+	for _, element := range b.cont {
+		if element != nil {
+			if maxH < element.H() {
+				maxH = element.H()
+			}
+			if maxW < element.W() {
+				maxW = element.W()
+			}
+		}
+	}
+	return maxH, maxW
 }

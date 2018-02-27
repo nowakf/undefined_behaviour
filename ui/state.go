@@ -1,8 +1,20 @@
 package ui
 
-import el "ub/ui/elements"
+import (
+	el "ub/ui/elements"
+)
 
 type state interface {
 	el.UiElement
-	HasNew() bool
+	Start()
+	Update()
+	Exit()
+	Next(stateEnum)
+	Flush()
+	Name() string
+}
+
+type monitor interface {
+	Monitor() chan int
+	Listener()
 }
