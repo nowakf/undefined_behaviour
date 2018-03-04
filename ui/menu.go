@@ -23,20 +23,33 @@ func NewMenu(v *viewer, l *linker, ev *events.EventSystem) *menu {
 
 func (m *menu) Start() {
 	//stop time
-	println("start happens")
-	println(m.W(), m.H(), "mH, mW")
-	m.Table.WriteToCell(0, 0, el.NewSpacer(m.Table.Node, 1, 1))
+	m.Table.WriteToCell(0, 0, el.NewSpacer(m.Table.Node, 3, m.W()/3))
 
-	b := el.NewTextButton(m.Table.Node, 1, m.W()/5, "We're done here.", func() string {
+	b := el.NewTextButton(m.Table.Node, 1, m.W()/5, "NEWS", func() string {
 		m.Next(s_news)
 		return "fabulous"
 	})
 	m.Table.WriteToCell(1, 1, b)
-	c := el.NewTextButton(m.Table.Node, 1, m.W()/5, "We're done here.", func() string {
+	c := el.NewTextButton(m.Table.Node, 1, m.W()/5, "MAIL", func() string {
 		m.Next(s_email)
 		return "fabulous"
 	})
 	m.Table.WriteToCell(1, 2, c)
+	d := el.NewTextButton(m.Table.Node, 1, m.W()/5, "SETUP1", func() string {
+		m.Next(s_setup)
+		return "fabulous"
+	})
+	m.Table.WriteToCell(1, 4, d)
+	e := el.NewTextButton(m.Table.Node, 1, m.W()/5, "SETUP2", func() string {
+		m.Next(s_setup)
+		return "fabulous"
+	})
+	m.Table.WriteToCell(1, 5, e)
+	f := el.NewTextButton(m.Table.Node, 1, m.W()/5, "SETUP3", func() string {
+		m.Next(s_setup)
+		return "fabulous"
+	})
+	m.Table.WriteToCell(1, 6, f)
 }
 
 func (m *menu) Update() {

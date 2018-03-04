@@ -1,8 +1,8 @@
 package events
 
 type Player struct {
-	newsFeed []*Event
-	mailBox  []*Event
+	newsFeed []*Record
+	mailBox  []*Record
 	IsNew    bool
 	*actor
 }
@@ -13,12 +13,12 @@ func LoadPlayer() *Player {
 func NewPlayer(conf *PlayerConfig) *Player {
 	p := new(Player)
 	p.actor = NewActor()
-	p.mailBox = make([]*Event, 0)
+	p.mailBox = make([]*Record, 0)
 	p.IsNew = true
 	return p
 }
 
-func (p *Player) feed(viewer chan *Event, list []*Event) func() int {
+func (p *Player) feed(viewer chan *Record, list []*Record) func() int {
 	unviewed := 0
 	return func() int {
 		for i := unviewed; i < len(list); i++ {
@@ -29,10 +29,10 @@ func (p *Player) feed(viewer chan *Event, list []*Event) func() int {
 	}
 }
 
-func (p *Player) News(viewer chan *Event) func() int {
+func (p *Player) News(viewer chan *Record) func() int {
 	return p.feed(viewer, p.mailBox)
 }
-func (p *Player) Mail(viewer chan *Event) func() int {
+func (p *Player) Mail(viewer chan *Record) func() int {
 	return p.feed(viewer, p.newsFeed)
 }
 

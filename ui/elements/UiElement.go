@@ -13,7 +13,7 @@ type UiElement interface {
 
 type Rect interface {
 	GetRatio() (float64, float64)
-	Resize(int, int)
+	Resize(h int, w int)
 	H() int
 	W() int
 }

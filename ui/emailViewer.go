@@ -35,11 +35,11 @@ func (e *emailViewer) Start() {
 	e.body = el.NewTable(e.Node, e.H()-5, e.W()/5*4)
 	e.Table.WriteToCell(1, 1, e.body)
 
-	a := el.NewTextbox(e.Table.Node, 1, e.W()/5, "This is the emailviewer.")
-	e.Table.WriteToCell(0, 2, a)
+	a := el.NewTextbox(e.Table.Node, 2, e.W(), "This is the emailviewer.")
+	e.Table.WriteToCell(1, 2, a)
 
-	b := el.NewTextbox(e.Table.Node, 1, e.W()/5, "here's some text, just to be clear")
-	e.Table.WriteToCell(1, 2, b)
+	b := el.NewTextbox(e.Table.Node, 2, e.W(), "here's some text, just to be clear")
+	e.Table.WriteToCell(1, 3, b)
 
 	c := el.NewTextButton(e.Table.Node, 1, e.W()/5, "We're done here.", func() string {
 
@@ -50,7 +50,7 @@ func (e *emailViewer) Start() {
 		return "fabulous"
 	})
 
-	e.Table.WriteToCell(0, 3, c)
+	e.Table.WriteToCell(1, 4, c)
 
 	dummy := make(events.Options, 0)
 	dummy.Insert("one", "one")

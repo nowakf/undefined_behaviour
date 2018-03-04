@@ -12,8 +12,23 @@ type mouse struct {
 }
 
 //returns if the mouse is over something
-func (m *mouse) Event(h, w int, current state) bool {
+func (m *mouse) Event(current state) bool {
 
+	//get the mousepress events
+	mousePressed := m.win.Pressed(pixelgl.MouseButton1)
+	mouseReleased := m.win.JustReleased(pixelgl.MouseButton1)
+
+	x, y := m.cellCoord(current.H(), current.W(), current)
+
+	object := current.GetLast(x, y)
+
+	changed := object != m.last
+
+	return m.parseClick(object, changed, mousePressed, mouseReleased)
+
+}
+
+func (m *mouse) cellCoord(h, w int, current state) (int, int) {
 	//get the raw mouse position
 	mouseX, mouseY := m.win.MousePosition().XY()
 
@@ -24,35 +39,25 @@ func (m *mouse) Event(h, w int, current state) bool {
 	mx, my := m.mousepos(mouseX, mouseY, boundsH, boundsW)
 
 	//get the cell coordinate
-	x, y := m.floatToCellCoord(mx, my, w, h)
-
-	//get the mousepress events
-	mousePressed := m.win.Pressed(pixelgl.MouseButton1)
-	mouseReleased := m.win.JustReleased(pixelgl.MouseButton1)
-
-	object := current.GetLast(x, y)
-
-	changed := object != m.last
-
-	return m.parseClick(object, changed, mousePressed, mouseReleased)
-
+	return m.floatToCellCoord(mx, my, h, w)
 }
 
-func (m *mouse) mousepos(mouseX, mouseY, boundsH, boundsW float64) (float64, float64) {
+func (m *mouse) DebugPos(h, w int, current state) (int, int) {
+	return m.cellCoord(h, w, current)
+}
 
-	y := mouseY / boundsH
-	x := mouseX / boundsW
-
-	return x, y
+func (m *mouse) mousepos(mouseX, mouseY, boundsH, boundsW float64) (x float64, y float64) {
+	y = mouseY / boundsH
+	x = mouseX / boundsW
+	return
 }
 
 //converts the mouse position to a cell co-ordinate
-func (m *mouse) floatToCellCoord(fx, fy float64, width, height int) (int, int) {
+func (m *mouse) floatToCellCoord(fx, fy float64, height, width int) (x int, y int) {
 
-	x := int(math.Floor(float64(width) * fx))
-	y := height - int(math.Floor(float64(height)*fy))
-
-	return x, y
+	x = int(math.Floor(float64(width) * fx))
+	y = height - int(math.Floor(float64(height)*fy))
+	return
 }
 
 func (m *mouse) checkIfCatcher(object el.UiElement) (el.KeyCatcher, bool) {

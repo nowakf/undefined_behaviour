@@ -1,0 +1,43 @@
+type person struct {
+name name			| string | int	/
+character *character		| trie?		|
+relationships *relationships	| array		/
+}
+character:
+-- whether something is attempted --
+0 0 0 0.0 0 0 0 ||     madness : stress    	// (0-16) 
+0 0 0 0 0 0 0 0 || traits      			// bools
+0 0 0 0 0 0 0 0 || disabilities			// bools
+0 0 0 0.0 0 0 0 || membership  : alignment 	// (0-16)
+0 0 0 0 0 0 0 0 || motivations             	// bools
+-- 	whether it works 	  -- 
+0 0 0 0.0 0 0 0 ||  stats  INT : WIL       	// (0-16)
+0 0 0 0.0 0 0 0 || 	   STR : CON		 / "
+0 0 0 0.0 0 0 0 || 	   CHA : HP		 / "
+      0			// -- something like this?
+     / \		//
+    0   1		//
+   / \ / \
+   0 1 0 1
+  0101 0101
+
+so this block can determine eligibility for actions // and also record their results
+
+So we should aim for something like 128 characters...
+ 
+16 organizations
+
+so maybe you just don't care about the charactersitics of the people, you just perform the transformations on the character.
+
+
+
+relationships:
+0 0 0 0 0 0 0.0 0 || name : relationship 	{ 0 - hate
+0 0 0 0 0 0 0.0 0 ||			 	  1 - dislike
+0 0 0 0 0 0 0.0 0 ||			 	  2 - like
+0 0 0 0 0 0 0.0 0 ||  			 	  3 - love    }
+0 0 0 0 0 0 0.0 0 ||
+0 0 0 0 0 0 0.0 0 ||  
+0 0 0 0 0 0 0.0 0 ||
+
+if a new relationship comes up, a non-zero or non-three relation is discarded

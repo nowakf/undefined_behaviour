@@ -3,15 +3,16 @@ package events
 type actor struct {
 	name string
 	org  *group
-	*motivations
-	*abilities
+	//stats		//64_uint?
+	*motivations //64_uint
+	*abilities   //64_uint
 	*relationships
 	history history
 }
 
 func NewActor() *actor {
 	a := new(actor)
-	a.history = history{mail: make([]Event, 0)}
+	a.history = history{mail: make([]Record, 0)}
 	return a
 }
 func (a *actor) History() *history {
@@ -23,12 +24,12 @@ func (a *actor) Org() string  { return "" }
 func (a *actor) SetOrg()      {}
 
 type history struct {
-	mail []Event
+	mail []Record
 }
 
-func (h *history) NewMail() func() (*Event, int) {
+func (h *history) NewMail() func() (*Record, int) {
 	index := 0
-	return func() (*Event, int) {
+	return func() (*Record, int) {
 		length := len(h.mail)
 		if index < length {
 			return &h.mail[index], length - index
@@ -39,3 +40,6 @@ func (h *history) NewMail() func() (*Event, int) {
 }
 
 //checks for mail - returns number of mails in mailbox
+
+// has to be good for random lookup,
+// has to be sorted...

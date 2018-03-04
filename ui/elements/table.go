@@ -44,8 +44,8 @@ func (t *Table) Draw(xoffset, yoffset int) []c.Cell {
 	for coord, element := range t.contents {
 		cells = append(cells,
 			element.Draw(
-				t.origin.x+t.widths.Origin(coord.x),
-				t.origin.y+t.heights.Origin(coord.y))...)
+				t.origin.x+t.widths.origin(coord.x),
+				t.origin.y+t.heights.origin(coord.y))...)
 	}
 	return cells
 }
@@ -54,9 +54,9 @@ func (t *Table) Draw(xoffset, yoffset int) []c.Cell {
 //so in a nested table, you still get the last object contained.
 func (t *Table) GetLast(x, y int) UiElement {
 	for xc, rightBound := range t.widths {
-		if x >= t.widths.Origin(xc) && x < rightBound {
+		if x >= t.widths.origin(xc) && x < rightBound {
 			for yc, lowerBound := range t.heights {
-				if y < lowerBound && y >= t.heights.Origin(yc)+t.origin.y {
+				if y < lowerBound && y >= t.heights.origin(yc)+t.origin.y {
 					element, ok := t.contents[coord{xc, yc}]
 					if ok {
 						return element.GetLast(x, y)
@@ -83,16 +83,25 @@ type coord struct {
 //cumulative is a type that stores the cumulative widths of table elements,
 type cumulative []int
 
-func (c *cumulative) Origin(i int) int {
+// 1 1 2 3 4 5
+func (c *cumulative) origin(i int) int {
 	return (*c)[i] - c.absWidth(i)
 }
 func (c *cumulative) addWidth(i int, width int) []int {
-	if i >= len(*c) {
-		*c = append(*c, make([]int, i+1-len(*c))...)
+	initalLen := len(*c)
+	if i >= initalLen {
+		tail := make([]int, 1+i-initalLen)
+		for index, _ := range tail {
+			if initalLen > 0 {
+				tail[index] = (*c)[initalLen-1]
+			}
+
+		}
+		*c = append(*c, tail...)
 	}
-	if width > c.absWidth(i) {
-		c.insert(i, width)
-	}
+	//fill in the gaps with appropriate values
+	c.insert(i, width)
+	//add in the value in question
 	return *c
 
 }
@@ -112,3 +121,7 @@ func (c *cumulative) insert(i int, width int) []int {
 	}
 	return *c
 }
+
+// 0 0
+// 0 0 0 0 5
+//

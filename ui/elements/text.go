@@ -6,11 +6,12 @@ import (
 )
 
 type text struct {
-	content  []c.Cell
-	asString string
-	width    int
-	wrapping wrapType
-	align    alignment
+	scrollOffset  int
+	unformatted   string
+	formatted     string
+	height, width int
+	wrapping      wrapType
+	align         alignment
 	*container
 }
 
@@ -30,17 +31,26 @@ const (
 )
 
 func (t *text) Content() string {
-	return t.asString
+	return t.unformatted
 }
 
 func (t *text) Draw(x, y int) []c.Cell {
-	if t.W() != t.width {
-		t.content = t.format(t.Content(), t.H(), t.W())
+
+	formatted := t.format(t.unformatted, t.H(), t.W())
+
+	lines := strings.Split(formatted, "\n")
+	hasHidden := false
+
+	if len(lines) > t.H() {
+		lines = t.scroll(t.scrollOffset, lines)
+		hasHidden = true
 	}
 
-	transformed := make([]c.Cell, len(t.content))
+	content := t.toCellArray(hasHidden, lines)
 
-	for i, cell := range t.content {
+	transformed := make([]c.Cell, len(content))
+
+	for i, cell := range content {
 		transformed[i] = c.Cell{
 			X:          cell.X + x,
 			Y:          cell.Y + y,
@@ -53,15 +63,15 @@ func (t *text) Draw(x, y int) []c.Cell {
 	return transformed
 }
 
-func (t *text) format(input string, height, width int) []c.Cell {
+func (t *text) format(input string, height, width int) string {
 	text := ""
 	switch t.wrapping {
 	case horizontal:
 		paragraphs := strings.Split(input, "\n")
-		text, height = t.wrappedParagraphs(paragraphs)
+		text, height = t.wrappedParagraphs(width, paragraphs)
 	case h_wrap_v_cut:
 		paragraphs := strings.Split(input, "\n")
-		text, _ = t.wrappedParagraphs(paragraphs)
+		text, _ = t.wrappedParagraphs(width, paragraphs)
 		text = t.vertTruncate(text, height)
 	case h_cut:
 		text = t.horizTruncate(input, width)
@@ -69,7 +79,6 @@ func (t *text) format(input string, height, width int) []c.Cell {
 		panic("there's no style defined for this text")
 	}
 
-	t.rect.Resize(height, width)
 	leftpad, rightpad := "", ""
 
 	switch t.align {
@@ -80,7 +89,7 @@ func (t *text) format(input string, height, width int) []c.Cell {
 	default:
 		panic("no alignment defined for this text!")
 	}
-	return t.toCellArray(leftpad + text + rightpad)
+	return leftpad + text + rightpad
 
 }
 
@@ -88,19 +97,18 @@ func (t *text) format(input string, height, width int) []c.Cell {
 func newbodytext(content string, box *container) *text {
 	t := new(text)
 	t.container = box
-	t.asString = content
+	t.unformatted = content
 	t.wrapping = horizontal
 	t.align = left
-	t.content = t.format(content, t.H(), t.W())
 
 	return t
 }
 
-func (t *text) wrappedParagraphs(paragraphs []string) (string, int) {
+func (t *text) wrappedParagraphs(width int, paragraphs []string) (string, int) {
 	text := ""
 	height := 1
 	for _, paragraph := range paragraphs {
-		t, h := t.wrap(t.W(), paragraph)
+		t, h := t.wrap(width, paragraph)
 		text += "\n" + t
 		height += h + 1
 	}
@@ -112,9 +120,8 @@ func newTitleText(content string, box *container) *text {
 	t := new(text)
 	t.wrapping = h_cut
 	t.align = center
-	t.asString = content
+	t.unformatted = content
 	t.container = box
-	t.content = t.format(content, box.H(), box.W())
 	return t
 
 }
@@ -129,7 +136,7 @@ func (t *text) horizTruncate(s string, width int) string {
 
 func (t *text) vertTruncate(text string, height int) string {
 
-	lines := strings.Fields(strings.Trim(text, "\n"))
+	lines := strings.Split(text, "\n")
 
 	if len(lines) <= height {
 		return text
@@ -139,7 +146,7 @@ func (t *text) vertTruncate(text string, height int) string {
 		for i := 0; i < height; i++ {
 			trimmed += lines[i] + "\n"
 		}
-		return trimmed + "\n" + "..."
+		return trimmed + "..."
 	}
 
 }
@@ -191,8 +198,7 @@ func (t *text) wrap(width int, content string) (string, int) {
 
 }
 
-func (t *text) toCellArray(s string) []c.Cell {
-	lines := strings.Split(s, "\n")
+func (t *text) toCellArray(hasHidden bool, lines []string) []c.Cell {
 	output := make([]c.Cell, 0)
 	for y, line := range lines {
 		for x, letter := range line {
@@ -207,5 +213,19 @@ func (t *text) toCellArray(s string) []c.Cell {
 		}
 
 	}
+
 	return output
+}
+
+func (t *text) scroll(offset int, lines []string) []string {
+	start := 0 + offset
+	end := t.H() + offset
+	if start < 0 {
+		start = 0
+	}
+	if end >= len(lines) {
+		end = len(lines) - 1
+	}
+	return lines[start:end]
+
 }

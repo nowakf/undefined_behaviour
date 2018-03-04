@@ -51,6 +51,7 @@ func run() {
 		<-fps
 
 		if check(win) {
+			println("resize!")
 			uh, uw = ren.Stats()
 			u.Resize(uh, uw)
 		}

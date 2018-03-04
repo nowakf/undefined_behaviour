@@ -11,16 +11,21 @@ import (
 
 //eventSystem keeps track of Events, and produces accounts of them.
 type EventSystem struct {
-	tickRate chan float64
-	mu       sync.Mutex
-	w        *world
+	tickRate    chan float64
+	mu          sync.Mutex
+	w           *world
+	actionQueue []*ability
 }
 
 func NewEventSystem(w *world) *EventSystem {
 	e := new(EventSystem)
 	e.w = w
 	e.tickRate = make(chan float64)
+	e.actionQueue = make([]*ability, 0)
 	return e
+}
+func (e *EventSystem) Start() {
+
 }
 
 //tickrate sets the time taken before each loop of the event system
@@ -31,7 +36,6 @@ func (e *EventSystem) TickRate(newTickRate float64) {
 		e.tickRate <- 100 / newTickRate
 	}
 }
-
 func (e *EventSystem) Loop(stop chan struct{}) {
 	tick := time.NewTicker(time.Duration(<-e.tickRate) * time.Millisecond)
 	for {
@@ -50,6 +54,9 @@ func (e *EventSystem) Loop(stop chan struct{}) {
 	//do finishing stuff here
 }
 func (e *EventSystem) update() {
+	for k, actor := range e.w.GetActiveActors() {
+		actor.Tick()
+	}
 }
 
 func (e *EventSystem) instantiateActor(input *actor) (*actor, error) {
@@ -57,11 +64,11 @@ func (e *EventSystem) instantiateActor(input *actor) (*actor, error) {
 }
 
 //this should check an event against the World, and fill in the particulars.
-func (e *EventSystem) instantiateEvent(input *Event) Event {
+func (e *EventSystem) instantiateRecord(input *Record) *Record {
 
-	output := new(Event)
+	output := new(Record)
 
-	return *output
+	return output
 }
 
 // Event email, article,

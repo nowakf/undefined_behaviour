@@ -6,6 +6,7 @@ type ability struct {
 	title        string
 	requirements map[*ability]int
 	tags         []string //this corresponds to |categories| in the eventHeader type
+	does         func(s *actor, o *actor, w *world)
 	variance     int
 }
 

@@ -47,7 +47,6 @@ const (
 
 //creates a new UI, returns a pointer
 func NewUI(h, w int, win *pixelgl.Window, e *events.EventSystem) *ui {
-
 	u := new(ui)
 	u.mouse = &mouse{win: win}
 	u.keyboard = &keyboard{win: win}
@@ -116,25 +115,24 @@ func (u *ui) HasNew(display map[string]int, states map[stateEnum]monitor) map[st
 
 }
 
-func (u *ui) checkColor() func(color pixel.RGBA) int {
-
-	colorMap := make(map[pixel.RGBA]int)
-	index := 0
-
-	return func(color pixel.RGBA) int {
-
-		_, ok := colorMap[color]
-		if !ok {
-			colorMap[color] = index
-			index++
-		}
-		return colorMap[color]
-	}
-
-}
-
 func (u *ui) Update() {
 	u.current.Update()
+}
+
+//this will check what input there is, then return true if it exists
+func (u *ui) Event() bool {
+
+	switch {
+	case u.keyboard.Event():
+		return true
+	case u.mouse.Event(u.current):
+		return true
+	case len(u.HasNew(u.notifier, u.monitoredStates)) > 0:
+		return true
+	default:
+	}
+	return false
+
 }
 
 //Draw produces the ui state as a bunch of layers
@@ -143,17 +141,14 @@ func (u *ui) Draw() []Layer {
 	//at the moment, this just has a fresh draw, offset by the X, Y coords.
 	//in the future, it should only return changed cells, and it should offset
 	//those by the degree of scroll.
-
+	//DEBUG CURSOR:
+	//	dx, dy := u.mouse.DebugPos(u.current.H(), u.current.W(), u.current)
+	//	diff = append(diff, c.Cell{dx, dy, 'o', c.LightGrey, c.Black})
 	onscreen := u.crop(u.current.H(), u.current.W(), diff)
-	//this returns everything that fits in the view.
-	cells := make([]c.Cell, len(onscreen))
-	i := 0
-	for _, cell := range onscreen {
-		cells[i] = cell
-		i++
-	}
 
-	return u.toLayers(cells)
+	//this returns everything that fits in the view.
+
+	return u.toLayers(onscreen)
 }
 func (u *ui) toLayers(cells []c.Cell) []Layer {
 	//make two stacks:
@@ -185,39 +180,36 @@ func (u *ui) toLayers(cells []c.Cell) []Layer {
 	return append(bstack, fstack...)
 }
 
+func (u *ui) checkColor() func(color pixel.RGBA) int {
+
+	colorMap := make(map[pixel.RGBA]int)
+	index := 0
+
+	return func(color pixel.RGBA) int {
+
+		_, ok := colorMap[color]
+		if !ok {
+			colorMap[color] = index
+			index++
+		}
+		return colorMap[color]
+	}
+
+}
+
 type coord struct {
 	X, Y int
 }
 
-func (u *ui) crop(h, w int, diff []c.Cell) map[coord]c.Cell {
-
-	view := make(map[coord]c.Cell, 0)
-
+func (u *ui) crop(h, w int, diff []c.Cell) []c.Cell {
+	view := make([]c.Cell, 0)
 	for _, cell := range diff {
-		if cell.X < w && cell.Y < h {
-			view[coord{cell.X, cell.Y}] = cell
+		if cell.X < w && cell.Y < h && cell.X >= 0 && cell.Y >= 0 {
+			view = append(view, cell)
 		}
 	}
 
 	return view
-
-}
-
-//this will check what input there is, then return true if it exists
-func (u *ui) Event() bool {
-
-	mouseEvent := u.mouse.Event(u.current.H(), u.current.W(), u.current)
-
-	switch {
-	case u.keyboard.Event():
-		return true
-	case mouseEvent:
-		return true
-	case len(u.HasNew(u.notifier, u.monitoredStates)) > 0:
-		return true
-	default:
-	}
-	return false
 
 }
 

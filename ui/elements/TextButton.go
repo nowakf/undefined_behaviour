@@ -30,6 +30,5 @@ func (t *TextButton) Identify() string {
 }
 
 func (t *TextButton) GetLast(x, y int) UiElement {
-	println(t.Identify())
 	return t
 }
