@@ -21,3 +21,4 @@ There are plenty of opportunities here to use technology history to construct a 
 
 [^0]: It's notable here that experts typically describe these characteristics as the main failing of machine learning approaches - brittleness, and difficulty of debugging, respectively.
 		
+This helped a lot! Thank you!!
