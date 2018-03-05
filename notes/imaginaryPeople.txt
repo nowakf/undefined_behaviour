@@ -9,11 +9,11 @@ Specify array + map sizes...
 character:
 -- whether something is attempted --
 0 0 0 0.0 0 0 0 ||     madness : stress    	// (0-16) 
-0 0 0 0 0 0 0 0 || traits      			// bools
-0 0 0 0 0 0 0 0 || disabilities			// bools
 0 0 0 0.0 0 0 0 || membership  : alignment 	// (0-16)
+0 0 0 0 0 0 0 0 || traits      			// bools
 0 0 0 0 0 0 0 0 || motivations             	// bools
 -- 	whether it works 	  -- 
+0 0 0 0 0 0 0 0 || disabilities			// bools
 0 0 0 0.0 0 0 0 ||  stats  INT : WIL       	// (0-16)
 0 0 0 0.0 0 0 0 || 	   STR : CON		 / "
 0 0 0 0.0 0 0 0 || 	   CHA : HP		 / "
@@ -23,16 +23,16 @@ character:
 0 0 0 0 0 0 0 0 || uint8 - " of random
 0 0 0 0 0 0 0 0 || uint8 - " of most liked
 //--------------------------------------------------------------//
+
+Place all the action-triggering characters in a sorted array (using 'sort') then use binary search to retrieve them...
+
+These characteristics should all combine, so for instance: 
+trait (hasOrders) + membership (police) would make it go to the part of the actions trie where the actions for the police are described...
+
+
 So the characters are stored in an array 256 entries long // I'd rather have 256 complex characters than 65536 simple ones
 
 Then when you want to read from this, you ask the controller for a copy-
-
-      0			// -- something like this?
-     / \		//
-    0   1		//
-   / \ / \
-   0 1 0 1
-  0101 0101
 
 so this block can determine eligibility for actions // and also record their results
 
@@ -60,4 +60,4 @@ Another 256 entry array, containing uint32 // relationship stuff
 
 Another 256 entry array, containing the less-used components of the character? For instance, the human-readable representations of the above data?
 
-So it's all like a layer-cake.
+So it's all like a layer-cake. There's a read pass, where the characters are pushed through the 'actions' tree to see what they do. Then there's a write pass, where these actions are applied to relevant characters.
