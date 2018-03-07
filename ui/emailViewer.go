@@ -83,10 +83,10 @@ func (e *emailViewer) Update() {
 func (e *emailViewer) Exit() {
 }
 
-func (e *emailViewer) AddMail(n *events.Event) {
+func (e *emailViewer) AddMail(n *events.Record) {
 	m := message{
 		subject: e.ornamentTitle(n.Title(), n.Depth),
-		sender:  n.Origin().Name() + "@" + n.Origin().Org(),
+		//sender:  n.Origin().Name() + "@" + n.Origin().Org(),
 		content: n.Body(),
 		options: e.parseOpts(n.Options),
 	}

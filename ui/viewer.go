@@ -45,14 +45,14 @@ func (l *linker) Next(next stateEnum) {
 type notifier struct {
 	old     int
 	counter chan int
-	pipe    chan *events.Event
+	pipe    chan *events.Record
 	source  func() int
 }
 
-func NewNotifier(source func(chan *events.Event) func() int) *notifier {
+func NewNotifier(source func(chan *events.Record) func() int) *notifier {
 	n := new(notifier)
 	n.counter = make(chan int)
-	n.pipe = make(chan *events.Event)
+	n.pipe = make(chan *events.Record)
 	n.source = source(n.pipe)
 	return n
 }
@@ -67,6 +67,6 @@ func (n *notifier) Listener() {
 		n.old += delta
 	}
 }
-func (n *notifier) Pipe() chan *events.Event {
+func (n *notifier) Pipe() chan *events.Record {
 	return n.pipe
 }

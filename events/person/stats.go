@@ -5,13 +5,13 @@ import "sync"
 //stats is a compressed representation of the stats of an entity. As such, it isn't particularly human-readable
 type stats struct {
 	m         sync.Mutex
-	uint4s    uint64
+	nibbles   uint64
 	boolean8s uint64
 	magic4s   uint64
 }
 
 const (
-	madness uint4_index = iota * 4
+	madness nibble_Index = iota * 4
 	stress
 	membership
 	alignment
@@ -27,7 +27,7 @@ const (
 	// 64
 )
 
-type uint4_index uint
+type nibble_Index uint
 
 //probably relocate this to some kind of package e.g
 //skills?
@@ -61,8 +61,8 @@ type magic4_index uint
 //Get returns the complete uint4-layout object
 //a uint4 layout is one where each 4 bits refers
 //to a value between 0 and 15 (e.g one hex digit)
-func (s *stats) GetUint4s() uint64 {
-	return s.uint4s
+func (s *stats) GetNibbles() uint64 {
+	return s.nibbles
 }
 
 //Get returns the complete boolean-layout object
@@ -80,23 +80,23 @@ func (s *stats) GetBooleans() uint64 {
 func (s *stats) GetMagic() uint64 {
 	return s.magic4s
 }
-func (s *stats) Madness() *uint4 {
-	return &uint4{&s.m, s.uint4s, madness}
+func (s *stats) Madness() *nibble {
+	return &nibble{&s.m, s.nibbles, madness}
 }
 func (s *stats) Motives() *boolean8 {
 	return &boolean8{&s.m, s.boolean8s, motives}
 }
 
-type uint4 struct {
+type nibble struct {
 	m *sync.Mutex
 	uint64
-	uint4_index
+	nibble_Index
 }
 
-func (u *uint4) Read() int {
+func (u *nibble) Read() int {
 	u.m.Lock()
 	defer u.m.Unlock()
-	return int(u.uint64 >> u.uint4_index)
+	return int(u.uint64 >> u.nibble_Index)
 }
 
 type boolean8 struct {

@@ -6,6 +6,7 @@ import (
 	"time"
 	"ub/data"
 	e "ub/events"
+	"ub/events/person/names"
 	ui "ub/ui"
 )
 
@@ -31,6 +32,11 @@ func run() {
 	w := e.NewWorld(config) //generates a world using the config
 	if save != nil {
 		w = e.LoadWorld(save)
+	}
+
+	n := names.New(500)
+	for _, v := range n {
+		println(v)
 	}
 
 	ev := e.NewEventSystem(w) //starts an event system
