@@ -9,7 +9,7 @@ type world struct {
 	doomsday int
 	ev       *EventSystem
 	model    *virtual
-	actors   []actor
+	actors   [256]actor
 	groups   []group
 }
 

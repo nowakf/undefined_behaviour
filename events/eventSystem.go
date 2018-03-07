@@ -11,17 +11,15 @@ import (
 
 //eventSystem keeps track of Events, and produces accounts of them.
 type EventSystem struct {
-	tickRate    chan float64
-	mu          sync.Mutex
-	w           *world
-	actionQueue []*ability
+	tickRate chan float64
+	mu       sync.Mutex
+	w        *world
 }
 
 func NewEventSystem(w *world) *EventSystem {
 	e := new(EventSystem)
 	e.w = w
 	e.tickRate = make(chan float64)
-	e.actionQueue = make([]*ability, 0)
 	return e
 }
 func (e *EventSystem) Start() {
@@ -54,9 +52,6 @@ func (e *EventSystem) Loop(stop chan struct{}) {
 	//do finishing stuff here
 }
 func (e *EventSystem) update() {
-	for k, actor := range e.w.GetActiveActors() {
-		actor.Tick()
-	}
 }
 
 func (e *EventSystem) instantiateActor(input *actor) (*actor, error) {

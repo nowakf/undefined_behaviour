@@ -12,7 +12,6 @@ func LoadPlayer() *Player {
 }
 func NewPlayer(conf *PlayerConfig) *Player {
 	p := new(Player)
-	p.actor = NewActor()
 	p.mailBox = make([]*Record, 0)
 	p.IsNew = true
 	return p
