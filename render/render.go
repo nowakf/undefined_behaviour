@@ -1,4 +1,4 @@
-package main
+package render
 
 import (
 	"fmt"
@@ -14,14 +14,14 @@ import (
 )
 
 type render struct {
-	window         *pixelgl.Window
+	Window         *pixelgl.Window
 	fonts          map[pixel.RGBA]*text.Text
 	glyphH, glyphW float64
 }
 
-func newRender(w *pixelgl.Window, d *data.FontLoader, fontSize float64) *render {
+func New(d *data.FontLoader, fontSize float64) *render {
 	r := new(render)
-	r.window = w
+	r.Window = newWindow()
 
 	r.fonts = d.Fonts(fontSize, c.Colors...)
 
@@ -33,7 +33,7 @@ func newRender(w *pixelgl.Window, d *data.FontLoader, fontSize float64) *render 
 //draws cells to the screen
 //change: [][][]rune-
 // [] refers to a layer. so you send all the background layers, then the foreground layers
-func (r *render) update(stack []ui.Layer) {
+func (r *render) Update(stack []ui.Layer) {
 
 	r.clear()
 
@@ -47,10 +47,10 @@ func (r *render) update(stack []ui.Layer) {
 		}
 
 		for _, cell := range layer.Content() {
-			r.fonts[color].Dot = pixel.V(float64(cell.X)*r.glyphW, r.window.Bounds().H()-float64(cell.Y)*r.glyphH)
+			r.fonts[color].Dot = pixel.V(float64(cell.X)*r.glyphW, r.Window.Bounds().H()-float64(cell.Y)*r.glyphH)
 			r.fonts[color].WriteRune(cell.Letter)
 		}
-		r.fonts[color].Draw(r.window, pixel.IM)
+		r.fonts[color].Draw(r.Window, pixel.IM)
 	}
 
 }
@@ -61,12 +61,12 @@ func (r *render) clear() {
 	for _, font := range r.fonts {
 		font.Clear()
 	}
-	r.window.Clear(screenColor)
+	r.Window.Clear(screenColor)
 }
 
-// gets the height and width of the window
+// gets the height and width of the Window
 func (r *render) Stats() (int, int) {
-	return r.getCellCount(r.window)
+	return r.getCellCount(r.Window)
 }
 
 //gets the step size
@@ -92,7 +92,7 @@ func (r *render) getIncrement() (float64, float64) {
 	return wi, hi
 }
 
-//gets the height and width of the window, in cells
+//gets the height and width of the Window, in cells
 func (r *render) getCellCount(w *pixelgl.Window) (int, int) {
 
 	bounds := w.Bounds()

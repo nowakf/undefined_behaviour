@@ -1,7 +1,7 @@
-package events
+package world
 
 type Record struct {
-	origin *actor
+	origin *person
 	url    string
 	title  string
 	body   string
@@ -17,7 +17,7 @@ func (e *Record) Body() string {
 	return e.body
 }
 
-func (e Record) Origin() *actor {
+func (e Record) Origin() *person {
 	return e.origin
 }
 
@@ -26,7 +26,7 @@ type option struct {
 	Url   string
 }
 
-func (o *option) Do(p *Player) {
+func (o *option) Do(p *person) {
 }
 
 type Options []option

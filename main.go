@@ -7,19 +7,20 @@ import (
 	"ub/data"
 	e "ub/events"
 	"ub/events/person/names"
+	"ub/render"
 	ui "ub/ui"
 )
 
 func run() {
-
-	win := newWindow() //makes a pixelgl window
 
 	// load settings from a text file?
 	// cool, but very unfriendly
 
 	f := &data.FontLoader{} //is a collection of various data methods
 
-	ren := newRender(win, f, 18) //initializes the ui renderer
+	ren := render.New(f, 18)
+
+	win := ren.Window
 
 	uh, uw := ren.Stats() //gets the height/width
 
@@ -46,7 +47,7 @@ func run() {
 	u.Start(uh, uw)
 	//loading screen will go here:
 	stack := u.Draw()
-	ren.update(stack)
+	ren.Update(stack)
 
 	check := resized()
 
@@ -64,7 +65,7 @@ func run() {
 
 		if u.Event() {
 			stack = u.Draw()
-			ren.update(stack)
+			ren.Update(stack)
 			u.Update()
 		}
 		win.Update()

@@ -1,4 +1,4 @@
-package events
+package world
 
 type WorldConfig struct {
 	//some configuration figures

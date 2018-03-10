@@ -1,11 +1,11 @@
-package events
+package world
 
 //groups offer tasks to their members.
 type group struct {
 	emailRoot string
-	members   []*actor
+	members   []*person
 }
 
-func (g *group) GetActive() []*actor {
+func (g *group) GetActive() []*person {
 	return g.members
 }
