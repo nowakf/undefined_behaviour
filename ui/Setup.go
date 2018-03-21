@@ -9,8 +9,8 @@ type setup struct {
 	name
 	*viewer
 	*linker
-	*events.PlayerConfig
-	*events.WorldConfig
+	//*events.PlayerConfig
+	//*events.WorldConfig
 }
 
 func NewSetup(v *viewer, l *linker, p *events.Player) *setup {

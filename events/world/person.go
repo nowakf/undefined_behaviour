@@ -1,38 +1,34 @@
 package world
 
-import (
-	"sync"
-	o "ub/events/world/object"
-)
+import o "ub/events/world/object"
 
-type person struct {
-	m sync.Mutex
-	o.Identity
-	o.Body
-	o.Mind
-	o.Social
+type Person struct {
+	Data   *o.Object
+	id     o.Identity
+	body   o.Body
+	mind   o.Mind
+	social o.Social
 }
 
-func NewPerson() {}
-
-func (p *person) Strength() *slow {
-	return &slow{&p.m, p.Body.Get(), o.STR}
+func NewPerson() *Person {
+	p := new(Person)
+	return p
+}
+func (p *Person) Queue(url string) {}
+func (p *Person) Body() *o.Body {
+	return &p.body
 }
 
-type slow struct {
-	*sync.Mutex
-	o.Value
-	index int
+func (p *Person) whatever() {
+}
+func (p *Person) Mind() *o.Mind {
+	return &p.mind
 }
 
-func (s *slow) Get() int {
-	s.Lock()
-	defer s.Unlock()
-	return s.Value.Get(s.index)
+func (p *Person) Social() *o.Social {
+	return &p.social
 }
 
-func (s *slow) Set(nu int) {
-	s.Lock()
-	s.Value.Set(s.index, nu)
-	s.Unlock()
+func (p *Person) ID() *o.Identity {
+	return &p.id
 }

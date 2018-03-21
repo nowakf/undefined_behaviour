@@ -1,6 +1,7 @@
 package events
 
 import (
+	w "ub/events/world"
 	//"bytes"
 	//	"fmt"
 	"math"
@@ -13,10 +14,10 @@ import (
 type EventSystem struct {
 	tickRate chan float64
 	mu       sync.Mutex
-	w        *world
+	w        *w.World
 }
 
-func NewEventSystem(w *world) *EventSystem {
+func NewEventSystem(w *w.World) *EventSystem {
 	e := new(EventSystem)
 	e.w = w
 	e.tickRate = make(chan float64)
@@ -59,9 +60,9 @@ func (e *EventSystem) instantiateActor(input *actor) (*actor, error) {
 }
 
 //this should check an event against the World, and fill in the particulars.
-func (e *EventSystem) instantiateRecord(input *Record) *Record {
+func (e *EventSystem) instantiateRecord(input *w.Record) *w.Record {
 
-	output := new(Record)
+	output := new(w.Record)
 
 	return output
 }

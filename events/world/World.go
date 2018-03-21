@@ -1,4 +1,4 @@
-// Package events manages events in the game-world
+// Package events manages events in the game-World
 package world
 
 import (
@@ -9,23 +9,23 @@ const (
 	pop_number = 256
 )
 
-//world is the world as an entity amongst others
-type world struct {
+//World is the World as an entity amongst others
+type World struct {
 	madness  int
 	doomsday int
 	model    *virtual
-	people   [pop_number]person
+	people   [pop_number]Person
 	groups   []group
 }
 
-func NewWorld(con *WorldConfig) *world {
-	w := new(world)
+func NewWorld(con *WorldConfig) *World {
+	w := new(World)
 	w.model = newVirtual()
 	return w
 }
-func LoadWorld(file *data.Save) *world {
-	return new(world)
+func LoadWorld(file *data.Save) *World {
+	return new(World)
 }
 
-func (w *world) Generate(conf *WorldConfig) {
+func (w *World) Generate(conf *WorldConfig) {
 }

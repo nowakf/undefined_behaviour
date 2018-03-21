@@ -9,57 +9,26 @@ type emailViewer struct {
 	*viewer
 	*linker
 	*notifier
-	player *events.Player
 	name
 	titles   *el.Table
 	body     *el.Table
 	contacts []contact
-	mail     map[*message]bool
+	mail     map[contact]message
 }
 
-func NewEmailViewer(v *viewer, l *linker, p *events.Player) *emailViewer {
+type mailBox interface {
+	Mail(chan email) func() int
+}
+
+func NewEmailViewer(v *viewer, l *linker, m mailBox) *emailViewer {
 	e := new(emailViewer)
 	e.viewer = v
-	e.player = p
 	e.linker = l
-	e.notifier = NewNotifier(e.player.Mail)
+	e.notifier = NewNotifier(m.Mail)
 	return e
 }
 
 func (e *emailViewer) Start() {
-
-	e.titles = el.NewTable(e.Node, e.H()-5, e.W()/5)
-
-	e.Table.WriteToCell(0, 1, e.titles)
-
-	e.body = el.NewTable(e.Node, e.H()-5, e.W()/5*4)
-	e.Table.WriteToCell(1, 1, e.body)
-
-	a := el.NewTextbox(e.Table.Node, 2, e.W(), "This is the emailviewer.")
-	e.Table.WriteToCell(1, 2, a)
-
-	b := el.NewTextbox(e.Table.Node, 2, e.W(), "here's some text, just to be clear")
-	e.Table.WriteToCell(1, 3, b)
-
-	c := el.NewTextButton(e.Table.Node, 1, e.W()/5, "We're done here.", func() string {
-
-		println("you're certainly clicking it")
-
-		e.Next(s_menu)
-
-		return "fabulous"
-	})
-
-	e.Table.WriteToCell(1, 4, c)
-
-	dummy := make(events.Options, 0)
-	dummy.Insert("one", "one")
-	dummy.Insert("two", "one")
-	dummy.Insert("three", "one")
-	dummy.Insert("four", "one")
-	for i, button := range e.parseOpts(&dummy) {
-		e.titles.WriteToCell(0, i, button)
-	}
 }
 func (e *emailViewer) Update() {
 	select {
@@ -68,24 +37,19 @@ func (e *emailViewer) Update() {
 	default:
 		//do nothing
 	}
-	i := 0
-	for message, isRead := range e.mail {
-		i++
-		b := el.NewTextButton(e.Node, 1, e.W()/5, message.subject, func() string {
-			e.body.WriteToCell(0, message.depth, el.NewTextbox(e.body.Node, 1, e.body.W(), message.content))
-			isRead = true
-			return "x"
-		})
-		e.titles.WriteToCell(0, i, b)
-	}
 }
 
 func (e *emailViewer) Exit() {
 }
 
-func (e *emailViewer) AddMail(n *events.Record) {
+type email interface {
+	Title() string
+	Body() string
+	Do(index int)
+}
+
+func (e *emailViewer) AddMail(n email) {
 	m := message{
-		subject: e.ornamentTitle(n.Title(), n.Depth),
 		//sender:  n.Origin().Name() + "@" + n.Origin().Org(),
 		content: n.Body(),
 		options: e.parseOpts(n.Options),
@@ -103,7 +67,18 @@ func (e *emailViewer) ornamentTitle(title string, depth int) string {
 
 func (e *emailViewer) addTitle() {
 }
+
+type contact interface {
+	Name() string
+	Org() string
+}
+
 func (e *emailViewer) Send(sent string) {
+}
+
+type option interface {
+	Title() string
+	Index() int
 }
 
 func (e *emailViewer) parseOpts(opts *events.Options) []*el.TextButton {
@@ -123,11 +98,6 @@ func (e *emailViewer) parseOpts(opts *events.Options) []*el.TextButton {
 	}
 	return buttons
 
-}
-
-type contact interface {
-	Name() string
-	Org() string
 }
 
 type message struct {

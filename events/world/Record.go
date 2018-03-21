@@ -1,7 +1,7 @@
 package world
 
 type Record struct {
-	origin *person
+	origin *Person
 	url    string
 	title  string
 	body   string
@@ -17,20 +17,24 @@ func (e *Record) Body() string {
 	return e.body
 }
 
-func (e Record) Origin() *person {
+func (e *Record) Origin() *Person {
 	return e.origin
+}
+func (e *Record) Do(index int) {
+	e.origin.Queue((*e.Options)[index].url)
 }
 
 type option struct {
-	Title string
-	Url   string
+	title string
+	url   string
+	index int
 }
 
-func (o *option) Do(p *person) {
-}
+func (o *option) Title() string { return o.title }
+func (o *option) Index() int    { return o.index }
 
 type Options []option
 
 func (o *Options) Insert(title, url string) {
-	(*o) = append(*o, option{title, url})
+	(*o) = append(*o, option{title, url, len(*o)})
 }

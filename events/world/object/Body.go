@@ -1,15 +1,34 @@
 package object
 
 type Body struct {
-	stats nibbleArray
 }
 
 const (
-	STR int = iota * 4
+	strength index = iota * index(nibble)
+	intelligence
+	willpower
+)
+const (
+	wounds = willpower + iota*index(bitfield)
+	feelings
 )
 
-func (b *Body) Get() *nibbleArray {
-	return &b.stats
+func (b *Body) Strength() (category, index, dataType) {
+	return body, strength, nibble
 }
 
-type index int
+func (b *Body) Wounds() *wound {
+	return &wound{}
+}
+
+type wound struct {
+}
+
+const (
+	head = iota
+	leg
+)
+
+func (w *wound) Head() (category, index, dataType) {
+	return body, wounds + head, boolean
+}

@@ -1,8 +1,10 @@
 package events
 
+import w "ub/events/world"
+
 type Player struct {
-	newsFeed []*Record
-	mailBox  []*Record
+	newsFeed []*w.Record
+	mailBox  []*w.Record
 	IsNew    bool
 	*actor
 }
@@ -12,12 +14,12 @@ func LoadPlayer() *Player {
 }
 func NewPlayer(conf *PlayerConfig) *Player {
 	p := new(Player)
-	p.mailBox = make([]*Record, 0)
+	p.mailBox = make([]*w.Record, 0)
 	p.IsNew = true
 	return p
 }
 
-func (p *Player) feed(viewer chan *Record, list []*Record) func() int {
+func (p *Player) feed(viewer chan *w.Record, list []*w.Record) func() int {
 	unviewed := 0
 	return func() int {
 		for i := unviewed; i < len(list); i++ {
@@ -28,10 +30,10 @@ func (p *Player) feed(viewer chan *Record, list []*Record) func() int {
 	}
 }
 
-func (p *Player) News(viewer chan *Record) func() int {
+func (p *Player) News(viewer chan *w.Record) func() int {
 	return p.feed(viewer, p.mailBox)
 }
-func (p *Player) Mail(viewer chan *Record) func() int {
+func (p *Player) Mail(viewer chan *w.Record) func() int {
 	return p.feed(viewer, p.newsFeed)
 }
 

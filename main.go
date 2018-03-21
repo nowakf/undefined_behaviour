@@ -6,7 +6,6 @@ import (
 	"time"
 	"ub/data"
 	e "ub/events"
-	"ub/events/person/names"
 	"ub/render"
 	ui "ub/ui"
 )

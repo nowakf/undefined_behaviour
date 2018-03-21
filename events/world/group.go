@@ -3,9 +3,9 @@ package world
 //groups offer tasks to their members.
 type group struct {
 	emailRoot string
-	members   []*person
+	members   []*Person
 }
 
-func (g *group) GetActive() []*person {
+func (g *group) GetActive() []*Person {
 	return g.members
 }

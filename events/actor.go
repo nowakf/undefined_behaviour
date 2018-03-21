@@ -2,19 +2,18 @@ package events
 
 import (
 	w "ub/events/world"
-	p "ub/events/world/person"
 )
 
 //actor is a person in the world
 type actor struct {
-	me *p.Person
-	//mailbox
+	*w.Person
 	*goal
-	*w.world
-}
-type goal struct {
+	*w.World
 }
 
 func (a *actor) whatever() {
-	a.me.Stats.Madness()
+	a.Data.Get(a.Body().Strength())
+}
+
+type goal struct {
 }

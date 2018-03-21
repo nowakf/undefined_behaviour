@@ -42,10 +42,14 @@ func (l *linker) Next(next stateEnum) {
 	l.current.Start()
 }
 
+type text interface {
+	Title() string
+	Body() string
+}
 type notifier struct {
 	old     int
 	counter chan int
-	pipe    chan *events.Record
+	pipe    chan text
 	source  func() int
 }
 
