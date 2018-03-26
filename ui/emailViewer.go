@@ -32,7 +32,7 @@ func (e *emailViewer) Start() {
 }
 func (e *emailViewer) Update() {
 	select {
-	case email := <-e.Pipe():
+	case email, contact := <-e.Pipe():
 		e.AddMail(email)
 	default:
 		//do nothing
