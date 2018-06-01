@@ -4,7 +4,6 @@ package graph
 import (
 	"container/heap"
 	"fmt"
-	"math"
 )
 
 type graph struct {
@@ -23,6 +22,9 @@ func New() *graph {
 func (g *graph) AddVertex(v interface{}) error {
 	g.vertexes = append(g.vertexes, v)
 	return nil
+}
+func (g *graph) Adj(vert int) map[int]edge {
+	return g.edges[vert]
 }
 
 //link creates a one-way link between vertices. The gate
@@ -53,6 +55,7 @@ func (g *graph) DoubleLink(a int, b int, weight int, gate interface{}) error {
 
 //BiDirectionalSearch returns the lowest cost path between two points. It's probably buggy
 func (g *graph) BiDirectionalSearch(sourceIndex int, sinkIndex int, checkFunc func(interface{}) bool) (path, error) {
+
 	sourceNode, sinkNode := node{source, -1, sourceIndex, 0}, node{sink, -1, sinkIndex, 0}
 
 	frontier := frontier{&sourceNode, &sinkNode}
@@ -63,36 +66,40 @@ func (g *graph) BiDirectionalSearch(sourceIndex int, sinkIndex int, checkFunc fu
 	history[sourceIndex], history[sinkIndex] = sourceNode, sinkNode
 
 	lastValues := make([]int, 2)
-	cost := math.MaxInt64
 
 	for frontier.Len() > 0 {
 
 		n := *(heap.Pop(&frontier).(*node))
-
 		v := n.visitedBy
 
 		for destination, edge := range g.edges[n.value] {
-			if checkFunc(edge.gate) {
-				last, ok := history[destination]
-				lastValues[v] = last.value
-				if !ok {
-					nn := node{v, n.value, destination, n.priority + edge.weight}
-					heap.Push(&frontier, &nn)
-					history[destination] = nn
-				} else {
-					if last.visitedBy != v && last.priority < cost {
-						cost = last.priority
-					}
-				}
+
+			if !checkFunc(edge.gate) {
+				continue
 			}
+
+			last, ok := history[destination]
+			lastValues[v] = last.value
+
+			if ok && last.visitedBy != v {
+				goto done
+			}
+
+			if ok {
+				continue
+			}
+
+			nn := node{v, n.value, destination, n.priority + edge.weight}
+
+			heap.Push(&frontier, &nn)
+
+			history[destination] = nn
 
 		}
 	}
-	if cost < math.MaxInt64 {
-		return g.unspool(history, lastValues[source], lastValues[sink])
-	} else {
-		return path{}, nil
-	}
+	return path{}, nil
+done:
+	return g.unspool(history, lastValues[source], lastValues[sink])
 
 }
 func (g *graph) unspool(history map[int]node, lastSource int, lastSink int) (path, error) {

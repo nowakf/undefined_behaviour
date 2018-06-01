@@ -18,7 +18,13 @@ This is the groundwork for Undefined Behaviour.
 	
 
 TODO: 
-- [ ] work out a reasonable, sane way to handle input events.
-- [-] reduce architecture astronautics.
-- [ ] come to a conclusion - british 'behaviour', or american 'behavior'? 
-- [ ] increase test coverage
+- [x] fork tview, and use this as the ui.
+	-[x] set up key input
+	-[x] set up character input
+	-[ ] set up resize events
+	-[ ] set up mouse input
+	-[ ] set up world events
+- [x] work out a reasonable, sane way to handle input events.
+- [x] reduce architecture astronautics.
+- [x] come to a conclusion - british 'behaviour', or american 'behavior'? 
+- [ ] increase test coverage (uuhhh)

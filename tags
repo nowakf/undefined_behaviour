@@ -1,0 +1,646 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/7918d19f/
+AbilitiesFromYaml	data/yaml.go	/^func (y *yamlLoader) AbilitiesFromYaml(yamlFile []byte) ([]AbilityData, error) {$/;"	f	unknown:data.yamlLoader
+AbilityData	data/AbilityData.go	/^type AbilityData struct {$/;"	s	package:data
+ActorData	data/ActorData.go	/^type ActorData struct {$/;"	s	package:data
+Add	_ui/elements/KeyCatcher.go	/^func (k *keyChecker) Add(key pixelgl.Button, does func()) {$/;"	f	unknown:elements.keyChecker
+AddChild	_ui/elements/node.go	/^func (n *Node) AddChild(child *Node) {$/;"	f	unknown:elements.Node
+AddMail	_ui/emailViewer.go	/^func (e *emailViewer) AddMail(n email) {$/;"	f	unknown:ui.emailViewer
+AddVertex	common/graph/graph.go	/^func (g *graph) AddVertex(v interface{}) error {$/;"	f	unknown:graph.graph
+Adj	common/graph/graph.go	/^func (g *graph) Adj(vert int) map[int]edge {$/;"	f	unknown:graph.graph
+Alignment	data/ActorData.go	/^	Alignment    string   `yaml:"alignment"`$/;"	m	struct:data.ActorData
+Alignment	data/OrganizationData.go	/^	Alignment   int    `yaml:"alignment"`$/;"	m	struct:data.GoalData
+Background	common/Cell.go	/^	Background pixel.RGBA$/;"	m	struct:common.Cell
+BiDirectionalSearch	common/graph/graph.go	/^func (g *graph) BiDirectionalSearch(sourceIndex int, sinkIndex int, checkFunc func(interface{}) /;"	f	unknown:graph.graph
+Black	common/Cell.go	/^	Black                = pixel.RGB(0.0, 0.0, 0.0)$/;"	v	package:common
+Blank	common/Cell.go	/^	Blank                = pixel.RGBA{R: 0.0, G: 0.0, B: 0.0, A: 0.0}$/;"	v	package:common
+Body	events/world/Record.go	/^func (e *Record) Body() string {$/;"	f	unknown:world.Record
+Body	events/world/object/Body.go	/^type Body struct {$/;"	s	package:object
+Body	events/world/person.go	/^func (p *Person) Body() *o.Body {$/;"	f	unknown:world.Person
+CATEGORIES	events/world/object/Object.go	/^const CATEGORIES = 3$/;"	c	package:object
+Cell	common/Cell.go	/^type Cell struct {$/;"	s	package:common
+Check	common/errors.go	/^func Check(e error) {$/;"	f	package:common
+Clickable	_ui/elements/Clickable.go	/^type Clickable interface {$/;"	i	package:elements
+Color	_ui/ui.go	/^func (l *Layer) Color() pixel.RGBA {$/;"	f	unknown:ui.Layer
+Colors	common/Cell.go	/^var Colors = []pixel.RGBA{$/;"	v	package:common
+Content	_ui/elements/text.go	/^func (t *text) Content() string {$/;"	f	unknown:elements.text
+Content	_ui/ui.go	/^func (l *Layer) Content() []c.Cell {$/;"	f	unknown:ui.Layer
+Content	data/MessageData.go	/^	Content string         `yaml:"content"`$/;"	m	struct:data.MessageData
+Content	data/StoryData.go	/^	Content string   `yaml:"content"`$/;"	m	struct:data.StoryData
+DarkGrey	common/Cell.go	/^	DarkGrey             = pixel.RGB(58.0\/255.0, 58.0\/255.0, 58.0\/255.0)$/;"	v	package:common
+Data	events/world/person.go	/^	Data   *o.Object$/;"	m	struct:world.Person
+Deactivate	_ui/elements/button.go	/^func (b *button) Deactivate() {$/;"	f	unknown:elements.button
+DebugPos	_ui/mouse.go	/^func (m *mouse) DebugPos(h, w int, current state) (int, int) {$/;"	f	unknown:ui.mouse
+Depth	events/world/Record.go	/^	Depth  int$/;"	m	struct:world.Record
+Describe	events/world/object/Object.go	/^func (r *Object) Describe(c category, i index, t dataType) string {$/;"	f	unknown:object.Object
+Describe	events/world/object/description.go	/^func (o *object) Describe() string {$/;"	f	unknown:object.object
+Description	data/AbilityData.go	/^	Description  string         `yaml:"description"`$/;"	m	struct:data.AbilityData
+Description	data/ActorData.go	/^	Description  string   `yaml:"description"`$/;"	m	struct:data.ActorData
+Description	data/OrganizationData.go	/^	Description string         `yaml:"description"`$/;"	m	struct:data.OrganizationDataData
+Description	data/OrganizationData.go	/^	Description string `yaml:"description"`$/;"	m	struct:data.GoalData
+Do	_ui/elements/InputBox.go	/^func (i *InputBox) Do() {$/;"	f	unknown:elements.InputBox
+Do	_ui/elements/button.go	/^func (b *button) Do() {$/;"	f	unknown:elements.button
+Do	events/world/Record.go	/^func (e *Record) Do(index int) {$/;"	f	unknown:world.Record
+DoIfValid	_ui/elements/KeyCatcher.go	/^func (k *keyChecker) DoIfValid(typed string, win *pixelgl.Window) (KeyCatcher, bool) {$/;"	f	unknown:elements.keyChecker
+DoIfValid	_ui/elements/KeyCatcher.go	/^func (t *typer) DoIfValid(typed string, win *pixelgl.Window) (KeyCatcher, bool) {$/;"	f	unknown:elements.typer
+DoubleLink	common/graph/graph.go	/^func (g *graph) DoubleLink(a int, b int, weight int, gate interface{}) error {$/;"	f	unknown:graph.graph
+Draw	_ui/elements/InputBox.go	/^func (i *InputBox) Draw(x int, y int) []c.Cell {$/;"	f	unknown:elements.InputBox
+Draw	_ui/elements/Spacer.go	/^func (s *Spacer) Draw(x int, y int) []c.Cell {$/;"	f	unknown:elements.Spacer
+Draw	_ui/elements/TextBox.go	/^func (t *textbox) Draw(x, y int) []c.Cell {$/;"	f	unknown:elements.textbox
+Draw	_ui/elements/TextButton.go	/^func (t *TextButton) Draw(x, y int) []c.Cell {$/;"	f	unknown:elements.TextButton
+Draw	_ui/elements/_Table.go	/^func (t *Table) Draw(xoffset, yoffset int) []c.Cell {$/;"	f	unknown:elements.Table
+Draw	_ui/elements/table.go	/^func (t *Table) Draw(xoffset, yoffset int) []c.Cell {$/;"	f	unknown:elements.Table
+Draw	_ui/elements/text.go	/^func (t *text) Draw(x, y int) []c.Cell {$/;"	f	unknown:elements.text
+Draw	_ui/ui.go	/^func (u *ui) Draw() []Layer {$/;"	f	unknown:ui.ui
+Effects	data/AbilityData.go	/^	Effects      map[string]int `yaml:"effects"`$/;"	m	struct:data.AbilityData
+Effects	data/MessageData.go	/^	Effects map[string]int `yaml:"effects"`$/;"	m	struct:data.MessageData
+Effects	data/OrganizationData.go	/^	Effects     map[string]int `yaml:"effects"`$/;"	m	struct:data.OrganizationDataData
+Escape	_ui/elements/KeyCatcher.go	/^func (k *keyChecker) Escape() KeyCatcher {$/;"	f	unknown:elements.keyChecker
+Escape	_ui/elements/KeyCatcher.go	/^func (t *typer) Escape() KeyCatcher {$/;"	f	unknown:elements.typer
+Event	_ui/keyboard.go	/^func (k *keyboard) Event() bool {$/;"	f	unknown:ui.keyboard
+Event	_ui/mouse.go	/^func (m *mouse) Event(current state) bool {$/;"	f	unknown:ui.mouse
+Event	_ui/ui.go	/^func (u *ui) Event() bool {$/;"	f	unknown:ui.ui
+EventSystem	events/eventSystem.go	/^type EventSystem struct {$/;"	s	package:events
+Exit	_ui/Setup.go	/^func (s *setup) Exit() {$/;"	f	unknown:ui.setup
+Exit	_ui/emailViewer.go	/^func (e *emailViewer) Exit() {$/;"	f	unknown:ui.emailViewer
+Exit	_ui/menu.go	/^func (m *menu) Exit() {$/;"	f	unknown:ui.menu
+Exit	_ui/newsViewer.go	/^func (n *newsViewer) Exit() {}$/;"	f	unknown:ui.newsViewer
+Flush	_ui/elements/button.go	/^func (b *button) Flush() {$/;"	f	unknown:elements.button
+Flush	_ui/viewer.go	/^func (v *viewer) Flush() {$/;"	f	unknown:ui.viewer
+FontLoader	data/data.go	/^type FontLoader struct {$/;"	s	package:data
+Fonts	data/data.go	/^func (d FontLoader) Fonts(fontSize float64, colors ...pixel.RGBA) map[pixel.RGBA]*text.Text {$/;"	f	unknown:data.FontLoader
+Foreground	common/Cell.go	/^	Foreground pixel.RGBA$/;"	m	struct:common.Cell
+Generate	events/world/World.go	/^func (w *World) Generate(conf *WorldConfig) {$/;"	f	unknown:world.World
+Get	events/world/object/Object.go	/^func (r *Object) Get(c category, i index, t dataType) int {$/;"	f	unknown:object.Object
+Get32	common/bitArray/bits.go	/^func Get32(input uint32, index uint, length uint) int {$/;"	f	package:bitArray
+GetActive	events/world/group.go	/^func (g *group) GetActive() []*Person {$/;"	f	unknown:world.group
+GetChildren	_ui/elements/node.go	/^func (n *Node) GetChildren() []*Node {$/;"	f	unknown:elements.Node
+GetElement	_ui/elements/node.go	/^func (n *Node) GetElement() UiElement {$/;"	f	unknown:elements.Node
+GetLast	_ui/elements/InputBox.go	/^func (i *InputBox) GetLast(x, y int) UiElement {$/;"	f	unknown:elements.InputBox
+GetLast	_ui/elements/Spacer.go	/^func (s *Spacer) GetLast(x, y int) UiElement {$/;"	f	unknown:elements.Spacer
+GetLast	_ui/elements/TextBox.go	/^func (t *textbox) GetLast(x, y int) UiElement {$/;"	f	unknown:elements.textbox
+GetLast	_ui/elements/TextButton.go	/^func (t *TextButton) GetLast(x, y int) UiElement {$/;"	f	unknown:elements.TextButton
+GetLast	_ui/elements/_Table.go	/^func (t *Table) GetLast(x, y int) UiElement {$/;"	f	unknown:elements.Table
+GetLast	_ui/elements/table.go	/^func (t *Table) GetLast(x, y int) UiElement {$/;"	f	unknown:elements.Table
+GetParent	_ui/elements/node.go	/^func (n *Node) GetParent() *Node {$/;"	f	unknown:elements.Node
+GetRatio	_ui/elements/container.go	/^func (c *container) GetRatio() (float64, float64) {$/;"	f	unknown:elements.container
+GlobalKeyChecker	_ui/elements/KeyCatcher.go	/^func GlobalKeyChecker() *keyChecker {$/;"	f	package:elements
+GoalData	data/OrganizationData.go	/^type GoalData struct {$/;"	s	package:data
+Goals	data/OrganizationData.go	/^	Goals       []GoalData     `yaml:"goals"`$/;"	m	struct:data.OrganizationDataData
+H	_ui/elements/rect.go	/^func (r *rect) H() int {$/;"	f	unknown:elements.rect
+HasNew	_ui/ui.go	/^func (u *ui) HasNew(display map[string]int, states map[stateEnum]monitor) map[string]int {$/;"	f	unknown:ui.ui
+Head	events/world/object/Body.go	/^func (w *wound) Head() (category, index, dataType) {$/;"	f	unknown:object.wound
+ID	events/world/person.go	/^func (p *Person) ID() *o.Identity {$/;"	f	unknown:world.Person
+Identify	_ui/elements/InputBox.go	/^func (i *InputBox) Identify() string {$/;"	f	unknown:elements.InputBox
+Identify	_ui/elements/Spacer.go	/^func (s *Spacer) Identify() string {$/;"	f	unknown:elements.Spacer
+Identify	_ui/elements/TextBox.go	/^func (t *textbox) Identify() string {$/;"	f	unknown:elements.textbox
+Identify	_ui/elements/TextButton.go	/^func (t *TextButton) Identify() string {$/;"	f	unknown:elements.TextButton
+Identify	_ui/elements/_Table.go	/^func (t *Table) Identify() string {$/;"	f	unknown:elements.Table
+Identify	_ui/elements/table.go	/^func (t *Table) Identify() string {$/;"	f	unknown:elements.Table
+Identity	events/world/object/Identity.go	/^type Identity struct {$/;"	s	package:object
+Index	events/world/Record.go	/^func (o *option) Index() int    { return o.index }$/;"	f	unknown:world.option
+InputBox	_ui/elements/InputBox.go	/^type InputBox struct {$/;"	s	package:elements
+Insert	events/world/Record.go	/^func (o *Options) Insert(title, url string) {$/;"	f	unknown:world.Options
+IsNew	events/player.go	/^	IsNew    bool$/;"	m	struct:events.Player
+KeyCatcher	_ui/elements/KeyCatcher.go	/^type KeyCatcher interface {$/;"	i	package:elements
+Layer	_ui/ui.go	/^type Layer struct {$/;"	s	package:ui
+Len	common/graph/graph.go	/^func (f frontier) Len() int            { return len(f) }$/;"	f	unknown:graph.frontier
+Less	common/graph/graph.go	/^func (f frontier) Less(i, j int) bool  { return f[i].priority > f[j].priority }$/;"	f	unknown:graph.frontier
+Letter	common/Cell.go	/^	Letter     rune$/;"	m	struct:common.Cell
+Light	_ui/elements/button.go	/^func (b *button) Light() {$/;"	f	unknown:elements.button
+LightGrey	common/Cell.go	/^	LightGrey pixel.RGBA = pixel.RGB(192.0\/255.0, 197.0\/255.0, 206.0\/255.0)$/;"	v	package:common
+Link	common/graph/graph.go	/^func (g *graph) Link(a int, b int, weight int, gate interface{}) error {$/;"	f	unknown:graph.graph
+Listener	_ui/viewer.go	/^func (n *notifier) Listener() {$/;"	f	unknown:ui.notifier
+LoadPlayer	events/player.go	/^func LoadPlayer() *Player {$/;"	f	package:events
+LoadSave	data/data.go	/^func (d *data) LoadSave() *Save {$/;"	f	unknown:data.data
+LoadWorld	events/world/World.go	/^func LoadWorld(file *data.Save) *World {$/;"	f	package:world
+Loop	events/eventSystem.go	/^func (e *EventSystem) Loop(stop chan struct{}) {$/;"	f	unknown:events.EventSystem
+Mail	events/player.go	/^func (p *Player) Mail(viewer chan *w.Record) func() int {$/;"	f	unknown:events.Player
+MakeLink	_ui/elements/link.go	/^func MakeLink(title, destination string) {$/;"	f	package:elements
+MessageData	data/MessageData.go	/^type MessageData struct {$/;"	s	package:data
+MessageRoot	data/ActorData.go	/^	MessageRoot  string   `yaml:"message_root"`$/;"	m	struct:data.ActorData
+MessagesFromYaml	data/yaml.go	/^func (y *yamlLoader) MessagesFromYaml(yamlFile []byte) ([]MessageData, error) {$/;"	f	unknown:data.yamlLoader
+Mind	events/world/object/Mind.go	/^type Mind struct {$/;"	s	package:object
+Mind	events/world/person.go	/^func (p *Person) Mind() *o.Mind {$/;"	f	unknown:world.Person
+Monitor	_ui/viewer.go	/^func (n *notifier) Monitor() chan int {$/;"	f	unknown:ui.notifier
+Name	_ui/viewer.go	/^func (n *name) Name() string {$/;"	f	unknown:ui.name
+Name	data/ActorData.go	/^	Name         string   `yaml:"name"`$/;"	m	struct:data.ActorData
+Name	data/OrganizationData.go	/^	Name        string         `yaml:"Name"`$/;"	m	struct:data.OrganizationDataData
+Name	data/OrganizationData.go	/^	Name        string `yaml:"Name"`$/;"	m	struct:data.GoalData
+New	common/graph/graph.go	/^func New() *graph {$/;"	f	package:graph
+New	events/world/object/names/namer.go	/^func New(length int) []string {$/;"	f	package:names
+New	render/render.go	/^func New(d *data.FontLoader, fontSize float64) *render {$/;"	f	package:render
+NewContainer	_ui/elements/container.go	/^func NewContainer(this UiElement, parent *Node, h, w int) *container {$/;"	f	package:elements
+NewData	data/data.go	/^func NewData() *data {$/;"	f	package:data
+NewEmailViewer	_ui/emailViewer.go	/^func NewEmailViewer(v *viewer, l *linker, m mailBox) *emailViewer {$/;"	f	package:ui
+NewEventSystem	events/eventSystem.go	/^func NewEventSystem(w *w.World) *EventSystem {$/;"	f	package:events
+NewInputBox	_ui/elements/InputBox.go	/^func NewInputBox(parent *Node, h, w int, field string) *InputBox {$/;"	f	package:elements
+NewKeyChecker	_ui/elements/KeyCatcher.go	/^func NewKeyChecker(parent KeyCatcher) *keyChecker {$/;"	f	package:elements
+NewMenu	_ui/menu.go	/^func NewMenu(v *viewer, l *linker, ev *events.EventSystem) *menu {$/;"	f	package:ui
+NewNewsViewer	_ui/newsViewer.go	/^func NewNewsViewer(v *viewer, l *linker, p *events.Player) *newsViewer {$/;"	f	package:ui
+NewNotifier	_ui/viewer.go	/^func NewNotifier(source func(chan *events.Record) func() int) *notifier {$/;"	f	package:ui
+NewPerson	events/world/person.go	/^func NewPerson() *Person {$/;"	f	package:world
+NewPlayer	events/player.go	/^func NewPlayer(conf *PlayerConfig) *Player {$/;"	f	package:events
+NewSetup	_ui/Setup.go	/^func NewSetup(v *viewer, l *linker, p *events.Player) *setup {$/;"	f	package:ui
+NewSpacer	_ui/elements/Spacer.go	/^func NewSpacer(parent *Node, h, w int) *Spacer {$/;"	f	package:elements
+NewTable	_ui/elements/_Table.go	/^func NewTable(parent *Node, h, w int) *Table {$/;"	f	package:elements
+NewTable	_ui/elements/table.go	/^func NewTable(parent *Node, h, w int) *Table {$/;"	f	package:elements
+NewTextButton	_ui/elements/TextButton.go	/^func NewTextButton(parent *Node, h, w int, content string, action func() string) *TextButton {$/;"	f	package:elements
+NewTextbox	_ui/elements/TextBox.go	/^func NewTextbox(parent *Node, h, w int, content string) *textbox {$/;"	f	package:elements
+NewUI	_ui/ui.go	/^func NewUI(h, w int, win *pixelgl.Window, e *events.EventSystem) *ui {$/;"	f	package:ui
+NewViewer	_ui/viewer.go	/^func NewViewer(h, w int) *viewer {$/;"	f	package:ui
+NewWorld	events/world/World.go	/^func NewWorld(con *WorldConfig) *World {$/;"	f	package:world
+NewWorldConfig	events/world/worldConfig.go	/^func NewWorldConfig() *WorldConfig {$/;"	f	package:world
+NewYamlLoader	data/yaml.go	/^func NewYamlLoader(path string) *yamlLoader {$/;"	f	package:data
+News	events/player.go	/^func (p *Player) News(viewer chan *w.Record) func() int {$/;"	f	unknown:events.Player
+Next	_ui/viewer.go	/^func (l *linker) Next(next stateEnum) {$/;"	f	unknown:ui.linker
+Node	_ui/elements/container.go	/^	*Node$/;"	M	struct:elements.container	typeref:typename:*Node
+Node	_ui/elements/node.go	/^type Node struct {$/;"	s	package:elements
+Object	events/world/object/Object.go	/^type Object struct {$/;"	s	package:object
+OnMouse	_ui/elements/InputBox.go	/^func (i *InputBox) OnMouse(x int, y int, pressed bool, released bool) func() string {$/;"	f	unknown:elements.InputBox
+OnMouse	_ui/elements/Spacer.go	/^func (s *Spacer) OnMouse(x int, y int, pressed bool, released bool) func() string {$/;"	f	unknown:elements.Spacer
+OnMouse	_ui/elements/button.go	/^func (b *button) OnMouse(click bool) {$/;"	f	unknown:elements.button
+Options	data/MessageData.go	/^	Options []string       `yaml:"options"`$/;"	m	struct:data.MessageData
+Options	events/world/Record.go	/^	*Options$/;"	M	struct:world.Record	typeref:typename:*Options
+Options	events/world/Record.go	/^type Options []option$/;"	t	package:world
+Organization	data/ActorData.go	/^	Organization string   `yaml:"organization"`$/;"	m	struct:data.ActorData
+OrganizationDataData	data/OrganizationData.go	/^type OrganizationDataData struct {$/;"	s	package:data
+Origin	events/world/Record.go	/^func (e *Record) Origin() *Person {$/;"	f	unknown:world.Record
+Person	events/actor.go	/^	*w.Person$/;"	M	struct:events.actor	typeref:typename:*w.Person
+Person	events/world/person.go	/^type Person struct {$/;"	s	package:world
+Pipe	_ui/viewer.go	/^func (n *notifier) Pipe() chan *events.Record {$/;"	f	unknown:ui.notifier
+Player	events/player.go	/^type Player struct {$/;"	s	package:events
+PlayerConfig	events/player.go	/^type PlayerConfig struct{}$/;"	s	package:events
+Pop	common/graph/graph.go	/^func (f *frontier) Pop() interface{} {$/;"	f	unknown:graph.frontier
+Progression	data/AbilityData.go	/^	Progression  string         `yaml:"progression"`$/;"	m	struct:data.AbilityData
+Push	common/graph/graph.go	/^func (f *frontier) Push(n interface{}) { *f = append(*f, n.(*node)) }$/;"	f	unknown:graph.frontier
+Queue	events/world/person.go	/^func (p *Person) Queue(url string) {}$/;"	f	unknown:world.Person
+Record	events/world/Record.go	/^type Record struct {$/;"	s	package:world
+Rect	_ui/elements/UiElement.go	/^type Rect interface {$/;"	i	package:elements
+Red	common/Cell.go	/^	Red                  = pixel.RGB(1.0, 0.0, 0.0)$/;"	v	package:common
+Requirements	data/AbilityData.go	/^	Requirements map[string]int `yaml:"requirements"`$/;"	m	struct:data.AbilityData
+Resize	_ui/elements/_Table.go	/^func (t *Table) Resize(h, w int) {$/;"	f	unknown:elements.Table
+Resize	_ui/elements/container.go	/^func (c *container) Resize(h, w int) {$/;"	f	unknown:elements.container
+Resize	_ui/elements/rect.go	/^func (r *rect) Resize(h int, w int) {$/;"	f	unknown:elements.rect
+Resize	_ui/elements/table.go	/^func (t *Table) Resize(h, w int) {$/;"	f	unknown:elements.Table
+Resize	_ui/ui.go	/^func (u *ui) Resize(h, w int) {$/;"	f	unknown:ui.ui
+Root	_ui/elements/node.go	/^func Root() *Node {$/;"	f	package:elements
+Save	data/data.go	/^type Save struct{}$/;"	s	package:data
+Scrollarea	_ui/elements/scrollarea.go	/^type Scrollarea struct {$/;"	s	package:elements
+Send	_ui/emailViewer.go	/^func (e *emailViewer) Send(sent string) {$/;"	f	unknown:ui.emailViewer
+Set	events/world/object/Object.go	/^func (r *Object) Set(c category, i index, t dataType, newValue uint8) {$/;"	f	unknown:object.Object
+SetMadness	events/world/worldConfig.go	/^func (w *WorldConfig) SetMadness(mad int) {$/;"	f	unknown:world.WorldConfig
+SetYear	events/world/worldConfig.go	/^func (w *WorldConfig) SetYear(year int) {$/;"	f	unknown:world.WorldConfig
+Social	events/world/object/Social.go	/^type Social struct {$/;"	s	package:object
+Social	events/world/person.go	/^func (p *Person) Social() *o.Social {$/;"	f	unknown:world.Person
+Spacer	_ui/elements/Spacer.go	/^type Spacer struct {$/;"	s	package:elements
+Start	_ui/Setup.go	/^func (s *setup) Start() {$/;"	f	unknown:ui.setup
+Start	_ui/emailViewer.go	/^func (e *emailViewer) Start() {$/;"	f	unknown:ui.emailViewer
+Start	_ui/menu.go	/^func (m *menu) Start() {$/;"	f	unknown:ui.menu
+Start	_ui/newsViewer.go	/^func (n *newsViewer) Start() {$/;"	f	unknown:ui.newsViewer
+Start	_ui/ui.go	/^func (u *ui) Start(h, w int) {$/;"	f	unknown:ui.ui
+Start	events/eventSystem.go	/^func (e *EventSystem) Start() {$/;"	f	unknown:events.EventSystem
+Stats	render/render.go	/^func (r *render) Stats() (int, int) {$/;"	f	unknown:render.render
+StoriesFromYaml	data/yaml.go	/^func (y *yamlLoader) StoriesFromYaml(yamlFile []byte) ([]StoryData, error) {$/;"	f	unknown:data.yamlLoader
+StoryData	data/StoryData.go	/^type StoryData struct {$/;"	s	package:data
+Strength	events/world/object/Body.go	/^func (b *Body) Strength() (category, index, dataType) {$/;"	f	unknown:object.Body
+String	common/graph/graph.go	/^func (p path) String() string {$/;"	f	unknown:graph.path
+String	events/world/object/Object.go	/^func (r *Object) String(c category, i index, t dataType) string {$/;"	f	unknown:object.Object
+String	events/world/object/description.go	/^func (o *object) String() string {$/;"	f	unknown:object.object
+Swap	common/graph/graph.go	/^func (f frontier) Swap(i, j int)       { f[i], f[j] = f[j], f[i] }$/;"	f	unknown:graph.frontier
+Table	_ui/elements/_Table.go	/^type Table struct {$/;"	s	package:elements
+Table	_ui/elements/table.go	/^type Table struct {$/;"	s	package:elements
+Table	_ui/viewer.go	/^	*el.Table$/;"	M	struct:ui.viewer	typeref:typename:*el.Table
+Tags	data/AbilityData.go	/^	Tags         []string       `yaml:"tags"`$/;"	m	struct:data.AbilityData
+Tags	data/ActorData.go	/^	Tags         []string `yaml:"tags"`$/;"	m	struct:data.ActorData
+Tags	data/MessageData.go	/^	Tags    string         `yaml:"tags"`$/;"	m	struct:data.MessageData
+Tags	data/OrganizationData.go	/^	Tags        string         `yaml:"tags"`$/;"	m	struct:data.OrganizationDataData
+Tags	data/OrganizationData.go	/^	Tags        string `yaml:"tags"`$/;"	m	struct:data.GoalData
+Tags	data/StoryData.go	/^	Tags    []string `yaml:"tags"`$/;"	m	struct:data.StoryData
+TestAbsolute	_ui/elements/rect_test.go	/^func TestAbsolute(t *testing.T) {$/;"	f	package:elements
+TestBiDirectionalSearch	common/graph/graph_test.go	/^func TestBiDirectionalSearch(t *testing.T) {$/;"	f	package:graph
+TestLoad	data/yaml_test.go	/^func TestLoad(t *testing.T) {$/;"	f	package:data
+TestNewSetup	_ui/Setup_test.go	/^func TestNewSetup(t *testing.T) {$/;"	f	package:ui_test
+TestRelative	_ui/elements/rect_test.go	/^func TestRelative(t *testing.T) {$/;"	f	package:elements
+Test_absWidth	_ui/elements/Table_test.go	/^func Test_absWidth(t *testing.T) {$/;"	f	package:elements
+Test_addWidth	_ui/elements/Table_test.go	/^func Test_addWidth(t *testing.T) {$/;"	f	package:elements
+TextButton	_ui/elements/TextButton.go	/^type TextButton struct {$/;"	s	package:elements
+TickRate	events/eventSystem.go	/^func (e *EventSystem) TickRate(newTickRate float64) {$/;"	f	unknown:events.EventSystem
+Title	data/AbilityData.go	/^	Title        string         `yaml:"title"`$/;"	m	struct:data.AbilityData
+Title	data/MessageData.go	/^	Title   string         `yaml:"title"`$/;"	m	struct:data.MessageData
+Title	data/StoryData.go	/^	Title   string   `yaml:"title"`$/;"	m	struct:data.StoryData
+Title	events/world/Record.go	/^func (e *Record) Title() string {$/;"	f	unknown:world.Record
+Title	events/world/Record.go	/^func (o *option) Title() string { return o.title }$/;"	f	unknown:world.option
+UI	_ui/ui_internal_test.go	/^var UI = new(ui)$/;"	v	package:ui
+UiElement	_ui/elements/UiElement.go	/^type UiElement interface {$/;"	i	package:elements
+Update	_ui/Setup.go	/^func (s *setup) Update() {}$/;"	f	unknown:ui.setup
+Update	_ui/emailViewer.go	/^func (e *emailViewer) Update() {$/;"	f	unknown:ui.emailViewer
+Update	_ui/menu.go	/^func (m *menu) Update() {$/;"	f	unknown:ui.menu
+Update	_ui/newsViewer.go	/^func (n *newsViewer) Update() {}$/;"	f	unknown:ui.newsViewer
+Update	_ui/ui.go	/^func (u *ui) Update() {$/;"	f	unknown:ui.ui
+Update	render/render.go	/^func (r *render) Update(stack []ui.Layer) {$/;"	f	unknown:render.render
+W	_ui/elements/rect.go	/^func (r *rect) W() int {$/;"	f	unknown:elements.rect
+White	common/Cell.go	/^	White                = pixel.RGB(1.0, 1.0, 1.0)$/;"	v	package:common
+Window	render/render.go	/^	Window         *pixelgl.Window$/;"	m	struct:render.render
+World	events/actor.go	/^	*w.World$/;"	M	struct:events.actor	typeref:typename:*w.World
+World	events/world/World.go	/^type World struct {$/;"	s	package:world
+WorldConfig	events/world/worldConfig.go	/^type WorldConfig struct {$/;"	s	package:world
+Wounds	events/world/object/Body.go	/^func (b *Body) Wounds() *wound {$/;"	f	unknown:object.Body
+Write32	common/bitArray/bits.go	/^func Write32(input uint32, newValue uint8, index uint, length uint) uint32 {$/;"	f	package:bitArray
+WriteToCell	_ui/elements/_Table.go	/^func (t *Table) WriteToCell(x, y int, e UiElement) {$/;"	f	unknown:elements.Table
+WriteToCell	_ui/elements/table.go	/^func (t *Table) WriteToCell(x, y int, e UiElement) {$/;"	f	unknown:elements.Table
+X	_ui/ui.go	/^	X, Y int$/;"	m	struct:ui.coord
+X	common/Cell.go	/^	X, Y       int$/;"	m	struct:common.Cell
+Y	_ui/ui.go	/^	X, Y int$/;"	m	struct:ui.coord
+Y	common/Cell.go	/^	X, Y       int$/;"	m	struct:common.Cell
+absWidth	_ui/elements/table.go	/^func (c *cumulative) absWidth(i int) int {$/;"	f	unknown:elements.cumulative
+action	_ui/elements/button.go	/^	action func() string$/;"	m	struct:elements.button
+active	_ui/elements/button.go	/^	active bool$/;"	m	struct:elements.button
+actor	events/actor.go	/^type actor struct {$/;"	s	package:events
+actor	events/player.go	/^	*actor$/;"	M	struct:events.Player	typeref:typename:*actor
+addTitle	_ui/emailViewer.go	/^func (e *emailViewer) addTitle() {$/;"	f	unknown:ui.emailViewer
+addWidth	_ui/elements/table.go	/^func (c *cumulative) addWidth(i int, width int) []int {$/;"	f	unknown:elements.cumulative
+align	_ui/elements/text.go	/^	align         alignment$/;"	m	struct:elements.text
+alignment	_ui/elements/text.go	/^type alignment int$/;"	t	package:elements
+article	_ui/article.go	/^type article interface {$/;"	i	package:ui
+background	_ui/elements/rect.go	/^	background pixel.RGBA$/;"	m	struct:elements.rect
+bitArray	common/bitArray/bits.go	/^package bitArray$/;"	p
+bitfield	events/world/object/Object.go	/^	bitfield          = 8$/;"	c	package:object
+block	_ui/elements/_Table.go	/^type block struct {$/;"	s	package:elements
+body	_ui/emailViewer.go	/^	body     *el.Table$/;"	m	struct:ui.emailViewer
+body	events/world/Record.go	/^	body   string$/;"	m	struct:world.Record
+body	events/world/object/Object.go	/^	body category = iota$/;"	c	package:object
+body	events/world/person.go	/^	body   o.Body$/;"	m	struct:world.Person
+boolean	events/world/object/Object.go	/^	boolean  dataType = 1$/;"	c	package:object
+breadth	_ui/elements/_Table.go	/^	breadth int$/;"	m	struct:elements.block
+button	_ui/elements/TextButton.go	/^	*button$/;"	M	struct:elements.TextButton	typeref:typename:*button
+button	_ui/elements/button.go	/^type button struct {$/;"	s	package:elements
+buttonMode	_ui/elements/button.go	/^type buttonMode int$/;"	t	package:elements
+buttons	_ui/elements/KeyCatcher.go	/^	buttons   []pixelgl.Button$/;"	m	struct:elements.keyChecker
+cat	tools/tools.go	/^func cat(r rune) (names []string) {$/;"	f	package:tools
+category	events/world/object/Object.go	/^type category int$/;"	t	package:object
+cellCoord	_ui/mouse.go	/^func (m *mouse) cellCoord(h, w int, current state) (int, int) {$/;"	f	unknown:ui.mouse
+center	_ui/elements/text.go	/^	center alignment = iota$/;"	c	package:elements
+checkClickable	_ui/mouse.go	/^func (m *mouse) checkClickable(object el.UiElement) (el.Clickable, bool) {$/;"	f	unknown:ui.mouse
+checkColor	_ui/ui.go	/^func (u *ui) checkColor() func(color pixel.RGBA) int {$/;"	f	unknown:ui.ui
+checkIfCatcher	_ui/mouse.go	/^func (m *mouse) checkIfCatcher(object el.UiElement) (el.KeyCatcher, bool) {$/;"	f	unknown:ui.mouse
+checkIfHasReccord	events/event.go	/^func (a *event) checkIfHasReccord() {}$/;"	f	unknown:events.event
+children	_ui/elements/node.go	/^	children []*Node$/;"	m	struct:elements.Node
+clear	render/render.go	/^func (r *render) clear() {$/;"	f	unknown:render.render
+clicked	_ui/elements/button.go	/^	clicked$/;"	c	package:elements
+color	_ui/ui.go	/^	color   pixel.RGBA$/;"	m	struct:ui.Layer
+columns	_ui/elements/_Table.go	/^	columns          []block$/;"	m	struct:elements.Table
+common	common/Cell.go	/^package common$/;"	p
+common	common/errors.go	/^package common$/;"	p
+cont	_ui/elements/_Table.go	/^	cont    []UiElement$/;"	m	struct:elements.block
+contact	_ui/emailViewer.go	/^type contact interface {$/;"	i	package:ui
+contacts	_ui/emailViewer.go	/^	contacts []contact$/;"	m	struct:ui.emailViewer
+container	_ui/elements/InputBox.go	/^	*container$/;"	M	struct:elements.InputBox	typeref:typename:*container
+container	_ui/elements/Spacer.go	/^	*container$/;"	M	struct:elements.Spacer	typeref:typename:*container
+container	_ui/elements/TextBox.go	/^	*container$/;"	M	struct:elements.textbox	typeref:typename:*container
+container	_ui/elements/TextButton.go	/^	*container$/;"	M	struct:elements.TextButton	typeref:typename:*container
+container	_ui/elements/_Table.go	/^	*container$/;"	M	struct:elements.Table	typeref:typename:*container
+container	_ui/elements/button.go	/^	*container$/;"	M	struct:elements.button	typeref:typename:*container
+container	_ui/elements/container.go	/^type container struct {$/;"	s	package:elements
+container	_ui/elements/table.go	/^	*container$/;"	M	struct:elements.Table	typeref:typename:*container
+container	_ui/elements/text.go	/^	*container$/;"	M	struct:elements.text	typeref:typename:*container
+content	_ui/emailViewer.go	/^	content string$/;"	m	struct:ui.message
+content	_ui/ui.go	/^	content []c.Cell$/;"	m	struct:ui.Layer
+contents	_ui/elements/table.go	/^	contents map[coord]UiElement$/;"	m	struct:elements.Table
+context	_ui/keyboard.go	/^	context el.KeyCatcher$/;"	m	struct:ui.keyboard
+coord	_ui/elements/table.go	/^type coord struct {$/;"	s	package:elements
+coord	_ui/ui.go	/^type coord struct {$/;"	s	package:ui
+counter	_ui/viewer.go	/^	counter chan int$/;"	m	struct:ui.notifier
+crop	_ui/ui.go	/^func (u *ui) crop(h, w int, diff []c.Cell) []c.Cell {$/;"	f	unknown:ui.ui
+cumulative	_ui/elements/table.go	/^type cumulative []int$/;"	t	package:elements
+current	_ui/viewer.go	/^	current state$/;"	m	struct:ui.linker
+data	data/AbilityData.go	/^package data$/;"	p
+data	data/ActorData.go	/^package data$/;"	p
+data	data/MessageData.go	/^package data$/;"	p
+data	data/OrganizationData.go	/^package data$/;"	p
+data	data/StoryData.go	/^package data$/;"	p
+data	data/data.go	/^package data$/;"	p
+data	data/data.go	/^type data struct {$/;"	s	package:data
+data	data/yaml.go	/^package data$/;"	p
+data	data/yaml_test.go	/^package data$/;"	p
+data	events/world/object/Object.go	/^	data [CATEGORIES]uint32$/;"	m	struct:object.Object
+dataType	events/world/object/Object.go	/^type dataType int$/;"	t	package:object
+deltas	events/world/object/Social.go	/^	deltas       []int$/;"	m	struct:object.relationship
+depth	_ui/emailViewer.go	/^	depth   int$/;"	m	struct:ui.message
+description	events/world/object/description.go	/^	description string$/;"	m	struct:object.object
+descriptions	events/world/object/Social.go	/^	descriptions []string$/;"	m	struct:object.relationship
+destination	_ui/elements/link.go	/^	destination string$/;"	m	struct:elements.link
+doomsday	events/world/World.go	/^	doomsday int$/;"	m	struct:world.World
+edge	common/graph/graph.go	/^type edge struct {$/;"	s	package:graph
+edges	common/graph/graph.go	/^	edges    map[int]map[int]edge$/;"	m	struct:graph.graph
+element	_ui/elements/node.go	/^	element  UiElement$/;"	m	struct:elements.Node
+elements	_ui/elements/Clickable.go	/^package elements$/;"	p
+elements	_ui/elements/InputBox.go	/^package elements$/;"	p
+elements	_ui/elements/KeyCatcher.go	/^package elements$/;"	p
+elements	_ui/elements/Spacer.go	/^package elements$/;"	p
+elements	_ui/elements/Table_test.go	/^package elements$/;"	p
+elements	_ui/elements/TextBox.go	/^package elements$/;"	p
+elements	_ui/elements/TextButton.go	/^package elements$/;"	p
+elements	_ui/elements/UiElement.go	/^package elements$/;"	p
+elements	_ui/elements/_Table.go	/^package elements$/;"	p
+elements	_ui/elements/button.go	/^package elements$/;"	p
+elements	_ui/elements/container.go	/^package elements$/;"	p
+elements	_ui/elements/link.go	/^package elements$/;"	p
+elements	_ui/elements/node.go	/^package elements$/;"	p
+elements	_ui/elements/rect.go	/^package elements$/;"	p
+elements	_ui/elements/rect_test.go	/^package elements$/;"	p
+elements	_ui/elements/scrollarea.go	/^package elements$/;"	p
+elements	_ui/elements/table.go	/^package elements$/;"	p
+elements	_ui/elements/text.go	/^package elements$/;"	p
+email	_ui/emailViewer.go	/^type email interface {$/;"	i	package:ui
+emailRoot	events/world/group.go	/^	emailRoot string$/;"	m	struct:world.group
+emailViewer	_ui/emailViewer.go	/^type emailViewer struct {$/;"	s	package:ui
+emails	events/world/object/names/emails.go	/^var emails = []string{$/;"	v	package:names
+entity	events/world/object/Social.go	/^	entity       int$/;"	m	struct:object.relationship
+escapeBox	_ui/elements/KeyCatcher.go	/^func (t *typer) escapeBox(win *pixelgl.Window) bool {$/;"	f	unknown:elements.typer
+escapeKeys	_ui/elements/KeyCatcher.go	/^var escapeKeys = []pixelgl.Button{$/;"	v	package:elements
+ev	_ui/menu.go	/^	ev *events.EventSystem$/;"	m	struct:ui.menu
+evSys	_ui/ui.go	/^	evSys *events.EventSystem$/;"	m	struct:ui.ui
+event	events/event.go	/^type event struct {$/;"	s	package:events
+events	events/actor.go	/^package events$/;"	p
+events	events/event.go	/^package events$/;"	p
+events	events/eventSystem.go	/^package events$/;"	p
+events	events/player.go	/^package events$/;"	p
+extendBlocks	_ui/elements/_Table.go	/^func (t *Table) extendBlocks(newLength int, a []block, otherAxis int) []block {$/;"	f	unknown:elements.Table
+extendContents	_ui/elements/_Table.go	/^func (t *Table) extendContents(newLength int, oldLength int, a []block) []block {$/;"	f	unknown:elements.Table
+feed	events/player.go	/^func (p *Player) feed(viewer chan *w.Record, list []*w.Record) func() int {$/;"	f	unknown:events.Player
+feelings	events/world/object/Body.go	/^	feelings$/;"	c	package:object
+femaleFirstNames	events/world/object/names/names.go	/^var femaleFirstNames = []string{$/;"	v	package:names
+field	_ui/elements/InputBox.go	/^	field string$/;"	m	struct:elements.InputBox
+floatToCellCoord	_ui/mouse.go	/^func (m *mouse) floatToCellCoord(fx, fy float64, height, width int) (x int, y int) {$/;"	f	unknown:ui.mouse
+focused	_ui/ui.go	/^	focused el.KeyCatcher$/;"	m	struct:ui.ui
+fonts	render/render.go	/^	fonts          map[pixel.RGBA]*text.Text$/;"	m	struct:render.render
+foreground	_ui/elements/rect.go	/^	foreground pixel.RGBA$/;"	m	struct:elements.rect
+format	_ui/elements/text.go	/^func (t *text) format(input string, height, width int) string {$/;"	f	unknown:elements.text
+formatted	_ui/elements/text.go	/^	formatted     string$/;"	m	struct:elements.text
+frontier	common/graph/graph.go	/^type frontier []*node$/;"	t	package:graph
+gate	common/graph/graph.go	/^	gate   interface{}$/;"	m	struct:graph.edge
+gate	common/graph/graph_test.go	/^type gate uint32$/;"	t	package:graph
+getCellCount	render/render.go	/^func (r *render) getCellCount(w *pixelgl.Window) (int, int) {$/;"	f	unknown:render.render
+getIncrement	render/render.go	/^func (r *render) getIncrement() (float64, float64) {$/;"	f	unknown:render.render
+glyphH	render/render.go	/^	glyphH, glyphW float64$/;"	m	struct:render.render
+glyphW	render/render.go	/^	glyphH, glyphW float64$/;"	m	struct:render.render
+goal	events/actor.go	/^	*goal$/;"	M	struct:events.actor	typeref:typename:*goal
+goal	events/actor.go	/^type goal struct {$/;"	s	package:events
+graph	common/graph/graph.go	/^package graph$/;"	p
+graph	common/graph/graph.go	/^type graph struct {$/;"	s	package:graph
+graph	common/graph/graph_test.go	/^package graph$/;"	p
+graphSize	common/graph/graph_test.go	/^const graphSize = 10$/;"	c	package:graph
+group	events/world/group.go	/^type group struct {$/;"	s	package:world
+groups	events/world/World.go	/^	groups   []group$/;"	m	struct:world.World
+groups	events/world/virtual.go	/^	groups  map[string]group$/;"	m	struct:world.virtual
+h	_ui/elements/rect.go	/^	h, w       int$/;"	m	struct:elements.rect
+h	_ui/ui.go	/^	h, w int$/;"	m	struct:ui.ui
+h_cut	_ui/elements/text.go	/^	h_cut$/;"	c	package:elements
+h_wrap_v_cut	_ui/elements/text.go	/^	h_wrap_v_cut$/;"	c	package:elements
+head	events/world/object/Body.go	/^	head = iota$/;"	c	package:object
+height	_ui/elements/text.go	/^	height, width int$/;"	m	struct:elements.text
+heights	_ui/elements/table.go	/^	heights  cumulative$/;"	m	struct:elements.Table
+horizTruncate	_ui/elements/text.go	/^func (t *text) horizTruncate(s string, width int) string {$/;"	f	unknown:elements.text
+horizontal	_ui/elements/text.go	/^	horizontal wrapType = iota$/;"	c	package:elements
+hover	_ui/elements/button.go	/^	hover$/;"	c	package:elements
+i	_ui/elements/TextBox.go	/^	i *text$/;"	m	struct:elements.textbox
+id	_ui/elements/container.go	/^	id int$/;"	m	struct:elements.container
+id	events/world/person.go	/^	id     o.Identity$/;"	m	struct:world.Person
+identity	events/world/object/Object.go	/^	identity$/;"	c	package:object
+index	events/world/Record.go	/^	index int$/;"	m	struct:world.option
+index	events/world/object/Object.go	/^type index int$/;"	t	package:object
+init	tools/tools.go	/^func init() {$/;"	f	package:tools
+inputRules	_ui/ui.go	/^func (u *ui) inputRules() el.KeyCatcher {$/;"	f	unknown:ui.ui
+insert	_ui/elements/table.go	/^func (c *cumulative) insert(i int, width int) []int {$/;"	f	unknown:elements.cumulative
+instantiateActor	events/eventSystem.go	/^func (e *EventSystem) instantiateActor(input *actor) (*actor, error) {$/;"	f	unknown:events.EventSystem
+instantiateRecord	events/eventSystem.go	/^func (e *EventSystem) instantiateRecord(input *w.Record) *w.Record {$/;"	f	unknown:events.EventSystem
+intelligence	events/world/object/Body.go	/^	intelligence$/;"	c	package:object
+justifiedPad	_ui/elements/text.go	/^func (t *text) justifiedPad(space int, input string) (string, string) {$/;"	f	unknown:elements.text
+keyChecker	_ui/elements/KeyCatcher.go	/^type keyChecker struct {$/;"	s	package:elements
+keyPress	_ui/elements/KeyCatcher.go	/^func (k *keyChecker) keyPress(win *pixelgl.Window) bool {$/;"	f	unknown:elements.keyChecker
+keyboard	_ui/keyboard.go	/^type keyboard struct {$/;"	s	package:ui
+keyboard	_ui/ui.go	/^	*keyboard$/;"	M	struct:ui.ui	typeref:typename:*keyboard
+last	_ui/mouse.go	/^	last el.UiElement$/;"	m	struct:ui.mouse
+left	_ui/elements/text.go	/^	left$/;"	c	package:elements
+leg	events/world/object/Body.go	/^	leg$/;"	c	package:object
+link	_ui/elements/link.go	/^type link struct {$/;"	s	package:elements
+linker	_ui/Setup.go	/^	*linker$/;"	M	struct:ui.setup	typeref:typename:*linker
+linker	_ui/emailViewer.go	/^	*linker$/;"	M	struct:ui.emailViewer	typeref:typename:*linker
+linker	_ui/menu.go	/^	*linker$/;"	M	struct:ui.menu	typeref:typename:*linker
+linker	_ui/newsViewer.go	/^	*linker$/;"	M	struct:ui.newsViewer	typeref:typename:*linker
+linker	_ui/ui.go	/^	*linker$/;"	M	struct:ui.ui	typeref:typename:*linker
+linker	_ui/viewer.go	/^type linker struct {$/;"	s	package:ui
+links	_ui/viewer.go	/^	links   *map[stateEnum]state$/;"	m	struct:ui.linker
+loadTTF	data/data.go	/^func (d FontLoader) loadTTF(path string, size float64) (font.Face, error) {$/;"	f	unknown:data.FontLoader
+m	events/world/object/Object.go	/^	m    *sync.Mutex$/;"	m	struct:object.Object
+madness	events/world/World.go	/^	madness  int$/;"	m	struct:world.World
+madness	events/world/worldConfig.go	/^	madness int$/;"	m	struct:world.WorldConfig
+mail	_ui/emailViewer.go	/^	mail     map[contact]message$/;"	m	struct:ui.emailViewer
+mailBox	_ui/emailViewer.go	/^type mailBox interface {$/;"	i	package:ui
+mailBox	events/player.go	/^	mailBox  []*w.Record$/;"	m	struct:events.Player
+main	_main.go	/^func main() {$/;"	f	package:main
+main	_main.go	/^package main$/;"	p
+maleFirstNames	events/world/object/names/names.go	/^var maleFirstNames = []string{$/;"	v	package:names
+maxHW	_ui/elements/_Table.go	/^func (b *block) maxHW() (int, int) {$/;"	f	unknown:elements.block
+members	events/world/group.go	/^	members   []*Person$/;"	m	struct:world.group
+menu	_ui/menu.go	/^type menu struct {$/;"	s	package:ui
+message	_ui/emailViewer.go	/^type message struct {$/;"	s	package:ui
+mind	events/world/object/Object.go	/^	mind$/;"	c	package:object
+mind	events/world/person.go	/^	mind   o.Mind$/;"	m	struct:world.Person
+mockArray	_ui/elements/Table_test.go	/^var mockArray cumulative = make(cumulative, 0)$/;"	v	package:elements
+mockTable	_ui/elements/Table_test.go	/^var mockTable *Table = NewTable(Root(), 100, 100)$/;"	v	package:elements
+mode	_ui/elements/button.go	/^	mode   buttonMode$/;"	m	struct:elements.button
+model	events/world/World.go	/^	model    *virtual$/;"	m	struct:world.World
+monitor	_ui/state.go	/^type monitor interface {$/;"	i	package:ui
+monitoredStates	_ui/ui.go	/^	monitoredStates map[stateEnum]monitor$/;"	m	struct:ui.ui
+mouse	_ui/mouse.go	/^type mouse struct {$/;"	s	package:ui
+mouse	_ui/ui.go	/^	*mouse$/;"	M	struct:ui.ui	typeref:typename:*mouse
+mousepos	_ui/mouse.go	/^func (m *mouse) mousepos(mouseX, mouseY, boundsH, boundsW float64) (x float64, y float64) {$/;"	f	unknown:ui.mouse
+mu	events/eventSystem.go	/^	mu       sync.Mutex$/;"	m	struct:events.EventSystem
+name	_ui/Setup.go	/^	name$/;"	M	struct:ui.setup	typeref:typename:name
+name	_ui/emailViewer.go	/^	name$/;"	M	struct:ui.emailViewer	typeref:typename:name
+name	_ui/menu.go	/^	name$/;"	M	struct:ui.menu	typeref:typename:name
+name	_ui/newsViewer.go	/^	name$/;"	M	struct:ui.newsViewer	typeref:typename:name
+name	_ui/viewer.go	/^type name string$/;"	t	package:ui
+names	events/world/object/names/emails.go	/^package names$/;"	p
+names	events/world/object/names/namer.go	/^package names$/;"	p
+names	events/world/object/names/names.go	/^package names$/;"	p
+newButton	_ui/elements/button.go	/^func newButton(action func() string, hitbox *container) *button {$/;"	f	package:elements
+newNode	_ui/elements/node.go	/^func newNode(parent *Node, associate UiElement) *Node {$/;"	f	package:elements
+newRect	_ui/elements/rect.go	/^func newRect(h, w int) rect {$/;"	f	package:elements
+newTitleText	_ui/elements/text.go	/^func newTitleText(content string, box *container) *text {$/;"	f	package:elements
+newTyper	_ui/elements/KeyCatcher.go	/^func newTyper(parent KeyCatcher, toType func(string)) *typer {$/;"	f	package:elements
+newVirtual	events/world/virtual.go	/^func newVirtual() *virtual {$/;"	f	package:world
+newWindow	render/window.go	/^func newWindow() *pixelgl.Window {$/;"	f	package:render
+newbodytext	_ui/elements/text.go	/^func newbodytext(content string, box *container) *text {$/;"	f	package:elements
+newsFeed	events/player.go	/^	newsFeed []*w.Record$/;"	m	struct:events.Player
+newsViewer	_ui/newsViewer.go	/^type newsViewer struct {$/;"	s	package:ui
+nibble	events/world/object/Object.go	/^	nibble            = 4$/;"	c	package:object
+node	common/graph/graph.go	/^type node struct {$/;"	s	package:graph
+none	_ui/elements/button.go	/^	none buttonMode = iota$/;"	c	package:elements
+notifier	_ui/emailViewer.go	/^	*notifier$/;"	M	struct:ui.emailViewer	typeref:typename:*notifier
+notifier	_ui/newsViewer.go	/^	*notifier$/;"	M	struct:ui.newsViewer	typeref:typename:*notifier
+notifier	_ui/ui.go	/^	notifier map[string]int$/;"	m	struct:ui.ui
+notifier	_ui/viewer.go	/^type notifier struct {$/;"	s	package:ui
+object	events/event.go	/^	object  *actor$/;"	m	struct:events.event
+object	events/world/object/Body.go	/^package object$/;"	p
+object	events/world/object/Identity.go	/^package object$/;"	p
+object	events/world/object/Mind.go	/^package object$/;"	p
+object	events/world/object/Object.go	/^package object$/;"	p
+object	events/world/object/Social.go	/^package object$/;"	p
+object	events/world/object/description.go	/^package object$/;"	p
+object	events/world/object/description.go	/^type object struct {$/;"	s	package:object
+objects	events/world/object/description.go	/^var objects = map[category]map[index]*object{$/;"	v	package:object
+old	_ui/viewer.go	/^	old     int$/;"	m	struct:ui.notifier
+option	_ui/emailViewer.go	/^type option interface {$/;"	i	package:ui
+option	events/world/Record.go	/^type option struct {$/;"	s	package:world
+options	_ui/emailViewer.go	/^	options []*el.TextButton$/;"	m	struct:ui.message
+origin	_ui/elements/table.go	/^	origin   coord$/;"	m	struct:elements.Table
+origin	_ui/elements/table.go	/^func (c *cumulative) origin(i int) int {$/;"	f	unknown:elements.cumulative
+origin	events/world/Record.go	/^	origin *Person$/;"	m	struct:world.Record
+ornamentTitle	_ui/emailViewer.go	/^func (e *emailViewer) ornamentTitle(title string, depth int) string {$/;"	f	unknown:ui.emailViewer
+parent	_ui/elements/KeyCatcher.go	/^	parent    KeyCatcher$/;"	m	struct:elements.keyChecker
+parent	_ui/elements/KeyCatcher.go	/^	parent   KeyCatcher$/;"	m	struct:elements.typer
+parent	_ui/elements/node.go	/^	parent   *Node$/;"	m	struct:elements.Node
+parseClick	_ui/mouse.go	/^func (m *mouse) parseClick(input el.UiElement, changed, mousePressed, mouseReleased bool) bool {$/;"	f	unknown:ui.mouse
+parseOpts	_ui/emailViewer.go	/^func (e *emailViewer) parseOpts(opts *events.Options) []*el.TextButton {$/;"	f	unknown:ui.emailViewer
+path	common/graph/graph.go	/^type path []int$/;"	t	package:graph
+path	data/yaml.go	/^	path string$/;"	m	struct:data.yamlLoader
+people	events/world/World.go	/^	people   [pop_number]Person$/;"	m	struct:world.World
+people	events/world/virtual.go	/^	people  map[string]Person$/;"	m	struct:world.virtual
+pipe	_ui/viewer.go	/^	pipe    chan text$/;"	m	struct:ui.notifier
+player	_ui/newsViewer.go	/^	player *events.Player$/;"	m	struct:ui.newsViewer
+player	_ui/ui.go	/^	player *events.Player$/;"	m	struct:ui.ui
+pop_number	events/world/World.go	/^	pop_number = 256$/;"	c	package:world
+predecessor	common/graph/graph.go	/^	predecessor int$/;"	m	struct:graph.node
+priority	common/graph/graph.go	/^	priority    int$/;"	m	struct:graph.node
+rH	_ui/elements/container.go	/^	rW, rH float64$/;"	m	struct:elements.container
+rW	_ui/elements/container.go	/^	rW, rH float64$/;"	m	struct:elements.container
+randGraph	common/graph/graph_test.go	/^func randGraph(vertexCount int) *graph {$/;"	f	package:graph
+records	events/world/virtual.go	/^	records map[string]Record$/;"	m	struct:world.virtual
+rect	_ui/elements/container.go	/^	*rect$/;"	M	struct:elements.container	typeref:typename:*rect
+rect	_ui/elements/rect.go	/^type rect struct {$/;"	s	package:elements
+rect	_ui/elements/scrollarea.go	/^	*rect$/;"	M	struct:elements.Scrollarea	typeref:typename:*rect
+relationship	events/world/object/Social.go	/^type relationship struct {$/;"	s	package:object
+relationships	events/world/object/Social.go	/^	relationships []relationship$/;"	m	struct:object.Social
+render	render/render.go	/^package render$/;"	p
+render	render/render.go	/^type render struct {$/;"	s	package:render
+render	render/window.go	/^package render$/;"	p
+resized	_main.go	/^func resized() func(win *pixelgl.Window) bool {$/;"	f	package:main
+right	_ui/elements/text.go	/^	right$/;"	c	package:elements
+rightPad	_ui/elements/text.go	/^func (t *text) rightPad(width int, input string) string {$/;"	f	unknown:elements.text
+root	_ui/viewer.go	/^	root *el.Node$/;"	m	struct:ui.viewer
+rows	_ui/elements/_Table.go	/^	rows             []block$/;"	m	struct:elements.Table
+run	_main.go	/^func run() {$/;"	f	package:main
+s_book	_ui/ui.go	/^	s_book$/;"	c	package:ui
+s_email	_ui/ui.go	/^	s_email stateEnum = iota$/;"	c	package:ui
+s_menu	_ui/ui.go	/^	s_menu$/;"	c	package:ui
+s_net	_ui/ui.go	/^	s_net$/;"	c	package:ui
+s_news	_ui/ui.go	/^	s_news$/;"	c	package:ui
+s_setup	_ui/ui.go	/^	s_setup$/;"	c	package:ui
+scroll	_ui/elements/text.go	/^func (t *text) scroll(offset int, lines []string) []string {$/;"	f	unknown:elements.text
+scrollOffset	_ui/elements/text.go	/^	scrollOffset  int$/;"	m	struct:elements.text
+selected	_ui/elements/KeyCatcher.go	/^	selected bool$/;"	m	struct:elements.typer
+sender	_ui/emailViewer.go	/^	sender  string$/;"	m	struct:ui.message
+setup	_ui/Setup.go	/^type setup struct {$/;"	s	package:ui
+sink	common/graph/graph.go	/^	sink visitor = iota$/;"	c	package:graph
+social	events/world/object/Object.go	/^	social$/;"	c	package:object
+social	events/world/person.go	/^	social o.Social$/;"	m	struct:world.Person
+source	_ui/viewer.go	/^	source  func() int$/;"	m	struct:ui.notifier
+source	common/graph/graph.go	/^	source$/;"	c	package:graph
+state	_ui/state.go	/^type state interface {$/;"	i	package:ui
+state	events/world/object/Social.go	/^	state        int$/;"	m	struct:object.relationship
+stateEnum	_ui/ui.go	/^type stateEnum int$/;"	t	package:ui
+states	_ui/ui.go	/^	states          map[stateEnum]state$/;"	m	struct:ui.ui
+strength	events/world/object/Body.go	/^	strength index = iota * index(nibble)$/;"	c	package:object
+subject	_ui/emailViewer.go	/^	subject string$/;"	m	struct:ui.message
+subject	events/event.go	/^	subject *actor$/;"	m	struct:events.event
+success	events/event.go	/^	success bool$/;"	m	struct:events.event
+surnames	events/world/object/names/names.go	/^var surnames = []string{$/;"	v	package:names
+tags	events/event.go	/^	tags    []string \/\/e.g "theft", "arson", "uncanny" etc$/;"	m	struct:events.event
+test_floatToCellCoord	_ui/ui_internal_test.go	/^func test_floatToCellCoord(t *testing.T) {$/;"	f	package:ui
+test_mousepos	_ui/ui_internal_test.go	/^func test_mousepos(t *testing.T) {$/;"	f	package:ui
+text	_ui/elements/TextButton.go	/^	*text$/;"	M	struct:elements.TextButton	typeref:typename:*text
+text	_ui/elements/text.go	/^type text struct {$/;"	s	package:elements
+text	_ui/viewer.go	/^type text interface {$/;"	i	package:ui
+textbox	_ui/elements/TextBox.go	/^type textbox struct {$/;"	s	package:elements
+tickRate	events/eventSystem.go	/^	tickRate chan float64$/;"	m	struct:events.EventSystem
+title	_ui/elements/link.go	/^	title       string$/;"	m	struct:elements.link
+title	events/world/Record.go	/^	title  string$/;"	m	struct:world.Record
+title	events/world/Record.go	/^	title string$/;"	m	struct:world.option
+title	events/world/object/description.go	/^	title       string$/;"	m	struct:object.object
+titles	_ui/emailViewer.go	/^	titles   *el.Table$/;"	m	struct:ui.emailViewer
+toCellArray	_ui/elements/text.go	/^func (t *text) toCellArray(hasHidden bool, lines []string) []c.Cell {$/;"	f	unknown:elements.text
+toLayers	_ui/ui.go	/^func (u *ui) toLayers(cells []c.Cell) []Layer {$/;"	f	unknown:ui.ui
+toType	_ui/elements/KeyCatcher.go	/^	toType   func(string)$/;"	m	struct:elements.typer
+tools	tools/tools.go	/^package tools$/;"	p
+typer	_ui/elements/KeyCatcher.go	/^type typer struct {$/;"	s	package:elements
+ui	_ui/Setup.go	/^package ui$/;"	p
+ui	_ui/article.go	/^package ui$/;"	p
+ui	_ui/emailViewer.go	/^package ui$/;"	p
+ui	_ui/keyboard.go	/^package ui$/;"	p
+ui	_ui/menu.go	/^package ui$/;"	p
+ui	_ui/mouse.go	/^package ui$/;"	p
+ui	_ui/newsViewer.go	/^package ui$/;"	p
+ui	_ui/state.go	/^package ui$/;"	p
+ui	_ui/ui.go	/^package ui$/;"	p
+ui	_ui/ui.go	/^type ui struct {$/;"	s	package:ui
+ui	_ui/ui_internal_test.go	/^package ui$/;"	p
+ui	_ui/viewer.go	/^package ui$/;"	p
+ui_test	_ui/Setup_test.go	/^package ui_test$/;"	p
+unformatted	_ui/elements/text.go	/^	unformatted   string$/;"	m	struct:elements.text
+unspool	common/graph/graph.go	/^func (g *graph) unspool(history map[int]node, lastSource int, lastSink int) (path, error) {$/;"	f	unknown:graph.graph
+update	events/eventSystem.go	/^func (e *EventSystem) update() {$/;"	f	unknown:events.EventSystem
+url	events/world/Record.go	/^	url    string$/;"	m	struct:world.Record
+url	events/world/Record.go	/^	url   string$/;"	m	struct:world.option
+validKeys	_ui/elements/KeyCatcher.go	/^	validKeys map[pixelgl.Button]func()$/;"	m	struct:elements.keyChecker
+value	common/graph/graph.go	/^	value       int$/;"	m	struct:graph.node
+vertTruncate	_ui/elements/text.go	/^func (t *text) vertTruncate(text string, height int) string {$/;"	f	unknown:elements.text
+vertex	common/graph/graph.go	/^type vertex struct {$/;"	s	package:graph
+vertexes	common/graph/graph.go	/^	vertexes []interface{}$/;"	m	struct:graph.graph
+viewer	_ui/Setup.go	/^	*viewer$/;"	M	struct:ui.setup	typeref:typename:*viewer
+viewer	_ui/emailViewer.go	/^	*viewer$/;"	M	struct:ui.emailViewer	typeref:typename:*viewer
+viewer	_ui/menu.go	/^	*viewer$/;"	M	struct:ui.menu	typeref:typename:*viewer
+viewer	_ui/newsViewer.go	/^	*viewer$/;"	M	struct:ui.newsViewer	typeref:typename:*viewer
+viewer	_ui/viewer.go	/^type viewer struct {$/;"	s	package:ui
+virtual	events/world/virtual.go	/^type virtual struct {$/;"	s	package:world
+visitedBy	common/graph/graph.go	/^	visitedBy   visitor$/;"	m	struct:graph.node
+visitor	common/graph/graph.go	/^type visitor int$/;"	t	package:graph
+w	_ui/elements/rect.go	/^	h, w       int$/;"	m	struct:elements.rect
+w	_ui/ui.go	/^	h, w int$/;"	m	struct:ui.ui
+w	events/eventSystem.go	/^	w        *w.World$/;"	m	struct:events.EventSystem
+wasSelected	_ui/elements/button.go	/^	wasSelected$/;"	c	package:elements
+weight	common/graph/graph.go	/^	weight int$/;"	m	struct:graph.edge
+whatever	events/actor.go	/^func (a *actor) whatever() {$/;"	f	unknown:events.actor
+whatever	events/world/person.go	/^func (p *Person) whatever() {$/;"	f	unknown:world.Person
+width	_ui/elements/text.go	/^	height, width int$/;"	m	struct:elements.text
+widths	_ui/elements/table.go	/^	widths   cumulative$/;"	m	struct:elements.Table
+willpower	events/world/object/Body.go	/^	willpower$/;"	c	package:object
+win	_ui/keyboard.go	/^	win     *pixelgl.Window$/;"	m	struct:ui.keyboard
+win	_ui/mouse.go	/^	win  *pixelgl.Window$/;"	m	struct:ui.mouse
+win	_ui/ui.go	/^	win *pixelgl.Window$/;"	m	struct:ui.ui
+world	events/event.go	/^	world   *w.World$/;"	m	struct:events.event
+world	events/world/Record.go	/^package world$/;"	p
+world	events/world/World.go	/^package world$/;"	p
+world	events/world/group.go	/^package world$/;"	p
+world	events/world/person.go	/^package world$/;"	p
+world	events/world/virtual.go	/^package world$/;"	p
+world	events/world/worldConfig.go	/^package world$/;"	p
+wound	events/world/object/Body.go	/^type wound struct {$/;"	s	package:object
+wounds	events/world/object/Body.go	/^	wounds = willpower + iota*index(bitfield)$/;"	c	package:object
+wrap	_ui/elements/text.go	/^func (t *text) wrap(width int, content string) (string, int) {$/;"	f	unknown:elements.text
+wrapType	_ui/elements/text.go	/^type wrapType int$/;"	t	package:elements
+wrappedParagraphs	_ui/elements/text.go	/^func (t *text) wrappedParagraphs(width int, paragraphs []string) (string, int) {$/;"	f	unknown:elements.text
+wrapping	_ui/elements/text.go	/^	wrapping      wrapType$/;"	m	struct:elements.text
+x	_ui/elements/table.go	/^	x, y int$/;"	m	struct:elements.coord
+xorigin	_ui/elements/_Table.go	/^	xorigin, yorigin int$/;"	m	struct:elements.Table
+y	_ui/elements/table.go	/^	x, y int$/;"	m	struct:elements.coord
+yamlLoader	data/yaml.go	/^type yamlLoader struct {$/;"	s	package:data
+year	events/world/worldConfig.go	/^	year    int$/;"	m	struct:world.WorldConfig
+yorigin	_ui/elements/_Table.go	/^	xorigin, yorigin int$/;"	m	struct:elements.Table
