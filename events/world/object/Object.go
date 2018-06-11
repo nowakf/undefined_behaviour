@@ -11,7 +11,7 @@ import (
 
 type Object struct {
 	m    *sync.Mutex
-	data [CATEGORIES]uint32
+	data [numCategories]uint32
 }
 
 func (r *Object) Get(c category, i index, t dataType) int {
@@ -21,7 +21,7 @@ func (r *Object) Get(c category, i index, t dataType) int {
 
 	return bitArray.Get32(r.data[c], uint(i), uint(t))
 
-	//i would refer to the left bound, t to the right
+	//i would refer to the offset, t to the length of the object in memory
 }
 
 func (r *Object) Set(c category, i index, t dataType, newValue uint8) {
@@ -32,12 +32,12 @@ func (r *Object) Set(c category, i index, t dataType, newValue uint8) {
 
 }
 
-func (r *Object) String(c category, i index, t dataType) string {
-	return objects[c][i].String()
+func (r Object) Title(c category, i index, t dataType) string {
+	return descriptions[c][i].Title()
 }
 
-func (r *Object) Describe(c category, i index, t dataType) string {
-	return objects[c][i].Describe()
+func (r Object) Blurb(c category, i index, t dataType) string {
+	return descriptions[c][i].Blurb()
 }
 
 const (
@@ -45,10 +45,8 @@ const (
 	mind
 	social
 	identity
-	//etc
+	numCategories //this just tells you how many there are in this block
 )
-
-const CATEGORIES = 3
 
 type category int
 

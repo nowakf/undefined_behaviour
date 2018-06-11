@@ -20,6 +20,7 @@ func (p *Person) Body() *o.Body {
 }
 
 func (p *Person) whatever() {
+	print(p.Body().Strength())
 }
 func (p *Person) Mind() *o.Mind {
 	return &p.mind

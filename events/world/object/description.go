@@ -1,24 +1,25 @@
 package object
 
 //this holds the descriptions of specific portions of memory.
-var objects = map[category]map[index]*object{
-	body: map[index]*object{
-		strength:  &object{"strength", ""},
-		willpower: &object{"willpower", ""},
+var descriptions = map[category]map[index]description{
+	body: map[index]description{
+		strength:     description{"strength", ""},
+		intelligence: description{"intelligence", ""},
+		willpower:    description{"willpower", ""},
 	},
-	mind:     map[index]*object{},
-	social:   map[index]*object{},
-	identity: map[index]*object{},
+	mind:     map[index]description{},
+	social:   map[index]description{},
+	identity: map[index]description{},
 }
 
-type object struct {
-	title       string
-	description string
+type description struct {
+	title string
+	blurb string
 }
 
-func (o *object) String() string {
+func (o description) Title() string {
 	return o.title
 }
-func (o *object) Describe() string {
-	return o.description
+func (o description) Blurb() string {
+	return o.blurb
 }
