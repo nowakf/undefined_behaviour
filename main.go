@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"strconv"
+
 	c "ub/common"
 
 	"github.com/nowakf/pixel"
@@ -25,7 +26,7 @@ func run() {
 
 	app, err = tview.NewApplication(
 		&tview.Config{
-			FontSize:     18,
+			FontSize:     12,
 			FontPath:     "./assets/fonts/DejaVuSansMono.ttf",
 			AdjustX:      -2,
 			AdjustY:      -2,
