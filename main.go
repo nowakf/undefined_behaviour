@@ -57,17 +57,11 @@ func run() {
 	previousMode := func() {
 		currentMode = (currentMode - 1 + len(majorModes)) % len(majorModes)
 		//wraps around
-		if majorModes[currentMode].Count() > 0 {
-			majorModes[currentMode].Update()
-		}
 		info.Highlight(strconv.Itoa(currentMode))
 		pages.SwitchToPage(strconv.Itoa(currentMode))
 
 	}
 	nextMode := func() {
-		if majorModes[currentMode].Count() > 0 {
-			majorModes[currentMode].Update()
-		}
 		currentMode = (currentMode + 1) % len(majorModes)
 		info.Highlight(strconv.Itoa(currentMode))
 		pages.SwitchToPage(strconv.Itoa(currentMode))
@@ -77,10 +71,9 @@ func run() {
 		title, primitive := mode.UI(nextMode)
 		pages.AddPage(strconv.Itoa(index),
 			primitive, true, index == currentMode)
-		fmt.Fprintf(info, `%d	["%d"][lightgrey] %s [""]	[""]`, index+1, index, title)
+		fmt.Fprintf(info, `["%d"][lightgrey] %s [""]	[""]`, index, title)
 		//print the title on the info?
 	}
-	majorModes[currentMode].Update()
 	//create the main layout
 	layout := tview.NewFlex().
 		SetDirection(tview.FlexRow).

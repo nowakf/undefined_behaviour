@@ -40,6 +40,7 @@ func (y *yamlLoader) AbilitiesFromYaml(yamlFile []byte) ([]AbilityData, error) {
 	return e, err
 
 }
+
 func (y *yamlLoader) MessagesFromYaml(yamlFile []byte) ([]MessageData, error) {
 
 	var e []MessageData

@@ -8,6 +8,7 @@
 AbilitiesFromYaml	data/yaml.go	/^func (y *yamlLoader) AbilitiesFromYaml(yamlFile []byte) ([]AbilityData, error) {$/;"	f	unknown:data.yamlLoader
 AbilityData	data/AbilityData.go	/^type AbilityData struct {$/;"	s	package:data
 ActorData	data/ActorData.go	/^type ActorData struct {$/;"	s	package:data
+AddItem	news.go	/^func (n *news) AddItem(p tview.Primitive) {$/;"	f	unknown:main.news
 AddVertex	common/graph/graph.go	/^func (g *graph) AddVertex(v interface{}) error {$/;"	f	unknown:graph.graph
 Adj	common/graph/graph.go	/^func (g *graph) Adj(vert int) map[int]edge {$/;"	f	unknown:graph.graph
 Alignment	data/ActorData.go	/^	Alignment    string   `yaml:"alignment"`$/;"	m	struct:data.ActorData
@@ -39,6 +40,7 @@ Effects	data/MessageData.go	/^	Effects map[string]int `yaml:"effects"`$/;"	m	str
 Effects	data/OrganizationData.go	/^	Effects     map[string]int `yaml:"effects"`$/;"	m	struct:data.OrganizationDataData
 Email	email.go	/^func Email() *email {$/;"	f	package:main
 EventSystem	events/eventSystem.go	/^type EventSystem struct {$/;"	s	package:events
+Flex	news.go	/^	*tview.Flex$/;"	M	struct:main.column	typeref:typename:*tview.Flex
 FontLoader	data/data.go	/^type FontLoader struct {$/;"	s	package:data
 Fonts	data/data.go	/^func (d FontLoader) Fonts(fontSize float64, colors ...pixel.RGBA) map[pixel.RGBA]*text.Text {$/;"	f	unknown:data.FontLoader
 Generate	events/world/World.go	/^func (w *World) Generate(conf *WorldConfig) {$/;"	f	unknown:world.World
@@ -159,8 +161,12 @@ category	events/world/object/Object.go	/^type category int$/;"	t	package:object
 chapterBreak	util.go	/^func chapterBreak(p *tview.Box) string {$/;"	f	package:main
 chapter_break	util.go	/^const chapter_break = "\\u00a7"$/;"	c	package:main
 checkIfHasReccord	events/event.go	/^func (a *event) checkIfHasReccord() {}$/;"	f	unknown:events.event
+column	news.go	/^type column struct {$/;"	s	package:main
+column_count	news.go	/^const column_count = 3$/;"	c	package:main
+columns	news.go	/^	columns [column_count]column$/;"	m	struct:main.news
 common	common/errors.go	/^package common$/;"	p
-content	book.go	/^	content  map[string]string$/;"	m	struct:main.spell
+content	news.go	/^	content string$/;"	m	struct:main.story
+count	news.go	/^	count int$/;"	m	struct:main.column
 data	data/AbilityData.go	/^package data$/;"	p
 data	data/ActorData.go	/^package data$/;"	p
 data	data/MessageData.go	/^package data$/;"	p
@@ -173,7 +179,6 @@ data	data/yaml_test.go	/^package data$/;"	p
 data	events/world/object/Object.go	/^	data [numCategories]uint32$/;"	m	struct:object.Object
 dataType	events/world/object/Object.go	/^type dataType int$/;"	t	package:object
 deltas	events/world/object/Social.go	/^	deltas       []int$/;"	m	struct:object.relationship
-description	book.go	/^	description *tview.TextView$/;"	m	struct:main.book
 description	events/world/object/description.go	/^type description struct {$/;"	s	package:object
 descriptions	events/world/object/Social.go	/^	descriptions []string$/;"	m	struct:object.relationship
 descriptions	events/world/object/description.go	/^var descriptions = map[category]map[index]description{$/;"	v	package:object
@@ -192,6 +197,8 @@ events	events/player.go	/^package events$/;"	p
 feed	events/player.go	/^func (p *Player) feed(viewer chan *w.Record, list []*w.Record) func() int {$/;"	f	unknown:events.Player
 feelings	events/world/object/Body.go	/^	feelings$/;"	c	package:object
 femaleFirstNames	events/world/object/names/names.go	/^var femaleFirstNames = []string{$/;"	v	package:names
+formatSpell	book.go	/^func (b *book) formatSpell(s *spell) string {$/;"	f	unknown:main.book
+formatStory	news.go	/^func (n *news) formatStory(s story) string {$/;"	f	unknown:main.news
 frontier	common/graph/graph.go	/^type frontier []*node$/;"	t	package:graph
 gate	common/graph/graph.go	/^	gate   interface{}$/;"	m	struct:graph.edge
 gate	common/graph/graph_test.go	/^type gate uint32$/;"	t	package:graph
@@ -205,7 +212,7 @@ graphSize	common/graph/graph_test.go	/^const graphSize = 10$/;"	c	package:graph
 group	events/world/group.go	/^type group struct {$/;"	s	package:world
 groups	events/world/World.go	/^	groups   []group$/;"	m	struct:world.World
 groups	events/world/virtual.go	/^	groups  map[string]group$/;"	m	struct:world.virtual
-handle	book.go	/^	handle   string$/;"	m	struct:main.spell
+handle	book.go	/^	handle            string$/;"	m	struct:main.spell
 head	events/world/object/Body.go	/^	head = iota$/;"	c	package:object
 id	events/world/person.go	/^	id     o.Identity$/;"	m	struct:world.Person
 identity	events/world/object/Object.go	/^	identity$/;"	c	package:object
@@ -215,9 +222,10 @@ init	tools/tools.go	/^func init() {$/;"	f	package:tools
 instantiateActor	events/eventSystem.go	/^func (e *EventSystem) instantiateActor(input *actor) (*actor, error) {$/;"	f	unknown:events.EventSystem
 instantiateRecord	events/eventSystem.go	/^func (e *EventSystem) instantiateRecord(input *w.Record) *w.Record {$/;"	f	unknown:events.EventSystem
 intelligence	events/world/object/Body.go	/^	intelligence$/;"	c	package:object
-keyValue	book.go	/^	keyValue map[string]int$/;"	m	struct:main.spell
+keyValue	book.go	/^	keyValue          map[string]int$/;"	m	struct:main.spell
 leg	events/world/object/Body.go	/^	leg$/;"	c	package:object
 loadTTF	data/data.go	/^func (d FontLoader) loadTTF(path string, size float64) (font.Face, error) {$/;"	f	unknown:data.FontLoader
+long_description	book.go	/^	long_description  string$/;"	m	struct:main.spell
 m	events/world/object/Object.go	/^	m    *sync.Mutex$/;"	m	struct:object.Object
 madness	events/world/World.go	/^	madness  int$/;"	m	struct:world.World
 madness	events/world/worldConfig.go	/^	madness int$/;"	m	struct:world.WorldConfig
@@ -237,13 +245,12 @@ mind	events/world/object/Object.go	/^	mind$/;"	c	package:object
 mind	events/world/person.go	/^	mind   o.Mind$/;"	m	struct:world.Person
 model	events/world/World.go	/^	model    *virtual$/;"	m	struct:world.World
 mu	events/eventSystem.go	/^	mu       sync.Mutex$/;"	m	struct:events.EventSystem
-names	book.go	/^	names       *tview.List$/;"	m	struct:main.book
+names	book.go	/^	names  *tview.List$/;"	m	struct:main.book
 names	events/world/object/names/emails.go	/^package names$/;"	p
 names	events/world/object/names/namer.go	/^package names$/;"	p
 names	events/world/object/names/names.go	/^package names$/;"	p
-newSpells	book.go	/^	newSpells   map[string]*spell$/;"	m	struct:main.book
 newVirtual	events/world/virtual.go	/^func newVirtual() *virtual {$/;"	f	package:world
-news	news.go	/^type news struct{}$/;"	s	package:main
+news	news.go	/^type news struct {$/;"	s	package:main
 newsFeed	events/player.go	/^	newsFeed []*w.Record$/;"	m	struct:events.Player
 nibble	events/world/object/Object.go	/^	nibble            = 4$/;"	c	package:object
 node	common/graph/graph.go	/^type node struct {$/;"	s	package:graph
@@ -255,13 +262,14 @@ object	events/world/object/Mind.go	/^package object$/;"	p
 object	events/world/object/Object.go	/^package object$/;"	p
 object	events/world/object/Social.go	/^package object$/;"	p
 object	events/world/object/description.go	/^package object$/;"	p
-oldSpells	book.go	/^	oldSpells   map[string]*spell$/;"	m	struct:main.book
 option	events/world/Record.go	/^type option struct {$/;"	s	package:world
 origin	events/world/Record.go	/^	origin *Person$/;"	m	struct:world.Record
+pages	book.go	/^	pages  *tview.Pages$/;"	m	struct:main.book
 path	common/graph/graph.go	/^type path []int$/;"	t	package:graph
 path	data/yaml.go	/^	path string$/;"	m	struct:data.yamlLoader
 people	events/world/World.go	/^	people   [pop_number]Person$/;"	m	struct:world.World
 people	events/world/virtual.go	/^	people  map[string]Person$/;"	m	struct:world.virtual
+plain	book.go	/^	plain  *tview.TextView$/;"	m	struct:main.book
 pop_number	events/world/World.go	/^	pop_number = 256$/;"	c	package:world
 predecessor	common/graph/graph.go	/^	predecessor int$/;"	m	struct:graph.node
 priority	common/graph/graph.go	/^	priority    int$/;"	m	struct:graph.node
@@ -272,22 +280,29 @@ relationships	events/world/object/Social.go	/^	relationships []relationship$/;"	
 resized	_main.go	/^func resized() func(win *pixelgl.Window) bool {$/;"	f	package:main
 run	_main.go	/^func run() {$/;"	f	package:main
 run	main.go	/^func run() {$/;"	f	package:main
+short_description	book.go	/^	short_description string$/;"	m	struct:main.spell
 sink	common/graph/graph.go	/^	sink visitor = iota$/;"	c	package:graph
 social	events/world/object/Object.go	/^	social$/;"	c	package:object
 social	events/world/person.go	/^	social o.Social$/;"	m	struct:world.Person
 source	common/graph/graph.go	/^	source$/;"	c	package:graph
 spell	book.go	/^type spell struct {$/;"	s	package:main
+spells	book.go	/^	spells map[string]*spell$/;"	m	struct:main.book
 state	events/world/object/Social.go	/^	state        int$/;"	m	struct:object.relationship
+stories	news.go	/^	stories []story$/;"	m	struct:main.news
+story	news.go	/^type story struct {$/;"	s	package:main
 strength	events/world/object/Body.go	/^	strength index = iota * index(nibble)$/;"	c	package:object
 subject	events/event.go	/^	subject *actor$/;"	m	struct:events.event
 success	events/event.go	/^	success bool$/;"	m	struct:events.event
 surnames	events/world/object/names/names.go	/^var surnames = []string{$/;"	v	package:names
+table	book.go	/^	table  *tview.Table$/;"	m	struct:main.book
 tags	events/event.go	/^	tags    []string \/\/e.g "theft", "arson", "uncanny" etc$/;"	m	struct:events.event
 testSpells	book.go	/^var testSpells = map[string]*spell{$/;"	v	package:main
+testStories	news.go	/^var testStories = []story{$/;"	v	package:main
 tickRate	events/eventSystem.go	/^	tickRate chan float64$/;"	m	struct:events.EventSystem
 title	events/world/Record.go	/^	title  string$/;"	m	struct:world.Record
 title	events/world/Record.go	/^	title string$/;"	m	struct:world.option
 title	events/world/object/description.go	/^	title string$/;"	m	struct:object.description
+title	news.go	/^	title   string$/;"	m	struct:main.story
 tools	tools/tools.go	/^package tools$/;"	p
 unspool	common/graph/graph.go	/^func (g *graph) unspool(history map[int]node, lastSource int, lastSink int) (path, error) {$/;"	f	unknown:graph.graph
 update	events/eventSystem.go	/^func (e *EventSystem) update() {$/;"	f	unknown:events.EventSystem
