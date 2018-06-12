@@ -10,17 +10,20 @@ import (
 	"github.com/nowakf/tview"
 )
 
+var app *tview.Application
+
 func run() {
 	//--------------------------------------------------------------//
 	//	CONFIGURATION						//
 	//--------------------------------------------------------------//
 	windowConfig := pixelgl.WindowConfig{
 		Resizable: true,
-		Bounds:    pixel.R(0, 0, 1024, 1024),
-		Monitor:   pixelgl.PrimaryMonitor(),
+		Bounds:    pixel.R(0, 0, 824, 1024),
+		//Monitor:   pixelgl.PrimaryMonitor(),
 	}
+	var err error
 
-	app, err := tview.NewApplication(
+	app, err = tview.NewApplication(
 		&tview.Config{
 			FontSize:     18,
 			FontPath:     "./assets/fonts/DejaVuSansMono.ttf",

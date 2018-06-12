@@ -148,6 +148,7 @@ Wounds	events/world/object/Body.go	/^func (b *Body) Wounds() *wound {$/;"	f	unkn
 Write32	common/bitArray/bits.go	/^func Write32(input uint32, newValue uint8, index uint, length uint) uint32 {$/;"	f	package:bitArray
 actor	events/actor.go	/^type actor struct {$/;"	s	package:events
 actor	events/player.go	/^	*actor$/;"	M	struct:events.Player	typeref:typename:*actor
+app	main.go	/^var app *tview.Application$/;"	v	package:main
 bitArray	common/bitArray/bits.go	/^package bitArray$/;"	p
 bitfield	events/world/object/Object.go	/^	bitfield          = 8$/;"	c	package:object
 blurb	events/world/object/description.go	/^	blurb string$/;"	m	struct:object.description

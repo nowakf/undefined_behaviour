@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+
 	"github.com/nowakf/tview"
+	"github.com/nowakf/ubcell"
 )
 
 func Book() *book {
@@ -77,6 +79,10 @@ func (b *book) UI(nextMode func()) (title string, content tview.Primitive) {
 		AddItem(b.names, 0, 1, true).
 		AddItem(b.pages, 0, 2, false)
 
+	prim.SetDrawFunc(func(screen ubcell.Screen, x, y, width, height int) (int, int, int, int) {
+		app.SetFocus(b.names)
+		return x, y, width, height
+	})
 	b.spells = testSpells
 
 	b.names.AddItem("overview", "", 'a', func() {
