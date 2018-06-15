@@ -5,21 +5,23 @@
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
 !_TAG_PROGRAM_VERSION	0.0.0	/7918d19f/
+APGraph	events/world/subject.go	/^	APGraph     int$/;"	m	struct:world.location
 AbilitiesFromYaml	data/yaml.go	/^func (y *yamlLoader) AbilitiesFromYaml(yamlFile []byte) ([]AbilityData, error) {$/;"	f	unknown:data.yamlLoader
 AbilityData	data/AbilityData.go	/^type AbilityData struct {$/;"	s	package:data
+Act	events/world/subject.go	/^func (s *Subject) Act(w *World) {$/;"	f	unknown:world.Subject
+ActionPlanningGraph	events/world/World.go	/^	ActionPlanningGraph graph.Graph$/;"	m	struct:world.World
 ActorData	data/ActorData.go	/^type ActorData struct {$/;"	s	package:data
 AddItem	news.go	/^func (n *news) AddItem(p tview.Primitive) {$/;"	f	unknown:main.news
-AddVertex	common/graph/graph.go	/^func (g *graph) AddVertex(v interface{}) error {$/;"	f	unknown:graph.graph
-Adj	common/graph/graph.go	/^func (g *graph) Adj(vert int) map[int]edge {$/;"	f	unknown:graph.graph
+AddMember	events/world/group.go	/^func (g *Group) AddMember(p *Subject) {$/;"	f	unknown:world.Group
+AddVertex	common/graph/graph.go	/^func (g *Graph) AddVertex(v interface{}) error {$/;"	f	unknown:graph.Graph
+Adj	common/graph/graph.go	/^func (g Graph) Adj(vert int) map[int]edge {$/;"	f	unknown:graph.Graph
+Agoraphobia	events/world/object/object.go	/^	Agoraphobia$/;"	c	package:object
 Alignment	data/ActorData.go	/^	Alignment    string   `yaml:"alignment"`$/;"	m	struct:data.ActorData
 Alignment	data/OrganizationData.go	/^	Alignment   int    `yaml:"alignment"`$/;"	m	struct:data.GoalData
-BiDirectionalSearch	common/graph/graph.go	/^func (g *graph) BiDirectionalSearch(sourceIndex int, sinkIndex int, checkFunc func(interface{}) /;"	f	unknown:graph.graph
-Blurb	events/world/object/Object.go	/^func (r Object) Blurb(c category, i index, t dataType) string {$/;"	f	unknown:object.Object
-Blurb	events/world/object/description.go	/^func (o description) Blurb() string {$/;"	f	unknown:object.description
-Body	events/world/Record.go	/^func (e *Record) Body() string {$/;"	f	unknown:world.Record
-Body	events/world/object/Body.go	/^type Body struct {$/;"	s	package:object
-Body	events/world/person.go	/^func (p *Person) Body() *o.Body {$/;"	f	unknown:world.Person
+BiDirectionalSearch	common/graph/graph.go	/^func (g *Graph) BiDirectionalSearch(sourceIndex int, sinkIndex int, checkFunc func(interface{}) /;"	f	unknown:graph.Graph
+Blurb	events/world/object/description.go	/^func (d *description) Blurb() string {$/;"	f	unknown:object.description
 Book	book.go	/^func Book() *book {$/;"	f	package:main
+CHA	events/world/object/object.go	/^	CHA$/;"	c	package:object
 Check	common/errors.go	/^func Check(e error) {$/;"	f	package:common
 Content	data/MessageData.go	/^	Content string         `yaml:"content"`$/;"	m	struct:data.MessageData
 Content	data/StoryData.go	/^	Content string   `yaml:"content"`$/;"	m	struct:data.StoryData
@@ -27,112 +29,122 @@ Count	book.go	/^func (b *book) Count() int {$/;"	f	unknown:main.book
 Count	email.go	/^func (e *email) Count() int {$/;"	f	unknown:main.email
 Count	graph.go	/^func (g *graph) Count() int {$/;"	f	unknown:main.graph
 Count	news.go	/^func (n *news) Count() int {$/;"	f	unknown:main.news
-Data	events/world/person.go	/^	Data   *o.Object$/;"	m	struct:world.Person
-Depth	events/world/Record.go	/^	Depth  int$/;"	m	struct:world.Record
+Depression	events/world/object/object.go	/^	Depression$/;"	c	package:object
 Description	data/AbilityData.go	/^	Description  string         `yaml:"description"`$/;"	m	struct:data.AbilityData
 Description	data/ActorData.go	/^	Description  string   `yaml:"description"`$/;"	m	struct:data.ActorData
-Description	data/OrganizationData.go	/^	Description string         `yaml:"description"`$/;"	m	struct:data.OrganizationDataData
+Description	data/OrganizationData.go	/^	Description string         `yaml:"description"`$/;"	m	struct:data.OrganizationData
 Description	data/OrganizationData.go	/^	Description string `yaml:"description"`$/;"	m	struct:data.GoalData
-Do	events/world/Record.go	/^func (e *Record) Do(index int) {$/;"	f	unknown:world.Record
-DoubleLink	common/graph/graph.go	/^func (g *graph) DoubleLink(a int, b int, weight int, gate interface{}) error {$/;"	f	unknown:graph.graph
+Description	events/world/group.go	/^	Description string     `yaml:"description"`$/;"	m	struct:world.Group
+Doomsday	events/world/World.go	/^	Doomsday            int$/;"	m	struct:world.World
+DoubleLink	common/graph/graph.go	/^func (g *Graph) DoubleLink(a int, b int, weight int, gate interface{}) error {$/;"	f	unknown:graph.Graph
 Effects	data/AbilityData.go	/^	Effects      map[string]int `yaml:"effects"`$/;"	m	struct:data.AbilityData
 Effects	data/MessageData.go	/^	Effects map[string]int `yaml:"effects"`$/;"	m	struct:data.MessageData
-Effects	data/OrganizationData.go	/^	Effects     map[string]int `yaml:"effects"`$/;"	m	struct:data.OrganizationDataData
+Effects	data/OrganizationData.go	/^	Effects     map[string]int `yaml:"effects"`$/;"	m	struct:data.OrganizationData
 Email	email.go	/^func Email() *email {$/;"	f	package:main
+EmailRoot	events/world/group.go	/^	EmailRoot   string     `yaml:"emailRoot"`$/;"	m	struct:world.Group
 EventSystem	events/eventSystem.go	/^type EventSystem struct {$/;"	s	package:events
 Flex	news.go	/^	*tview.Flex$/;"	M	struct:main.column	typeref:typename:*tview.Flex
 FontLoader	data/data.go	/^type FontLoader struct {$/;"	s	package:data
 Fonts	data/data.go	/^func (d FontLoader) Fonts(fontSize float64, colors ...pixel.RGBA) map[pixel.RGBA]*text.Text {$/;"	f	unknown:data.FontLoader
 Generate	events/world/World.go	/^func (w *World) Generate(conf *WorldConfig) {$/;"	f	unknown:world.World
+Generate	events/world/subject.go	/^func (s *Subject) Generate(ID int) {$/;"	f	unknown:world.Subject
 Get	book.go	/^func (b *book) Get(s string) *spell {$/;"	f	unknown:main.book
 Get	email.go	/^func (e *email) Get(s string) (handle string, content map[string]string, keyvalue map[string]int/;"	f	unknown:main.email
-Get	events/world/object/Object.go	/^func (r *Object) Get(c category, i index, t dataType) int {$/;"	f	unknown:object.Object
+Get	events/world/object/object.go	/^func (o Object) Get(k key) int {$/;"	f	unknown:object.Object
 Get	graph.go	/^func (g *graph) Get(s string) (handle string, content map[string]string, keyvalue map[string]int/;"	f	unknown:main.graph
 Get	news.go	/^func (n *news) Get(s string) (handle string, content map[string]string, keyvalue map[string]int)/;"	f	unknown:main.news
 Get32	common/bitArray/bits.go	/^func Get32(input uint32, index uint, length uint) int {$/;"	f	package:bitArray
-GetActive	events/world/group.go	/^func (g *group) GetActive() []*Person {$/;"	f	unknown:world.group
 GoalData	data/OrganizationData.go	/^type GoalData struct {$/;"	s	package:data
-Goals	data/OrganizationData.go	/^	Goals       []GoalData     `yaml:"goals"`$/;"	m	struct:data.OrganizationDataData
+Goals	data/OrganizationData.go	/^	Goals       []GoalData     `yaml:"goals"`$/;"	m	struct:data.OrganizationData
+Goals	events/world/group.go	/^	Goals       []goal     `yaml:"goals"`$/;"	m	struct:world.Group
+Graph	common/graph/graph.go	/^type Graph struct {$/;"	s	package:graph
 Graph	graph.go	/^func Graph() *graph {$/;"	f	package:main
-Head	events/world/object/Body.go	/^func (w *wound) Head() (category, index, dataType) {$/;"	f	unknown:object.wound
-ID	events/world/person.go	/^func (p *Person) ID() *o.Identity {$/;"	f	unknown:world.Person
-Identity	events/world/object/Identity.go	/^type Identity struct {$/;"	s	package:object
-Index	events/world/Record.go	/^func (o *option) Index() int    { return o.index }$/;"	f	unknown:world.option
-Insert	events/world/Record.go	/^func (o *Options) Insert(title, url string) {$/;"	f	unknown:world.Options
+Group	events/world/group.go	/^type Group struct {$/;"	s	package:world
+Groups	events/world/World.go	/^	Groups              []Group$/;"	m	struct:world.World
+HeartProblems	events/world/object/object.go	/^	HeartProblems$/;"	c	package:object
+ID	events/world/object/object.go	/^	ID key = lastNibbleBoundary + iota*8$/;"	c	package:object
+INT	events/world/object/object.go	/^	INT$/;"	c	package:object
 IsNew	events/player.go	/^	IsNew    bool$/;"	m	struct:events.Player
+LawAbiding	events/world/object/object.go	/^	LawAbiding$/;"	c	package:object
 Len	common/graph/graph.go	/^func (f frontier) Len() int            { return len(f) }$/;"	f	unknown:graph.frontier
 Less	common/graph/graph.go	/^func (f frontier) Less(i, j int) bool  { return f[i].priority > f[j].priority }$/;"	f	unknown:graph.frontier
-Link	common/graph/graph.go	/^func (g *graph) Link(a int, b int, weight int, gate interface{}) error {$/;"	f	unknown:graph.graph
+Link	common/graph/graph.go	/^func (g *Graph) Link(a int, b int, weight int, gate interface{}) error {$/;"	f	unknown:graph.Graph
 LoadPlayer	events/player.go	/^func LoadPlayer() *Player {$/;"	f	package:events
 LoadSave	data/data.go	/^func (d *data) LoadSave() *Save {$/;"	f	unknown:data.data
 LoadWorld	events/world/World.go	/^func LoadWorld(file *data.Save) *World {$/;"	f	package:world
 Loop	events/eventSystem.go	/^func (e *EventSystem) Loop(stop chan struct{}) {$/;"	f	unknown:events.EventSystem
+Madness	events/world/World.go	/^	Madness             int$/;"	m	struct:world.World
 Mail	events/player.go	/^func (p *Player) Mail(viewer chan *w.Record) func() int {$/;"	f	unknown:events.Player
 MajorMode	main.go	/^type MajorMode interface {$/;"	i	package:main
+MemberOfAntiCult	events/world/object/object.go	/^	MemberOfAntiCult$/;"	c	package:object
+MemberOfCult	events/world/object/object.go	/^	MemberOfCult key = iota$/;"	c	package:object
 MessageData	data/MessageData.go	/^type MessageData struct {$/;"	s	package:data
 MessageRoot	data/ActorData.go	/^	MessageRoot  string   `yaml:"message_root"`$/;"	m	struct:data.ActorData
 MessagesFromYaml	data/yaml.go	/^func (y *yamlLoader) MessagesFromYaml(yamlFile []byte) ([]MessageData, error) {$/;"	f	unknown:data.yamlLoader
-Mind	events/world/object/Mind.go	/^type Mind struct {$/;"	s	package:object
-Mind	events/world/person.go	/^func (p *Person) Mind() *o.Mind {$/;"	f	unknown:world.Person
+MissingEye	events/world/object/object.go	/^	MissingEye$/;"	c	package:object
+MissingLimb	events/world/object/object.go	/^	MissingLimb$/;"	c	package:object
+Mutex	events/eventSystem.go	/^	sync.Mutex$/;"	M	struct:events.EventSystem	typeref:typename:sync.Mutex
 Name	data/ActorData.go	/^	Name         string   `yaml:"name"`$/;"	m	struct:data.ActorData
-Name	data/OrganizationData.go	/^	Name        string         `yaml:"Name"`$/;"	m	struct:data.OrganizationDataData
+Name	data/OrganizationData.go	/^	Name        string         `yaml:"Name"`$/;"	m	struct:data.OrganizationData
 Name	data/OrganizationData.go	/^	Name        string `yaml:"Name"`$/;"	m	struct:data.GoalData
-New	common/graph/graph.go	/^func New() *graph {$/;"	f	package:graph
+Name	events/world/group.go	/^	Name        string     `yaml:"name"`$/;"	m	struct:world.Group
+New	common/graph/graph.go	/^func New() Graph {$/;"	f	package:graph
 New	events/world/object/names/namer.go	/^func New(length int) []string {$/;"	f	package:names
 NewData	data/data.go	/^func NewData() *data {$/;"	f	package:data
 NewEventSystem	events/eventSystem.go	/^func NewEventSystem(w *w.World) *EventSystem {$/;"	f	package:events
-NewPerson	events/world/person.go	/^func NewPerson() *Person {$/;"	f	package:world
 NewPlayer	events/player.go	/^func NewPlayer(conf *PlayerConfig) *Player {$/;"	f	package:events
-NewWorld	events/world/World.go	/^func NewWorld(con *WorldConfig) *World {$/;"	f	package:world
+NewWorld	events/world/World.go	/^func NewWorld() *World {$/;"	f	package:world
 NewWorldConfig	events/world/worldConfig.go	/^func NewWorldConfig() *WorldConfig {$/;"	f	package:world
 NewYamlLoader	data/yaml.go	/^func NewYamlLoader(path string) *yamlLoader {$/;"	f	package:data
 News	events/player.go	/^func (p *Player) News(viewer chan *w.Record) func() int {$/;"	f	unknown:events.Player
 News	news.go	/^func News() *news {$/;"	f	package:main
-Object	events/world/object/Object.go	/^type Object struct {$/;"	s	package:object
+Object	events/world/object/object.go	/^type Object uint64$/;"	t	package:object
+Object	events/world/subject.go	/^	o.Object$/;"	M	struct:world.Subject	typeref:typename:o.Object
+Observe	events/world/subject.go	/^func (s *Subject) Observe(w *World) {$/;"	f	unknown:world.Subject
 Options	data/MessageData.go	/^	Options []string       `yaml:"options"`$/;"	m	struct:data.MessageData
-Options	events/world/Record.go	/^	*Options$/;"	M	struct:world.Record	typeref:typename:*Options
-Options	events/world/Record.go	/^type Options []option$/;"	t	package:world
 Organization	data/ActorData.go	/^	Organization string   `yaml:"organization"`$/;"	m	struct:data.ActorData
-OrganizationDataData	data/OrganizationData.go	/^type OrganizationDataData struct {$/;"	s	package:data
-Origin	events/world/Record.go	/^func (e *Record) Origin() *Person {$/;"	f	unknown:world.Record
-Person	events/actor.go	/^	*w.Person$/;"	M	struct:events.actor	typeref:typename:*w.Person
-Person	events/world/person.go	/^type Person struct {$/;"	s	package:world
+OrganizationData	data/OrganizationData.go	/^type OrganizationData struct {$/;"	s	package:data
+Paranoia	events/world/object/object.go	/^	Paranoia$/;"	c	package:object
+People	events/world/World.go	/^	People              [pop_number]Subject$/;"	m	struct:world.World
+Person	events/player.go	/^	*w.Person$/;"	M	struct:events.Player	typeref:typename:*w.Person
+Plague	events/world/object/object.go	/^	Plague$/;"	c	package:object
 Player	events/player.go	/^type Player struct {$/;"	s	package:events
 PlayerConfig	events/player.go	/^type PlayerConfig struct{}$/;"	s	package:events
 Pop	common/graph/graph.go	/^func (f *frontier) Pop() interface{} {$/;"	f	unknown:graph.frontier
 Progression	data/AbilityData.go	/^	Progression  string         `yaml:"progression"`$/;"	m	struct:data.AbilityData
 Push	common/graph/graph.go	/^func (f *frontier) Push(n interface{}) { *f = append(*f, n.(*node)) }$/;"	f	unknown:graph.frontier
-Queue	events/world/person.go	/^func (p *Person) Queue(url string) {}$/;"	f	unknown:world.Person
-Record	events/world/Record.go	/^type Record struct {$/;"	s	package:world
 Requirements	data/AbilityData.go	/^	Requirements map[string]int `yaml:"requirements"`$/;"	m	struct:data.AbilityData
+SAN	events/world/object/object.go	/^	SAN$/;"	c	package:object
+STR	events/world/object/object.go	/^	STR$/;"	c	package:object
+STRESS	events/world/object/object.go	/^	STRESS$/;"	c	package:object
 Save	data/data.go	/^type Save struct{}$/;"	s	package:data
-Set	events/world/object/Object.go	/^func (r *Object) Set(c category, i index, t dataType, newValue uint8) {$/;"	f	unknown:object.Object
+Schizophrenia	events/world/object/object.go	/^	Schizophrenia$/;"	c	package:object
+Set	events/world/object/object.go	/^func (o *Object) Set(k key, newVal int) *Object {$/;"	f	unknown:object.Object
 SetMadness	events/world/worldConfig.go	/^func (w *WorldConfig) SetMadness(mad int) {$/;"	f	unknown:world.WorldConfig
 SetYear	events/world/worldConfig.go	/^func (w *WorldConfig) SetYear(year int) {$/;"	f	unknown:world.WorldConfig
-Social	events/world/object/Social.go	/^type Social struct {$/;"	s	package:object
-Social	events/world/person.go	/^func (p *Person) Social() *o.Social {$/;"	f	unknown:world.Person
+SocialGraph	events/world/World.go	/^	SocialGraph         graph.Graph$/;"	m	struct:world.World
+SocialGraph	events/world/subject.go	/^	SocialGraph int$/;"	m	struct:world.location
 Start	events/eventSystem.go	/^func (e *EventSystem) Start() {$/;"	f	unknown:events.EventSystem
 StoriesFromYaml	data/yaml.go	/^func (y *yamlLoader) StoriesFromYaml(yamlFile []byte) ([]StoryData, error) {$/;"	f	unknown:data.yamlLoader
 StoryData	data/StoryData.go	/^type StoryData struct {$/;"	s	package:data
-Strength	events/world/object/Body.go	/^func (b *Body) Strength() (category, index, dataType) {$/;"	f	unknown:object.Body
 String	common/graph/graph.go	/^func (p path) String() string {$/;"	f	unknown:graph.path
+String	events/world/object/key_string.go	/^func (i key) String() string {$/;"	f	unknown:object.key
+Subject	events/world/subject.go	/^type Subject struct {$/;"	s	package:world
 Swap	common/graph/graph.go	/^func (f frontier) Swap(i, j int)       { f[i], f[j] = f[j], f[i] }$/;"	f	unknown:graph.frontier
 Tags	data/AbilityData.go	/^	Tags         []string       `yaml:"tags"`$/;"	m	struct:data.AbilityData
 Tags	data/ActorData.go	/^	Tags         []string `yaml:"tags"`$/;"	m	struct:data.ActorData
 Tags	data/MessageData.go	/^	Tags    string         `yaml:"tags"`$/;"	m	struct:data.MessageData
-Tags	data/OrganizationData.go	/^	Tags        string         `yaml:"tags"`$/;"	m	struct:data.OrganizationDataData
+Tags	data/OrganizationData.go	/^	Tags        string         `yaml:"tags"`$/;"	m	struct:data.OrganizationData
 Tags	data/OrganizationData.go	/^	Tags        string `yaml:"tags"`$/;"	m	struct:data.GoalData
 Tags	data/StoryData.go	/^	Tags    []string `yaml:"tags"`$/;"	m	struct:data.StoryData
+Tags	events/world/group.go	/^	Tags        string     `yaml:"tags"`$/;"	m	struct:world.Group
 TestBiDirectionalSearch	common/graph/graph_test.go	/^func TestBiDirectionalSearch(t *testing.T) {$/;"	f	package:graph
 TestLoad	data/yaml_test.go	/^func TestLoad(t *testing.T) {$/;"	f	package:data
 TickRate	events/eventSystem.go	/^func (e *EventSystem) TickRate(newTickRate float64) {$/;"	f	unknown:events.EventSystem
 Title	data/AbilityData.go	/^	Title        string         `yaml:"title"`$/;"	m	struct:data.AbilityData
 Title	data/MessageData.go	/^	Title   string         `yaml:"title"`$/;"	m	struct:data.MessageData
 Title	data/StoryData.go	/^	Title   string   `yaml:"title"`$/;"	m	struct:data.StoryData
-Title	events/world/Record.go	/^func (e *Record) Title() string {$/;"	f	unknown:world.Record
-Title	events/world/Record.go	/^func (o *option) Title() string { return o.title }$/;"	f	unknown:world.option
-Title	events/world/object/Object.go	/^func (r Object) Title(c category, i index, t dataType) string {$/;"	f	unknown:object.Object
-Title	events/world/object/description.go	/^func (o description) Title() string {$/;"	f	unknown:object.description
+Title	events/world/object/description.go	/^func (d *description) Title() string {$/;"	f	unknown:object.description
 UI	book.go	/^func (b *book) UI(nextMode func()) (title string, content tview.Primitive) {$/;"	f	unknown:main.book
 UI	email.go	/^func (e *email) UI(nextMode func()) (title string, content tview.Primitive) {$/;"	f	unknown:main.email
 UI	graph.go	/^func (g *graph) UI(nextMode func()) (title string, content tview.Primitive) {$/;"	f	unknown:main.graph
@@ -141,27 +153,38 @@ Update	book.go	/^func (b *book) Update() {$/;"	f	unknown:main.book
 Update	email.go	/^func (e *email) Update() {}$/;"	f	unknown:main.email
 Update	graph.go	/^func (g *graph) Update() {}$/;"	f	unknown:main.graph
 Update	news.go	/^func (n *news) Update() {}$/;"	f	unknown:main.news
-World	events/actor.go	/^	*w.World$/;"	M	struct:events.actor	typeref:typename:*w.World
+WIL	events/world/object/object.go	/^	WIL$/;"	c	package:object
+WIS	events/world/object/object.go	/^	WIS$/;"	c	package:object
 World	events/world/World.go	/^type World struct {$/;"	s	package:world
 WorldConfig	events/world/worldConfig.go	/^type WorldConfig struct {$/;"	s	package:world
-Wounds	events/world/object/Body.go	/^func (b *Body) Wounds() *wound {$/;"	f	unknown:object.Body
 Write32	common/bitArray/bits.go	/^func Write32(input uint32, newValue uint8, index uint, length uint) uint32 {$/;"	f	package:bitArray
-actor	events/actor.go	/^type actor struct {$/;"	s	package:events
-actor	events/player.go	/^	*actor$/;"	M	struct:events.Player	typeref:typename:*actor
+_	events/world/object/object.go	/^	_ key = lastBoolBoundary + iota*4$/;"	c	package:object
+_	events/world/object/object.go	/^	_$/;"	c	package:object
+_bool	events/world/object/object.go	/^	_bool   = 1$/;"	c	package:object
+_key_index_0	events/world/object/key_string.go	/^	_key_index_0 = [...]uint8{0, 12, 28, 38, 49, 59, 72, 85, 93, 104, 114, 120}$/;"	v	package:object
+_key_name_0	events/world/object/key_string.go	/^	_key_name_0 = "MemberOfCultMemberOfAntiCultLawAbidingMissingLimbMissingEyeHeartProblemsSchizoph/;"	c	package:object
+_key_name_1	events/world/object/key_string.go	/^	_key_name_1 = "lastBoolBoundary"$/;"	c	package:object
+_key_name_2	events/world/object/key_string.go	/^	_key_name_2 = "STR"$/;"	c	package:object
+_key_name_3	events/world/object/key_string.go	/^	_key_name_3 = "CHA"$/;"	c	package:object
+_key_name_4	events/world/object/key_string.go	/^	_key_name_4 = "WIS"$/;"	c	package:object
+_key_name_5	events/world/object/key_string.go	/^	_key_name_5 = "INT"$/;"	c	package:object
+_key_name_6	events/world/object/key_string.go	/^	_key_name_6 = "WIL"$/;"	c	package:object
+_key_name_7	events/world/object/key_string.go	/^	_key_name_7 = "SAN"$/;"	c	package:object
+_key_name_8	events/world/object/key_string.go	/^	_key_name_8 = "lastNibbleBoundary"$/;"	c	package:object
+_key_name_9	events/world/object/key_string.go	/^	_key_name_9 = "STRESS"$/;"	c	package:object
+_nibble	events/world/object/object.go	/^	_nibble = 4$/;"	c	package:object
+_uint8	events/world/object/object.go	/^	_uint8  = 8$/;"	c	package:object
 app	main.go	/^var app *tview.Application$/;"	v	package:main
+assignGroups	events/world/World.go	/^func (w *World) assignGroups() {$/;"	f	unknown:world.World
 bitArray	common/bitArray/bits.go	/^package bitArray$/;"	p
-bitfield	events/world/object/Object.go	/^	bitfield          = 8$/;"	c	package:object
-blurb	events/world/object/description.go	/^	blurb string$/;"	m	struct:object.description
-body	events/world/Record.go	/^	body   string$/;"	m	struct:world.Record
-body	events/world/object/Object.go	/^	body category = iota$/;"	c	package:object
-body	events/world/person.go	/^	body   o.Body$/;"	m	struct:world.Person
+blockLen	events/world/object/object.go	/^func (o Object) blockLen(k key) (length uint) {$/;"	f	unknown:object.Object
 book	book.go	/^type book struct {$/;"	s	package:main
-boolean	events/world/object/Object.go	/^	boolean  dataType = 1$/;"	c	package:object
 cat	tools/tools.go	/^func cat(r rune) (names []string) {$/;"	f	package:tools
-category	events/world/object/Object.go	/^type category int$/;"	t	package:object
 chapterBreak	util.go	/^func chapterBreak(p *tview.Box) string {$/;"	f	package:main
 chapter_break	util.go	/^const chapter_break = "\\u00a7"$/;"	c	package:main
+checkFit	events/world/object/object.go	/^func (o Object) checkFit(k key, newVal int) int {$/;"	f	unknown:object.Object
 checkIfHasReccord	events/event.go	/^func (a *event) checkIfHasReccord() {}$/;"	f	unknown:events.event
+clearMask	events/world/object/object.go	/^	clearMask = 0xFFFFFFFFFFFFFFFF$/;"	c	package:object
 column	news.go	/^type column struct {$/;"	s	package:main
 column_count	news.go	/^const column_count = 3$/;"	c	package:main
 columns	news.go	/^	columns [column_count]column$/;"	m	struct:main.news
@@ -177,58 +200,42 @@ data	data/data.go	/^package data$/;"	p
 data	data/data.go	/^type data struct {$/;"	s	package:data
 data	data/yaml.go	/^package data$/;"	p
 data	data/yaml_test.go	/^package data$/;"	p
-data	events/world/object/Object.go	/^	data [numCategories]uint32$/;"	m	struct:object.Object
-dataType	events/world/object/Object.go	/^type dataType int$/;"	t	package:object
-deltas	events/world/object/Social.go	/^	deltas       []int$/;"	m	struct:object.relationship
 description	events/world/object/description.go	/^type description struct {$/;"	s	package:object
-descriptions	events/world/object/Social.go	/^	descriptions []string$/;"	m	struct:object.relationship
-descriptions	events/world/object/description.go	/^var descriptions = map[category]map[index]description{$/;"	v	package:object
-doomsday	events/world/World.go	/^	doomsday int$/;"	m	struct:world.World
+descriptions	events/world/object/description.go	/^var descriptions = [][]description{}$/;"	v	package:object
 edge	common/graph/graph.go	/^type edge struct {$/;"	s	package:graph
-edges	common/graph/graph.go	/^	edges    map[int]map[int]edge$/;"	m	struct:graph.graph
+edges	common/graph/graph.go	/^	edges    map[int]map[int]edge$/;"	m	struct:graph.Graph
 email	email.go	/^type email struct{}$/;"	s	package:main
-emailRoot	events/world/group.go	/^	emailRoot string$/;"	m	struct:world.group
 emails	events/world/object/names/emails.go	/^var emails = []string{$/;"	v	package:names
-entity	events/world/object/Social.go	/^	entity       int$/;"	m	struct:object.relationship
 event	events/event.go	/^type event struct {$/;"	s	package:events
-events	events/actor.go	/^package events$/;"	p
 events	events/event.go	/^package events$/;"	p
 events	events/eventSystem.go	/^package events$/;"	p
 events	events/player.go	/^package events$/;"	p
 feed	events/player.go	/^func (p *Player) feed(viewer chan *w.Record, list []*w.Record) func() int {$/;"	f	unknown:events.Player
-feelings	events/world/object/Body.go	/^	feelings$/;"	c	package:object
 femaleFirstNames	events/world/object/names/names.go	/^var femaleFirstNames = []string{$/;"	v	package:names
 formatSpell	book.go	/^func (b *book) formatSpell(s *spell) string {$/;"	f	unknown:main.book
 formatStory	news.go	/^func (n *news) formatStory(s story) string {$/;"	f	unknown:main.news
 frontier	common/graph/graph.go	/^type frontier []*node$/;"	t	package:graph
 gate	common/graph/graph.go	/^	gate   interface{}$/;"	m	struct:graph.edge
 gate	common/graph/graph_test.go	/^type gate uint32$/;"	t	package:graph
-goal	events/actor.go	/^	*goal$/;"	M	struct:events.actor	typeref:typename:*goal
-goal	events/actor.go	/^type goal struct {$/;"	s	package:events
+generateSocialGraph	events/world/World.go	/^func (w *World) generateSocialGraph() {$/;"	f	unknown:world.World
+goal	events/world/subject.go	/^	goal$/;"	M	struct:world.Subject	typeref:typename:goal
+goal	events/world/subject.go	/^type goal struct {$/;"	s	package:world
 graph	common/graph/graph.go	/^package graph$/;"	p
-graph	common/graph/graph.go	/^type graph struct {$/;"	s	package:graph
 graph	common/graph/graph_test.go	/^package graph$/;"	p
 graph	graph.go	/^type graph struct{}$/;"	s	package:main
 graphSize	common/graph/graph_test.go	/^const graphSize = 10$/;"	c	package:graph
-group	events/world/group.go	/^type group struct {$/;"	s	package:world
-groups	events/world/World.go	/^	groups   []group$/;"	m	struct:world.World
-groups	events/world/virtual.go	/^	groups  map[string]group$/;"	m	struct:world.virtual
 handle	book.go	/^	handle            string$/;"	m	struct:main.spell
-head	events/world/object/Body.go	/^	head = iota$/;"	c	package:object
-id	events/world/person.go	/^	id     o.Identity$/;"	m	struct:world.Person
-identity	events/world/object/Object.go	/^	identity$/;"	c	package:object
-index	events/world/Record.go	/^	index int$/;"	m	struct:world.option
-index	events/world/object/Object.go	/^type index int$/;"	t	package:object
 init	tools/tools.go	/^func init() {$/;"	f	package:tools
 instantiateActor	events/eventSystem.go	/^func (e *EventSystem) instantiateActor(input *actor) (*actor, error) {$/;"	f	unknown:events.EventSystem
 instantiateRecord	events/eventSystem.go	/^func (e *EventSystem) instantiateRecord(input *w.Record) *w.Record {$/;"	f	unknown:events.EventSystem
-intelligence	events/world/object/Body.go	/^	intelligence$/;"	c	package:object
+key	events/world/object/object.go	/^type key uint$/;"	t	package:object
 keyValue	book.go	/^	keyValue          map[string]int$/;"	m	struct:main.spell
-leg	events/world/object/Body.go	/^	leg$/;"	c	package:object
+lastBoolBoundary	events/world/object/object.go	/^	lastBoolBoundary$/;"	c	package:object
+lastNibbleBoundary	events/world/object/object.go	/^	lastNibbleBoundary$/;"	c	package:object
 loadTTF	data/data.go	/^func (d FontLoader) loadTTF(path string, size float64) (font.Face, error) {$/;"	f	unknown:data.FontLoader
+location	events/world/subject.go	/^	location$/;"	M	struct:world.Subject	typeref:typename:location
+location	events/world/subject.go	/^type location struct {$/;"	s	package:world
 long_description	book.go	/^	long_description  string$/;"	m	struct:main.spell
-m	events/world/object/Object.go	/^	m    *sync.Mutex$/;"	m	struct:object.Object
-madness	events/world/World.go	/^	madness  int$/;"	m	struct:world.World
 madness	events/world/worldConfig.go	/^	madness int$/;"	m	struct:world.WorldConfig
 mailBox	events/player.go	/^	mailBox  []*w.Record$/;"	m	struct:events.Player
 main	_main.go	/^func main() {$/;"	f	package:main
@@ -241,57 +248,48 @@ main	main.go	/^package main$/;"	p
 main	news.go	/^package main$/;"	p
 main	util.go	/^package main$/;"	p
 maleFirstNames	events/world/object/names/names.go	/^var maleFirstNames = []string{$/;"	v	package:names
-members	events/world/group.go	/^	members   []*Person$/;"	m	struct:world.group
-mind	events/world/object/Object.go	/^	mind$/;"	c	package:object
-mind	events/world/person.go	/^	mind   o.Mind$/;"	m	struct:world.Person
-model	events/world/World.go	/^	model    *virtual$/;"	m	struct:world.World
-mu	events/eventSystem.go	/^	mu       sync.Mutex$/;"	m	struct:events.EventSystem
+max_enemies	events/world/World.go	/^	max_enemies       = 3$/;"	c	package:world
+max_friends	events/world/World.go	/^	max_friends       = 4$/;"	c	package:world
+max_hate	events/world/World.go	/^	max_hate          = 255$/;"	c	package:world
+max_love	events/world/World.go	/^	max_love          = 255$/;"	c	package:world
+max_relationships	events/world/World.go	/^	max_relationships = 12$/;"	c	package:world
+members	events/world/group.go	/^	members     []*Subject `yaml:"members"`$/;"	m	struct:world.Group
+model	events/world/World.go	/^	model               *virtual$/;"	m	struct:world.World
 names	book.go	/^	names  *tview.List$/;"	m	struct:main.book
 names	events/world/object/names/emails.go	/^package names$/;"	p
 names	events/world/object/names/namer.go	/^package names$/;"	p
 names	events/world/object/names/names.go	/^package names$/;"	p
-newVirtual	events/world/virtual.go	/^func newVirtual() *virtual {$/;"	f	package:world
+newVirtual	events/world/virtual.go	/^func newVirtual(peoplePath, recordsPath, groupsPath string) (*virtual, error) {$/;"	f	package:world
 news	news.go	/^type news struct {$/;"	s	package:main
 newsFeed	events/player.go	/^	newsFeed []*w.Record$/;"	m	struct:events.Player
-nibble	events/world/object/Object.go	/^	nibble            = 4$/;"	c	package:object
 node	common/graph/graph.go	/^type node struct {$/;"	s	package:graph
-numCategories	events/world/object/Object.go	/^	numCategories \/\/this just tells you how many there are in this block$/;"	c	package:object
+numberOfEnemies	events/world/World.go	/^func (w *World) numberOfEnemies(p Subject) int {$/;"	f	unknown:world.World
+numberOfFamilly	events/world/World.go	/^func (w *World) numberOfFamilly(p Subject) int {$/;"	f	unknown:world.World
+numberOfFriends	events/world/World.go	/^func (w *World) numberOfFriends(p Subject) int {$/;"	f	unknown:world.World
 object	events/event.go	/^	object  *actor$/;"	m	struct:events.event
-object	events/world/object/Body.go	/^package object$/;"	p
-object	events/world/object/Identity.go	/^package object$/;"	p
-object	events/world/object/Mind.go	/^package object$/;"	p
-object	events/world/object/Object.go	/^package object$/;"	p
-object	events/world/object/Social.go	/^package object$/;"	p
 object	events/world/object/description.go	/^package object$/;"	p
-option	events/world/Record.go	/^type option struct {$/;"	s	package:world
-origin	events/world/Record.go	/^	origin *Person$/;"	m	struct:world.Record
+object	events/world/object/key_string.go	/^package object$/;"	p
+object	events/world/object/object.go	/^package object$/;"	p
 pages	book.go	/^	pages  *tview.Pages$/;"	m	struct:main.book
 path	common/graph/graph.go	/^type path []int$/;"	t	package:graph
 path	data/yaml.go	/^	path string$/;"	m	struct:data.yamlLoader
-people	events/world/World.go	/^	people   [pop_number]Person$/;"	m	struct:world.World
-people	events/world/virtual.go	/^	people  map[string]Person$/;"	m	struct:world.virtual
 plain	book.go	/^	plain  *tview.TextView$/;"	m	struct:main.book
-pop_number	events/world/World.go	/^	pop_number = 256$/;"	c	package:world
+pop_number	events/world/World.go	/^	pop_number        = 256$/;"	c	package:world
 predecessor	common/graph/graph.go	/^	predecessor int$/;"	m	struct:graph.node
 priority	common/graph/graph.go	/^	priority    int$/;"	m	struct:graph.node
 randGraph	common/graph/graph_test.go	/^func randGraph(vertexCount int) *graph {$/;"	f	package:graph
-records	events/world/virtual.go	/^	records map[string]Record$/;"	m	struct:world.virtual
-relationship	events/world/object/Social.go	/^type relationship struct {$/;"	s	package:object
-relationships	events/world/object/Social.go	/^	relationships []relationship$/;"	m	struct:object.Social
+relationship	events/world/World.go	/^func (w *World) relationship(a int, b int, bias int) int {$/;"	f	unknown:world.World
+relationship	events/world/World.go	/^type relationship struct {$/;"	s	package:world
 resized	_main.go	/^func resized() func(win *pixelgl.Window) bool {$/;"	f	package:main
 run	_main.go	/^func run() {$/;"	f	package:main
 run	main.go	/^func run() {$/;"	f	package:main
 short_description	book.go	/^	short_description string$/;"	m	struct:main.spell
 sink	common/graph/graph.go	/^	sink visitor = iota$/;"	c	package:graph
-social	events/world/object/Object.go	/^	social$/;"	c	package:object
-social	events/world/person.go	/^	social o.Social$/;"	m	struct:world.Person
 source	common/graph/graph.go	/^	source$/;"	c	package:graph
 spell	book.go	/^type spell struct {$/;"	s	package:main
 spells	book.go	/^	spells map[string]*spell$/;"	m	struct:main.book
-state	events/world/object/Social.go	/^	state        int$/;"	m	struct:object.relationship
 stories	news.go	/^	stories []story$/;"	m	struct:main.news
 story	news.go	/^type story struct {$/;"	s	package:main
-strength	events/world/object/Body.go	/^	strength index = iota * index(nibble)$/;"	c	package:object
 subject	events/event.go	/^	subject *actor$/;"	m	struct:events.event
 success	events/event.go	/^	success bool$/;"	m	struct:events.event
 surnames	events/world/object/names/names.go	/^var surnames = []string{$/;"	v	package:names
@@ -300,34 +298,25 @@ tags	events/event.go	/^	tags    []string \/\/e.g "theft", "arson", "uncanny" etc
 testSpells	book.go	/^var testSpells = map[string]*spell{$/;"	v	package:main
 testStories	news.go	/^var testStories = []story{$/;"	v	package:main
 tickRate	events/eventSystem.go	/^	tickRate chan float64$/;"	m	struct:events.EventSystem
-title	events/world/Record.go	/^	title  string$/;"	m	struct:world.Record
-title	events/world/Record.go	/^	title string$/;"	m	struct:world.option
-title	events/world/object/description.go	/^	title string$/;"	m	struct:object.description
 title	news.go	/^	title   string$/;"	m	struct:main.story
 tools	tools/tools.go	/^package tools$/;"	p
-unspool	common/graph/graph.go	/^func (g *graph) unspool(history map[int]node, lastSource int, lastSink int) (path, error) {$/;"	f	unknown:graph.graph
+unspool	common/graph/graph.go	/^func (g *Graph) unspool(history map[int]node, lastSource int, lastSink int) (path, error) {$/;"	f	unknown:graph.Graph
 update	events/eventSystem.go	/^func (e *EventSystem) update() {$/;"	f	unknown:events.EventSystem
-url	events/world/Record.go	/^	url    string$/;"	m	struct:world.Record
-url	events/world/Record.go	/^	url   string$/;"	m	struct:world.option
 value	common/graph/graph.go	/^	value       int$/;"	m	struct:graph.node
 vertex	common/graph/graph.go	/^type vertex struct {$/;"	s	package:graph
-vertexes	common/graph/graph.go	/^	vertexes []interface{}$/;"	m	struct:graph.graph
+vertexes	common/graph/graph.go	/^	vertexes []interface{}$/;"	m	struct:graph.Graph
 virtual	events/world/virtual.go	/^type virtual struct {$/;"	s	package:world
 visitedBy	common/graph/graph.go	/^	visitedBy   visitor$/;"	m	struct:graph.node
 visitor	common/graph/graph.go	/^type visitor int$/;"	t	package:graph
 w	events/eventSystem.go	/^	w        *w.World$/;"	m	struct:events.EventSystem
 weight	common/graph/graph.go	/^	weight int$/;"	m	struct:graph.edge
-whatever	events/actor.go	/^func (a *actor) whatever() {$/;"	f	unknown:events.actor
-whatever	events/world/person.go	/^func (p *Person) whatever() {$/;"	f	unknown:world.Person
-willpower	events/world/object/Body.go	/^	willpower$/;"	c	package:object
 world	events/event.go	/^	world   *w.World$/;"	m	struct:events.event
-world	events/world/Record.go	/^package world$/;"	p
 world	events/world/World.go	/^package world$/;"	p
 world	events/world/group.go	/^package world$/;"	p
-world	events/world/person.go	/^package world$/;"	p
+world	events/world/object.go	/^package world$/;"	p
+world	events/world/subject.go	/^package world$/;"	p
+world	events/world/verb.go	/^package world$/;"	p
 world	events/world/virtual.go	/^package world$/;"	p
 world	events/world/worldConfig.go	/^package world$/;"	p
-wound	events/world/object/Body.go	/^type wound struct {$/;"	s	package:object
-wounds	events/world/object/Body.go	/^	wounds = willpower + iota*index(bitfield)$/;"	c	package:object
 yamlLoader	data/yaml.go	/^type yamlLoader struct {$/;"	s	package:data
 year	events/world/worldConfig.go	/^	year    int$/;"	m	struct:world.WorldConfig

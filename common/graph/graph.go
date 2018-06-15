@@ -6,30 +6,30 @@ import (
 	"fmt"
 )
 
-type graph struct {
+type Graph struct {
 	vertexes []interface{}
 	edges    map[int]map[int]edge
 }
 
-func New() *graph {
-	g := new(graph)
-	g.vertexes = make([]interface{}, 0)
-	g.edges = make(map[int]map[int]edge)
-	return g
+func New() Graph {
+	return Graph{
+		vertexes: make([]interface{}, 0),
+		edges:    make(map[int]map[int]edge),
+	}
 }
 
 //vertex adds a vertex. A vertex can store whatever
-func (g *graph) AddVertex(v interface{}) error {
+func (g *Graph) AddVertex(v interface{}) error {
 	g.vertexes = append(g.vertexes, v)
 	return nil
 }
-func (g *graph) Adj(vert int) map[int]edge {
+func (g Graph) Adj(vert int) map[int]edge {
 	return g.edges[vert]
 }
 
 //link creates a one-way link between vertices. The gate
 //can be whatever
-func (g *graph) Link(a int, b int, weight int, gate interface{}) error {
+func (g *Graph) Link(a int, b int, weight int, gate interface{}) error {
 	_, ok := g.edges[a]
 	if !ok {
 		g.edges[a] = make(map[int]edge)
@@ -39,7 +39,7 @@ func (g *graph) Link(a int, b int, weight int, gate interface{}) error {
 }
 
 //DoubleLink creates a two-way link between vertices
-func (g *graph) DoubleLink(a int, b int, weight int, gate interface{}) error {
+func (g *Graph) DoubleLink(a int, b int, weight int, gate interface{}) error {
 	_, ok := g.edges[a]
 	if !ok {
 		g.edges[a] = make(map[int]edge)
@@ -54,7 +54,7 @@ func (g *graph) DoubleLink(a int, b int, weight int, gate interface{}) error {
 }
 
 //BiDirectionalSearch returns the lowest cost path between two points. It's probably buggy
-func (g *graph) BiDirectionalSearch(sourceIndex int, sinkIndex int, checkFunc func(interface{}) bool) (path, error) {
+func (g *Graph) BiDirectionalSearch(sourceIndex int, sinkIndex int, checkFunc func(interface{}) bool) (path, error) {
 
 	sourceNode, sinkNode := node{source, -1, sourceIndex, 0}, node{sink, -1, sinkIndex, 0}
 
@@ -102,7 +102,7 @@ done:
 	return g.unspool(history, lastValues[source], lastValues[sink])
 
 }
-func (g *graph) unspool(history map[int]node, lastSource int, lastSink int) (path, error) {
+func (g *Graph) unspool(history map[int]node, lastSource int, lastSink int) (path, error) {
 
 	spooler := func(current int) []int {
 		spool := make(path, 0)

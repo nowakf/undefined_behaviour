@@ -13,8 +13,10 @@ import (
 //eventSystem keeps track of Events, and produces accounts of them.
 type EventSystem struct {
 	tickRate chan float64
-	mu       sync.Mutex
 	w        *w.World
+
+	//this sends moods to actors
+	sync.Mutex
 }
 
 func NewEventSystem(w *w.World) *EventSystem {
@@ -35,7 +37,9 @@ func (e *EventSystem) TickRate(newTickRate float64) {
 		e.tickRate <- 100 / newTickRate
 	}
 }
+
 func (e *EventSystem) Loop(stop chan struct{}) {
+
 	tick := time.NewTicker(time.Duration(<-e.tickRate) * time.Millisecond)
 	for {
 		select {
@@ -53,6 +57,14 @@ func (e *EventSystem) Loop(stop chan struct{}) {
 	//do finishing stuff here
 }
 func (e *EventSystem) update() {
+	for _, person := range e.w.People {
+		//read from graph
+		person.Observe(e.w)
+
+		//write to graph
+		person.Act(e.w)
+	}
+
 }
 
 func (e *EventSystem) instantiateActor(input *actor) (*actor, error) {

@@ -1,6 +1,6 @@
 package data
 
-type OrganizationDataData struct {
+type OrganizationData struct {
 	Name        string         `yaml:"Name"`
 	Tags        string         `yaml:"tags"`
 	Description string         `yaml:"description"`

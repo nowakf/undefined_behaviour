@@ -9,6 +9,8 @@ import (
 	"github.com/nowakf/pixel"
 	"github.com/nowakf/pixel/pixelgl"
 	"github.com/nowakf/tview"
+
+	"ub/events/world/object"
 )
 
 var app *tview.Application
@@ -38,6 +40,15 @@ func run() {
 	//--------------------------------------------------------------//
 
 	c.Check(err)
+
+	println(object.STR.String())
+	println(object.CHA.String())
+	println(object.MemberOfCult.String())
+	println(object.MissingEye.String())
+	println(object.LawAbiding.String())
+	println(object.Paranoia.String())
+	println(object.Plague.String())
+	println(object.STRESS.String())
 
 	//generate the player here
 

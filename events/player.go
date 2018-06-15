@@ -6,7 +6,7 @@ type Player struct {
 	newsFeed []*w.Record
 	mailBox  []*w.Record
 	IsNew    bool
-	*actor
+	*w.Person
 }
 
 func LoadPlayer() *Player {
