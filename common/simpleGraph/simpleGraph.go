@@ -11,6 +11,10 @@ type vertex struct {
 	cost                  int
 }
 
+func (v vertex) Required() Agent {
+	return Agent{v.minRequiredPossesions, v.minRequiredCharacter}
+}
+
 var predefinedVertexes = []vertex{}
 
 const (
@@ -64,10 +68,12 @@ func (g *graph) Test(location int) (hasRequiredStats func(uint64) bool, hasRequi
 	return
 }
 
-func (g *graph) unspool(final node) (path []int) {
-	current := final
+func (g *graph) unspool(start node, searcher Agent) (out path) {
+	current := start
 	for {
-		path = append(path, current.self)
+		out.path = append(out.path, current.self)
+		out.pathCost += current.cost
+		out.resultingAgent.Union((*g)[current.self].Required())
 		if current.parent == nil {
 			break
 		}
@@ -76,23 +82,40 @@ func (g *graph) unspool(final node) (path []int) {
 	return
 }
 
-func (g graph) Search(possesions uint64, character uint64, goal int) (path []int) {
+type Agent struct {
+	possesions uint64
+	character  uint64
+}
+
+func (a *Agent) Union(b Agent) *Agent        { return a }
+func (a *Agent) Intersection(b Agent) *Agent { return a }
+func (a *Agent) Difference(b Agent) *Agent   { return a }
+
+func (g graph) Search(searcher Agent, goal int) (paths []path) {
 
 	frontier := frontier{node{self: goal, parent: nil, cost: 0}}
+	//add the goal node
+
 	heap.Init(&frontier)
+	//initialize the heap
 
 	visited := make(map[int]bool)
 
+	//break when we have all the characteristics we need to reach the goal - or if there's no way,
+	//break anyway
 	for len(frontier) > 0 {
+
 		location := heap.Pop(&frontier).(node)
 
 		visited[location.self] = true
 
 		hasRequiredStats, hasRequiredThings := g.Test(location.self)
-		if hasRequiredStats(character) && hasRequiredThings(possesions) {
-			//we pass the tests, so we're done.
-			path = g.unspool(location) //unspool
-			return
+
+		if hasRequiredStats(searcher.character) && hasRequiredThings(searcher.possesions) {
+			//we've found a path!
+			path := g.unspool(location, searcher) //unspool
+			paths = append(paths, path)
+
 		}
 
 		for _, next := range g[location.self].neighbours {
@@ -107,6 +130,19 @@ func (g graph) Search(possesions uint64, character uint64, goal int) (path []int
 	}
 	return nil
 
+}
+func (g graph) SortSearched(paths []path) (completeRoute []int) {
+	//sort paths by cost
+	//then check each in turn to see if the path moves the initial agent towards the goal
+	//then, if the agent is at the goal, return the complete route there
+	//if the agent cannot reach the goal, return nil
+	return nil
+}
+
+type path struct {
+	pathCost       int
+	resultingAgent Agent
+	path           []int
 }
 
 type frontier []node
