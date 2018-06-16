@@ -1,7 +1,7 @@
 package events
 
 import (
-	w "ub/events/world"
+	w "/github.com/nowakf/undefined_behaviour/events/world"
 	//"bytes"
 	//	"fmt"
 	"math"

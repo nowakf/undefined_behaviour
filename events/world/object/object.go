@@ -1,47 +1,76 @@
+//package object is a reasonably safe uint64 block that can
+//contain various values
 package object
 
 import "fmt"
 
+var Keys = [...]Key{
+	BOOL0,
+	BOOL1,
+	BOOL2,
+	BOOL3,
+	BOOL4,
+	BOOL5,
+	BOOL6,
+	BOOL7,
+	BOOL8,
+	BOOL9,
+	BOOL10,
+	BOOL11,
+	BOOL12,
+	BOOL13,
+	BOOL14,
+	BOOL15,
+	NIBBLE16,
+	NIBBLE20,
+	NIBBLE24,
+	NIBBLE28,
+	NIBBLE32,
+	NIBBLE36,
+	NIBBLE40,
+	NIBBLE44,
+	UINT8_48,
+	UINT8_54,
+}
+
 const (
-	clearMask = 0xFFFFFFFFFFFFFFFF
-)
-const (
-	MemberOfCult key = iota
-	MemberOfAntiCult
-	LawAbiding
-	//wounds
-	MissingLimb
-	MissingEye
-	HeartProblems
-	Schizophrenia
-	Paranoia
-	Agoraphobia
-	//
-	Depression
-	Plague
-	_
-	_
-	_
-	_
-	_
+	BOOL0 Key = iota
+	BOOL1
+	BOOL2
+	BOOL3
+	BOOL4
+	BOOL5
+	BOOL6
+	BOOL7
+	BOOL8
+	BOOL9
+	BOOL10
+	BOOL11
+	BOOL12
+	BOOL13
+	BOOL14
+	BOOL15
 	lastBoolBoundary
 )
 const (
-	_ key = lastBoolBoundary + iota*4
-	STR
-	CHA
-	WIS
-	INT
-	WIL
-	SAN
-	_
+	NIBBLE16 Key = lastBoolBoundary + iota*4
+	NIBBLE20
+	NIBBLE24
+	NIBBLE28
+	NIBBLE32
+	NIBBLE36
+	NIBBLE40
+	NIBBLE44
 	lastNibbleBoundary
 )
 const (
-	ID key = lastNibbleBoundary + iota*8
-	STRESS
+	UINT8_48 Key = lastNibbleBoundary + iota*8
+	UINT8_54
 )
 
+const (
+	MAX = 0xFFFFFFFFFFFFFFFF
+)
 const (
 	_bool   = 1
 	_nibble = 4
@@ -50,9 +79,9 @@ const (
 
 type Object uint64
 
-type key uint
+type Key uint
 
-func (o Object) blockLen(k key) (length uint) {
+func (k Key) Length() uint {
 	switch {
 	case k < lastBoolBoundary:
 		//it's a bool
@@ -65,44 +94,44 @@ func (o Object) blockLen(k key) (length uint) {
 		return _uint8
 	}
 }
-func (o Object) checkFit(k key, newVal int) int {
-	switch o.blockLen(k) {
+func (k Key) checkFit(newVal int) int {
+	switch k.Length() {
 	case _bool:
-		if newVal < 2 && newVal > 0 {
+		if newVal < 2 && newVal >= 0 {
 			return newVal
 		}
 	case _nibble:
-		if newVal < 16 && newVal > 0 {
+		if newVal < 16 && newVal >= 0 {
 			return newVal
 		}
 	case _uint8:
-		if newVal < 256 && newVal > 0 {
+		if newVal < 256 && newVal >= 0 {
 			return newVal
 		}
 	}
-	fmt.Printf("attempted to set out of bounds value %d, for key %d", newVal, k)
+	fmt.Printf("attempted to set out of bounds value %d, for Key %d, \n", newVal, k)
 
 	return 0
 }
 
-//get an Object using one of the predefined constant keys
-func (o Object) Get(k key) int {
-	o <<= 64 - uint(k) - o.blockLen(k)
-	o >>= 64 - o.blockLen(k)
+//get an object using one of the predefined constant Keys
+func (o Object) Get(k Key) int {
+	o <<= 64 - uint(k) - k.Length()
+	o >>= 64 - k.Length()
 	return int(o)
 }
 
-//set an Object using one of the predefined constant keys
-func (o *Object) Set(k key, newVal int) *Object {
+//set an object using one of the predefined constant Keys
+func (o *Object) Set(k Key, newVal int) *Object {
 	//if it's out of bounds, set to zero and log error
-	newVal = o.checkFit(k, newVal)
+	newVal = k.checkFit(newVal)
 
-	var mask uint64 = clearMask
+	var mask uint64 = MAX
 
-	mask <<= 64 - o.blockLen(k)
+	mask <<= 64 - k.Length()
 	//size the mask
 
-	mask >>= 64 - uint(k) - o.blockLen(k)
+	mask >>= 64 - uint(k) - k.Length()
 	//move it to the right location
 
 	*o &^= Object(mask)

@@ -2,34 +2,52 @@ package world
 
 import (
 	"math/rand"
-	o "ub/events/world/object"
+
+	"github.com/nowakf/undefined_behaviour/events/world/items"
+	"github.com/nowakf/undefined_behaviour/events/world/stats"
 )
 
+//since the pop no is 256, an uint8 is fine
+type ID uint8
+
 type Subject struct {
-	o.Object
-	goal
-	location
+	items   items.Items
+	stats   stats.Stats
+	friends [max_relationships]ID
+	goal    int
 }
 
-func (s *Subject) Generate(ID int) {
-	s.Object.
-		//stats
-		Set(o.STR, rand.Intn(16)).
-		Set(o.CHA, rand.Intn(16)).
-		Set(o.WIS, rand.Intn(16)).
-		Set(o.INT, rand.Intn(16)).
-		Set(o.WIL, rand.Intn(16)).
-		Set(o.SAN, rand.Intn(16)).
-		//bools
-		Set(o.LawAbiding, rand.Intn(2)).
-		//Stress
-		Set(o.STRESS, rand.Intn(50)).
-		Set(o.ID, ID)
+type generationError string
+
+func (g generationError) Error() string {
+	return string(g)
+}
+
+func (s *Subject) Generate(ID ID) error {
+	if ID == 0 {
+		return generationError("ID 0 is reserved for the null identifier")
+	}
+	//set character
+	s.stats.Set(stats.LawAbiding, rand.Intn(2)).
+		Set(stats.Depression, rand.Intn(2)).
+		Set(stats.STR, rand.Intn(16)).
+		Set(stats.CHA, rand.Intn(16)).
+		Set(stats.WIS, rand.Intn(16)).
+		Set(stats.INT, rand.Intn(16)).
+		Set(stats.WIL, rand.Intn(16)).
+		Set(stats.SAN, rand.Intn(5)).
+		Set(stats.ID, int(ID)).
+		Set(stats.Stress, rand.Intn(50))
+
+	//set items
+	s.items.Set(items.Money, rand.Intn(100))
+	return nil
 
 }
 
 func (s *Subject) Observe(w *World) {
-	switch stress := s.Get(o.STRESS); {
+	stress := w.Madness
+	switch {
 	case stress > 0:
 
 	case stress > 100:
@@ -40,12 +58,4 @@ func (s *Subject) Observe(w *World) {
 }
 func (s *Subject) Act(w *World) {
 
-}
-
-type goal struct {
-}
-
-type location struct {
-	APGraph     int
-	SocialGraph int
 }

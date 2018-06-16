@@ -1,10 +1,10 @@
 package events
 
-import w "ub/events/world"
+import w "/github.com/nowakf/undefined_behaviour/events/world"
 
 type event struct {
-	subject *actor
-	object  *actor
+	s/github.com/nowakf/undefined_behaviourject *actor
+	Object  *actor
 	world   *w.World
 	success bool
 	tags    []string //e.g "theft", "arson", "uncanny" etc

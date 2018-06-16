@@ -1,6 +1,6 @@
 package events
 
-import w "ub/events/world"
+import w "/github.com/nowakf/undefined_behaviour/events/world"
 
 type Player struct {
 	newsFeed []*w.Record
