@@ -11,9 +11,7 @@ Act	events/world/subject.go	/^func (s *Subject) Act(w *World) {$/;"	f	unknown:wo
 ActorData	data/ActorData.go	/^type ActorData struct {$/;"	s	package:data
 AddItem	news.go	/^func (n *news) AddItem(p tview.Primitive) {$/;"	f	unknown:main.news
 AddMember	events/world/group.go	/^func (g *Group) AddMember(p *Subject) {$/;"	f	unknown:world.Group
-AddVertex	common/simpleGraph/simpleGraph.go	/^func (g *graph) AddVertex(minRequiredPossesions uint64, minRequiredCharacter uint64, cost int) {$/;"	f	unknown:simpleGraph.graph
 AddVertex	events/world/goapGraph.go	/^func (g *graph) AddVertex(minRequiredPossesions uint64, minRequiredCharacter uint64, cost int) {$/;"	f	unknown:world.graph
-Agent	common/simpleGraph/simpleGraph.go	/^type Agent struct {$/;"	s	package:simpleGraph
 Agent	events/world/goapGraph.go	/^type Agent struct {$/;"	s	package:world
 Agoraphobia	events/world/stats/stats.go	/^	Agoraphobia           = Stat(BOOL8)$/;"	c	package:stats
 Alignment	data/ActorData.go	/^	Alignment    string   `yaml:"alignment"`$/;"	m	struct:data.ActorData
@@ -54,7 +52,6 @@ Description	data/ActorData.go	/^	Description  string   `yaml:"description"`$/;"	
 Description	data/OrganizationData.go	/^	Description string         `yaml:"description"`$/;"	m	struct:data.OrganizationData
 Description	data/OrganizationData.go	/^	Description string `yaml:"description"`$/;"	m	struct:data.GoalData
 Description	events/world/group.go	/^	Description string     `yaml:"description"`$/;"	m	struct:world.Group
-Difference	common/simpleGraph/simpleGraph.go	/^func (a *Agent) Difference(b Agent) *Agent   { return a }$/;"	f	unknown:simpleGraph.Agent
 Difference	events/world/goapGraph.go	/^func (a *Agent) Difference(b Agent) *Agent   { return a }$/;"	f	unknown:world.Agent
 Doomsday	events/world/World.go	/^	Doomsday int$/;"	m	struct:world.World
 Effects	data/AbilityData.go	/^	Effects      map[string]int `yaml:"effects"`$/;"	m	struct:data.AbilityData
@@ -79,7 +76,6 @@ Get	news.go	/^func (n *news) Get(s string) (handle string, content map[string]st
 GoalData	data/OrganizationData.go	/^type GoalData struct {$/;"	s	package:data
 Goals	data/OrganizationData.go	/^	Goals       []GoalData     `yaml:"goals"`$/;"	m	struct:data.OrganizationData
 Goals	events/world/group.go	/^	Goals       []goal     `yaml:"goals"`$/;"	m	struct:world.Group
-Graph	common/simpleGraph/simpleGraph.go	/^func Graph() *graph {$/;"	f	package:simpleGraph
 Graph	events/world/goapGraph.go	/^func Graph() *graph {$/;"	f	package:world
 Graph	graph.go	/^func Graph() *graph {$/;"	f	package:main
 Group	events/world/group.go	/^type Group struct {$/;"	s	package:world
@@ -94,7 +90,6 @@ HeartProblems	events/world/stats/stats.go	/^	HeartProblems         = Stat(BOOL5)
 ID	events/world/stats/stats.go	/^	ID                    = Stat(UINT8_48)$/;"	c	package:stats
 ID	events/world/subject.go	/^type ID uint8$/;"	t	package:world
 INT	events/world/stats/stats.go	/^	INT                   = Stat(NIBBLE28)$/;"	c	package:stats
-Intersection	common/simpleGraph/simpleGraph.go	/^func (a *Agent) Intersection(b Agent) *Agent { return a }$/;"	f	unknown:simpleGraph.Agent
 Intersection	events/world/goapGraph.go	/^func (a *Agent) Intersection(b Agent) *Agent { return a }$/;"	f	unknown:world.Agent
 IsNew	events/player.go	/^	IsNew    bool$/;"	m	struct:events.Player
 Item	events/world/items/items.go	/^type Item Key$/;"	t	package:items
@@ -103,10 +98,8 @@ Key	events/world/object/object.go	/^type Key uint$/;"	t	package:object
 Keys	events/world/object/object.go	/^var Keys = [...]Key{$/;"	v	package:object
 LawAbiding	events/world/stats/stats.go	/^	LawAbiding            = Stat(BOOL2)$/;"	c	package:stats
 Leave	events/world/places.go	/^func (p *place) Leave(a ID) {$/;"	f	unknown:world.place
-Len	common/simpleGraph/simpleGraph.go	/^func (f frontier) Len() int {$/;"	f	unknown:simpleGraph.frontier
 Len	events/world/goapGraph.go	/^func (f frontier) Len() int {$/;"	f	unknown:world.frontier
 Length	events/world/object/object.go	/^func (k Key) Length() uint {$/;"	f	unknown:object.Key
-Less	common/simpleGraph/simpleGraph.go	/^func (f frontier) Less(i int, j int) bool {$/;"	f	unknown:simpleGraph.frontier
 Less	events/world/goapGraph.go	/^func (f frontier) Less(i int, j int) bool {$/;"	f	unknown:world.frontier
 LoadPlayer	events/player.go	/^func LoadPlayer() *Player {$/;"	f	package:events
 LoadSave	data/data.go	/^func (d *data) LoadSave() *Save {$/;"	f	unknown:data.data
@@ -159,7 +152,6 @@ POLICE_STATION	events/world/places.go	/^	POLICE_STATION$/;"	c	package:world
 POWER_PLANT	events/world/places.go	/^	POWER_PLANT$/;"	c	package:world
 PRISON	events/world/places.go	/^	PRISON$/;"	c	package:world
 Paranoia	events/world/stats/stats.go	/^	Paranoia              = Stat(BOOL7)$/;"	c	package:stats
-ParseTests	common/simpleGraph/simpleGraph.go	/^func (g *graph) ParseTests(minRequiredCharacter uint64, minRequiredPossesions uint64) (ref []int/;"	f	unknown:simpleGraph.graph
 ParseTests	events/world/goapGraph.go	/^func (g *graph) ParseTests(minRequiredCharacter uint64, minRequiredPossesions uint64) (ref []int/;"	f	unknown:world.graph
 People	events/world/World.go	/^	People   [pop_number]Subject$/;"	m	struct:world.World
 Person	events/player.go	/^	*w.Person$/;"	M	struct:events.Player	typeref:typename:*w.Person
@@ -168,12 +160,9 @@ PlaceOfWork	events/world/items/items.go	/^	PlaceOfWork      = Item(NIBBLE20)$/;"
 Plague	events/world/stats/stats.go	/^	Plague                = Stat(BOOL10)$/;"	c	package:stats
 Player	events/player.go	/^type Player struct {$/;"	s	package:events
 PlayerConfig	events/player.go	/^type PlayerConfig struct{}$/;"	s	package:events
-Pop	common/simpleGraph/simpleGraph.go	/^func (f *frontier) Pop() interface{} {$/;"	f	unknown:simpleGraph.frontier
 Pop	events/world/goapGraph.go	/^func (f *frontier) Pop() interface{} {$/;"	f	unknown:world.frontier
 Progression	data/AbilityData.go	/^	Progression  string         `yaml:"progression"`$/;"	m	struct:data.AbilityData
-Push	common/simpleGraph/simpleGraph.go	/^func (f *frontier) Push(x interface{}) {$/;"	f	unknown:simpleGraph.frontier
 Push	events/world/goapGraph.go	/^func (f *frontier) Push(x interface{}) {$/;"	f	unknown:world.frontier
-Required	common/simpleGraph/simpleGraph.go	/^func (v vertex) Required() Agent {$/;"	f	unknown:simpleGraph.vertex
 Required	events/world/goapGraph.go	/^func (v vertex) Required() Agent {$/;"	f	unknown:world.vertex
 Requirements	data/AbilityData.go	/^	Requirements map[string]int `yaml:"requirements"`$/;"	m	struct:data.AbilityData
 SAN	events/world/stats/stats.go	/^	SAN                   = Stat(NIBBLE36)$/;"	c	package:stats
@@ -181,14 +170,12 @@ STORE	events/world/places.go	/^	STORE$/;"	c	package:world
 STR	events/world/stats/stats.go	/^	STR                   = Stat(NIBBLE16)$/;"	c	package:stats
 Save	data/data.go	/^type Save struct{}$/;"	s	package:data
 Schizophrenia	events/world/stats/stats.go	/^	Schizophrenia         = Stat(BOOL6)$/;"	c	package:stats
-Search	common/simpleGraph/simpleGraph.go	/^func (g graph) Search(searcher Agent, goal int) (paths []path) {$/;"	f	unknown:simpleGraph.graph
 Search	events/world/goapGraph.go	/^func (g graph) Search(searcher Agent, goal int) (paths []path) {$/;"	f	unknown:world.graph
 Set	events/world/items/items.go	/^func (i *Items) Set(a Item, newVal int) *Items {$/;"	f	unknown:items.Items
 Set	events/world/object/object.go	/^func (o *Object) Set(k Key, newVal int) *Object {$/;"	f	unknown:object.Object
 Set	events/world/stats/stats.go	/^func (s *Stats) Set(a Stat, newVal int) *Stats {$/;"	f	unknown:stats.Stats
 SetMadness	events/world/worldConfig.go	/^func (w *WorldConfig) SetMadness(mad int) {$/;"	f	unknown:world.WorldConfig
 SetYear	events/world/worldConfig.go	/^func (w *WorldConfig) SetYear(year int) {$/;"	f	unknown:world.WorldConfig
-SortSearched	common/simpleGraph/simpleGraph.go	/^func (g graph) SortSearched(paths []path) (completeRoute []int) {$/;"	f	unknown:simpleGraph.graph
 SortSearched	events/world/goapGraph.go	/^func (g graph) SortSearched(paths []path) (completeRoute []int) {$/;"	f	unknown:world.graph
 Start	events/eventSystem.go	/^func (e *EventSystem) Start() {$/;"	f	unknown:events.EventSystem
 Stat	events/world/stats/stats.go	/^type Stat Key$/;"	t	package:stats
@@ -197,7 +184,6 @@ StoriesFromYaml	data/yaml.go	/^func (y *yamlLoader) StoriesFromYaml(yamlFile []b
 StoryData	data/StoryData.go	/^type StoryData struct {$/;"	s	package:data
 Stress	events/world/stats/stats.go	/^	Stress                = Stat(UINT8_54)$/;"	c	package:stats
 Subject	events/world/subject.go	/^type Subject struct {$/;"	s	package:world
-Swap	common/simpleGraph/simpleGraph.go	/^func (f frontier) Swap(i int, j int) {$/;"	f	unknown:simpleGraph.frontier
 Swap	events/world/goapGraph.go	/^func (f frontier) Swap(i int, j int) {$/;"	f	unknown:world.frontier
 Tags	data/AbilityData.go	/^	Tags         []string       `yaml:"tags"`$/;"	m	struct:data.AbilityData
 Tags	data/ActorData.go	/^	Tags         []string `yaml:"tags"`$/;"	m	struct:data.ActorData
@@ -206,7 +192,6 @@ Tags	data/OrganizationData.go	/^	Tags        string         `yaml:"tags"`$/;"	m	
 Tags	data/OrganizationData.go	/^	Tags        string `yaml:"tags"`$/;"	m	struct:data.GoalData
 Tags	data/StoryData.go	/^	Tags    []string `yaml:"tags"`$/;"	m	struct:data.StoryData
 Tags	events/world/group.go	/^	Tags        string     `yaml:"tags"`$/;"	m	struct:world.Group
-Test	common/simpleGraph/simpleGraph.go	/^func (g *graph) Test(location int) (hasRequiredStats func(uint64) bool, hasRequiredThings func(u/;"	f	unknown:simpleGraph.graph
 Test	events/world/goapGraph.go	/^func (g *graph) Test(location int) (hasRequiredStats func(uint64) bool, hasRequiredThings func(u/;"	f	unknown:world.graph
 TestLoad	data/yaml_test.go	/^func TestLoad(t *testing.T) {$/;"	f	package:data
 TestSetGet	events/world/object/object_test.go	/^func TestSetGet(t *testing.T) {$/;"	f	package:object
@@ -221,7 +206,6 @@ UI	news.go	/^func (n *news) UI(nextMode func()) (title string, content tview.Pri
 UINT8_48	events/world/object/object.go	/^	UINT8_48 Key = lastNibbleBoundary + iota*8$/;"	c	package:object
 UINT8_54	events/world/object/object.go	/^	UINT8_54$/;"	c	package:object
 Uniform	events/world/items/items.go	/^	Uniform          = Item(NIBBLE16)$/;"	c	package:items
-Union	common/simpleGraph/simpleGraph.go	/^func (a *Agent) Union(b Agent) *Agent        { return a }$/;"	f	unknown:simpleGraph.Agent
 Union	events/world/goapGraph.go	/^func (a *Agent) Union(b Agent) *Agent        { return a }$/;"	f	unknown:world.Agent
 Update	book.go	/^func (b *book) Update() {$/;"	f	unknown:main.book
 Update	email.go	/^func (e *email) Update() {}$/;"	f	unknown:main.email
@@ -242,7 +226,6 @@ assignGroups	events/world/World.go	/^func (w *World) assignGroups() {$/;"	f	unkn
 book	book.go	/^type book struct {$/;"	s	package:main
 chapterBreak	util.go	/^func chapterBreak(p *tview.Box) string {$/;"	f	package:main
 chapter_break	util.go	/^const chapter_break = "\\u00a7"$/;"	c	package:main
-character	common/simpleGraph/simpleGraph.go	/^	character  uint64$/;"	m	struct:simpleGraph.Agent
 character	events/world/goapGraph.go	/^	character  uint64$/;"	m	struct:world.Agent
 checkAllowed	events/world/places.go	/^func (p *place) checkAllowed(a ID) bool {$/;"	f	unknown:world.place
 checkFit	events/world/object/object.go	/^func (k Key) checkFit(newVal int) int {$/;"	f	unknown:object.Key
@@ -251,8 +234,6 @@ column	news.go	/^type column struct {$/;"	s	package:main
 column_count	news.go	/^const column_count = 3$/;"	c	package:main
 columns	news.go	/^	columns [column_count]column$/;"	m	struct:main.news
 content	news.go	/^	content string$/;"	m	struct:main.story
-cost	common/simpleGraph/simpleGraph.go	/^	cost                  int$/;"	m	struct:simpleGraph.vertex
-cost	common/simpleGraph/simpleGraph.go	/^	cost   int$/;"	m	struct:simpleGraph.node
 cost	events/world/goapGraph.go	/^	cost                  int$/;"	m	struct:world.vertex
 cost	events/world/goapGraph.go	/^	cost   int$/;"	m	struct:world.node
 count	news.go	/^	count int$/;"	m	struct:main.column
@@ -276,13 +257,11 @@ femaleFirstNames	events/world/names/names.go	/^var femaleFirstNames = []string{$
 formatSpell	book.go	/^func (b *book) formatSpell(s *spell) string {$/;"	f	unknown:main.book
 formatStory	news.go	/^func (n *news) formatStory(s story) string {$/;"	f	unknown:main.news
 friends	events/world/subject.go	/^	friends [max_relationships]ID$/;"	m	struct:world.Subject
-frontier	common/simpleGraph/simpleGraph.go	/^type frontier []node$/;"	t	package:simpleGraph
 frontier	events/world/goapGraph.go	/^type frontier []node$/;"	t	package:world
 generateRelationships	events/world/World.go	/^func (w *World) generateRelationships() {$/;"	f	unknown:world.World
 generationError	events/world/subject.go	/^type generationError string$/;"	t	package:world
 goal	events/world/goals.go	/^type goal struct{}$/;"	s	package:world
 goal	events/world/subject.go	/^	goal    int$/;"	m	struct:world.Subject
-graph	common/simpleGraph/simpleGraph.go	/^type graph []vertex$/;"	t	package:simpleGraph
 graph	events/world/World.go	/^	graph$/;"	M	struct:world.World	typeref:typename:graph
 graph	events/world/goapGraph.go	/^type graph []vertex$/;"	t	package:world
 graph	graph.go	/^type graph struct{}$/;"	s	package:main
@@ -306,9 +285,7 @@ main	main.go	/^package main$/;"	p
 main	news.go	/^package main$/;"	p
 main	util.go	/^package main$/;"	p
 maleFirstNames	events/world/names/names.go	/^var maleFirstNames = []string{$/;"	v	package:names
-maxChar	common/simpleGraph/simpleGraph.go	/^	maxChar       = 0xFFFFFFFFFFF$/;"	c	package:simpleGraph
 maxChar	events/world/goapGraph.go	/^	maxChar       = 0xFFFFFFFFFFF$/;"	c	package:world
-maxPossession	common/simpleGraph/simpleGraph.go	/^	maxPossession = 0xFFFFFFFFFFF$/;"	c	package:simpleGraph
 maxPossession	events/world/goapGraph.go	/^	maxPossession = 0xFFFFFFFFFFF$/;"	c	package:world
 max_enemies	events/world/World.go	/^	max_enemies       = 3$/;"	c	package:world
 max_friends	events/world/World.go	/^	max_friends       = 4$/;"	c	package:world
@@ -316,20 +293,16 @@ max_hate	events/world/World.go	/^	max_hate          = 256$/;"	c	package:world
 max_love	events/world/World.go	/^	max_love          = 256$/;"	c	package:world
 max_relationships	events/world/World.go	/^	max_relationships = 8$/;"	c	package:world
 members	events/world/group.go	/^	members     []*Subject `yaml:"members"`$/;"	m	struct:world.Group
-minRequiredCharacter	common/simpleGraph/simpleGraph.go	/^	minRequiredCharacter  uint64$/;"	m	struct:simpleGraph.vertex
 minRequiredCharacter	events/world/goapGraph.go	/^	minRequiredCharacter  uint64$/;"	m	struct:world.vertex
-minRequiredPossesions	common/simpleGraph/simpleGraph.go	/^	minRequiredPossesions uint64$/;"	m	struct:simpleGraph.vertex
 minRequiredPossesions	events/world/goapGraph.go	/^	minRequiredPossesions uint64$/;"	m	struct:world.vertex
 name	events/world/places.go	/^	name            string$/;"	m	struct:world.place
 names	book.go	/^	names  *tview.List$/;"	m	struct:main.book
 names	events/world/names/emails.go	/^package names$/;"	p
 names	events/world/names/namer.go	/^package names$/;"	p
 names	events/world/names/names.go	/^package names$/;"	p
-neighbours	common/simpleGraph/simpleGraph.go	/^	neighbours            []int$/;"	m	struct:simpleGraph.vertex
 neighbours	events/world/goapGraph.go	/^	neighbours            []int$/;"	m	struct:world.vertex
 news	news.go	/^type news struct {$/;"	s	package:main
 newsFeed	events/player.go	/^	newsFeed []*w.Record$/;"	m	struct:events.Player
-node	common/simpleGraph/simpleGraph.go	/^type node struct {$/;"	s	package:simpleGraph
 node	events/world/goapGraph.go	/^type node struct {$/;"	s	package:world
 numberOfEnemies	events/world/World.go	/^func (w *World) numberOfEnemies(p Subject) int {$/;"	f	unknown:world.World
 numberOfFamilly	events/world/World.go	/^func (w *World) numberOfFamilly(p Subject) int {$/;"	f	unknown:world.World
@@ -337,35 +310,26 @@ numberOfFriends	events/world/World.go	/^func (w *World) numberOfFriends(p Subjec
 object	events/world/object/object.go	/^package object$/;"	p
 object	events/world/object/object_test.go	/^package object$/;"	p
 pages	book.go	/^	pages  *tview.Pages$/;"	m	struct:main.book
-parent	common/simpleGraph/simpleGraph.go	/^	parent *node$/;"	m	struct:simpleGraph.node
 parent	events/world/goapGraph.go	/^	parent *node$/;"	m	struct:world.node
-path	common/simpleGraph/simpleGraph.go	/^	path           []int$/;"	m	struct:simpleGraph.path
-path	common/simpleGraph/simpleGraph.go	/^type path struct {$/;"	s	package:simpleGraph
 path	data/yaml.go	/^	path string$/;"	m	struct:data.yamlLoader
 path	events/world/goapGraph.go	/^	path           []int$/;"	m	struct:world.path
 path	events/world/goapGraph.go	/^type path struct {$/;"	s	package:world
-pathCost	common/simpleGraph/simpleGraph.go	/^	pathCost       int$/;"	m	struct:simpleGraph.path
 pathCost	events/world/goapGraph.go	/^	pathCost       int$/;"	m	struct:world.path
 place	events/world/places.go	/^type place struct {$/;"	s	package:world
 placeEnum	events/world/places.go	/^type placeEnum int$/;"	t	package:world
 places	events/world/places.go	/^var places = [16]place{$/;"	v	package:world
 plain	book.go	/^	plain  *tview.TextView$/;"	m	struct:main.book
 pop_number	events/world/World.go	/^	pop_number        = 256$/;"	c	package:world
-possesions	common/simpleGraph/simpleGraph.go	/^	possesions uint64$/;"	m	struct:simpleGraph.Agent
 possesions	events/world/goapGraph.go	/^	possesions uint64$/;"	m	struct:world.Agent
-predefinedVertexes	common/simpleGraph/simpleGraph.go	/^var predefinedVertexes = []vertex{}$/;"	v	package:simpleGraph
 predefinedVertexes	events/world/goapGraph.go	/^var predefinedVertexes = []vertex{}$/;"	v	package:world
 relationship	events/world/World.go	/^func (w *World) relationship(a int, b int, bias int) int {$/;"	f	unknown:world.World
 relationship	events/world/World.go	/^type relationship struct {$/;"	s	package:world
 restrictionFunc	events/world/places.go	/^	restrictionFunc func(i ID)$/;"	m	struct:world.place
-resultingAgent	common/simpleGraph/simpleGraph.go	/^	resultingAgent Agent$/;"	m	struct:simpleGraph.path
 resultingAgent	events/world/goapGraph.go	/^	resultingAgent Agent$/;"	m	struct:world.path
 run	main.go	/^func run() {$/;"	f	package:main
 s	events/event.go	/^	s\/github.com\/nowakf\/undefined_behaviourject *actor$/;"	m	struct:events.event
-self	common/simpleGraph/simpleGraph.go	/^	self   int$/;"	m	struct:simpleGraph.node
 self	events/world/goapGraph.go	/^	self   int$/;"	m	struct:world.node
 short_description	book.go	/^	short_description string$/;"	m	struct:main.spell
-simpleGraph	common/simpleGraph/simpleGraph.go	/^package simpleGraph$/;"	p
 spell	book.go	/^type spell struct {$/;"	s	package:main
 spells	book.go	/^	spells map[string]*spell$/;"	m	struct:main.book
 stats	events/world/stats/stats.go	/^package stats$/;"	p
@@ -380,10 +344,8 @@ testSpells	book.go	/^var testSpells = map[string]*spell{$/;"	v	package:main
 testStories	news.go	/^var testStories = []story{$/;"	v	package:main
 tickRate	events/eventSystem.go	/^	tickRate chan float64$/;"	m	struct:events.EventSystem
 title	news.go	/^	title   string$/;"	m	struct:main.story
-unspool	common/simpleGraph/simpleGraph.go	/^func (g *graph) unspool(start node, searcher Agent) (out path) {$/;"	f	unknown:simpleGraph.graph
 unspool	events/world/goapGraph.go	/^func (g *graph) unspool(start node, searcher Agent) (out path) {$/;"	f	unknown:world.graph
 update	events/eventSystem.go	/^func (e *EventSystem) update() {$/;"	f	unknown:events.EventSystem
-vertex	common/simpleGraph/simpleGraph.go	/^type vertex struct {$/;"	s	package:simpleGraph
 vertex	events/world/goapGraph.go	/^type vertex struct {$/;"	s	package:world
 visitors	events/world/places.go	/^	visitors        []ID$/;"	m	struct:world.place
 w	events/eventSystem.go	/^	w        *w.World$/;"	m	struct:events.EventSystem

@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"strconv"
 
-	c "github.com/nowakf/undefined_behaviour/common"
 	"github.com/nowakf/undefined_behaviour/events/world"
 
 	"github.com/nowakf/pixel"
@@ -40,7 +39,9 @@ func run() {
 	//								//
 	//--------------------------------------------------------------//
 
-	c.Check(err)
+	if err != nil {
+		panic(err)
+	}
 
 	//generate the player here
 
