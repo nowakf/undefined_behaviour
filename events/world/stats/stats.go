@@ -1,17 +1,58 @@
 package stats
 
-import . "github.com/nowakf/undefined_behaviour/events/world/object"
+import . "github.com/nowakf/undefined_behaviour/object"
+
+var List = []Stat{
+	MemberofCult,
+	MemberofAntiCult,
+	LawAbiding,
+	MissingLimb,
+	MissingEye,
+	HeartProblems,
+	Schizophrenia,
+	Paranoia,
+	Agoraphobia,
+	Depression,
+	Plague,
+	STR,
+	CHA,
+	WIS,
+	INT,
+	WIL,
+	SAN,
+	Location,
+	ID,
+	Stress,
+}
 
 type Stats Object
 
+func (s Stats) Count() int {
+	return len(Object(s).Fields())
+}
+
+func (s Stats) Fields() (vals []Stat) {
+	fields := Object(s).Fields()
+	vals = make([]Stat, len(fields))
+	for s, field := range fields {
+		vals[s] = Stat(field)
+	}
+	return
+}
+func (s Stats) Superset(this Stats) bool {
+	return Object(s).Superset(Object(this))
+}
 func (s Stats) Get(a Stat) int {
 	return Object(s).Get(Key(a))
 }
-
 func (s *Stats) Set(a Stat, newVal int) *Stats {
 	(*Object)(s).Set(Key(a), newVal)
 	return s
 }
+
+const (
+	SMAX = Stat(MAX)
+)
 
 type Stat Key
 

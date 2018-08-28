@@ -21,7 +21,7 @@ type World struct {
 	Doomsday int
 	People   [pop_number]Subject
 	Groups   []Group
-	graph
+	//graph
 }
 
 func NewWorld() *World {

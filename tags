@@ -5,78 +5,143 @@
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
 !_TAG_PROGRAM_VERSION	0.0.0	/7918d19f/
-AbilitiesFromYaml	data/yaml.go	/^func (y *yamlLoader) AbilitiesFromYaml(yamlFile []byte) ([]AbilityData, error) {$/;"	f	unknown:data.yamlLoader
-AbilityData	data/AbilityData.go	/^type AbilityData struct {$/;"	s	package:data
+Accuracy	maze/maze.go	/^const Accuracy = 8$/;"	c	package:maze
 Act	events/world/subject.go	/^func (s *Subject) Act(w *World) {$/;"	f	unknown:world.Subject
-ActorData	data/ActorData.go	/^type ActorData struct {$/;"	s	package:data
 AddItem	news.go	/^func (n *news) AddItem(p tview.Primitive) {$/;"	f	unknown:main.news
 AddMember	events/world/group.go	/^func (g *Group) AddMember(p *Subject) {$/;"	f	unknown:world.Group
-AddVertex	events/world/goapGraph.go	/^func (g *graph) AddVertex(minRequiredPossesions uint64, minRequiredCharacter uint64, cost int) {$/;"	f	unknown:world.graph
-Agent	events/world/goapGraph.go	/^type Agent struct {$/;"	s	package:world
+AddVertex	events/world/_goapGraph.go	/^func (g *graph) AddVertex(required, delta bitmap) {$/;"	f	unknown:world.graph
+Agent	events/world/_goapGraph.go	/^type Agent struct {$/;"	s	package:world
 Agoraphobia	events/world/stats/stats.go	/^	Agoraphobia           = Stat(BOOL8)$/;"	c	package:stats
-Alignment	data/ActorData.go	/^	Alignment    string   `yaml:"alignment"`$/;"	m	struct:data.ActorData
-Alignment	data/OrganizationData.go	/^	Alignment   int    `yaml:"alignment"`$/;"	m	struct:data.GoalData
+All	maze/cell/cell.go	/^	All         = Key(0xFFFFFFFF)$/;"	c	package:cell
+Area	maze/maze.go	/^func (m *maze) Area() int {$/;"	f	unknown:maze.maze
 Arrive	events/world/places.go	/^func (p *place) Arrive(a ID) {$/;"	f	unknown:world.place
 BAR	events/world/places.go	/^	BAR$/;"	c	package:world
-BOOL0	events/world/object/object.go	/^	BOOL0 Key = iota$/;"	c	package:object
-BOOL1	events/world/object/object.go	/^	BOOL1$/;"	c	package:object
-BOOL10	events/world/object/object.go	/^	BOOL10$/;"	c	package:object
-BOOL11	events/world/object/object.go	/^	BOOL11$/;"	c	package:object
-BOOL12	events/world/object/object.go	/^	BOOL12$/;"	c	package:object
-BOOL13	events/world/object/object.go	/^	BOOL13$/;"	c	package:object
-BOOL14	events/world/object/object.go	/^	BOOL14$/;"	c	package:object
-BOOL15	events/world/object/object.go	/^	BOOL15$/;"	c	package:object
-BOOL2	events/world/object/object.go	/^	BOOL2$/;"	c	package:object
-BOOL3	events/world/object/object.go	/^	BOOL3$/;"	c	package:object
-BOOL4	events/world/object/object.go	/^	BOOL4$/;"	c	package:object
-BOOL5	events/world/object/object.go	/^	BOOL5$/;"	c	package:object
-BOOL6	events/world/object/object.go	/^	BOOL6$/;"	c	package:object
-BOOL7	events/world/object/object.go	/^	BOOL7$/;"	c	package:object
-BOOL8	events/world/object/object.go	/^	BOOL8$/;"	c	package:object
-BOOL9	events/world/object/object.go	/^	BOOL9$/;"	c	package:object
+BOOL0	events/world/_old/object/object.go	/^	BOOL0 Key = iota$/;"	c	package:object
+BOOL1	events/world/_old/object/object.go	/^	BOOL1$/;"	c	package:object
+BOOL10	events/world/_old/object/object.go	/^	BOOL10$/;"	c	package:object
+BOOL11	events/world/_old/object/object.go	/^	BOOL11$/;"	c	package:object
+BOOL12	events/world/_old/object/object.go	/^	BOOL12$/;"	c	package:object
+BOOL13	events/world/_old/object/object.go	/^	BOOL13$/;"	c	package:object
+BOOL14	events/world/_old/object/object.go	/^	BOOL14$/;"	c	package:object
+BOOL15	events/world/_old/object/object.go	/^	BOOL15$/;"	c	package:object
+BOOL2	events/world/_old/object/object.go	/^	BOOL2$/;"	c	package:object
+BOOL3	events/world/_old/object/object.go	/^	BOOL3$/;"	c	package:object
+BOOL4	events/world/_old/object/object.go	/^	BOOL4$/;"	c	package:object
+BOOL5	events/world/_old/object/object.go	/^	BOOL5$/;"	c	package:object
+BOOL6	events/world/_old/object/object.go	/^	BOOL6$/;"	c	package:object
+BOOL7	events/world/_old/object/object.go	/^	BOOL7$/;"	c	package:object
+BOOL8	events/world/_old/object/object.go	/^	BOOL8$/;"	c	package:object
+BOOL9	events/world/_old/object/object.go	/^	BOOL9$/;"	c	package:object
+Body	maze/cell/cell.go	/^	Body        = Key(Shortval2)$/;"	c	package:cell
+BodyStates	maze/crawler.go	/^var BodyStates = [...]bodyState{$/;"	v	package:maze
 Book	book.go	/^func Book() *book {$/;"	f	package:main
+Bool1	collection/collection.go	/^	Bool1$/;"	c	package:collection
+Bool10	collection/collection.go	/^	Bool10$/;"	c	package:collection
+Bool11	collection/collection.go	/^	Bool11$/;"	c	package:collection
+Bool12	collection/collection.go	/^	Bool12$/;"	c	package:collection
+Bool13	collection/collection.go	/^	Bool13$/;"	c	package:collection
+Bool14	collection/collection.go	/^	Bool14$/;"	c	package:collection
+Bool15	collection/collection.go	/^	Bool15$/;"	c	package:collection
+Bool16	collection/collection.go	/^	Bool16$/;"	c	package:collection
+Bool17	collection/collection.go	/^	Bool17$/;"	c	package:collection
+Bool18	collection/collection.go	/^	Bool18$/;"	c	package:collection
+Bool19	collection/collection.go	/^	Bool19$/;"	c	package:collection
+Bool2	collection/collection.go	/^	Bool2$/;"	c	package:collection
+Bool20	collection/collection.go	/^	Bool20$/;"	c	package:collection
+Bool21	collection/collection.go	/^	Bool21$/;"	c	package:collection
+Bool22	collection/collection.go	/^	Bool22$/;"	c	package:collection
+Bool23	collection/collection.go	/^	Bool23$/;"	c	package:collection
+Bool24	collection/collection.go	/^	Bool24$/;"	c	package:collection
+Bool25	collection/collection.go	/^	Bool25$/;"	c	package:collection
+Bool26	collection/collection.go	/^	Bool26$/;"	c	package:collection
+Bool27	collection/collection.go	/^	Bool27$/;"	c	package:collection
+Bool28	collection/collection.go	/^	Bool28$/;"	c	package:collection
+Bool29	collection/collection.go	/^	Bool29$/;"	c	package:collection
+Bool3	collection/collection.go	/^	Bool3$/;"	c	package:collection
+Bool30	collection/collection.go	/^	Bool30$/;"	c	package:collection
+Bool31	collection/collection.go	/^	Bool31$/;"	c	package:collection
+Bool32	collection/collection.go	/^	Bool32$/;"	c	package:collection
+Bool33	collection/collection.go	/^	Bool33$/;"	c	package:collection
+Bool34	collection/collection.go	/^	Bool34$/;"	c	package:collection
+Bool35	collection/collection.go	/^	Bool35$/;"	c	package:collection
+Bool36	collection/collection.go	/^	Bool36$/;"	c	package:collection
+Bool37	collection/collection.go	/^	Bool37$/;"	c	package:collection
+Bool38	collection/collection.go	/^	Bool38$/;"	c	package:collection
+Bool39	collection/collection.go	/^	Bool39$/;"	c	package:collection
+Bool4	collection/collection.go	/^	Bool4$/;"	c	package:collection
+Bool40	collection/collection.go	/^	Bool40$/;"	c	package:collection
+Bool41	collection/collection.go	/^	Bool41$/;"	c	package:collection
+Bool42	collection/collection.go	/^	Bool42$/;"	c	package:collection
+Bool43	collection/collection.go	/^	Bool43$/;"	c	package:collection
+Bool44	collection/collection.go	/^	Bool44$/;"	c	package:collection
+Bool45	collection/collection.go	/^	Bool45$/;"	c	package:collection
+Bool46	collection/collection.go	/^	Bool46$/;"	c	package:collection
+Bool47	collection/collection.go	/^	Bool47$/;"	c	package:collection
+Bool48	collection/collection.go	/^	Bool48$/;"	c	package:collection
+Bool49	collection/collection.go	/^	Bool49$/;"	c	package:collection
+Bool5	collection/collection.go	/^	Bool5$/;"	c	package:collection
+Bool50	collection/collection.go	/^	Bool50$/;"	c	package:collection
+Bool51	collection/collection.go	/^	Bool51$/;"	c	package:collection
+Bool52	collection/collection.go	/^	Bool52$/;"	c	package:collection
+Bool6	collection/collection.go	/^	Bool6$/;"	c	package:collection
+Bool7	collection/collection.go	/^	Bool7$/;"	c	package:collection
+Bool8	collection/collection.go	/^	Bool8$/;"	c	package:collection
+Bool9	collection/collection.go	/^	Bool9$/;"	c	package:collection
 CHA	events/world/stats/stats.go	/^	CHA                   = Stat(NIBBLE20)$/;"	c	package:stats
 CITY_HALL	events/world/places.go	/^	CITY_HALL$/;"	c	package:world
 Car	events/world/items/items.go	/^	Car              = Item(BOOL1)$/;"	c	package:items
-Content	data/MessageData.go	/^	Content string         `yaml:"content"`$/;"	m	struct:data.MessageData
-Content	data/StoryData.go	/^	Content string   `yaml:"content"`$/;"	m	struct:data.StoryData
+Cell	maze/cell/cell.go	/^type Cell Collection$/;"	t	package:cell
+CelltoRune	maze/maze.go	/^func (m *maze) CelltoRune(c cell.Cell, offset int) rune {$/;"	f	unknown:maze.maze
+Chasing	maze/crawler.go	/^	Chasing$/;"	c	package:maze
+Cloud	maze/cell/cell.go	/^	Cloud       = Key(Shortval5)$/;"	c	package:cell
+Clouds	maze/cloud.go	/^var Clouds = [...]cloud{$/;"	v	package:maze
+Collection	collection/collection.go	/^type Collection struct {$/;"	s	package:collection
+Convert	maze/maze.go	/^func (m *maze) Convert(from string) error {$/;"	f	unknown:maze.maze
 Count	book.go	/^func (b *book) Count() int {$/;"	f	unknown:main.book
+Count	collection/collection.go	/^func (c Collection) Count() int {$/;"	f	unknown:collection.Collection
 Count	email.go	/^func (e *email) Count() int {$/;"	f	unknown:main.email
+Count	events/world/items/items.go	/^func (i Items) Count() int {$/;"	f	unknown:items.Items
+Count	events/world/stats/stats.go	/^func (s Stats) Count() int {$/;"	f	unknown:stats.Stats
 Count	graph.go	/^func (g *graph) Count() int {$/;"	f	unknown:main.graph
 Count	news.go	/^func (n *news) Count() int {$/;"	f	unknown:main.news
+Crawler	maze/crawler.go	/^func Crawler(m *maze, x, y int) (c crawler) {$/;"	f	package:maze
+Cut	maze/vlist.go	/^func (v *vlist) Cut(at int) (part1 vlist, part2 vlist) {$/;"	f	unknown:maze.vlist
 Depression	events/world/stats/stats.go	/^	Depression            = Stat(BOOL9)$/;"	c	package:stats
 Describe	events/world/items/items.go	/^func (i Item) Describe() (description string) {$/;"	f	unknown:items.Item
 Describe	events/world/stats/stats.go	/^func (s Stat) Describe() (description string) {$/;"	f	unknown:stats.Stat
-Description	data/AbilityData.go	/^	Description  string         `yaml:"description"`$/;"	m	struct:data.AbilityData
-Description	data/ActorData.go	/^	Description  string   `yaml:"description"`$/;"	m	struct:data.ActorData
-Description	data/OrganizationData.go	/^	Description string         `yaml:"description"`$/;"	m	struct:data.OrganizationData
-Description	data/OrganizationData.go	/^	Description string `yaml:"description"`$/;"	m	struct:data.GoalData
 Description	events/world/group.go	/^	Description string     `yaml:"description"`$/;"	m	struct:world.Group
-Difference	events/world/goapGraph.go	/^func (a *Agent) Difference(b Agent) *Agent   { return a }$/;"	f	unknown:world.Agent
 Doomsday	events/world/World.go	/^	Doomsday int$/;"	m	struct:world.World
-Effects	data/AbilityData.go	/^	Effects      map[string]int `yaml:"effects"`$/;"	m	struct:data.AbilityData
-Effects	data/MessageData.go	/^	Effects map[string]int `yaml:"effects"`$/;"	m	struct:data.MessageData
-Effects	data/OrganizationData.go	/^	Effects     map[string]int `yaml:"effects"`$/;"	m	struct:data.OrganizationData
+Draw	maze/crawler.go	/^func (c *crawler) Draw() {$/;"	f	unknown:maze.crawler
+Draw	maze/maze.go	/^func (m *maze) Draw(canvas *tview.Canvas) {$/;"	f	unknown:maze.maze
+DrawCell	maze/maze.go	/^func (m *maze) DrawCell(c cell.Cell, offset int) (letter rune, fg, bg color.RGBA) {$/;"	f	unknown:maze.maze
+E	maze/tendril.go	/^	E$/;"	c	package:maze
+EW	maze/tendril.go	/^	EW$/;"	c	package:maze
+Eating	maze/crawler.go	/^	Eating$/;"	c	package:maze
 Email	email.go	/^func Email() *email {$/;"	f	package:main
 EmailRoot	events/world/group.go	/^	EmailRoot   string     `yaml:"emailRoot"`$/;"	m	struct:world.Group
+Enumerate	maze/cell/cell.go	/^func (c Cell) Enumerate() (content string) {$/;"	f	unknown:cell.Cell
 Error	events/world/subject.go	/^func (g generationError) Error() string {$/;"	f	unknown:world.generationError
-EventSystem	events/eventSystem.go	/^type EventSystem struct {$/;"	s	package:events
+EventSystem	events/_old/eventSystem.go	/^type EventSystem struct {$/;"	s	package:events
+FIRST_BOOL	events/world/_old/object/object.go	/^	FIRST_BOOL   = 0$/;"	c	package:object
+FIRST_NIBBLE	events/world/_old/object/object.go	/^	FIRST_NIBBLE = 16$/;"	c	package:object
+FIRST_UINT8	events/world/_old/object/object.go	/^	FIRST_UINT8  = 25$/;"	c	package:object
+Fields	events/world/_old/object/object.go	/^func (o Object) Fields() (filled []Key) {$/;"	f	unknown:object.Object
+Fields	events/world/items/items.go	/^func (i Items) Fields() (vals []Item) {$/;"	f	unknown:items.Items
+Fields	events/world/stats/stats.go	/^func (s Stats) Fields() (vals []Stat) {$/;"	f	unknown:stats.Stats
 Flex	news.go	/^	*tview.Flex$/;"	M	struct:main.column	typeref:typename:*tview.Flex
-FontLoader	data/data.go	/^type FontLoader struct {$/;"	s	package:data
-Fonts	data/data.go	/^func (d FontLoader) Fonts(fontSize float64, colors ...pixel.RGBA) map[pixel.RGBA]*text.Text {$/;"	f	unknown:data.FontLoader
+Fog	maze/cloud.go	/^	Fog = iota$/;"	c	package:maze
+Food	maze/cell/cell.go	/^	Food        = Key(Shortval3)$/;"	c	package:cell
 GUN_STORE	events/world/places.go	/^	GUN_STORE$/;"	c	package:world
 Generate	events/world/World.go	/^func (w *World) Generate(conf *WorldConfig) {$/;"	f	unknown:world.World
 Generate	events/world/subject.go	/^func (s *Subject) Generate(ID ID) error {$/;"	f	unknown:world.Subject
 Get	book.go	/^func (b *book) Get(s string) *spell {$/;"	f	unknown:main.book
 Get	email.go	/^func (e *email) Get(s string) (handle string, content map[string]string, keyvalue map[string]int/;"	f	unknown:main.email
-Get	events/world/object/object.go	/^func (o Object) Get(k Key) int {$/;"	f	unknown:object.Object
+Get	events/world/_old/object/object.go	/^func (o Object) Get(k Key) int {$/;"	f	unknown:object.Object
 Get	events/world/stats/stats.go	/^func (s Stats) Get(a Stat) int {$/;"	f	unknown:stats.Stats
 Get	graph.go	/^func (g *graph) Get(s string) (handle string, content map[string]string, keyvalue map[string]int/;"	f	unknown:main.graph
 Get	news.go	/^func (n *news) Get(s string) (handle string, content map[string]string, keyvalue map[string]int)/;"	f	unknown:main.news
-GoalData	data/OrganizationData.go	/^type GoalData struct {$/;"	s	package:data
-Goals	data/OrganizationData.go	/^	Goals       []GoalData     `yaml:"goals"`$/;"	m	struct:data.OrganizationData
 Goals	events/world/group.go	/^	Goals       []goal     `yaml:"goals"`$/;"	m	struct:world.Group
-Graph	events/world/goapGraph.go	/^func Graph() *graph {$/;"	f	package:world
+Graph	events/world/_goapGraph.go	/^func Graph() *graph {$/;"	f	package:world
 Graph	graph.go	/^func Graph() *graph {$/;"	f	package:main
 Group	events/world/group.go	/^type Group struct {$/;"	s	package:world
 Groups	events/world/World.go	/^	Groups   []Group$/;"	m	struct:world.World
@@ -86,197 +151,296 @@ HOME	events/world/places.go	/^	HOME placeEnum = iota$/;"	c	package:world
 HOSPITAL	events/world/places.go	/^	HOSPITAL$/;"	c	package:world
 HOUSE	events/world/places.go	/^	HOUSE$/;"	c	package:world
 Has	events/world/items/items.go	/^func (i Items) Has(a Item) int {$/;"	f	unknown:items.Items
+Has	maze/cell/cell.go	/^func (c Cell) Has(k Key) bool {$/;"	f	unknown:cell.Cell
+Has	maze/vlist.go	/^func (v *vlist) Has(v1 vector) (int, bool) {$/;"	f	unknown:maze.vlist
 HeartProblems	events/world/stats/stats.go	/^	HeartProblems         = Stat(BOOL5)$/;"	c	package:stats
+I	maze/vlist.go	/^func (v *vlist) I(i int) *vector {$/;"	f	unknown:maze.vlist
 ID	events/world/stats/stats.go	/^	ID                    = Stat(UINT8_48)$/;"	c	package:stats
 ID	events/world/subject.go	/^type ID uint8$/;"	t	package:world
+IMAX	events/world/items/items.go	/^	IMAX = Items(MAX)$/;"	c	package:items
 INT	events/world/stats/stats.go	/^	INT                   = Stat(NIBBLE28)$/;"	c	package:stats
-Intersection	events/world/goapGraph.go	/^func (a *Agent) Intersection(b Agent) *Agent { return a }$/;"	f	unknown:world.Agent
-IsNew	events/player.go	/^	IsNew    bool$/;"	m	struct:events.Player
+Insert	events/world/_old/goapTrie.go	/^func (t *trie) Insert(root *nodule, requiredFields bitmap) {$/;"	f	unknown:world.trie
+IsNew	events/_old/player.go	/^	IsNew    bool$/;"	m	struct:events.Player
 Item	events/world/items/items.go	/^type Item Key$/;"	t	package:items
+Items	events/world/_goapGraph.go	/^	items.Items$/;"	M	struct:world.Agent	typeref:typename:items.Items
 Items	events/world/items/items.go	/^type Items Object$/;"	t	package:items
-Key	events/world/object/object.go	/^type Key uint$/;"	t	package:object
-Keys	events/world/object/object.go	/^var Keys = [...]Key{$/;"	v	package:object
+Key	events/world/_old/object/object.go	/^type Key uint$/;"	t	package:object
+Key	maze/cell/cell.go	/^type Key uint64$/;"	t	package:cell
+Keys	events/world/_old/object/object.go	/^var Keys = [...]Key{$/;"	v	package:object
 LawAbiding	events/world/stats/stats.go	/^	LawAbiding            = Stat(BOOL2)$/;"	c	package:stats
 Leave	events/world/places.go	/^func (p *place) Leave(a ID) {$/;"	f	unknown:world.place
-Len	events/world/goapGraph.go	/^func (f frontier) Len() int {$/;"	f	unknown:world.frontier
-Length	events/world/object/object.go	/^func (k Key) Length() uint {$/;"	f	unknown:object.Key
-Less	events/world/goapGraph.go	/^func (f frontier) Less(i int, j int) bool {$/;"	f	unknown:world.frontier
-LoadPlayer	events/player.go	/^func LoadPlayer() *Player {$/;"	f	package:events
-LoadSave	data/data.go	/^func (d *data) LoadSave() *Save {$/;"	f	unknown:data.data
+Len	events/world/_goapGraph.go	/^func (f frontier) Len() int {$/;"	f	unknown:world.frontier
+Len	maze/vlist.go	/^func (v *vlist) Len() int {$/;"	f	unknown:maze.vlist
+Length	events/world/_old/object/object.go	/^func (k Key) Length() uint {$/;"	f	unknown:object.Key
+Less	events/world/_goapGraph.go	/^func (f frontier) Less(i int, j int) bool {$/;"	f	unknown:world.frontier
+List	events/world/items/items.go	/^var List = []Item{$/;"	v	package:items
+List	events/world/stats/stats.go	/^var List = []Stat{$/;"	v	package:stats
+LoadPlayer	events/_old/player.go	/^func LoadPlayer() *Player {$/;"	f	package:events
 LoadWorld	events/world/World.go	/^func LoadWorld(file *data.Save) *World {$/;"	f	package:world
 Location	events/world/stats/stats.go	/^	Location              = Stat(NIBBLE40)$/;"	c	package:stats
-Loop	events/eventSystem.go	/^func (e *EventSystem) Loop(stop chan struct{}) {$/;"	f	unknown:events.EventSystem
-MAX	events/world/object/object.go	/^	MAX = 0xFFFFFFFFFFFFFFFF$/;"	c	package:object
+Longval1	collection/collection.go	/^	Longval1$/;"	c	package:collection
+Longval2	collection/collection.go	/^	Longval2$/;"	c	package:collection
+Longval3	collection/collection.go	/^	Longval3$/;"	c	package:collection
+Longval4	collection/collection.go	/^	Longval4$/;"	c	package:collection
+Loop	events/_old/eventSystem.go	/^func (e *EventSystem) Loop(stop chan struct{}) {$/;"	f	unknown:events.EventSystem
+MAX	events/world/_old/object/object.go	/^	MAX      = 0xFFFFFFFFFFFFFFFF$/;"	c	package:object
+MAX	maze/vlist_test.go	/^	MAX = 10$/;"	c	package:maze
 Madness	events/world/World.go	/^	Madness  int$/;"	m	struct:world.World
-Mail	events/player.go	/^func (p *Player) Mail(viewer chan *w.Record) func() int {$/;"	f	unknown:events.Player
+Mail	events/_old/player.go	/^func (p *Player) Mail(viewer chan *w.Record) func() int {$/;"	f	unknown:events.Player
 MajorMode	main.go	/^type MajorMode interface {$/;"	i	package:main
+Map	maze/vlist.go	/^func (v *vlist) Map(f func(v *vector)) {$/;"	f	unknown:maze.vlist
 MemberofAntiCult	events/world/stats/stats.go	/^	MemberofAntiCult      = Stat(BOOL1)$/;"	c	package:stats
 MemberofCult	events/world/stats/stats.go	/^	MemberofCult     Stat = Stat(BOOL0)$/;"	c	package:stats
-MessageData	data/MessageData.go	/^type MessageData struct {$/;"	s	package:data
-MessageRoot	data/ActorData.go	/^	MessageRoot  string   `yaml:"message_root"`$/;"	m	struct:data.ActorData
-MessagesFromYaml	data/yaml.go	/^func (y *yamlLoader) MessagesFromYaml(yamlFile []byte) ([]MessageData, error) {$/;"	f	unknown:data.yamlLoader
 MissingEye	events/world/stats/stats.go	/^	MissingEye            = Stat(BOOL4)$/;"	c	package:stats
 MissingLimb	events/world/stats/stats.go	/^	MissingLimb           = Stat(BOOL3)$/;"	c	package:stats
 Money	events/world/items/items.go	/^	Money            = Item(UINT8_48)$/;"	c	package:items
-Mutex	events/eventSystem.go	/^	sync.Mutex$/;"	M	struct:events.EventSystem	typeref:typename:sync.Mutex
-NIBBLE16	events/world/object/object.go	/^	NIBBLE16 Key = lastBoolBoundary + iota*4$/;"	c	package:object
-NIBBLE20	events/world/object/object.go	/^	NIBBLE20$/;"	c	package:object
-NIBBLE24	events/world/object/object.go	/^	NIBBLE24$/;"	c	package:object
-NIBBLE28	events/world/object/object.go	/^	NIBBLE28$/;"	c	package:object
-NIBBLE32	events/world/object/object.go	/^	NIBBLE32$/;"	c	package:object
-NIBBLE36	events/world/object/object.go	/^	NIBBLE36$/;"	c	package:object
-NIBBLE40	events/world/object/object.go	/^	NIBBLE40$/;"	c	package:object
-NIBBLE44	events/world/object/object.go	/^	NIBBLE44$/;"	c	package:object
-Name	data/ActorData.go	/^	Name         string   `yaml:"name"`$/;"	m	struct:data.ActorData
-Name	data/OrganizationData.go	/^	Name        string         `yaml:"Name"`$/;"	m	struct:data.OrganizationData
-Name	data/OrganizationData.go	/^	Name        string `yaml:"Name"`$/;"	m	struct:data.GoalData
+Mutex	events/_old/eventSystem.go	/^	sync.Mutex$/;"	M	struct:events.EventSystem	typeref:typename:sync.Mutex
+N	maze/tendril.go	/^	N$/;"	c	package:maze
+NE	maze/tendril.go	/^	NE$/;"	c	package:maze
+NEW	maze/tendril.go	/^	NEW$/;"	c	package:maze
+NIBBLE16	events/world/_old/object/object.go	/^	NIBBLE16 Key = lastBoolBoundary + iota*4$/;"	c	package:object
+NIBBLE20	events/world/_old/object/object.go	/^	NIBBLE20$/;"	c	package:object
+NIBBLE24	events/world/_old/object/object.go	/^	NIBBLE24$/;"	c	package:object
+NIBBLE28	events/world/_old/object/object.go	/^	NIBBLE28$/;"	c	package:object
+NIBBLE32	events/world/_old/object/object.go	/^	NIBBLE32$/;"	c	package:object
+NIBBLE36	events/world/_old/object/object.go	/^	NIBBLE36$/;"	c	package:object
+NIBBLE40	events/world/_old/object/object.go	/^	NIBBLE40$/;"	c	package:object
+NIBBLE44	events/world/_old/object/object.go	/^	NIBBLE44$/;"	c	package:object
+NS	maze/tendril.go	/^	NS$/;"	c	package:maze
+NSE	maze/tendril.go	/^	NSE$/;"	c	package:maze
+NSEW	maze/tendril.go	/^	NSEW$/;"	c	package:maze
+NSW	maze/tendril.go	/^	NSW$/;"	c	package:maze
+NW	maze/tendril.go	/^	NW$/;"	c	package:maze
 Name	events/world/group.go	/^	Name        string     `yaml:"name"`$/;"	m	struct:world.Group
 Name	events/world/places.go	/^func (p place) Name() string {$/;"	f	unknown:world.place
+Nearby	maze/maze.go	/^func (m *maze) Nearby(source vector, maxDist int, desired key, feared key) []vector {$/;"	f	unknown:maze.maze
 New	events/world/names/namer.go	/^func New(length int) []string {$/;"	f	package:names
-NewData	data/data.go	/^func NewData() *data {$/;"	f	package:data
-NewEventSystem	events/eventSystem.go	/^func NewEventSystem(w *w.World) *EventSystem {$/;"	f	package:events
-NewPlayer	events/player.go	/^func NewPlayer(conf *PlayerConfig) *Player {$/;"	f	package:events
+NewEventSystem	events/_old/eventSystem.go	/^func NewEventSystem(w *w.World) *EventSystem {$/;"	f	package:events
+NewPlayer	events/_old/player.go	/^func NewPlayer(conf *PlayerConfig) *Player {$/;"	f	package:events
 NewWorld	events/world/World.go	/^func NewWorld() *World {$/;"	f	package:world
 NewWorldConfig	events/world/worldConfig.go	/^func NewWorldConfig() *WorldConfig {$/;"	f	package:world
-NewYamlLoader	data/yaml.go	/^func NewYamlLoader(path string) *yamlLoader {$/;"	f	package:data
-News	events/player.go	/^func (p *Player) News(viewer chan *w.Record) func() int {$/;"	f	unknown:events.Player
+News	events/_old/player.go	/^func (p *Player) News(viewer chan *w.Record) func() int {$/;"	f	unknown:events.Player
 News	news.go	/^func News() *news {$/;"	f	package:main
-Object	events/event.go	/^	Object  *actor$/;"	m	struct:events.event
-Object	events/world/object/object.go	/^type Object uint64$/;"	t	package:object
+Object	events/_old/event.go	/^	Object  *actor$/;"	m	struct:events.event
+Object	events/world/_old/object/object.go	/^type Object uint64$/;"	t	package:object
 Observe	events/world/subject.go	/^func (s *Subject) Observe(w *World) {$/;"	f	unknown:world.Subject
-Options	data/MessageData.go	/^	Options []string       `yaml:"options"`$/;"	m	struct:data.MessageData
-Organization	data/ActorData.go	/^	Organization string   `yaml:"organization"`$/;"	m	struct:data.ActorData
-OrganizationData	data/OrganizationData.go	/^type OrganizationData struct {$/;"	s	package:data
+Orient	maze/crawler.go	/^func (c *crawler) Orient() {$/;"	f	unknown:maze.crawler
 PARK	events/world/places.go	/^	PARK$/;"	c	package:world
 POLICE_STATION	events/world/places.go	/^	POLICE_STATION$/;"	c	package:world
 POWER_PLANT	events/world/places.go	/^	POWER_PLANT$/;"	c	package:world
 PRISON	events/world/places.go	/^	PRISON$/;"	c	package:world
 Paranoia	events/world/stats/stats.go	/^	Paranoia              = Stat(BOOL7)$/;"	c	package:stats
-ParseTests	events/world/goapGraph.go	/^func (g *graph) ParseTests(minRequiredCharacter uint64, minRequiredPossesions uint64) (ref []int/;"	f	unknown:world.graph
+Path	maze/maze.go	/^func (m *maze) Path(source vector, sink vector, obstacle key) (path vlist) {$/;"	f	unknown:maze.maze
 People	events/world/World.go	/^	People   [pop_number]Subject$/;"	m	struct:world.World
-Person	events/player.go	/^	*w.Person$/;"	M	struct:events.Player	typeref:typename:*w.Person
+Person	events/_old/player.go	/^	*w.Person$/;"	M	struct:events.Player	typeref:typename:*w.Person
 Place	events/world/places.go	/^func (p placeEnum) Place() *place {$/;"	f	unknown:world.placeEnum
 PlaceOfWork	events/world/items/items.go	/^	PlaceOfWork      = Item(NIBBLE20)$/;"	c	package:items
 Plague	events/world/stats/stats.go	/^	Plague                = Stat(BOOL10)$/;"	c	package:stats
-Player	events/player.go	/^type Player struct {$/;"	s	package:events
-PlayerConfig	events/player.go	/^type PlayerConfig struct{}$/;"	s	package:events
-Pop	events/world/goapGraph.go	/^func (f *frontier) Pop() interface{} {$/;"	f	unknown:world.frontier
-Progression	data/AbilityData.go	/^	Progression  string         `yaml:"progression"`$/;"	m	struct:data.AbilityData
-Push	events/world/goapGraph.go	/^func (f *frontier) Push(x interface{}) {$/;"	f	unknown:world.frontier
-Required	events/world/goapGraph.go	/^func (v vertex) Required() Agent {$/;"	f	unknown:world.vertex
-Requirements	data/AbilityData.go	/^	Requirements map[string]int `yaml:"requirements"`$/;"	m	struct:data.AbilityData
+Player	events/_old/player.go	/^type Player struct {$/;"	s	package:events
+PlayerConfig	events/_old/player.go	/^type PlayerConfig struct{}$/;"	s	package:events
+Pop	events/world/_goapGraph.go	/^func (f *frontier) Pop() interface{} {$/;"	f	unknown:world.frontier
+PopBack	maze/vlist.go	/^func (v *vlist) PopBack() (v1 vector) {$/;"	f	unknown:maze.vlist
+PopFront	maze/vlist.go	/^func (v *vlist) PopFront() (v1 vector) {$/;"	f	unknown:maze.vlist
+Print	maze/tendril.go	/^func (a *arm) Print(vs ...vlist) string {$/;"	f	unknown:maze.arm
+Print	maze/vlist.go	/^func (v *vlist) Print() string {$/;"	f	unknown:maze.vlist
+PrintBinary	events/world/_old/object/object.go	/^func (o Object) PrintBinary() string {$/;"	f	unknown:object.Object
+Push	events/world/_goapGraph.go	/^func (f *frontier) Push(x interface{}) {$/;"	f	unknown:world.frontier
+PushBack	maze/vlist.go	/^func (v *vlist) PushBack(v1 vector) {$/;"	f	unknown:maze.vlist
+PushFront	maze/vlist.go	/^func (v *vlist) PushFront(v1 vector) {$/;"	f	unknown:maze.vlist
+Query	maze/maze.go	/^func (m *maze) Query(x, y int) {$/;"	f	unknown:maze.maze
+Reaching	maze/crawler.go	/^	Reaching$/;"	c	package:maze
+Read	collection/collection.go	/^func (c Collection) Read(query uint64) int {$/;"	f	unknown:collection.Collection
+Read	maze/cell/cell.go	/^func (c Cell) Read(k Key) int {$/;"	f	unknown:cell.Cell
+Read	maze/maze.go	/^func (m *maze) Read(at vector) cell.Cell {$/;"	f	unknown:maze.maze
+ReadMultiple	collection/collection.go	/^func (c Collection) ReadMultiple(query uint64) (intersection uint64) {$/;"	f	unknown:collection.Collection
+RelativeComplement	events/world/_old/object/object.go	/^func (o Object) RelativeComplement(this Object) (diff []Key) {$/;"	f	unknown:object.Object
+S	maze/tendril.go	/^	S$/;"	c	package:maze
 SAN	events/world/stats/stats.go	/^	SAN                   = Stat(NIBBLE36)$/;"	c	package:stats
+SE	maze/tendril.go	/^	SE$/;"	c	package:maze
+SEW	maze/tendril.go	/^	SEW$/;"	c	package:maze
+SMAX	events/world/stats/stats.go	/^	SMAX = Stat(MAX)$/;"	c	package:stats
 STORE	events/world/places.go	/^	STORE$/;"	c	package:world
 STR	events/world/stats/stats.go	/^	STR                   = Stat(NIBBLE16)$/;"	c	package:stats
-Save	data/data.go	/^type Save struct{}$/;"	s	package:data
+SW	maze/tendril.go	/^	SW$/;"	c	package:maze
+Save	data/save.go	/^type Save struct {$/;"	s	package:data
 Schizophrenia	events/world/stats/stats.go	/^	Schizophrenia         = Stat(BOOL6)$/;"	c	package:stats
-Search	events/world/goapGraph.go	/^func (g graph) Search(searcher Agent, goal int) (paths []path) {$/;"	f	unknown:world.graph
+Search	events/world/_goapGraph.go	/^func (g graph) Search(searcher Agent, goal int) path {$/;"	f	unknown:world.graph
+Set	events/world/_old/object/object.go	/^func (o *Object) Set(k Key, newVal int) *Object {$/;"	f	unknown:object.Object
 Set	events/world/items/items.go	/^func (i *Items) Set(a Item, newVal int) *Items {$/;"	f	unknown:items.Items
-Set	events/world/object/object.go	/^func (o *Object) Set(k Key, newVal int) *Object {$/;"	f	unknown:object.Object
 Set	events/world/stats/stats.go	/^func (s *Stats) Set(a Stat, newVal int) *Stats {$/;"	f	unknown:stats.Stats
+Set	maze/cell/cell.go	/^func (c *Cell) Set(k Key, v int) {$/;"	f	unknown:cell.Cell
+Set	maze/maze.go	/^func (m *maze) Set(at vector, o key, val int) {$/;"	f	unknown:maze.maze
 SetMadness	events/world/worldConfig.go	/^func (w *WorldConfig) SetMadness(mad int) {$/;"	f	unknown:world.WorldConfig
 SetYear	events/world/worldConfig.go	/^func (w *WorldConfig) SetYear(year int) {$/;"	f	unknown:world.WorldConfig
-SortSearched	events/world/goapGraph.go	/^func (g graph) SortSearched(paths []path) (completeRoute []int) {$/;"	f	unknown:world.graph
-Start	events/eventSystem.go	/^func (e *EventSystem) Start() {$/;"	f	unknown:events.EventSystem
+Shortval1	collection/collection.go	/^	Shortval1 uint64 = 1 << iota$/;"	c	package:collection
+Shortval2	collection/collection.go	/^	Shortval2$/;"	c	package:collection
+Shortval3	collection/collection.go	/^	Shortval3$/;"	c	package:collection
+Shortval4	collection/collection.go	/^	Shortval4$/;"	c	package:collection
+Shortval5	collection/collection.go	/^	Shortval5$/;"	c	package:collection
+Shortval6	collection/collection.go	/^	Shortval6$/;"	c	package:collection
+Shortval7	collection/collection.go	/^	Shortval7$/;"	c	package:collection
+Shortval8	collection/collection.go	/^	Shortval8$/;"	c	package:collection
+Some	maze/cell/cell.go	/^func (c Cell) Some(k Key) uint64 {$/;"	f	unknown:cell.Cell
+Start	events/_old/eventSystem.go	/^func (e *EventSystem) Start() {$/;"	f	unknown:events.EventSystem
 Stat	events/world/stats/stats.go	/^type Stat Key$/;"	t	package:stats
+Stats	events/world/_goapGraph.go	/^	stats.Stats$/;"	M	struct:world.Agent	typeref:typename:stats.Stats
 Stats	events/world/stats/stats.go	/^type Stats Object$/;"	t	package:stats
-StoriesFromYaml	data/yaml.go	/^func (y *yamlLoader) StoriesFromYaml(yamlFile []byte) ([]StoryData, error) {$/;"	f	unknown:data.yamlLoader
-StoryData	data/StoryData.go	/^type StoryData struct {$/;"	s	package:data
 Stress	events/world/stats/stats.go	/^	Stress                = Stat(UINT8_54)$/;"	c	package:stats
+String	collection/collection.go	/^func (c Collection) String(labels map[uint64]string) (output string) {$/;"	f	unknown:collection.Collection
+String	maze/vector.go	/^func (c vector) String() string {$/;"	f	unknown:maze.vector
+Stunned	maze/crawler.go	/^	Stunned$/;"	c	package:maze
 Subject	events/world/subject.go	/^type Subject struct {$/;"	s	package:world
-Swap	events/world/goapGraph.go	/^func (f frontier) Swap(i int, j int) {$/;"	f	unknown:world.frontier
-Tags	data/AbilityData.go	/^	Tags         []string       `yaml:"tags"`$/;"	m	struct:data.AbilityData
-Tags	data/ActorData.go	/^	Tags         []string `yaml:"tags"`$/;"	m	struct:data.ActorData
-Tags	data/MessageData.go	/^	Tags    string         `yaml:"tags"`$/;"	m	struct:data.MessageData
-Tags	data/OrganizationData.go	/^	Tags        string         `yaml:"tags"`$/;"	m	struct:data.OrganizationData
-Tags	data/OrganizationData.go	/^	Tags        string `yaml:"tags"`$/;"	m	struct:data.GoalData
-Tags	data/StoryData.go	/^	Tags    []string `yaml:"tags"`$/;"	m	struct:data.StoryData
+Superset	events/world/_goapGraph.go	/^func (a Agent) Superset(b Agent) bool {$/;"	f	unknown:world.Agent
+Superset	events/world/_old/goapTrie.go	/^func (b bitmap) Superset(c bitmap) bool {$/;"	f	unknown:world.bitmap
+Superset	events/world/_old/object/object.go	/^func (o Object) Superset(this Object) bool {$/;"	f	unknown:object.Object
+Superset	events/world/items/items.go	/^func (i Items) Superset(this Items) bool {$/;"	f	unknown:items.Items
+Superset	events/world/stats/stats.go	/^func (s Stats) Superset(this Stats) bool {$/;"	f	unknown:stats.Stats
+Swap	events/world/_goapGraph.go	/^func (f frontier) Swap(i int, j int) {$/;"	f	unknown:world.frontier
+Swap	events/world/_old/goapTrie.go	/^func (t trie) Swap(i, j int) {$/;"	f	unknown:world.trie
 Tags	events/world/group.go	/^	Tags        string     `yaml:"tags"`$/;"	m	struct:world.Group
-Test	events/world/goapGraph.go	/^func (g *graph) Test(location int) (hasRequiredStats func(uint64) bool, hasRequiredThings func(u/;"	f	unknown:world.graph
-TestLoad	data/yaml_test.go	/^func TestLoad(t *testing.T) {$/;"	f	package:data
-TestSetGet	events/world/object/object_test.go	/^func TestSetGet(t *testing.T) {$/;"	f	package:object
-TickRate	events/eventSystem.go	/^func (e *EventSystem) TickRate(newTickRate float64) {$/;"	f	unknown:events.EventSystem
-Title	data/AbilityData.go	/^	Title        string         `yaml:"title"`$/;"	m	struct:data.AbilityData
-Title	data/MessageData.go	/^	Title   string         `yaml:"title"`$/;"	m	struct:data.MessageData
-Title	data/StoryData.go	/^	Title   string   `yaml:"title"`$/;"	m	struct:data.StoryData
+Tendril	maze/cell/cell.go	/^	Tendril Key = Key(Shortval1)$/;"	c	package:cell
+Tendrils	maze/tendril.go	/^var Tendrils = [...]tendril{$/;"	v	package:maze
+Test	events/world/_goapGraph.go	/^func (g graph) Test(searcher Agent, vert int) []int {$/;"	f	unknown:world.graph
+TestBitHas	maze/cell_test.go	/^func TestBitHas(t *testing.T) {$/;"	f	package:maze
+TestCut	maze/vlist_test.go	/^func TestCut(t *testing.T) {$/;"	f	package:maze
+TestHas	maze/vlist_test.go	/^func TestHas(t *testing.T) {$/;"	f	package:maze
+TestI	maze/vlist_test.go	/^func TestI(t *testing.T) {$/;"	f	package:maze
+TestLen	maze/vlist_test.go	/^func TestLen(t *testing.T) {$/;"	f	package:maze
+TestMap	maze/vlist_test.go	/^func TestMap(t *testing.T) {$/;"	f	package:maze
+TestPopBack	maze/vlist_test.go	/^func TestPopBack(t *testing.T) {$/;"	f	package:maze
+TestPopFront	maze/vlist_test.go	/^func TestPopFront(t *testing.T) {$/;"	f	package:maze
+TestRune	maze/cell_test.go	/^func TestRune(t *testing.T) {$/;"	f	package:maze
+TestSetGet	events/world/_old/object/object_test.go	/^func TestSetGet(t *testing.T) {$/;"	f	package:object
+TestSuperset	events/world/_old/object/object_test.go	/^func TestSuperset(t *testing.T) {$/;"	f	package:object
+TestWrite	maze/cell_test.go	/^func TestWrite(t *testing.T) {$/;"	f	package:maze
+TickRate	events/_old/eventSystem.go	/^func (e *EventSystem) TickRate(newTickRate float64) {$/;"	f	unknown:events.EventSystem
+Trie	events/world/_old/goapTrie.go	/^func Trie() *trie {$/;"	f	package:world
 UI	book.go	/^func (b *book) UI(nextMode func()) (title string, content tview.Primitive) {$/;"	f	unknown:main.book
 UI	email.go	/^func (e *email) UI(nextMode func()) (title string, content tview.Primitive) {$/;"	f	unknown:main.email
 UI	graph.go	/^func (g *graph) UI(nextMode func()) (title string, content tview.Primitive) {$/;"	f	unknown:main.graph
 UI	news.go	/^func (n *news) UI(nextMode func()) (title string, content tview.Primitive) {$/;"	f	unknown:main.news
-UINT8_48	events/world/object/object.go	/^	UINT8_48 Key = lastNibbleBoundary + iota*8$/;"	c	package:object
-UINT8_54	events/world/object/object.go	/^	UINT8_54$/;"	c	package:object
+UINT8_48	events/world/_old/object/object.go	/^	UINT8_48 Key = lastNibbleBoundary + iota*8$/;"	c	package:object
+UINT8_54	events/world/_old/object/object.go	/^	UINT8_54$/;"	c	package:object
+Unconscious	maze/crawler.go	/^	Unconscious$/;"	c	package:maze
 Uniform	events/world/items/items.go	/^	Uniform          = Item(NIBBLE16)$/;"	c	package:items
-Union	events/world/goapGraph.go	/^func (a *Agent) Union(b Agent) *Agent        { return a }$/;"	f	unknown:world.Agent
 Update	book.go	/^func (b *book) Update() {$/;"	f	unknown:main.book
 Update	email.go	/^func (e *email) Update() {}$/;"	f	unknown:main.email
 Update	graph.go	/^func (g *graph) Update() {}$/;"	f	unknown:main.graph
+Update	maze/crawler.go	/^func (c *crawler) Update() {$/;"	f	unknown:maze.crawler
+Update	maze/maze.go	/^func (m *maze) Update() {$/;"	f	unknown:maze.maze
 Update	news.go	/^func (n *news) Update() {}$/;"	f	unknown:main.news
+Vision	maze/crawler.go	/^func (c *crawler) Vision() {$/;"	f	unknown:maze.crawler
+W	maze/tendril.go	/^	W$/;"	c	package:maze
 WIL	events/world/stats/stats.go	/^	WIL                   = Stat(NIBBLE32)$/;"	c	package:stats
 WIS	events/world/stats/stats.go	/^	WIS                   = Stat(NIBBLE24)$/;"	c	package:stats
 WORK_FACTORY	events/world/places.go	/^	WORK_FACTORY$/;"	c	package:world
 WORK_OFFICE	events/world/places.go	/^	WORK_OFFICE$/;"	c	package:world
+Wall	maze/cell/cell.go	/^	Wall        = Key(Shortval4)$/;"	c	package:cell
+Wandering	maze/crawler.go	/^	Wandering crawlerState = iota$/;"	c	package:maze
 World	events/world/World.go	/^type World struct {$/;"	s	package:world
 WorldConfig	events/world/worldConfig.go	/^type WorldConfig struct {$/;"	s	package:world
+Write	collection/collection.go	/^func (c *Collection) Write(at uint64, val int) {$/;"	f	unknown:collection.Collection
 _	events/world/places.go	/^	_$/;"	c	package:world
-_bool	events/world/object/object.go	/^	_bool   = 1$/;"	c	package:object
-_nibble	events/world/object/object.go	/^	_nibble = 4$/;"	c	package:object
-_uint8	events/world/object/object.go	/^	_uint8  = 8$/;"	c	package:object
+_bool	events/world/_old/object/object.go	/^	_bool   = 1$/;"	c	package:object
+_nibble	events/world/_old/object/object.go	/^	_nibble = 4$/;"	c	package:object
+_uint8	events/world/_old/object/object.go	/^	_uint8  = 8$/;"	c	package:object
+abs	maze/vector.go	/^func (c vector) abs() vector {$/;"	f	unknown:maze.vector
+active	maze/maze.go	/^type active interface {$/;"	i	package:maze
+activeEntities	maze/maze.go	/^	activeEntities []active$/;"	m	struct:maze.maze
+add	maze/vector.go	/^func (c vector) add(to vector) vector {$/;"	f	unknown:maze.vector
 app	main.go	/^var app *tview.Application$/;"	v	package:main
+arm	maze/tendril.go	/^type arm struct {$/;"	s	package:maze
+armMaxLength	maze/crawler.go	/^	armMaxLength int$/;"	m	struct:maze.stats
+arms	maze/crawler.go	/^	arms       []arm$/;"	m	struct:maze.crawler
+assign	maze/crawler.go	/^func (c *crawler) assign() {$/;"	f	unknown:maze.crawler
+assign	maze/tendril.go	/^func (a *arm) assign(p vlist) {$/;"	f	unknown:maze.arm
 assignGroups	events/world/World.go	/^func (w *World) assignGroups() {$/;"	f	unknown:world.World
+astate	maze/tendril.go	/^type astate int$/;"	t	package:maze
+balance	maze/vlist.go	/^func (v *vlist) balance() {$/;"	f	unknown:maze.vlist
+bitmap	events/world/_old/goapTrie.go	/^type bitmap uint64$/;"	t	package:world
+bodyState	maze/crawler.go	/^type bodyState struct {$/;"	s	package:maze
 book	book.go	/^type book struct {$/;"	s	package:main
+boolMask	events/world/_old/object/object.go	/^	boolMask = MAX >> (64 - lastBoolBoundary)$/;"	c	package:object
+bools	collection/collection.go	/^	bools  uint64$/;"	m	struct:collection.Collection
+bottom	maze/maze.go	/^	bottom$/;"	c	package:maze
+bstate	maze/crawler.go	/^type bstate int$/;"	t	package:maze
+cell	maze/cell/cell.go	/^package cell$/;"	p
 chapterBreak	util.go	/^func chapterBreak(p *tview.Box) string {$/;"	f	package:main
 chapter_break	util.go	/^const chapter_break = "\\u00a7"$/;"	c	package:main
-character	events/world/goapGraph.go	/^	character  uint64$/;"	m	struct:world.Agent
 checkAllowed	events/world/places.go	/^func (p *place) checkAllowed(a ID) bool {$/;"	f	unknown:world.place
-checkFit	events/world/object/object.go	/^func (k Key) checkFit(newVal int) int {$/;"	f	unknown:object.Key
-checkIfHasReccord	events/event.go	/^func (a *event) checkIfHasReccord() {}$/;"	f	unknown:events.event
+checkFit	events/world/_old/object/object.go	/^func (k Key) checkFit(newVal int) int {$/;"	f	unknown:object.Key
+checkIfHasReccord	events/_old/event.go	/^func (a *event) checkIfHasReccord() {}$/;"	f	unknown:events.event
+child	events/world/_old/goapTrie.go	/^	child  int$/;"	m	struct:world.nodule
+cloud	maze/cloud.go	/^type cloud struct {$/;"	s	package:maze
+collection	collection/collection.go	/^package collection$/;"	p
+color	maze/cloud.go	/^	color color.RGBA$/;"	m	struct:maze.cloud
+color	maze/crawler.go	/^	color color.RGBA$/;"	m	struct:maze.bodyState
+color	maze/tendril.go	/^	color color.RGBA$/;"	m	struct:maze.tendril
 column	news.go	/^type column struct {$/;"	s	package:main
 column_count	news.go	/^const column_count = 3$/;"	c	package:main
 columns	news.go	/^	columns [column_count]column$/;"	m	struct:main.news
+consume	maze/crawler.go	/^func (c *crawler) consume() {$/;"	f	unknown:maze.crawler
 content	news.go	/^	content string$/;"	m	struct:main.story
-cost	events/world/goapGraph.go	/^	cost                  int$/;"	m	struct:world.vertex
-cost	events/world/goapGraph.go	/^	cost   int$/;"	m	struct:world.node
+cost	events/world/_goapGraph.go	/^	cost     int$/;"	m	struct:world.vertex
+cost	events/world/_goapGraph.go	/^	cost   int$/;"	m	struct:world.node
 count	news.go	/^	count int$/;"	m	struct:main.column
-data	data/AbilityData.go	/^package data$/;"	p
-data	data/ActorData.go	/^package data$/;"	p
-data	data/MessageData.go	/^package data$/;"	p
-data	data/OrganizationData.go	/^package data$/;"	p
-data	data/StoryData.go	/^package data$/;"	p
-data	data/data.go	/^package data$/;"	p
-data	data/data.go	/^type data struct {$/;"	s	package:data
-data	data/yaml.go	/^package data$/;"	p
-data	data/yaml_test.go	/^package data$/;"	p
+crawler	maze/crawler.go	/^type crawler struct {$/;"	s	package:maze
+crawlerState	maze/crawler.go	/^type crawlerState int$/;"	t	package:maze
+data	data/json.go	/^package data$/;"	p
+data	data/save.go	/^package data$/;"	p
+delta	events/world/_goapGraph.go	/^	delta    bitmap$/;"	m	struct:world.vertex
+desire	maze/crawler.go	/^	desire float64$/;"	m	struct:maze.dir
+desired	maze/crawler.go	/^	desired     cell.Key$/;"	m	struct:maze.crawler
+dir	maze/crawler.go	/^type dir struct {$/;"	s	package:maze
+directions	maze/crawler.go	/^	directions [8]dir$/;"	m	struct:maze.crawler
+dot	maze/vector.go	/^func (c vector) dot(to vector) vector {$/;"	f	unknown:maze.vector
+draw	maze/tendril.go	/^func (a *arm) draw(m *maze) {$/;"	f	unknown:maze.arm
+duration	maze/crawler.go	/^	duration int$/;"	m	struct:maze.crawler
 email	email.go	/^type email struct{}$/;"	s	package:main
 emails	events/world/names/emails.go	/^var emails = []string{$/;"	v	package:names
-event	events/event.go	/^type event struct {$/;"	s	package:events
-events	events/event.go	/^package events$/;"	p
-events	events/eventSystem.go	/^package events$/;"	p
-events	events/player.go	/^package events$/;"	p
-feed	events/player.go	/^func (p *Player) feed(viewer chan *w.Record, list []*w.Record) func() int {$/;"	f	unknown:events.Player
+empty	maze/vlist_test.go	/^var empty vlist$/;"	v	package:maze
+enviro	maze/crawler.go	/^	enviro *maze$/;"	m	struct:maze.crawler
+event	events/_old/event.go	/^type event struct {$/;"	s	package:events
+events	events/_old/event.go	/^package events$/;"	p
+events	events/_old/eventSystem.go	/^package events$/;"	p
+events	events/_old/player.go	/^package events$/;"	p
+extending	maze/tendril.go	/^	extending astate = iota$/;"	c	package:maze
+feared	maze/crawler.go	/^	feared      cell.Key$/;"	m	struct:maze.crawler
+feed	events/_old/player.go	/^func (p *Player) feed(viewer chan *w.Record, list []*w.Record) func() int {$/;"	f	unknown:events.Player
 femaleFirstNames	events/world/names/names.go	/^var femaleFirstNames = []string{$/;"	v	package:names
+fields	events/world/_old/goapTrie.go	/^	fields bitmap$/;"	m	struct:world.nodule
 formatSpell	book.go	/^func (b *book) formatSpell(s *spell) string {$/;"	f	unknown:main.book
 formatStory	news.go	/^func (n *news) formatStory(s story) string {$/;"	f	unknown:main.news
+fresh	maze/maze.go	/^	fresh          []cell.Cell$/;"	m	struct:maze.maze
 friends	events/world/subject.go	/^	friends [max_relationships]ID$/;"	m	struct:world.Subject
-frontier	events/world/goapGraph.go	/^type frontier []node$/;"	t	package:world
+frontier	events/world/_goapGraph.go	/^type frontier []node$/;"	t	package:world
 generateRelationships	events/world/World.go	/^func (w *World) generateRelationships() {$/;"	f	unknown:world.World
 generationError	events/world/subject.go	/^type generationError string$/;"	t	package:world
+get	collection/collection.go	/^func (n nibblePair) get(part bool) int {$/;"	f	unknown:collection.nibblePair
+getPaths	maze/crawler.go	/^func (c *crawler) getPaths(count int) []vlist {$/;"	f	unknown:maze.crawler
 goal	events/world/goals.go	/^type goal struct{}$/;"	s	package:world
 goal	events/world/subject.go	/^	goal    int$/;"	m	struct:world.Subject
-graph	events/world/World.go	/^	graph$/;"	M	struct:world.World	typeref:typename:graph
-graph	events/world/goapGraph.go	/^type graph []vertex$/;"	t	package:world
+graph	events/world/_goapGraph.go	/^type graph []vertex$/;"	t	package:world
 graph	graph.go	/^type graph struct{}$/;"	s	package:main
 handle	book.go	/^	handle            string$/;"	m	struct:main.spell
-instantiateActor	events/eventSystem.go	/^func (e *EventSystem) instantiateActor(input *actor) (*actor, error) {$/;"	f	unknown:events.EventSystem
-instantiateRecord	events/eventSystem.go	/^func (e *EventSystem) instantiateRecord(input *w.Record) *w.Record {$/;"	f	unknown:events.EventSystem
+head	maze/vlist.go	/^	head []vector$/;"	m	struct:maze.vlist
+health	maze/crawler.go	/^	health       int$/;"	m	struct:maze.stats
+info	maze/maze.go	/^	info           string$/;"	m	struct:maze.maze
+instantiateActor	events/_old/eventSystem.go	/^func (e *EventSystem) instantiateActor(input *actor) (*actor, error) {$/;"	f	unknown:events.EventSystem
+instantiateRecord	events/_old/eventSystem.go	/^func (e *EventSystem) instantiateRecord(input *w.Record) *w.Record {$/;"	f	unknown:events.EventSystem
+intelligence	maze/crawler.go	/^	intelligence int$/;"	m	struct:maze.stats
 items	events/world/items/items.go	/^package items$/;"	p
 items	events/world/subject.go	/^	items   items.Items$/;"	m	struct:world.Subject
 keyValue	book.go	/^	keyValue          map[string]int$/;"	m	struct:main.spell
-lastBoolBoundary	events/world/object/object.go	/^	lastBoolBoundary$/;"	c	package:object
-lastNibbleBoundary	events/world/object/object.go	/^	lastNibbleBoundary$/;"	c	package:object
-loadTTF	data/data.go	/^func (d FontLoader) loadTTF(path string, size float64) (font.Face, error) {$/;"	f	unknown:data.FontLoader
+labels	maze/cell/cell.go	/^var labels = map[uint64]string{$/;"	v	package:cell
+lastBoolBoundary	events/world/_old/object/object.go	/^	lastBoolBoundary$/;"	c	package:object
+lastNibbleBoundary	events/world/_old/object/object.go	/^	lastNibbleBoundary$/;"	c	package:object
+left	maze/maze.go	/^	left = iota$/;"	c	package:maze
+lis	maze/vlist_test.go	/^var lis vlist$/;"	v	package:maze
+loc	maze/crawler.go	/^	loc        vector$/;"	m	struct:maze.crawler
 long_description	book.go	/^	long_description  string$/;"	m	struct:main.spell
 madness	events/world/worldConfig.go	/^	madness int$/;"	m	struct:world.WorldConfig
-mailBox	events/player.go	/^	mailBox  []*w.Record$/;"	m	struct:events.Player
+mailBox	events/_old/player.go	/^	mailBox  []*w.Record$/;"	m	struct:events.Player
 main	book.go	/^package main$/;"	p
 main	email.go	/^package main$/;"	p
 main	graph.go	/^package main$/;"	p
@@ -285,77 +449,131 @@ main	main.go	/^package main$/;"	p
 main	news.go	/^package main$/;"	p
 main	util.go	/^package main$/;"	p
 maleFirstNames	events/world/names/names.go	/^var maleFirstNames = []string{$/;"	v	package:names
-maxChar	events/world/goapGraph.go	/^	maxChar       = 0xFFFFFFFFFFF$/;"	c	package:world
-maxPossession	events/world/goapGraph.go	/^	maxPossession = 0xFFFFFFFFFFF$/;"	c	package:world
 max_enemies	events/world/World.go	/^	max_enemies       = 3$/;"	c	package:world
 max_friends	events/world/World.go	/^	max_friends       = 4$/;"	c	package:world
 max_hate	events/world/World.go	/^	max_hate          = 256$/;"	c	package:world
 max_love	events/world/World.go	/^	max_love          = 256$/;"	c	package:world
 max_relationships	events/world/World.go	/^	max_relationships = 8$/;"	c	package:world
+maze	maze/cell_test.go	/^package maze$/;"	p
+maze	maze/cloud.go	/^package maze$/;"	p
+maze	maze/crawler.go	/^package maze$/;"	p
+maze	maze/maze.go	/^package maze$/;"	p
+maze	maze/maze.go	/^type maze struct {$/;"	s	package:maze
+maze	maze/tendril.go	/^package maze$/;"	p
+maze	maze/vector.go	/^package maze$/;"	p
+maze	maze/vlist.go	/^package maze$/;"	p
+maze	maze/vlist_test.go	/^package maze$/;"	p
 members	events/world/group.go	/^	members     []*Subject `yaml:"members"`$/;"	m	struct:world.Group
-minRequiredCharacter	events/world/goapGraph.go	/^	minRequiredCharacter  uint64$/;"	m	struct:world.vertex
-minRequiredPossesions	events/world/goapGraph.go	/^	minRequiredPossesions uint64$/;"	m	struct:world.vertex
+move	maze/crawler.go	/^func (c *crawler) move(newLoc vector) {$/;"	f	unknown:maze.crawler
+move	maze/tendril.go	/^func (a *arm) move(newLoc vector) {$/;"	f	unknown:maze.arm
 name	events/world/places.go	/^	name            string$/;"	m	struct:world.place
+name	maze/cloud.go	/^	name  string$/;"	m	struct:maze.cloud
+name	maze/crawler.go	/^	name  string$/;"	m	struct:maze.bodyState
+name	maze/tendril.go	/^	name  string$/;"	m	struct:maze.tendril
 names	book.go	/^	names  *tview.List$/;"	m	struct:main.book
 names	events/world/names/emails.go	/^package names$/;"	p
 names	events/world/names/namer.go	/^package names$/;"	p
 names	events/world/names/names.go	/^package names$/;"	p
-neighbours	events/world/goapGraph.go	/^	neighbours            []int$/;"	m	struct:world.vertex
+neighbors	maze/maze.go	/^func (m *maze) neighbors(of vector, passable key) []vector {$/;"	f	unknown:maze.maze
 news	news.go	/^type news struct {$/;"	s	package:main
-newsFeed	events/player.go	/^	newsFeed []*w.Record$/;"	m	struct:events.Player
-node	events/world/goapGraph.go	/^type node struct {$/;"	s	package:world
+newsFeed	events/_old/player.go	/^	newsFeed []*w.Record$/;"	m	struct:events.Player
+next	events/world/_old/goapTrie.go	/^	next   int$/;"	m	struct:world.nodule
+nibblePair	collection/collection.go	/^type nibblePair uint8$/;"	t	package:collection
+node	events/world/_goapGraph.go	/^type node struct {$/;"	s	package:world
+nodule	events/world/_old/goapTrie.go	/^type nodule struct {$/;"	s	package:world
+none	maze/tendril.go	/^	none = iota$/;"	c	package:maze
+null	events/world/_old/goapTrie.go	/^	null = -1$/;"	c	package:world
 numberOfEnemies	events/world/World.go	/^func (w *World) numberOfEnemies(p Subject) int {$/;"	f	unknown:world.World
 numberOfFamilly	events/world/World.go	/^func (w *World) numberOfFamilly(p Subject) int {$/;"	f	unknown:world.World
 numberOfFriends	events/world/World.go	/^func (w *World) numberOfFriends(p Subject) int {$/;"	f	unknown:world.World
-object	events/world/object/object.go	/^package object$/;"	p
-object	events/world/object/object_test.go	/^package object$/;"	p
+object	events/world/_old/object/object.go	/^package object$/;"	p
+object	events/world/_old/object/object_test.go	/^package object$/;"	p
+objects	maze/cell_test.go	/^var objects = []object{$/;"	v	package:maze
+old	maze/maze.go	/^	old            []cell.Cell$/;"	m	struct:maze.maze
+orient	maze/maze.go	/^func (m *maze) orient(q key, offset int) uint8 {$/;"	f	unknown:maze.maze
 pages	book.go	/^	pages  *tview.Pages$/;"	m	struct:main.book
-parent	events/world/goapGraph.go	/^	parent *node$/;"	m	struct:world.node
-path	data/yaml.go	/^	path string$/;"	m	struct:data.yamlLoader
-path	events/world/goapGraph.go	/^	path           []int$/;"	m	struct:world.path
-path	events/world/goapGraph.go	/^type path struct {$/;"	s	package:world
-pathCost	events/world/goapGraph.go	/^	pathCost       int$/;"	m	struct:world.path
+parent	events/world/_goapGraph.go	/^	parent *node$/;"	m	struct:world.node
+path	events/world/_goapGraph.go	/^	path           []int$/;"	m	struct:world.path
+path	events/world/_goapGraph.go	/^type path struct {$/;"	s	package:world
+path	maze/crawler.go	/^	path   vlist$/;"	m	struct:maze.dir
+path	maze/tendril.go	/^	path     vlist$/;"	m	struct:maze.arm
+pathCost	events/world/_goapGraph.go	/^	pathCost       int$/;"	m	struct:world.path
 place	events/world/places.go	/^type place struct {$/;"	s	package:world
 placeEnum	events/world/places.go	/^type placeEnum int$/;"	t	package:world
 places	events/world/places.go	/^var places = [16]place{$/;"	v	package:world
 plain	book.go	/^	plain  *tview.TextView$/;"	m	struct:main.book
+poll	maze/crawler.go	/^func (c *crawler) poll() int {$/;"	f	unknown:maze.crawler
+pop	maze/vlist.go	/^func (v *vlist) pop(vecs1 *[]vector, vecs2 *[]vector) (v1 vector) {$/;"	f	unknown:maze.vlist
 pop_number	events/world/World.go	/^	pop_number        = 256$/;"	c	package:world
-possesions	events/world/goapGraph.go	/^	possesions uint64$/;"	m	struct:world.Agent
-predefinedVertexes	events/world/goapGraph.go	/^var predefinedVertexes = []vertex{}$/;"	v	package:world
+prim	maze/crawler.go	/^	prim       int$/;"	m	struct:maze.crawler
 relationship	events/world/World.go	/^func (w *World) relationship(a int, b int, bias int) int {$/;"	f	unknown:world.World
 relationship	events/world/World.go	/^type relationship struct {$/;"	s	package:world
+required	events/world/_goapGraph.go	/^	required bitmap$/;"	m	struct:world.vertex
+resilience	maze/crawler.go	/^	resilience   int$/;"	m	struct:maze.stats
 restrictionFunc	events/world/places.go	/^	restrictionFunc func(i ID)$/;"	m	struct:world.place
-resultingAgent	events/world/goapGraph.go	/^	resultingAgent Agent$/;"	m	struct:world.path
+resultingAgent	events/world/_goapGraph.go	/^	resultingAgent Agent$/;"	m	struct:world.path
+retracting	maze/tendril.go	/^	retracting$/;"	c	package:maze
+right	maze/maze.go	/^	right$/;"	c	package:maze
 run	main.go	/^func run() {$/;"	f	package:main
-s	events/event.go	/^	s\/github.com\/nowakf\/undefined_behaviourject *actor$/;"	m	struct:events.event
-self	events/world/goapGraph.go	/^	self   int$/;"	m	struct:world.node
+s	events/_old/event.go	/^	s\/github.com\/nowakf\/undefined_behaviourject *actor$/;"	m	struct:events.event
+segments	maze/tendril.go	/^	segments vlist$/;"	m	struct:maze.arm
+self	events/world/_goapGraph.go	/^	self   int$/;"	m	struct:world.node
+set	collection/collection.go	/^func (n *nibblePair) set(part bool, val uint8) {$/;"	f	unknown:collection.nibblePair
+set	events/world/_old/object/object_test.go	/^func set(check []int, o Object) Object {$/;"	f	package:object
+set	maze/maze.go	/^func (m *maze) set(x, y int, r rune) {$/;"	f	unknown:maze.maze
 short_description	book.go	/^	short_description string$/;"	m	struct:main.spell
+shuffle	maze/cell_test.go	/^var shuffle = func() {$/;"	v	package:maze
+sigil	maze/crawler.go	/^	sigil rune$/;"	m	struct:maze.bodyState
+sigil	maze/tendril.go	/^	sigil rune$/;"	m	struct:maze.tendril
 spell	book.go	/^type spell struct {$/;"	s	package:main
 spells	book.go	/^	spells map[string]*spell$/;"	m	struct:main.book
+state	maze/crawler.go	/^	state crawlerState$/;"	m	struct:maze.crawler
+state	maze/tendril.go	/^	state    astate$/;"	m	struct:maze.arm
 stats	events/world/stats/stats.go	/^package stats$/;"	p
 stats	events/world/subject.go	/^	stats   stats.Stats$/;"	m	struct:world.Subject
+stats	maze/crawler.go	/^	stats$/;"	M	struct:maze.crawler	typeref:typename:stats
+stats	maze/crawler.go	/^type stats struct {$/;"	s	package:maze
+stopped	maze/maze.go	/^	stopped        bool$/;"	m	struct:maze.maze
 stories	news.go	/^	stories []story$/;"	m	struct:main.news
 story	news.go	/^type story struct {$/;"	s	package:main
-success	events/event.go	/^	success bool$/;"	m	struct:events.event
+sub	maze/vector.go	/^func (c vector) sub(o vector) vector {$/;"	f	unknown:maze.vector
+success	events/_old/event.go	/^	success bool$/;"	m	struct:events.event
 surnames	events/world/names/names.go	/^var surnames = []string{$/;"	v	package:names
 table	book.go	/^	table  *tview.Table$/;"	m	struct:main.book
-tags	events/event.go	/^	tags    []string \/\/e.g "theft", "arson", "uncanny" etc$/;"	m	struct:events.event
+tags	events/_old/event.go	/^	tags    []string \/\/e.g "theft", "arson", "uncanny" etc$/;"	m	struct:events.event
+tail	maze/vlist.go	/^	tail []vector$/;"	m	struct:maze.vlist
+tendril	maze/tendril.go	/^type tendril struct {$/;"	s	package:maze
 testSpells	book.go	/^var testSpells = map[string]*spell{$/;"	v	package:main
 testStories	news.go	/^var testStories = []story{$/;"	v	package:main
-tickRate	events/eventSystem.go	/^	tickRate chan float64$/;"	m	struct:events.EventSystem
+tickRate	events/_old/eventSystem.go	/^	tickRate chan float64$/;"	m	struct:events.EventSystem
 title	news.go	/^	title   string$/;"	m	struct:main.story
-unspool	events/world/goapGraph.go	/^func (g *graph) unspool(start node, searcher Agent) (out path) {$/;"	f	unknown:world.graph
-update	events/eventSystem.go	/^func (e *EventSystem) update() {$/;"	f	unknown:events.EventSystem
-vertex	events/world/goapGraph.go	/^type vertex struct {$/;"	s	package:world
+top	maze/maze.go	/^	top$/;"	c	package:maze
+traversable	maze/crawler.go	/^	traversable cell.Key$/;"	m	struct:maze.crawler
+trie	events/world/_old/goapTrie.go	/^type trie []nodule$/;"	t	package:world
+uint4s	collection/collection.go	/^	uint4s [4]nibblePair$/;"	m	struct:collection.Collection
+uint8s	collection/collection.go	/^	uint8s [4]uint8$/;"	m	struct:collection.Collection
+unit	maze/vector.go	/^func (c vector) unit() vector {$/;"	f	unknown:maze.vector
+unspool	events/world/_goapGraph.go	/^func (g *graph) unspool(start node) (out path) {$/;"	f	unknown:world.graph
+update	events/_old/eventSystem.go	/^func (e *EventSystem) update() {$/;"	f	unknown:events.EventSystem
+updateFood	maze/maze.go	/^func (m *maze) updateFood() {$/;"	f	unknown:maze.maze
+updateLength	maze/tendril.go	/^func (a *arm) updateLength() {$/;"	f	unknown:maze.arm
+upstream	events/world/_goapGraph.go	/^	upstream []int$/;"	m	struct:world.vertex
+vector	maze/vector.go	/^type vector struct {$/;"	s	package:maze
+vertex	events/world/_goapGraph.go	/^type vertex struct {$/;"	s	package:world
+vision	maze/crawler.go	/^	vision       int$/;"	m	struct:maze.stats
 visitors	events/world/places.go	/^	visitors        []ID$/;"	m	struct:world.place
-w	events/eventSystem.go	/^	w        *w.World$/;"	m	struct:events.EventSystem
-world	events/event.go	/^	world   *w.World$/;"	m	struct:events.event
+vlist	maze/vlist.go	/^type vlist struct {$/;"	s	package:maze
+w	events/_old/eventSystem.go	/^	w        *w.World$/;"	m	struct:events.EventSystem
+width	maze/maze.go	/^	width          int$/;"	m	struct:maze.maze
+world	events/_old/event.go	/^	world   *w.World$/;"	m	struct:events.event
 world	events/world/World.go	/^package world$/;"	p
+world	events/world/_goapGraph.go	/^package world$/;"	p
+world	events/world/_old/goapTrie.go	/^package world$/;"	p
 world	events/world/goals.go	/^package world$/;"	p
-world	events/world/goapGraph.go	/^package world$/;"	p
 world	events/world/group.go	/^package world$/;"	p
 world	events/world/places.go	/^package world$/;"	p
 world	events/world/subject.go	/^package world$/;"	p
 world	events/world/worldConfig.go	/^package world$/;"	p
-yamlLoader	data/yaml.go	/^type yamlLoader struct {$/;"	s	package:data
+x	maze/vector.go	/^	x, y int$/;"	m	struct:maze.vector
+y	maze/vector.go	/^	x, y int$/;"	m	struct:maze.vector
 year	events/world/worldConfig.go	/^	year    int$/;"	m	struct:world.WorldConfig

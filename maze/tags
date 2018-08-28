@@ -1,0 +1,194 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/7918d19f/
+Cardinal	direction.go	/^	Cardinal$/;"	c	package:main
+CelltoRune	maze.go	/^func (m *maze) CelltoRune(c cell, offset int) rune {$/;"	f	unknown:main.maze
+Convert	maze.go	/^func (m *maze) Convert(from []string) error {$/;"	f	unknown:main.maze
+Crawler	crawler.go	/^func Crawler(m *maze, x, y int) (c crawler) {$/;"	f	package:main
+Cut	vlist.go	/^func (v *vlist) Cut(at int) (part1 vlist, part2 vlist) {$/;"	f	unknown:main.vlist
+Draw	crawler.go	/^func (c *crawler) Draw() {$/;"	f	unknown:main.crawler
+Draw	maze.go	/^func (m *maze) Draw() {$/;"	f	unknown:main.maze
+DrawCell	maze.go	/^func (m *maze) DrawCell(c cell, offset int) (letter rune, fg termbox.Attribute, bg termbox.Attri/;"	f	unknown:main.maze
+E	direction.go	/^	E$/;"	c	package:main
+Enumerate	cell.go	/^func (c cell) Enumerate() (content string) {$/;"	f	unknown:main.cell
+Erase	cell.go	/^func (c *cell) Erase(o object) {$/;"	f	unknown:main.cell
+Erase	maze.go	/^func (m *maze) Erase(at vector, o object) {$/;"	f	unknown:main.maze
+Has	cell.go	/^func (c cell) Has(query object) bool {$/;"	f	unknown:main.cell
+Has	vlist.go	/^func (v *vlist) Has(v1 vector) (int, bool) {$/;"	f	unknown:main.vlist
+I	vlist.go	/^func (v *vlist) I(i int) *vector {$/;"	f	unknown:main.vlist
+Len	vlist.go	/^func (v *vlist) Len() int {$/;"	f	unknown:main.vlist
+MAX	vlist_test.go	/^	MAX = 10$/;"	c	package:main
+Map	vlist.go	/^func (v *vlist) Map(f func(v *vector)) {$/;"	f	unknown:main.vlist
+N	direction.go	/^	N direction = iota$/;"	c	package:main
+NE	direction.go	/^	NE$/;"	c	package:main
+NW	direction.go	/^	NW$/;"	c	package:main
+Nearby	maze.go	/^func (m *maze) Nearby(count int, s vector) []vector {$/;"	f	unknown:main.maze
+Path	maze.go	/^func (m *maze) Path(source vector, sink vector) (path vlist) {$/;"	f	unknown:main.maze
+PopBack	vlist.go	/^func (v *vlist) PopBack() (v1 vector) {$/;"	f	unknown:main.vlist
+PopFront	vlist.go	/^func (v *vlist) PopFront() (v1 vector) {$/;"	f	unknown:main.vlist
+Print	arm.go	/^func (a *arm) Print(vs ...vlist) string {$/;"	f	unknown:main.arm
+Print	vlist.go	/^func (v *vlist) Print() string {$/;"	f	unknown:main.vlist
+PushBack	vlist.go	/^func (v *vlist) PushBack(v1 vector) {$/;"	f	unknown:main.vlist
+PushFront	vlist.go	/^func (v *vlist) PushFront(v1 vector) {$/;"	f	unknown:main.vlist
+Query	maze.go	/^func (m *maze) Query(x, y int) {$/;"	f	unknown:main.maze
+Read	maze.go	/^func (m *maze) Read(at vector) cell {$/;"	f	unknown:main.maze
+Rune	cell.go	/^func (c cell) Rune() rune {$/;"	f	unknown:main.cell
+S	direction.go	/^	S$/;"	c	package:main
+SE	direction.go	/^	SE$/;"	c	package:main
+SELF	direction.go	/^	SELF$/;"	c	package:main
+SW	direction.go	/^	SW$/;"	c	package:main
+ScatterCrawlers	maze.go	/^func (m *maze) ScatterCrawlers(prob int) {$/;"	f	unknown:main.maze
+ScatterFood	maze.go	/^func (m *maze) ScatterFood(prob int) {$/;"	f	unknown:main.maze
+Some	cell.go	/^func (c cell) Some(query object) (contains object) {$/;"	f	unknown:main.cell
+String	cell.go	/^func (o object) String() string {$/;"	f	unknown:main.object
+String	direction.go	/^func (d direction) String() string {$/;"	f	unknown:main.direction
+String	vector.go	/^func (c vector) String() string {$/;"	f	unknown:main.vector
+Swap	maze.go	/^func (m *maze) Swap() {$/;"	f	unknown:main.maze
+TestBitHas	cell_test.go	/^func TestBitHas(t *testing.T) {$/;"	f	package:main
+TestCut	vlist_test.go	/^func TestCut(t *testing.T) {$/;"	f	package:main
+TestHas	vlist_test.go	/^func TestHas(t *testing.T) {$/;"	f	package:main
+TestI	vlist_test.go	/^func TestI(t *testing.T) {$/;"	f	package:main
+TestLen	vlist_test.go	/^func TestLen(t *testing.T) {$/;"	f	package:main
+TestLength	main_test.go	/^func TestLength(t *testing.T) {$/;"	f	package:main
+TestLength	test/main_test.go	/^func TestLength(t *testing.T) {$/;"	f	package:main
+TestMap	vlist_test.go	/^func TestMap(t *testing.T) {$/;"	f	package:main
+TestPopBack	vlist_test.go	/^func TestPopBack(t *testing.T) {$/;"	f	package:main
+TestPopFront	vlist_test.go	/^func TestPopFront(t *testing.T) {$/;"	f	package:main
+TestRune	cell_test.go	/^func TestRune(t *testing.T) {$/;"	f	package:main
+TestWrite	cell_test.go	/^func TestWrite(t *testing.T) {$/;"	f	package:main
+Test_unit	main_test.go	/^func Test_unit(t *testing.T) {$/;"	f	package:main
+Test_unit	test/main_test.go	/^func Test_unit(t *testing.T) {$/;"	f	package:main
+ToVec	direction.go	/^func (d direction) ToVec() vector {$/;"	f	unknown:main.direction
+Update	crawler.go	/^func (c *crawler) Update() {$/;"	f	unknown:main.crawler
+Update	maze.go	/^func (m *maze) Update() {$/;"	f	unknown:main.maze
+W	direction.go	/^	W$/;"	c	package:main
+Write	cell.go	/^func (c *cell) Write(o object) {$/;"	f	unknown:main.cell
+Write	maze.go	/^func (m *maze) Write(at vector, o object) {$/;"	f	unknown:main.maze
+abs	vector.go	/^func (c vector) abs() vector {$/;"	f	unknown:main.vector
+add	vector.go	/^func (c vector) add(to vector) vector {$/;"	f	unknown:main.vector
+arm	arm.go	/^type arm struct {$/;"	s	package:main
+armMaxLength	crawler.go	/^	armMaxLength int$/;"	m	struct:main.stats
+arm_EW	cell.go	/^	arm_EW   = '\\u2501'$/;"	c	package:main
+arm_NE	cell.go	/^	arm_NE   = '\\u251B'$/;"	c	package:main
+arm_NS	cell.go	/^	arm_NS   = '\\u2503'$/;"	c	package:main
+arm_NW	cell.go	/^	arm_NW   = '\\u2517'$/;"	c	package:main
+arm_SE	cell.go	/^	arm_SE   = '\\u2513'$/;"	c	package:main
+arm_SW	cell.go	/^	arm_SW   = '\\u250F'$/;"	c	package:main
+arms	crawler.go	/^	arms []arm$/;"	m	struct:main.crawler
+assign	arm.go	/^func (a *arm) assign(p vlist) {$/;"	f	unknown:main.arm
+assign	crawler.go	/^func (c *crawler) assign() {$/;"	f	unknown:main.crawler
+astate	arm.go	/^type astate int$/;"	t	package:main
+block	cell.go	/^	block    = '\\u2588'$/;"	c	package:main
+body	cell.go	/^	body$/;"	c	package:main
+bstate	crawler.go	/^type bstate int$/;"	t	package:main
+cell	cell.go	/^type cell struct {$/;"	s	package:main
+chasing	crawler.go	/^	chasing$/;"	c	package:main
+cloud	cell.go	/^	cloud$/;"	c	package:main
+consume	crawler.go	/^func (c *crawler) consume() {$/;"	f	unknown:main.crawler
+contents	cell.go	/^	contents [4]uint8$/;"	m	struct:main.cell
+crawler	crawler.go	/^type crawler struct {$/;"	s	package:main
+crawlerArmNo	crawler.go	/^	crawlerArmNo = 5$/;"	c	package:main
+crawlers	maze.go	/^	crawlers []crawler$/;"	m	struct:main.maze
+crmark	cell.go	/^	crmark   = '\\u0473'$/;"	c	package:main
+direction	direction.go	/^type direction int$/;"	t	package:main
+directions	direction.go	/^var directions = map[vector]direction{$/;"	v	package:main
+dot	vector.go	/^func (c vector) dot(to vector) vector {$/;"	f	unknown:main.vector
+draw	arm.go	/^func (a *arm) draw(m *maze) {$/;"	f	unknown:main.arm
+duration	crawler.go	/^	duration int$/;"	m	struct:main.crawler
+e	maze.go	/^	e    = 0x08$/;"	c	package:main
+eating	crawler.go	/^	eating$/;"	c	package:main
+empty	vlist_test.go	/^var empty vlist$/;"	v	package:main
+enviro	crawler.go	/^	enviro   *maze$/;"	m	struct:main.crawler
+ew	maze.go	/^	ew   = 0x0C$/;"	c	package:main
+extending	arm.go	/^	extending astate = iota$/;"	c	package:main
+fmark	cell.go	/^	fmark    = '!'$/;"	c	package:main
+food	cell.go	/^	food$/;"	c	package:main
+food	maze.go	/^	food     []vector$/;"	m	struct:main.maze
+foodCounter	main.go	/^func foodCounter(m *maze) {$/;"	f	package:main
+fresh	maze.go	/^	fresh    []cell$/;"	m	struct:main.maze
+getPaths	crawler.go	/^func (c *crawler) getPaths(count int) []vlist {$/;"	f	unknown:main.crawler
+head	vlist.go	/^	head []vector$/;"	m	struct:main.vlist
+health	crawler.go	/^	health       int$/;"	m	struct:main.stats
+info	maze.go	/^	info     string$/;"	m	struct:main.maze
+intelligence	crawler.go	/^	intelligence int$/;"	m	struct:main.stats
+lis	vlist_test.go	/^var lis vlist$/;"	v	package:main
+loc	crawler.go	/^	loc  vector$/;"	m	struct:main.crawler
+main	arm.go	/^package main$/;"	p
+main	cell.go	/^package main$/;"	p
+main	cell_test.go	/^package main$/;"	p
+main	crawler.go	/^package main$/;"	p
+main	direction.go	/^package main$/;"	p
+main	main.go	/^func main() {$/;"	f	package:main
+main	main.go	/^package main$/;"	p
+main	main_test.go	/^package main$/;"	p
+main	maze.go	/^package main$/;"	p
+main	test/main_test.go	/^package main$/;"	p
+main	vector.go	/^package main$/;"	p
+main	vlist.go	/^package main$/;"	p
+main	vlist_test.go	/^package main$/;"	p
+maze	maze.go	/^type maze struct {$/;"	s	package:main
+mazeSymbols	maze.go	/^var mazeSymbols = []rune{$/;"	v	package:main
+move	arm.go	/^func (a *arm) move(newLoc vector) {$/;"	f	unknown:main.arm
+move	crawler.go	/^func (c *crawler) move(newLoc vector) {$/;"	f	unknown:main.crawler
+n	maze.go	/^	n    = 0x01$/;"	c	package:main
+ne	maze.go	/^	ne   = 0x05$/;"	c	package:main
+neighbors	maze.go	/^func (m *maze) neighbors(of vector) []vector {$/;"	f	unknown:main.maze
+new	maze.go	/^	new  = 0x0D$/;"	c	package:main
+none	maze.go	/^	none = 0x00$/;"	c	package:main
+ns	maze.go	/^	ns   = 0x03$/;"	c	package:main
+nse	maze.go	/^	nse  = 0x07$/;"	c	package:main
+nsew	maze.go	/^	nsew = 0x0F$/;"	c	package:main
+nsw	maze.go	/^	nsw  = 0x0B$/;"	c	package:main
+numberOfObjects	cell.go	/^	numberOfObjects = iota$/;"	c	package:main
+nw	maze.go	/^	nw   = 0x09$/;"	c	package:main
+object	cell.go	/^type object uint16$/;"	t	package:main
+objects	cell_test.go	/^var objects = []object{$/;"	v	package:main
+old	maze.go	/^	old      []cell$/;"	m	struct:main.maze
+orient	maze.go	/^func (m *maze) orient(o object, offset int) uint8 {$/;"	f	unknown:main.maze
+path	arm.go	/^	path     vlist$/;"	m	struct:main.arm
+poll	crawler.go	/^func (c *crawler) poll() int {$/;"	f	unknown:main.crawler
+pop	vlist.go	/^func (v *vlist) pop(vecs1 *[]vector, vecs2 *[]vector) (v1 vector) {$/;"	f	unknown:main.vlist
+prim	crawler.go	/^	prim int$/;"	m	struct:main.crawler
+reaching	crawler.go	/^	reaching$/;"	c	package:main
+resilience	crawler.go	/^	resilience   int$/;"	m	struct:main.stats
+retracting	arm.go	/^	retracting$/;"	c	package:main
+s	main_test.go	/^var s segment$/;"	v	package:main
+s	maze.go	/^	s    = 0x02$/;"	c	package:main
+s	test/main_test.go	/^var s segment$/;"	v	package:main
+se	maze.go	/^	se   = 0x06$/;"	c	package:main
+segments	arm.go	/^	segments vlist$/;"	m	struct:main.arm
+set	maze.go	/^func (m *maze) set(x, y int, r rune) {$/;"	f	unknown:main.maze
+sew	maze.go	/^	sew  = 0x0E$/;"	c	package:main
+shuffle	cell_test.go	/^var shuffle = func() {$/;"	v	package:main
+space	cell.go	/^	space    = ' '$/;"	c	package:main
+state	arm.go	/^	state    astate$/;"	m	struct:main.arm
+state	crawler.go	/^	state    bstate$/;"	m	struct:main.crawler
+states	crawler.go	/^var states = []object{$/;"	v	package:main
+stats	crawler.go	/^	stats$/;"	M	struct:main.crawler	typeref:typename:stats
+stats	crawler.go	/^type stats struct {$/;"	s	package:main
+status	maze.go	/^type status int$/;"	t	package:main
+stopped	maze.go	/^	stopped  bool$/;"	m	struct:main.maze
+stunned	crawler.go	/^	stunned$/;"	c	package:main
+sub	vector.go	/^func (c vector) sub(o vector) vector {$/;"	f	unknown:main.vector
+sw	maze.go	/^	sw   = 0x0A$/;"	c	package:main
+tail	vlist.go	/^	tail []vector$/;"	m	struct:main.vlist
+tendril	cell.go	/^	tendril object = 1 << iota$/;"	c	package:main
+tendrils	maze.go	/^var tendrils = map[uint8]rune{$/;"	v	package:main
+testMark	cell.go	/^	testMark = 'X'$/;"	c	package:main
+testmaze	maze.go	/^var testmaze = []string{$/;"	v	package:main
+unconscious	crawler.go	/^	unconscious$/;"	c	package:main
+unit	vector.go	/^func (c vector) unit() vector {$/;"	f	unknown:main.vector
+updateFood	maze.go	/^func (m *maze) updateFood() {$/;"	f	unknown:main.maze
+updateLength	arm.go	/^func (a *arm) updateLength() {$/;"	f	unknown:main.arm
+vector	vector.go	/^type vector struct {$/;"	s	package:main
+vlist	vlist.go	/^type vlist struct {$/;"	s	package:main
+w	maze.go	/^	w    = 0x04$/;"	c	package:main
+wall	cell.go	/^	wall$/;"	c	package:main
+wandering	crawler.go	/^	wandering bstate = iota$/;"	c	package:main
+width	maze.go	/^	width    int$/;"	m	struct:main.maze
+x	vector.go	/^	x, y int$/;"	m	struct:main.vector
+y	vector.go	/^	x, y int$/;"	m	struct:main.vector

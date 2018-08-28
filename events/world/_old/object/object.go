@@ -2,7 +2,10 @@
 //contain various values
 package object
 
-import "fmt"
+import (
+	"fmt"
+	"math/bits"
+)
 
 var Keys = [...]Key{
 	BOOL0,
@@ -32,6 +35,12 @@ var Keys = [...]Key{
 	UINT8_48,
 	UINT8_54,
 }
+
+const (
+	FIRST_BOOL   = 0
+	FIRST_NIBBLE = 16
+	FIRST_UINT8  = 25
+)
 
 const (
 	BOOL0 Key = iota
@@ -69,7 +78,8 @@ const (
 )
 
 const (
-	MAX = 0xFFFFFFFFFFFFFFFF
+	MAX      = 0xFFFFFFFFFFFFFFFF
+	boolMask = MAX >> (64 - lastBoolBoundary)
 )
 const (
 	_bool   = 1
@@ -143,4 +153,69 @@ func (o *Object) Set(k Key, newVal int) *Object {
 	*o |= Object(newVal)
 
 	return o
+}
+
+//checks if the object 'this' is a subset of 'o'
+//would like to do this with bitwise techniques -
+//need to do research
+func (o Object) Superset(this Object) bool {
+
+	if (this&boolMask)&^(o&boolMask) != 0 {
+		return false
+	}
+
+	for i := FIRST_NIBBLE; i < FIRST_UINT8; i++ {
+		if o.Get(Keys[i]) < this.Get(Keys[i]) {
+			return false
+		}
+	}
+	for i := FIRST_UINT8; i < len(Keys); i++ {
+		if o.Get(Keys[i]) < this.Get(Keys[i]) {
+			return false
+		}
+
+	}
+	return true
+
+}
+
+//returns fields that have a value -
+//can be optimized a lot if necessary
+func (o Object) Fields() (filled []Key) {
+	for _, key := range Keys {
+		if o.Get(key) != 0 {
+			filled = append(filled, key)
+		}
+	}
+	return
+}
+
+//debug only
+func (o Object) PrintBinary() string {
+	s := ""
+	var rightmostBit uint64
+	rightmostBit = 0x0000000000000001
+
+	for i := 0; i <= 64; i++ {
+		o1 := o
+
+		o1 <<= 64 - uint(bits.Len64(uint64(o1)))
+		if rightmostBit&(uint64(o1)>>uint(i)) == 1 {
+			s = "█" + s
+		} else {
+			s = " " + s
+		}
+
+	}
+	return s
+}
+
+func (o Object) RelativeComplement(this Object) (diff []Key) {
+
+	for _, key := range Keys {
+		if o.Get(key) < this.Get(key) {
+			diff = append(diff, key)
+		}
+	}
+	return diff
 }
